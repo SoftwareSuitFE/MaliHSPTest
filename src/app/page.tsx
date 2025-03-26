@@ -1,30 +1,59 @@
+"use client";
+
 import Header from "@/components/layout/header";
 import TravelTabs from "@/components/home/travelTabs";
 import SearchForm from "@/components/home/searchForm";
-import { CSSProperties } from "react";
+import { useEffect } from "react";
 
 export default function Home() {
-  // 100% çalışacak bir çözüm - katmanlı yaklaşım
-  const bgStyles: CSSProperties = {
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
-       url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  };
+  useEffect(() => {
+    document.body.style.background = "#f5f5f5";
+
+    return () => {
+      document.body.style.background = "";
+    };
+  }, []);
 
   return (
-    <main>
+    <main className="min-h-screen overflow-x-hidden">
       <Header />
 
-      {/* Tamamıyla online kaynak kullanan arka plan */}
-      <div className="relative h-[500px]" style={bgStyles}>
-        <div className="relative z-10 container mx-auto h-full flex flex-col justify-center items-center px-4">
+      <div
+        className="relative h-[500px] overflow-hidden bg-blue-400"
+        style={{
+          width: "100%",
+          height: "500px",
+        }}
+      >
+        <div
+          className="absolute inset-0 w-full h-full"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?q=80&w=3433&auto=format&fit=crop')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center 40%",
+            transform: "scale(1.05)",
+            filter: "brightness(1.05) saturate(1.1)",
+          }}
+        ></div>
+
+        <div
+          className="absolute inset-0 w-full h-full"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.15))",
+          }}
+        ></div>
+
+        {/* İçerik */}
+        <div className="relative z-20 container mx-auto h-full flex flex-col justify-center items-center px-4">
           <div className="w-full max-w-4xl">
             <div className="mb-6 mt-24">
               <TravelTabs />
             </div>
 
-            <SearchForm />
+            <div className="transform transition-transform duration-300">
+              <SearchForm />
+            </div>
           </div>
         </div>
       </div>
