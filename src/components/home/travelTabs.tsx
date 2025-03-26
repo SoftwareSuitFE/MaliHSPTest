@@ -16,12 +16,12 @@ const TravelTabs = () => {
 
   return (
     <div className="flex justify-center mb-4">
-      <div className="flex rounded-full bg-[#FFFFFF30] backdrop-blur-[4px] p-1">
+      <div className="flex bg-white/30 backdrop-blur-sm p-1 rounded-2xl">
         <button
           onClick={() => handleTabChange("package")}
-          className={`flex items-center px-6 py-[10px] rounded-full ${
+          className={`flex items-center justify-center px-4 py-2 rounded-xl transition-all ${
             activeTab === "package"
-              ? "bg-white text-gray-800 shadow-md"
+              ? "bg-white text-gray-800 shadow-sm"
               : "bg-transparent text-white"
           }`}
           style={{ width: "130px", height: "40px" }}
@@ -54,9 +54,9 @@ const TravelTabs = () => {
 
         <button
           onClick={() => handleTabChange("hotel")}
-          className={`flex items-center px-6 py-[10px] rounded-full ${
+          className={`flex items-center justify-center px-4 py-2 rounded-xl transition-all ${
             activeTab === "hotel"
-              ? "bg-white text-gray-800 shadow-md"
+              ? "bg-white text-gray-800 shadow-sm"
               : "bg-transparent text-white"
           }`}
           style={{ width: "107px", height: "40px" }}
@@ -131,9 +131,9 @@ const TravelTabs = () => {
 
         <button
           onClick={() => handleTabChange("flight")}
-          className={`flex items-center px-6 py-[10px] rounded-full ${
+          className={`flex items-center justify-center px-4 py-2 rounded-xl transition-all ${
             activeTab === "flight"
-              ? "bg-white text-gray-800 shadow-md"
+              ? "bg-white text-gray-800 shadow-sm"
               : "bg-transparent text-white"
           }`}
           style={{ width: "107px", height: "40px" }}

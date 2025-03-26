@@ -39,10 +39,10 @@ const SearchForm = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 gap-2 w-full">
-      <div className="flex flex-col md:flex-row items-center gap-2 w-full">
+    <div className="bg-white/80 backdrop-blur-sm rounded-lg shadow-md p-4 gap-2 w-full">
+      <div className="flex flex-col md:flex-row items-center gap-3 w-full">
         {/* From Field */}
-        <div className="w-full md:w-auto md:flex-1 flex items-center h-10 bg-white rounded-lg border border-[#E1E7EF]">
+        <div className="w-full md:w-auto md:flex-1 flex items-center h-10 bg-white rounded-lg border-r border-[#E1E7EF]">
           <div className="pl-2">
             <svg
               width="24"
@@ -72,13 +72,13 @@ const SearchForm = () => {
             placeholder="From"
             value={fromLocation}
             onChange={(e) => setFromLocation(e.target.value)}
-            className="w-full h-full text-sm font-medium text-[#142347] pl-2 focus:outline-none"
+            className="w-full h-full text-sm font-medium text-[#142347] pl-2 focus:outline-none bg-transparent"
             style={{ fontSize: "14px", fontWeight: "500" }}
           />
         </div>
 
         {/* Destination Field */}
-        <div className="w-full md:w-auto md:flex-1 flex items-center h-10 bg-white rounded-lg border border-[#E1E7EF]">
+        <div className="w-full md:w-auto md:flex-1 flex items-center h-10 bg-white rounded-lg border-r border-[#E1E7EF]">
           <div className="pl-2">
             <svg
               width="24"
@@ -108,14 +108,14 @@ const SearchForm = () => {
             placeholder="Destination"
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
-            className="w-full h-full text-sm font-medium text-[#142347] pl-2 focus:outline-none"
+            className="w-full h-full text-sm font-medium text-[#142347] pl-2 focus:outline-none bg-transparent"
             style={{ fontSize: "14px", fontWeight: "500" }}
           />
         </div>
 
         {/* Date Field */}
         <div
-          className="w-full md:w-auto flex items-center h-10 bg-white rounded-lg border border-[#E1E7EF]"
+          className="w-full md:w-auto flex items-center h-10 bg-white rounded-lg border-r border-[#E1E7EF]"
           style={{ width: "115px" }}
         >
           <div className="pl-2">
@@ -168,7 +168,7 @@ const SearchForm = () => {
 
         {/* Nights Field */}
         <div
-          className="w-full md:w-auto flex items-center h-10 bg-white rounded-lg border border-[#E1E7EF]"
+          className="w-full md:w-auto flex items-center h-10 bg-white rounded-lg border-r border-[#E1E7EF]"
           style={{ width: "110px" }}
         >
           <div className="pl-2">
@@ -203,7 +203,7 @@ const SearchForm = () => {
 
         {/* Participants Field */}
         <div
-          className="w-full md:w-auto flex items-center h-10 bg-white rounded-lg border border-[#E1E7EF]"
+          className="w-full md:w-auto flex items-center h-10 bg-white rounded-lg border-r border-[#E1E7EF]"
           style={{ width: "135px" }}
         >
           <div className="pl-2">
@@ -254,13 +254,14 @@ const SearchForm = () => {
         <Button
           type="primary"
           onClick={handleSearch}
-          className="w-full md:w-auto h-10 bg-[#ED9636] border-[#ED9636] hover:bg-[#d88630] hover:border-[#d88630] text-white px-6 text-sm font-semibold uppercase"
+          className="w-full md:w-auto h-10 border-0 hover:bg-[#d88630] text-white px-6 text-sm font-semibold uppercase"
           style={{
             width: "142px",
             height: "40px",
             borderRadius: "8px",
             fontSize: "14px",
             fontWeight: "700",
+            backgroundColor: "#ED8936", // Correct color from Figma
           }}
         >
           SEARCH

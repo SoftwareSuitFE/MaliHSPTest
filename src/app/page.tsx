@@ -1,34 +1,24 @@
 import Header from "@/components/layout/header";
 import TravelTabs from "@/components/home/travelTabs";
 import SearchForm from "@/components/home/searchForm";
-import { popularDestinations } from "../../data/mockData";
-import Link from "next/link";
-import Image from "next/image";
+import { CSSProperties } from "react";
 
 export default function Home() {
+  // 100% çalışacak bir çözüm - katmanlı yaklaşım
+  const bgStyles: CSSProperties = {
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
+       url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  };
+
   return (
     <main>
       <Header />
 
-      <div className="relative h-[500px]">
-        {/* Arka plan resmi - Next.js Image komponenti ile */}
-        <Image
-          src="/images/bgTravel.png"
-          alt="Travel Background"
-          fill
-          priority
-          style={{
-            objectFit: "cover",
-            objectPosition: "center",
-            zIndex: -1,
-          }}
-        />
-
-        {/* Karartma katmanı */}
-        <div className="absolute inset-0 bg-black bg-opacity-20 z-10"></div>
-
-        {/* İçerik */}
-        <div className="relative z-20 container mx-auto h-full flex flex-col justify-center items-center px-4">
+      {/* Tamamıyla online kaynak kullanan arka plan */}
+      <div className="relative h-[500px]" style={bgStyles}>
+        <div className="relative z-10 container mx-auto h-full flex flex-col justify-center items-center px-4">
           <div className="w-full max-w-4xl">
             <div className="mb-6 mt-24">
               <TravelTabs />
@@ -38,41 +28,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      {/* <div className="container mx-auto py-12 px-4">
-        <h2 className="text-2xl font-bold mb-6">Popular Destinations</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {popularDestinations.map((destination) => (
-            <Link
-              href={`/search?destination=${destination}`}
-              key={destination}
-              className="destination-card block"
-            >
-              <div
-                className="relative bg-cover bg-center h-48 rounded-lg overflow-hidden"
-                style={{
-                  backgroundImage: `url('https://source.unsplash.com/400x300/?${destination.toLowerCase()},travel')`,
-                }}
-              >
-                <div className="absolute inset-0 bg-black bg-opacity-30 transition-opacity hover:bg-opacity-20"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-white text-xl font-bold">
-                    {destination}
-                  </span>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div> */}
-
-      {/* <footer className="bg-gray-100 py-6">
-        <div className="container mx-auto px-4">
-          <p className="text-center text-gray-600">
-            © {new Date().getFullYear()} TravelGo. All rights reserved.
-          </p>
-        </div>
-      </footer> */}
     </main>
   );
 }

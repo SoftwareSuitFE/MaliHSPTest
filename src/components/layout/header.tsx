@@ -13,29 +13,29 @@ const Header = () => {
     <header className="w-full">
       {/* Top Navigation Bar */}
       <div className="bg-[#F6F6F8] py-1">
-        <div className="container mx-auto flex justify-between items-center">
-          <div className="flex gap-4">
+        <div className="container mx-auto flex justify-end items-center px-4">
+          {/* All elements aligned to the right */}
+          <div className="flex items-center">
             <Link
               href="/"
-              className="text-[#5c5c5c] hover:text-[#0057b8] text-xs py-2"
+              className="text-[#5c5c5c] hover:text-[#0057b8] text-xs py-2 mr-4"
             >
               B2B platform
             </Link>
             <Link
               href="/"
-              className="text-[#5c5c5c] hover:text-[#0057b8] text-xs py-2"
+              className="text-[#5c5c5c] hover:text-[#0057b8] text-xs py-2 mr-4"
             >
               Client Care
             </Link>
             <Link
               href="/"
-              className="text-[#5c5c5c] hover:text-[#0057b8] text-xs py-2"
+              className="text-[#5c5c5c] hover:text-[#0057b8] text-xs py-2 mr-6"
             >
               Contact
             </Link>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center text-[#5c5c5c]">
+
+            <div className="flex items-center text-[#5c5c5c] mr-4">
               <span className="text-[#ED9636] mr-1">
                 <svg
                   width="16"
@@ -54,7 +54,7 @@ const Header = () => {
             </div>
 
             {/* Favorite Button */}
-            <div className="flex items-center text-[#5c5c5c]">
+            <div className="flex items-center text-[#5c5c5c] mr-4">
               <span className="text-[#ED9636] mr-1">
                 <svg
                   width="13.5"
@@ -73,7 +73,7 @@ const Header = () => {
             </div>
 
             {/* Search Input */}
-            <div className="relative">
+            <div className="relative mr-4">
               <Input
                 prefix={
                   <SearchOutlined
@@ -89,9 +89,9 @@ const Header = () => {
               />
             </div>
 
-            {/* EN Flag with Dropdown */}
+            {/* EN Flag with Dropdown - Aligned properly */}
             <div className="flex items-center text-[#5c5c5c]">
-              <span className="mr-1">
+              <span className="mr-1 flex items-center">
                 <svg
                   width="16"
                   height="16"
@@ -128,7 +128,7 @@ const Header = () => {
                 </svg>
               </span>
               <span className="text-xs">EN</span>
-              <span className="ml-1">
+              <span className="ml-1 flex items-center">
                 <svg
                   width="8"
                   height="8"
@@ -153,8 +153,8 @@ const Header = () => {
                 <Image
                   src="/images/travelgoP.png"
                   alt="TRAVELGO"
-                  layout="fill"
-                  objectFit="contain"
+                  fill
+                  style={{ objectFit: "contain" }}
                 />
               </div>
             </Link>
