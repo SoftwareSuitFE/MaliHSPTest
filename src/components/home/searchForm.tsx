@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Input, Button } from "antd";
+import { Button } from "antd";
 import dayjs from "dayjs";
 import { useSearch } from "../../../context/searchContext";
 
@@ -39,209 +39,233 @@ const SearchForm = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 flex flex-col md:flex-row items-center gap-4 w-full">
-      {/* From Field */}
-      <div className="w-full md:w-auto md:flex-1 flex items-center h-12 bg-white rounded-lg">
-        <div className="pl-4 text-gray-400">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M10 10.8333C11.3807 10.8333 12.5 9.71404 12.5 8.33333C12.5 6.95262 11.3807 5.83333 10 5.83333C8.61929 5.83333 7.5 6.95262 7.5 8.33333C7.5 9.71404 8.61929 10.8333 10 10.8333Z"
-              stroke="#9CA3AF"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M10 18.3333C13.3333 15 16.6667 12.0152 16.6667 8.33333C16.6667 4.65143 13.6819 1.66666 10 1.66666C6.31811 1.66666 3.33334 4.65143 3.33334 8.33333C3.33334 12.0152 6.66668 15 10 18.3333Z"
-              stroke="#9CA3AF"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+    <div className="bg-white rounded-lg shadow-md p-4 gap-2 w-full">
+      <div className="flex flex-col md:flex-row items-center gap-2 w-full">
+        {/* From Field */}
+        <div className="w-full md:w-auto md:flex-1 flex items-center h-10 bg-white rounded-lg border border-[#E1E7EF]">
+          <div className="pl-2">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z"
+                stroke="#142347"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M12 22C16 18 20 14.4183 20 10C20 5.58172 16.4183 2 12 2C7.58172 2 4 5.58172 4 10C4 14.4183 8 18 12 22Z"
+                stroke="#142347"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+          <input
+            type="text"
+            placeholder="From"
+            value={fromLocation}
+            onChange={(e) => setFromLocation(e.target.value)}
+            className="w-full h-full text-sm font-medium text-[#142347] pl-2 focus:outline-none"
+            style={{ fontSize: "14px", fontWeight: "500" }}
+          />
         </div>
-        <Input
-          placeholder="From"
-          bordered={false}
-          value={fromLocation}
-          onChange={(e) => setFromLocation(e.target.value)}
-          className="flex-grow h-full"
-        />
-      </div>
 
-      {/* Destination Field */}
-      <div className="w-full md:w-auto md:flex-1 flex items-center h-12 bg-white rounded-lg">
-        <div className="pl-4 text-gray-400">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M10 10.8333C11.3807 10.8333 12.5 9.71404 12.5 8.33333C12.5 6.95262 11.3807 5.83333 10 5.83333C8.61929 5.83333 7.5 6.95262 7.5 8.33333C7.5 9.71404 8.61929 10.8333 10 10.8333Z"
-              stroke="#9CA3AF"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M10 18.3333C13.3333 15 16.6667 12.0152 16.6667 8.33333C16.6667 4.65143 13.6819 1.66666 10 1.66666C6.31811 1.66666 3.33334 4.65143 3.33334 8.33333C3.33334 12.0152 6.66668 15 10 18.3333Z"
-              stroke="#9CA3AF"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+        {/* Destination Field */}
+        <div className="w-full md:w-auto md:flex-1 flex items-center h-10 bg-white rounded-lg border border-[#E1E7EF]">
+          <div className="pl-2">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
+                stroke="#142347"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M21 21L17 17"
+                stroke="#142347"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+          <input
+            type="text"
+            placeholder="Destination"
+            value={destination}
+            onChange={(e) => setDestination(e.target.value)}
+            className="w-full h-full text-sm font-medium text-[#142347] pl-2 focus:outline-none"
+            style={{ fontSize: "14px", fontWeight: "500" }}
+          />
         </div>
-        <Input
-          placeholder="Destination"
-          bordered={false}
-          value={destination}
-          onChange={(e) => setDestination(e.target.value)}
-          className="flex-grow h-full"
-        />
-      </div>
 
-      {/* Date Field */}
-      <div className="w-full md:w-auto md:flex-1 flex items-center h-12 bg-white rounded-lg">
-        <div className="pl-4 text-gray-400">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M15.8333 3.33334H4.16667C3.24619 3.33334 2.5 4.07954 2.5 5.00001V16.6667C2.5 17.5872 3.24619 18.3333 4.16667 18.3333H15.8333C16.7538 18.3333 17.5 17.5872 17.5 16.6667V5.00001C17.5 4.07954 16.7538 3.33334 15.8333 3.33334Z"
-              stroke="#9CA3AF"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M13.3333 1.66666V4.99999"
-              stroke="#9CA3AF"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M6.66667 1.66666V4.99999"
-              stroke="#9CA3AF"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M2.5 8.33334H17.5"
-              stroke="#9CA3AF"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+        {/* Date Field */}
+        <div
+          className="w-full md:w-auto flex items-center h-10 bg-white rounded-lg border border-[#E1E7EF]"
+          style={{ width: "115px" }}
+        >
+          <div className="pl-2">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="3"
+                y="6"
+                width="18"
+                height="15"
+                rx="2"
+                stroke="#142347"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M3 10H21"
+                stroke="#142347"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M16 2V6"
+                stroke="#142347"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M8 2V6"
+                stroke="#142347"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+          <div className="flex flex-col justify-center pl-2">
+            <div className="text-xs text-gray-500">Date</div>
+            <div className="font-medium text-xs text-[#142347]">15 Apr</div>
+          </div>
         </div>
-        <div className="flex-1">
-          <div className="text-[10px] text-gray-500">Date</div>
-          <div className="font-medium text-sm">15 Apr</div>
-        </div>
-      </div>
 
-      {/* Nights Field */}
-      <div className="w-full md:w-auto md:flex-1 flex items-center h-12 bg-white rounded-lg">
-        <div className="pl-4 text-gray-400">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M10 5.00001V10H13.3333"
-              stroke="#9CA3AF"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M10 18.3333C14.6024 18.3333 18.3333 14.6024 18.3333 10C18.3333 5.39763 14.6024 1.66667 10 1.66667C5.39763 1.66667 1.66667 5.39763 1.66667 10C1.66667 14.6024 5.39763 18.3333 10 18.3333Z"
-              stroke="#9CA3AF"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+        {/* Nights Field */}
+        <div
+          className="w-full md:w-auto flex items-center h-10 bg-white rounded-lg border border-[#E1E7EF]"
+          style={{ width: "110px" }}
+        >
+          <div className="pl-2">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 6V12H16"
+                stroke="#142347"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                stroke="#142347"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+          <div className="flex flex-col justify-center pl-2">
+            <div className="text-xs text-gray-500">Nights</div>
+            <div className="font-medium text-xs text-[#142347]">5 Nights</div>
+          </div>
         </div>
-        <div className="flex-1">
-          <div className="text-[10px] text-gray-500">Nights</div>
-          <div className="font-medium text-sm">5 Nights</div>
-        </div>
-      </div>
 
-      {/* Participants Field */}
-      <div className="w-full md:w-auto md:flex-1 flex items-center h-12 bg-white rounded-lg">
-        <div className="pl-4 text-gray-400">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M14.1666 17.5V15.8333C14.1666 14.9493 13.8155 14.1014 13.1903 13.4763C12.5652 12.8512 11.7174 12.5 10.8333 12.5H4.16665C3.28259 12.5 2.43475 12.8512 1.80962 13.4763C1.1845 14.1014 0.833313 14.9493 0.833313 15.8333V17.5"
-              stroke="#9CA3AF"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M7.50002 9.16667C9.34097 9.16667 10.8334 7.67428 10.8334 5.83333C10.8334 3.99238 9.34097 2.5 7.50002 2.5C5.65907 2.5 4.16669 3.99238 4.16669 5.83333C4.16669 7.67428 5.65907 9.16667 7.50002 9.16667Z"
-              stroke="#9CA3AF"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M19.1667 17.5V15.8333C19.1662 15.0948 18.9204 14.3773 18.4679 13.7936C18.0154 13.2099 17.3819 12.793 16.6667 12.6083"
-              stroke="#9CA3AF"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M13.3333 2.60834C14.0504 2.79192 14.6859 3.20892 15.1397 3.7936C15.5935 4.37827 15.8398 5.09736 15.8398 5.8375C15.8398 6.57765 15.5935 7.29674 15.1397 7.88141C14.6859 8.46609 14.0504 8.88309 13.3333 9.06667"
-              stroke="#9CA3AF"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+        {/* Participants Field */}
+        <div
+          className="w-full md:w-auto flex items-center h-10 bg-white rounded-lg border border-[#E1E7EF]"
+          style={{ width: "135px" }}
+        >
+          <div className="pl-2">
+            <svg
+              width="22.68"
+              height="14.82"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
+                stroke="#142347"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z"
+                stroke="#142347"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13"
+                stroke="#142347"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88"
+                stroke="#142347"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+          <div className="flex flex-col justify-center pl-2">
+            <div className="text-xs text-gray-500">Participants</div>
+            <div className="font-medium text-xs text-[#142347]">2 People</div>
+          </div>
         </div>
-        <div className="flex-1">
-          <div className="text-[10px] text-gray-500">Participants</div>
-          <div className="font-medium text-sm">2 People</div>
-        </div>
-      </div>
 
-      {/* Search Button */}
-      <Button
-        type="primary"
-        onClick={handleSearch}
-        className="w-full md:w-auto h-12 bg-[#ED9636] border-[#ED9636] hover:bg-[#d88630] hover:border-[#d88630] text-white px-6 text-sm font-semibold uppercase"
-      >
-        SEARCH
-      </Button>
+        {/* Search Button */}
+        <Button
+          type="primary"
+          onClick={handleSearch}
+          className="w-full md:w-auto h-10 bg-[#ED9636] border-[#ED9636] hover:bg-[#d88630] hover:border-[#d88630] text-white px-6 text-sm font-semibold uppercase"
+          style={{
+            width: "142px",
+            height: "40px",
+            borderRadius: "8px",
+            fontSize: "14px",
+            fontWeight: "700",
+          }}
+        >
+          SEARCH
+        </Button>
+      </div>
     </div>
   );
 };

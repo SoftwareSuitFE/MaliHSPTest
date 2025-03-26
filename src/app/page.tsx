@@ -5,25 +5,23 @@ import { popularDestinations } from "../../data/mockData";
 import Link from "next/link";
 import Image from "next/image";
 
-// Resmi doğrudan import ediyoruz
-import bgImage from "../../public/images/bgTravel.png";
-
 export default function Home() {
   return (
     <main>
       <Header />
 
       <div className="relative h-[500px]">
-        {/* Image bileşeni ile arkaplan resmini ekliyoruz - kesin çalışacak */}
+        {/* Arka plan resmi - Next.js Image komponenti ile */}
         <Image
-          src={bgImage}
+          src="/images/bgTravel.png"
           alt="Travel Background"
           fill
+          priority
           style={{
             objectFit: "cover",
             objectPosition: "center",
+            zIndex: -1,
           }}
-          priority
         />
 
         {/* Karartma katmanı */}
@@ -41,7 +39,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="container mx-auto py-12 px-4">
+      {/* <div className="container mx-auto py-12 px-4">
         <h2 className="text-2xl font-bold mb-6">Popular Destinations</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {popularDestinations.map((destination) => (
@@ -66,15 +64,15 @@ export default function Home() {
             </Link>
           ))}
         </div>
-      </div>
+      </div> */}
 
-      <footer className="bg-gray-100 py-6">
+      {/* <footer className="bg-gray-100 py-6">
         <div className="container mx-auto px-4">
           <p className="text-center text-gray-600">
             © {new Date().getFullYear()} TravelGo. All rights reserved.
           </p>
         </div>
-      </footer>
+      </footer> */}
     </main>
   );
 }

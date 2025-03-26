@@ -1,7 +1,7 @@
 import Header from "@/components/layout/header";
 import TravelTabs from "@/components/home/travelTabs";
 import SearchForm from "@/components/home/searchForm";
-import { popularDestinations } from "../../data/mockData";
+import { popularDestinations } from "../../../data/mockData";
 import Link from "next/link";
 
 export default function Home() {
