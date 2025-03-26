@@ -23,7 +23,9 @@ const SearchForm = () => {
       (searchParams.participants?.children || 0) || 2
   );
 
-  const handleSearch = () => {
+  const handleSearch = (e) => {
+    e.preventDefault(); // Prevent any default form submission
+
     updateSearchParams({
       from: fromLocation,
       destination,
@@ -35,6 +37,7 @@ const SearchForm = () => {
       },
     });
 
+    // Explicitly navigate to search page
     router.push("/search");
   };
 

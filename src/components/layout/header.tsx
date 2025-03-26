@@ -151,7 +151,7 @@ const Header = () => {
             <Link href="/" className="flex items-center">
               <div className="relative w-[156.17px] h-[39.91px]">
                 <Image
-                  src="/images/travelgoP.png"
+                  src="/logo/travelgo.svg"
                   alt="TRAVELGO"
                   fill
                   style={{ objectFit: "contain" }}
