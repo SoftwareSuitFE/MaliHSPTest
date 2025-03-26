@@ -75,7 +75,12 @@ const Header = () => {
             {/* Search Input */}
             <div className="relative">
               <Input
-                prefix={<SearchOutlined className="text-gray-400" />}
+                prefix={
+                  <SearchOutlined
+                    className="text-gray-400"
+                    style={{ fontSize: "16px" }}
+                  />
+                }
                 placeholder="Destination or Hotel"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -122,7 +127,7 @@ const Header = () => {
                   />
                 </svg>
               </span>
-              <span className="text-xs font-medium">EN</span>
+              <span className="text-xs">EN</span>
               <span className="ml-1">
                 <svg
                   width="8"
@@ -144,51 +149,54 @@ const Header = () => {
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <div className="relative h-10 w-48">
+              <div className="relative w-[156.17px] h-[39.91px]">
                 <Image
                   src="/images/travelgoP.png"
                   alt="TRAVELGO"
-                  width={192}
-                  height={40}
+                  layout="fill"
                   objectFit="contain"
                 />
               </div>
             </Link>
           </div>
 
-          <nav className="hidden md:block">
-            <ul className="flex space-x-4">
-              <li>
-                <Link href="/" className="text-sm hover:text-[#0057b8]">
-                  Popular Destinations
-                </Link>
-              </li>
-              <li>
-                <Link href="/" className="text-sm hover:text-[#0057b8]">
-                  Top Hotels
-                </Link>
-              </li>
-              <li>
-                <Link href="/" className="text-sm hover:text-[#0057b8]">
-                  Last Minute
-                </Link>
-              </li>
-              <li>
-                <Link href="/" className="text-sm hover:text-[#0057b8]">
-                  Recommended
-                </Link>
-              </li>
-              <li>
-                <Link href="/" className="text-sm hover:text-[#0057b8]">
-                  Charter Antalya
-                </Link>
-              </li>
-              <li>
-                <Link href="/" className="text-sm hover:text-[#0057b8]">
-                  City Break Istanbul
-                </Link>
-              </li>
-            </ul>
+          <nav className="hidden md:flex space-x-4">
+            <Link
+              href="/"
+              className="text-sm text-black hover:text-[#0057b8] w-[139px] h-[17px] flex items-center"
+            >
+              Popular Destinations
+            </Link>
+            <Link
+              href="/"
+              className="text-sm text-black hover:text-[#0057b8] w-[72px] h-[17px] flex items-center"
+            >
+              Top Hotels
+            </Link>
+            <Link
+              href="/"
+              className="text-sm text-black hover:text-[#0057b8] w-[79px] h-[17px] flex items-center"
+            >
+              Last Minute
+            </Link>
+            <Link
+              href="/"
+              className="text-sm text-black hover:text-[#0057b8] w-[101px] h-[17px] flex items-center"
+            >
+              Recommended
+            </Link>
+            <Link
+              href="/"
+              className="text-sm text-black hover:text-[#0057b8] w-[106px] h-[17px] flex items-center"
+            >
+              Charter Antalya
+            </Link>
+            <Link
+              href="/"
+              className="text-sm text-black hover:text-[#0057b8] w-[125px] h-[17px] flex items-center"
+            >
+              City Break Istanbul
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}

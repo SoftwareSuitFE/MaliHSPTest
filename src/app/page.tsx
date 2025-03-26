@@ -3,21 +3,34 @@ import TravelTabs from "@/components/home/travelTabs";
 import SearchForm from "@/components/home/searchForm";
 import { popularDestinations } from "../../data/mockData";
 import Link from "next/link";
+import Image from "next/image";
+
+// Resmi doğrudan import ediyoruz
+import bgImage from "../../public/images/bgTravel.png";
 
 export default function Home() {
   return (
     <main>
       <Header />
 
-      <div
-        className="relative bg-cover bg-center h-[500px]"
-        style={{
-          backgroundImage: "url('/images/bgTravel.png')",
-        }}
-      >
-        <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+      <div className="relative h-[500px]">
+        {/* Image bileşeni ile arkaplan resmini ekliyoruz - kesin çalışacak */}
+        <Image
+          src={bgImage}
+          alt="Travel Background"
+          fill
+          style={{
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
+          priority
+        />
 
-        <div className="relative container mx-auto h-full flex flex-col justify-center items-center px-4">
+        {/* Karartma katmanı */}
+        <div className="absolute inset-0 bg-black bg-opacity-20 z-10"></div>
+
+        {/* İçerik */}
+        <div className="relative z-20 container mx-auto h-full flex flex-col justify-center items-center px-4">
           <div className="w-full max-w-4xl">
             <div className="mb-6 mt-24">
               <TravelTabs />

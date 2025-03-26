@@ -39,13 +39,13 @@ const SearchForm = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 flex flex-col lg:flex-row items-center gap-4">
+    <div className="bg-white rounded-lg shadow-md p-4 flex flex-col md:flex-row items-center gap-4 w-full">
       {/* From Field */}
-      <div className="w-full lg:w-auto lg:flex-1 flex items-center border rounded h-12">
-        <div className="pl-4">
+      <div className="w-full md:w-auto md:flex-1 flex items-center h-12 bg-white rounded-lg">
+        <div className="pl-4 text-gray-400">
           <svg
-            width="20"
-            height="20"
+            width="16"
+            height="16"
             viewBox="0 0 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -76,24 +76,24 @@ const SearchForm = () => {
       </div>
 
       {/* Destination Field */}
-      <div className="w-full lg:w-auto lg:flex-1 flex items-center border rounded h-12">
-        <div className="pl-4">
+      <div className="w-full md:w-auto md:flex-1 flex items-center h-12 bg-white rounded-lg">
+        <div className="pl-4 text-gray-400">
           <svg
-            width="20"
-            height="20"
+            width="16"
+            height="16"
             viewBox="0 0 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M17.5 8.33334C17.5 14.1667 10 19.1667 10 19.1667C10 19.1667 2.5 14.1667 2.5 8.33334C2.5 6.34421 3.29018 4.43656 4.6967 3.03004C6.10322 1.62352 8.01088 0.833336 10 0.833336C11.9891 0.833336 13.8968 1.62352 15.3033 3.03004C16.7098 4.43656 17.5 6.34421 17.5 8.33334Z"
+              d="M10 10.8333C11.3807 10.8333 12.5 9.71404 12.5 8.33333C12.5 6.95262 11.3807 5.83333 10 5.83333C8.61929 5.83333 7.5 6.95262 7.5 8.33333C7.5 9.71404 8.61929 10.8333 10 10.8333Z"
               stroke="#9CA3AF"
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
-              d="M10 10.8333C11.3807 10.8333 12.5 9.71404 12.5 8.33333C12.5 6.95262 11.3807 5.83333 10 5.83333C8.61929 5.83333 7.5 6.95262 7.5 8.33333C7.5 9.71404 8.61929 10.8333 10 10.8333Z"
+              d="M10 18.3333C13.3333 15 16.6667 12.0152 16.6667 8.33333C16.6667 4.65143 13.6819 1.66666 10 1.66666C6.31811 1.66666 3.33334 4.65143 3.33334 8.33333C3.33334 12.0152 6.66668 15 10 18.3333Z"
               stroke="#9CA3AF"
               strokeWidth="1.5"
               strokeLinecap="round"
@@ -111,12 +111,11 @@ const SearchForm = () => {
       </div>
 
       {/* Date Field */}
-      <div className="w-full lg:w-auto lg:flex-1 flex flex-col border rounded h-12">
-        <div className="text-[10px] text-gray-500 px-4 pt-1">Date</div>
-        <div className="flex items-center pl-4">
+      <div className="w-full md:w-auto md:flex-1 flex items-center h-12 bg-white rounded-lg">
+        <div className="pl-4 text-gray-400">
           <svg
-            width="20"
-            height="20"
+            width="16"
+            height="16"
             viewBox="0 0 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -150,17 +149,19 @@ const SearchForm = () => {
               strokeLinejoin="round"
             />
           </svg>
-          <div className="ml-2 font-medium text-sm">15 Apr</div>
+        </div>
+        <div className="flex-1">
+          <div className="text-[10px] text-gray-500">Date</div>
+          <div className="font-medium text-sm">15 Apr</div>
         </div>
       </div>
 
       {/* Nights Field */}
-      <div className="w-full lg:w-auto lg:flex-1 flex flex-col border rounded h-12">
-        <div className="text-[10px] text-gray-500 px-4 pt-1">Nights</div>
-        <div className="flex items-center pl-4">
+      <div className="w-full md:w-auto md:flex-1 flex items-center h-12 bg-white rounded-lg">
+        <div className="pl-4 text-gray-400">
           <svg
-            width="20"
-            height="20"
+            width="16"
+            height="16"
             viewBox="0 0 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -180,17 +181,19 @@ const SearchForm = () => {
               strokeLinejoin="round"
             />
           </svg>
-          <div className="ml-2 font-medium text-sm">5 Nights</div>
+        </div>
+        <div className="flex-1">
+          <div className="text-[10px] text-gray-500">Nights</div>
+          <div className="font-medium text-sm">5 Nights</div>
         </div>
       </div>
 
       {/* Participants Field */}
-      <div className="w-full lg:w-auto lg:flex-1 flex flex-col border rounded h-12">
-        <div className="text-[10px] text-gray-500 px-4 pt-1">Participants</div>
-        <div className="flex items-center pl-4">
+      <div className="w-full md:w-auto md:flex-1 flex items-center h-12 bg-white rounded-lg">
+        <div className="pl-4 text-gray-400">
           <svg
-            width="20"
-            height="20"
+            width="16"
+            height="16"
             viewBox="0 0 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -224,7 +227,10 @@ const SearchForm = () => {
               strokeLinejoin="round"
             />
           </svg>
-          <div className="ml-2 font-medium text-sm">2 People</div>
+        </div>
+        <div className="flex-1">
+          <div className="text-[10px] text-gray-500">Participants</div>
+          <div className="font-medium text-sm">2 People</div>
         </div>
       </div>
 
@@ -232,7 +238,7 @@ const SearchForm = () => {
       <Button
         type="primary"
         onClick={handleSearch}
-        className="w-full lg:w-auto h-12 bg-[#ED9636] border-[#ED9636] hover:bg-[#d88630] hover:border-[#d88630] text-white px-6 font-medium uppercase"
+        className="w-full md:w-auto h-12 bg-[#ED9636] border-[#ED9636] hover:bg-[#d88630] hover:border-[#d88630] text-white px-6 text-sm font-semibold uppercase"
       >
         SEARCH
       </Button>
