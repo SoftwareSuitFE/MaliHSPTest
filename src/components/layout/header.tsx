@@ -36,7 +36,7 @@ const Header = () => {
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center text-[#5c5c5c]">
-              <span className="text-[#EB8936] mr-1">
+              <span className="text-[#ED9636] mr-1">
                 <svg
                   width="16"
                   height="16"
@@ -52,11 +52,13 @@ const Header = () => {
               </span>
               <span className="text-xs">+4021 210 17 17</span>
             </div>
+
+            {/* Favorite Button */}
             <div className="flex items-center text-[#5c5c5c]">
-              <span className="text-[#EB8936] mr-1">
+              <span className="text-[#ED9636] mr-1">
                 <svg
-                  width="16"
-                  height="16"
+                  width="13.5"
+                  height="12"
                   viewBox="0 0 16 16"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -69,15 +71,20 @@ const Header = () => {
               </span>
               <span className="text-xs">Favorite</span>
             </div>
+
+            {/* Search Input */}
             <div className="relative">
               <Input
                 prefix={<SearchOutlined className="text-gray-400" />}
                 placeholder="Destination or Hotel"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-white rounded-full text-xs h-8 min-w-[180px]"
+                className="bg-white rounded-full text-xs h-8 w-[200px]"
+                style={{ borderColor: "#E2E2E2" }}
               />
             </div>
+
+            {/* EN Flag with Dropdown */}
             <div className="flex items-center text-[#5c5c5c]">
               <span className="mr-1">
                 <svg
@@ -115,11 +122,11 @@ const Header = () => {
                   />
                 </svg>
               </span>
-              <span className="text-xs">EN</span>
+              <span className="text-xs font-medium">EN</span>
               <span className="ml-1">
                 <svg
-                  width="16"
-                  height="16"
+                  width="8"
+                  height="8"
                   viewBox="0 0 16 16"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -141,7 +148,8 @@ const Header = () => {
                 <Image
                   src="/images/travelgoP.png"
                   alt="TRAVELGO"
-                  layout="fill"
+                  width={192}
+                  height={40}
                   objectFit="contain"
                 />
               </div>
