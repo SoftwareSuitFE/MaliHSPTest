@@ -125,7 +125,7 @@ const Filters: React.FC = () => {
       className="bg-white p-6 rounded-lg shadow-sm sticky top-4"
       style={{ fontFamily: "Inter" }}
     >
-      {/* Filter Başlık (küçük, normal font) */}
+      {/* Filter Başlık */}
       <h3 className="text-sm font-normal text-[#142347] mb-6">Filter</h3>
 
       {/* From */}
@@ -135,14 +135,7 @@ const Filters: React.FC = () => {
           prefix={<EnvironmentOutlined style={{ color: "#142347" }} />}
           value={from}
           onChange={(e) => handleFromChange(e.target.value)}
-          className="
-            h-10 
-            rounded-md 
-            border 
-            border-[#E1E7EF] 
-            text-[#142347]
-            placeholder:text-[#142347]
-          "
+          className="h-10 rounded-md border border-[#E1E7EF] text-[#142347] placeholder:text-[#142347]"
         />
       </div>
 
@@ -153,14 +146,7 @@ const Filters: React.FC = () => {
           prefix={<EnvironmentOutlined style={{ color: "#142347" }} />}
           value={destination}
           onChange={(e) => handleDestinationChange(e.target.value)}
-          className="
-            h-10 
-            rounded-md 
-            border 
-            border-[#E1E7EF] 
-            text-[#142347]
-            placeholder:text-[#142347]
-          "
+          className="h-10 rounded-md border border-[#E1E7EF] text-[#142347] placeholder:text-[#142347]"
         />
       </div>
 
@@ -192,7 +178,6 @@ const Filters: React.FC = () => {
         <label className="block text-sm font-medium text-[#142347] mb-1">
           Date
         </label>
-        {/* Solda calendar, sağda hiçbir ikon yok */}
         <div className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3">
           <CalendarOutlined style={{ color: "#142347" }} className="mr-2" />
           <DatePicker
@@ -204,12 +189,12 @@ const Filters: React.FC = () => {
             allowClear={false}
             className="text-[#142347] placeholder:text-[#142347] font-medium flex-1"
             dropdownStyle={{ fontFamily: "Inter" }}
-            suffixIcon={null} // Kaldır
+            suffixIcon={null}
           />
         </div>
       </div>
 
-      {/* Nights (Moon icon) */}
+      {/* Nights */}
       <div className="mb-4">
         <label className="block text-sm font-medium text-[#142347] mb-1">
           Nights
@@ -256,18 +241,10 @@ const Filters: React.FC = () => {
                 key={concept}
                 className="flex items-center cursor-pointer select-none"
               >
-                {/* Kutu: sadece turuncu tik, beyaz arka plan */}
                 <span
                   className={`
-                    relative w-5 h-5 mr-2 
-                    rounded-sm 
-                    border-2 
-                    flex items-center justify-center
-                    ${
-                      isChecked
-                        ? "border-[#ED8936]" // Seçiliyse turuncu çerçeve
-                        : "border-[#E2E2E2]" // Seçili değilse gri çerçeve
-                    }
+                    relative w-5 h-5 mr-2 rounded-sm border-2 flex items-center justify-center
+                    ${isChecked ? "border-[#ED8936]" : "border-[#E2E2E2]"}
                   `}
                 >
                   {isChecked && (
@@ -284,8 +261,6 @@ const Filters: React.FC = () => {
               </label>
             );
           })}
-
-          {/* More / Less */}
           {baseConcepts.length > 4 && (
             <Button
               type="link"
@@ -308,7 +283,7 @@ const Filters: React.FC = () => {
         </div>
       </div>
 
-      {/* Star (alt alta, radyo benzeri) */}
+      {/* Star */}
       <div className="mb-4">
         <label className="block text-sm font-medium text-[#142347] mb-1">
           Star
@@ -322,28 +297,17 @@ const Filters: React.FC = () => {
                 className="flex items-center gap-2 cursor-pointer select-none"
                 onClick={() => handleStarClick(starValue)}
               >
-                {/* Radyo buton stili */}
                 <div
                   className={`
-                    relative w-5 h-5 rounded-full 
-                    border-2 flex items-center justify-center
-                    ${
-                      isActive
-                        ? "border-[#ED8936]" // Seçiliyse turuncu çerçeve
-                        : "border-[#E2E2E2]" // Değilse gri
-                    }
+                    relative w-5 h-5 rounded-full border-2 flex items-center justify-center
+                    ${isActive ? "border-[#ED8936]" : "border-[#E2E2E2]"}
                   `}
                 >
-                  {/* İç nokta (seçiliyse) */}
                   {isActive && (
                     <div className="w-2 h-2 rounded-full bg-[#ED8936]" />
                   )}
                 </div>
-
-                {/* Yıldız ikonu (her zaman turuncu) */}
                 <StarFilled style={{ color: "#ED8936", fontSize: "16px" }} />
-
-                {/* "1+", "2+", vb. */}
                 <span
                   className="text-sm font-medium"
                   style={{ color: "#142347" }}
