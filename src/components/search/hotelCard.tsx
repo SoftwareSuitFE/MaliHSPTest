@@ -316,37 +316,23 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
           </h3>
 
           {/* Lokasyon (Stars + City/Country) */}
-          <div
-            className="flex items-center gap-2"
-            style={{
-              width: "194px",
-              height: "17px",
-            }}
-          >
+          <div className="flex items-center gap-2">
             {/* Stars */}
-            <div
-              className="flex text-yellow-500"
-              style={{
-                width: "96px",
-                height: "16px",
-                gap: "4px",
-              }}
-            >
+            <div className="flex text-yellow-500" style={{ gap: "4px" }}>
               {Array.from({ length: hotel.stars }).map((_, i) => (
                 <span key={i}>★</span>
               ))}
             </div>
 
-            {/* City / Country */}
+            {/* City / Country (daha geniş, metin taşmasın diye nowrap) */}
             <span
               style={{
-                width: "90px",
-                height: "17px",
                 fontFamily: "Inter",
                 fontWeight: 500,
                 fontSize: "14px",
                 lineHeight: "100%",
                 color: "#142347",
+                whiteSpace: "nowrap", // Uzun şehir/ülke adında satır kaymasın
               }}
             >
               {hotel.location}
@@ -370,7 +356,7 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
               height: "142px",
               display: "flex",
               flexDirection: "column",
-              justifyContent: "space-between", // üstten ve alttan hizalama
+              justifyContent: "space-between", // Üst ve alt hizalama
               paddingTop: "16px",
               paddingBottom: "16px",
             }}
@@ -403,39 +389,39 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
               height: "142px",
               display: "flex",
               flexDirection: "column",
-              justifyContent: "space-between", // üstten ve alttan hizalama
+              justifyContent: "space-between", // Üst ve alt hizalama
               paddingTop: "16px",
               paddingBottom: "16px",
               paddingLeft: "24px",
               borderLeft: "1px solid #F0F4F8",
             }}
           >
-            {/* Üst kısım: eski fiyat + (from PP + yeni fiyat) */}
+            {/* Üst kısım: Eski Fiyat (sağda), altta from PP solda, Yeni Fiyat sağda */}
             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-              {/* Eski Fiyat (line-through) */}
-              <span
-                style={{
-                  fontFamily: "Inter",
-                  fontWeight: 700,
-                  fontSize: "14px",
-                  lineHeight: "100%",
-                  textDecoration: "line-through",
-                  color: "#93A2B7",
-                  // Eski fiyat en üstte
-                }}
-              >
-                {hotel.price + 200}€
-              </span>
+              {/* Eski Fiyat (line-through), sağa yasla */}
+              <div style={{ textAlign: "right" }}>
+                <span
+                  style={{
+                    fontFamily: "Inter",
+                    fontWeight: 700,
+                    fontSize: "14px",
+                    lineHeight: "100%",
+                    textDecoration: "line-through",
+                    color: "#93A2B7",
+                  }}
+                >
+                  {hotel.price + 200}€
+                </span>
+              </div>
 
-              {/* from PP + yeni fiyat (yatay) */}
+              {/* from PP + yeni fiyat, soldan-sağa dağıl */}
               <div
                 style={{
                   display: "flex",
-                  alignItems: "baseline",
                   justifyContent: "space-between",
+                  alignItems: "baseline",
                 }}
               >
-                {/* from PP solda */}
                 <span
                   style={{
                     fontFamily: "Inter",
@@ -447,8 +433,6 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
                 >
                   from PP
                 </span>
-
-                {/* Yeni Fiyat sağda */}
                 <span
                   style={{
                     fontFamily: "Inter",
@@ -463,7 +447,7 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
               </div>
             </div>
 
-            {/* Buton altta */}
+            {/* Buton (altta) */}
             <Button
               style={{
                 width: "176.5px",
@@ -489,4 +473,3 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
 };
 
 export default HotelCard;
-
