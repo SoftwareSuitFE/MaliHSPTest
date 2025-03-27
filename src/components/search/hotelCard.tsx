@@ -1,70 +1,176 @@
+// "use client";
+
+// import React from "react";
+// import { Button } from "antd";
+// import { UserOutlined, CalendarOutlined } from "@ant-design/icons";
+// import { Hotel } from "@/data/mockData";
+
+// interface HotelCardProps {
+//   hotel: Hotel;
+// }
+
+// const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
+//   return (
+//     <div
+//       className="
+//         w-[836px]
+//         h-auto
+//         flex
+//         gap-4
+//       "
+//       // “Frame 7” boyutları: 836×337 (yükseklik sabit değil,
+//       // fakat min 337 px'e uyacak şekilde tasarlayabiliriz)
+//     >
+//       {/* Sol: Görsel Alanı */}
+//       <div
+//         className="
+//           w-[363px]
+//           h-[337px]
+//           rounded-[8px]
+//           overflow-hidden
+//         "
+//       >
+//         <img
+//           src={hotel.image}
+//           alt={hotel.name}
+//           className="w-full h-full object-cover"
+//         />
+//       </div>
+
+//       {/* Sağ: İçerik Alanı */}
+//       <div
+//         className="
+//           w-[457px]
+//           h-[271px]
+//           border
+//           border-[#F0F4F8]
+//           rounded-[8px]
+//           bg-white
+//           p-6
+//           flex flex-col
+//           gap-4
+//         "
+//       >
+//         {/* row 1 (örn. 409×73) */}
+//         <div className="flex flex-col gap-2">
+//           <h3 className="text-xl font-semibold text-[#142347]">{hotel.name}</h3>
+//           <div className="flex items-center">
+//             <div className="flex text-yellow-500 mr-2">
+//               {Array.from({ length: hotel.stars }).map((_, i) => (
+//                 <span key={i}>★</span>
+//               ))}
+//             </div>
+//             <span className="text-gray-600 text-sm">{hotel.location}</span>
+//           </div>
+//         </div>
+
+//         {/* row 2 (örn. 409×142) */}
+//         <div className="flex flex-col gap-4 mt-auto">
+//           {/* Katılımcı, Tarih, Gece, Konsept */}
+//           <div className="flex flex-wrap gap-4 text-sm text-[#142347]">
+//             <div className="flex items-center gap-1">
+//               <UserOutlined />
+//               <span>
+//                 {hotel.adults} Adults - {hotel.children} Child
+//               </span>
+//             </div>
+//             <div className="flex items-center gap-1">
+//               <CalendarOutlined />
+//               <span>{hotel.date}</span>
+//             </div>
+//             <div>{hotel.nights} Nights</div>
+//             <div>{hotel.concept}</div>
+//           </div>
+
+//           {/* Fiyat ve Buton */}
+//           <div className="flex items-end justify-between">
+//             <div>
+//               <div className="text-gray-500 line-through">
+//                 {hotel.price + 200}€
+//               </div>
+//               <div className="text-xl font-semibold text-[#142347]">
+//                 from{" "}
+//                 <span className="text-2xl text-[#ED8936]">{hotel.price}€</span>
+//               </div>
+//             </div>
+//             <Button type="primary" size="large">
+//               Continue
+//             </Button>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default HotelCard;
+
 "use client";
 
+import React from "react";
 import { Button } from "antd";
 import { UserOutlined, CalendarOutlined } from "@ant-design/icons";
-// import { Hotel } from "@/data/mockData";
-import { Hotel } from "../../../data/mockData";
+import { Hotel } from "@/data/mockData";
 
 interface HotelCardProps {
   hotel: Hotel;
 }
 
-const HotelCard = ({ hotel }: HotelCardProps) => {
+const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
   return (
-    <div className="bg-white p-4 rounded-lg shadow-sm mb-4 flex flex-col md:flex-row">
-      <div className="md:w-1/3 mb-4 md:mb-0 md:mr-4">
+    <div className="flex gap-4 w-full">
+      {/* Sol: Görsel (363×268) */}
+      <div className="w-[363px] h-[268px] rounded-[8px] overflow-hidden">
         <img
           src={hotel.image}
           alt={hotel.name}
-          className="w-full h-48 object-cover rounded-lg"
+          className="w-full h-full object-cover"
         />
       </div>
 
-      <div className="md:w-2/3 flex flex-col justify-between">
+      {/* Sağ: İçerik */}
+      <div className="flex-1 border border-[#F0F4F8] rounded-[8px] bg-white p-6 flex flex-col justify-between">
+        {/* Üst Bilgiler */}
         <div>
-          <h3 className="text-xl font-semibold mb-1">{hotel.name}</h3>
-
-          <div className="flex items-center mb-2">
+          <h3 className="text-xl font-semibold text-[#142347] mb-2">
+            {hotel.name}
+          </h3>
+          <div className="flex items-center mb-3">
             <div className="flex text-yellow-500 mr-2">
               {Array.from({ length: hotel.stars }).map((_, i) => (
                 <span key={i}>★</span>
               ))}
             </div>
-            <span className="text-gray-600">{hotel.location}</span>
+            <span className="text-gray-600 text-sm">{hotel.location}</span>
           </div>
-
-          <div className="mb-4 flex flex-wrap gap-2">
-            <div className="flex items-center text-sm">
-              <UserOutlined className="mr-1" />
+          <div className="flex flex-wrap gap-4 text-sm text-[#142347]">
+            <div className="flex items-center gap-1">
+              <UserOutlined />
               <span>
                 {hotel.adults} Adults - {hotel.children} Child
               </span>
             </div>
-            <div className="flex items-center text-sm">
-              <CalendarOutlined className="mr-1" />
+            <div className="flex items-center gap-1">
+              <CalendarOutlined />
               <span>{hotel.date}</span>
             </div>
-            <div className="text-sm">
-              <span>{hotel.nights} Nights</span>
-            </div>
-            <div className="text-sm">
-              <span>{hotel.concept}</span>
-            </div>
+            <div>{hotel.nights} Nights</div>
+            <div>{hotel.concept}</div>
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-end justify-between mt-4">
+        {/* Alt Bilgiler (Fiyat + Buton) */}
+        <div className="flex items-end justify-between mt-4">
           <div>
             <div className="text-gray-500 line-through">
               {hotel.price + 200}€
             </div>
-            <div className="text-xl font-semibold">
+            <div className="text-xl font-semibold text-[#142347]">
               from{" "}
-              <span className="text-2xl text-orange-500">{hotel.price}€</span>
+              <span className="text-2xl text-[#ED8936]">{hotel.price}€</span>
             </div>
           </div>
-
-          <Button type="primary" size="large" className="mt-4 md:mt-0">
+          <Button type="primary" size="large">
             Continue
           </Button>
         </div>

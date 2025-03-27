@@ -20,8 +20,8 @@ body {
 
 /* Ant Design Override */
 .ant-btn-primary {
-  background-color: #ED8936 !important;
-  border-color: #ED8936 !important;
+  background-color: #ed8936 !important;
+  border-color: #ed8936 !important;
 }
 
 .ant-btn-primary:hover {
@@ -30,12 +30,12 @@ body {
 }
 
 .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
-  background-color: #ED8936 !important;
+  background-color: #ed8936 !important;
 }
 
 .ant-input-affix-wrapper:focus,
 .ant-input-affix-wrapper:focus-within {
-  border-color: #ED8936 !important;
+  border-color: #ed8936 !important;
   box-shadow: 0 0 0 2px rgba(237, 137, 54, 0.2) !important;
 }
 
@@ -50,7 +50,7 @@ body {
 
 /* Search form input field styling - only right borders */
 .search-field {
-  border-right: 1px solid #E1E7EF !important;
+  border-right: 1px solid #e1e7ef !important;
   border-top: none !important;
   border-bottom: none !important;
   border-left: none !important;
@@ -77,5 +77,5 @@ body {
 /* Fix for search button */
 .search-button {
   border-radius: 0 8px 8px 0 !important;
-  background-color: #ED8936 !important;
+  background-color: #ed8936 !important;
 }

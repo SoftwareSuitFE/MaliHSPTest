@@ -1,26 +1,27 @@
 "use client";
 
+import React, { JSX } from "react";
 import Header from "@/components/layout/header";
 import Filters from "@/components/search/filters";
 import HotelList from "@/components/search/hotelList";
 
-export default function SearchPage() {
+export default function SearchPage(): JSX.Element {
   return (
-    <main className="min-h-screen bg-gray-100">
-      {/* Üst kısım */}
+    <main className="min-h-screen bg-[#F5F5F5]">
       <Header />
-
-      {/* İçerik Alanı */}
-      <section className="container mx-auto mt-8 flex flex-col md:flex-row gap-4">
-        {/* Soldaki Filtreler */}
-        <div className="w-full md:w-1/4">
-          <Filters />
-        </div>
-
-        {/* Sağdaki Otel Listesi */}
-        <div className="w-full md:w-3/4">
-          <h1 className="text-3xl font-bold mb-4">Arama Sonuçları</h1>
-          <HotelList />
+      <section className="container mx-auto mt-8 px-4">
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+          {/* Sol filtre - sağ içerik */}
+          <div className="grid grid-cols-1 md:grid-cols-[270px_minmax(0,1fr)] gap-0">
+            {/* Filtreler */}
+            <div className="p-6 border-r border-gray-200">
+              <Filters />
+            </div>
+            {/* Otel Listesi */}
+            <div className="p-6">
+              <HotelList />
+            </div>
+          </div>
         </div>
       </section>
     </main>
