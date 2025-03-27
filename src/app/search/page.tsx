@@ -28,6 +28,7 @@
 //   );
 // }
 
+
 "use client";
 
 import React, { JSX } from "react";
@@ -39,7 +40,7 @@ export default function SearchPage(): JSX.Element {
   return (
     <main className="min-h-screen bg-[#F5F5F5]">
       <Header />
-      <section className="w-full mx-auto mt-8 px-4">
+      <section className="container mx-auto mt-8 px-4">
         <div className="max-w-[1400px] mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-[270px_minmax(0,1fr)] gap-0">
             <div className="p-6 border-r border-gray-200">
@@ -54,5 +55,3 @@ export default function SearchPage(): JSX.Element {
     </main>
   );
 }
-
-
