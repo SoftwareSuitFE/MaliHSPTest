@@ -188,7 +188,7 @@ const Filters: React.FC = () => {
             bordered={false}
             allowClear={false}
             className="text-[#142347] placeholder:text-[#142347] font-medium flex-1"
-            dropdownStyle={{ fontFamily: "Inter" }}
+            // dropdownStyle={{ fontFamily: "Inter" }}
             suffixIcon={null}
           />
         </div>
