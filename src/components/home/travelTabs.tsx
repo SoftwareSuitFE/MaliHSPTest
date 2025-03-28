@@ -195,10 +195,10 @@
 
 //   return (
 //     <div className="flex justify-center mb-4">
-//       <div 
-//         className="flex bg-white/30 backdrop-blur-sm overflow-hidden" 
-//         style={{ 
-//           width: "365.41px", 
+//       <div
+//         className="flex bg-white/30 backdrop-blur-sm overflow-hidden"
+//         style={{
+//           width: "365.41px",
 //           height: "40px",
 //           borderRadius: "8px",
 //           gap: "0"
@@ -211,8 +211,8 @@
 //               ? "bg-white text-gray-800"
 //               : "bg-transparent text-gray-800"
 //           }`}
-//           style={{ 
-//             width: "130px", 
+//           style={{
+//             width: "130px",
 //             height: "40px",
 //             borderTopLeftRadius: "8px",
 //             borderTopRightRadius: "8px",
@@ -253,8 +253,8 @@
 //               ? "bg-white text-gray-800"
 //               : "bg-transparent text-gray-800"
 //           }`}
-//           style={{ 
-//             width: "107px", 
+//           style={{
+//             width: "107px",
 //             height: "40px",
 //             borderTopLeftRadius: "8px",
 //             borderTopRightRadius: "8px",
@@ -337,8 +337,8 @@
 //               ? "bg-white text-gray-800"
 //               : "bg-transparent text-gray-800"
 //           }`}
-//           style={{ 
-//             width: "128.41px", 
+//           style={{
+//             width: "128.41px",
 //             height: "40px",
 //             borderTopLeftRadius: "8px",
 //             borderTopRightRadius: "8px",
@@ -385,13 +385,6 @@
 
 // export default TravelTabs;
 
-
-
-
-
-
-
-
 "use client";
 
 import { useState } from "react";
@@ -410,13 +403,13 @@ const TravelTabs = () => {
 
   return (
     <div className="flex justify-center mb-4">
-      <div 
-        className="flex bg-white/30 backdrop-blur-sm overflow-hidden" 
-        style={{ 
-          width: "365.41px", 
+      <div
+        className="flex bg-white/30 backdrop-blur-sm overflow-hidden"
+        style={{
+          width: "365.41px",
           height: "40px",
           borderRadius: "8px",
-          gap: "0"
+          gap: "0",
         }}
       >
         <button
@@ -426,13 +419,13 @@ const TravelTabs = () => {
               ? "bg-white text-gray-800"
               : "bg-transparent text-white"
           }`}
-          style={{ 
-            width: "130px", 
+          style={{
+            width: "130px",
             height: "40px",
             borderTopLeftRadius: "8px",
             borderTopRightRadius: "8px",
             borderBottomLeftRadius: "8px",
-            borderBottomRightRadius: "8px"
+            borderBottomRightRadius: "8px",
           }}
         >
           <svg
@@ -468,13 +461,13 @@ const TravelTabs = () => {
               ? "bg-white text-gray-800"
               : "bg-transparent text-white"
           }`}
-          style={{ 
-            width: "107px", 
+          style={{
+            width: "107px",
             height: "40px",
             borderTopLeftRadius: "8px",
             borderTopRightRadius: "8px",
             borderBottomLeftRadius: "8px",
-            borderBottomRightRadius: "8px"
+            borderBottomRightRadius: "8px",
           }}
         >
           <svg
@@ -552,13 +545,13 @@ const TravelTabs = () => {
               ? "bg-white text-gray-800"
               : "bg-transparent text-white"
           }`}
-          style={{ 
-            width: "128.41px", 
+          style={{
+            width: "128.41px",
             height: "40px",
             borderTopLeftRadius: "8px",
             borderTopRightRadius: "8px",
             borderBottomLeftRadius: "8px",
-            borderBottomRightRadius: "8px"
+            borderBottomRightRadius: "8px",
           }}
         >
           <svg

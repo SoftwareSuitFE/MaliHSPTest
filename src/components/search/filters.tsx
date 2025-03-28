@@ -160,7 +160,6 @@ const Filters: React.FC = () => {
           <Select
             value={people}
             onChange={handlePeopleChange}
-            bordered={false}
             className="flex-1 text-[#142347] font-medium"
             dropdownStyle={{ fontFamily: "Inter" }}
           >
@@ -185,7 +184,6 @@ const Filters: React.FC = () => {
             placeholder="Select date"
             value={date}
             onChange={handleDateChange}
-            bordered={false}
             allowClear={false}
             className="text-[#142347] placeholder:text-[#142347] font-medium flex-1"
             // dropdownStyle={{ fontFamily: "Inter" }}
@@ -204,7 +202,6 @@ const Filters: React.FC = () => {
           <Select
             value={nights}
             onChange={handleNightsChange}
-            bordered={false}
             className="flex-1 text-[#142347] font-medium"
             dropdownStyle={{ fontFamily: "Inter" }}
           >
