@@ -41,6 +41,11 @@
 //     router.push("/search");
 //   };
 
+//   const handleDateChange = (value) => {
+//     setDate(value);
+//     updateSearchParams({ date: value ? value.format("YYYY-MM-DD") : "" });
+//   };
+
 //   const handleNightsChange = (value) => {
 //     setNights(value);
 //     updateSearchParams({ nights: value });
@@ -55,10 +60,6 @@
 //       },
 //     });
 //   };
-
-//   function handleDateChange(date: Dayjs, dateString: string | string[]): void {
-//     throw new Error("Function not implemented.");
-//   }
 
 //   return (
 //     <div
@@ -125,11 +126,12 @@
 //               placeholder="From"
 //               value={fromLocation}
 //               onChange={(e) => setFromLocation(e.target.value)}
-//               className="w-full font-medium bg-transparent focus:outline-none placeholder-[#64748A]"
+//               className="w-full font-medium bg-transparent focus:outline-none"
 //               style={{
 //                 color: "#142347",
 //                 fontSize: "14px",
 //                 fontWeight: "500",
+//                 placeholder: "#64748A",
 //               }}
 //             />
 //           </div>
@@ -644,8 +646,8 @@ const SearchForm = () => {
               />
             </svg>
           </div>
-          <div className="flex flex-col items-start">
-            <div className="text-gray-500 text-sm">Date</div>
+          <div className="flex flex-col items-start w-full pl-2">
+            <div className="text-gray-500 text-sm w-full text-left">Date</div>
             <DatePicker
               format="DD MMM"
               placeholder="Select date"
@@ -653,8 +655,13 @@ const SearchForm = () => {
               onChange={handleDateChange}
               bordered={false}
               allowClear={false}
-              className="p-0 w-full bg-transparent text-[#142347]"
-              style={{ fontSize: "14px", fontWeight: "500", textAlign: "left" }}
+              className="p-0 w-full bg-transparent text-[#142347] pl-0"
+              style={{ 
+                fontSize: "14px", 
+                fontWeight: "500", 
+                textAlign: "left",
+                paddingLeft: "0"
+              }}
               suffixIcon={null}
               dropdownStyle={{ fontFamily: "Inter" }}
               defaultValue={dayjs("2023-04-15")}
@@ -696,23 +703,11 @@ const SearchForm = () => {
               />
             </svg>
           </div>
-          <div className="flex flex-col items-start w-full">
-            <div className="text-gray-500 text-sm">Nights</div>
-            <Select
-              value={nights}
-              onChange={handleNightsChange}
-              bordered={false}
-              className="w-full text-[#142347] p-0"
-              style={{ fontSize: "14px", fontWeight: "500" }}
-              dropdownStyle={{ fontFamily: "Inter" }}
-              suffixIcon={null}
-            >
-              {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
-                <Select.Option key={num} value={num}>
-                  {num} Nights
-                </Select.Option>
-              ))}
-            </Select>
+          <div className="flex flex-col w-full pl-2">
+            <div className="text-gray-500 text-sm text-left">Nights</div>
+            <div className="text-[#142347] text-left" style={{ fontSize: "14px", fontWeight: "500" }}>
+              {nights} Nights
+            </div>
           </div>
         </div>
 
@@ -763,23 +758,11 @@ const SearchForm = () => {
               />
             </svg>
           </div>
-          <div className="flex flex-col items-start w-full">
-            <div className="text-gray-500 text-sm">Participants</div>
-            <Select
-              value={people}
-              onChange={handlePeopleChange}
-              bordered={false}
-              className="w-full text-[#142347] p-0"
-              style={{ fontSize: "14px", fontWeight: "500" }}
-              dropdownStyle={{ fontFamily: "Inter" }}
-              suffixIcon={null}
-            >
-              {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
-                <Select.Option key={num} value={num}>
-                  {num} People
-                </Select.Option>
-              ))}
-            </Select>
+          <div className="flex flex-col w-full pl-2">
+            <div className="text-gray-500 text-sm text-left">Participants</div>
+            <div className="text-[#142347] text-left" style={{ fontSize: "14px", fontWeight: "500" }}>
+              {people} People
+            </div>
           </div>
         </div>
       </div>
