@@ -2,7 +2,7 @@
 
 // import { useState } from "react";
 // import { useRouter } from "next/navigation";
-// import { Button } from "antd";
+// import { Button, DatePicker, Select } from "antd";
 // import dayjs from "dayjs";
 // import { useSearch } from "../../../context/searchContext";
 
@@ -40,6 +40,25 @@
 //     // Explicitly navigate to search page
 //     router.push("/search");
 //   };
+
+//   const handleNightsChange = (value) => {
+//     setNights(value);
+//     updateSearchParams({ nights: value });
+//   };
+
+//   const handlePeopleChange = (value) => {
+//     setPeople(value);
+//     updateSearchParams({
+//       participants: {
+//         adults: Math.max(1, Math.floor(value * 0.7)),
+//         children: Math.max(0, Math.floor(value * 0.3)),
+//       },
+//     });
+//   };
+
+//   function handleDateChange(date: Dayjs, dateString: string | string[]): void {
+//     throw new Error("Function not implemented.");
+//   }
 
 //   return (
 //     <div
@@ -101,8 +120,18 @@
 //             </svg>
 //           </div>
 //           <div className="flex flex-col">
-//             <div className="text-gray-500 text-sm">From</div>
-//             <div className="font-medium text-[#142347]">From</div>
+//             <input
+//               type="text"
+//               placeholder="From"
+//               value={fromLocation}
+//               onChange={(e) => setFromLocation(e.target.value)}
+//               className="w-full font-medium bg-transparent focus:outline-none placeholder-[#64748A]"
+//               style={{
+//                 color: "#142347",
+//                 fontSize: "14px",
+//                 fontWeight: "500",
+//               }}
+//             />
 //           </div>
 //         </div>
 
@@ -142,8 +171,19 @@
 //             </svg>
 //           </div>
 //           <div className="flex flex-col">
-//             <div className="text-gray-500 text-sm">Destination</div>
-//             <div className="font-medium text-[#142347]">Destination</div>
+//             <input
+//               type="text"
+//               placeholder="Destination"
+//               value={destination}
+//               onChange={(e) => setDestination(e.target.value)}
+//               className="w-full font-medium bg-transparent focus:outline-none"
+//               style={{
+//                 color: "#142347",
+//                 fontSize: "14px",
+//                 fontWeight: "500",
+//                 placeholder: "#64748A",
+//               }}
+//             />
 //           </div>
 //         </div>
 
@@ -199,9 +239,21 @@
 //               />
 //             </svg>
 //           </div>
-//           <div className="flex flex-col">
+//           <div className="flex flex-col items-start">
 //             <div className="text-gray-500 text-sm">Date</div>
-//             <div className="font-medium text-[#142347]">15 Apr</div>
+//             <DatePicker
+//               format="DD MMM"
+//               placeholder="Select date"
+//               value={date}
+//               onChange={handleDateChange}
+//               bordered={false}
+//               allowClear={false}
+//               className="p-0 w-full bg-transparent text-[#142347]"
+//               style={{ fontSize: "14px", fontWeight: "500", textAlign: "left" }}
+//               suffixIcon={null}
+//               dropdownStyle={{ fontFamily: "Inter" }}
+//               defaultValue={dayjs("2023-04-15")}
+//             />
 //           </div>
 //         </div>
 
@@ -239,9 +291,23 @@
 //               />
 //             </svg>
 //           </div>
-//           <div className="flex flex-col">
+//           <div className="flex flex-col items-start w-full">
 //             <div className="text-gray-500 text-sm">Nights</div>
-//             <div className="font-medium text-[#142347]">5 Nights</div>
+//             <Select
+//               value={nights}
+//               onChange={handleNightsChange}
+//               bordered={false}
+//               className="w-full text-[#142347] p-0"
+//               style={{ fontSize: "14px", fontWeight: "500" }}
+//               dropdownStyle={{ fontFamily: "Inter" }}
+//               suffixIcon={null}
+//             >
+//               {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
+//                 <Select.Option key={num} value={num}>
+//                   {num} Nights
+//                 </Select.Option>
+//               ))}
+//             </Select>
 //           </div>
 //         </div>
 
@@ -292,9 +358,23 @@
 //               />
 //             </svg>
 //           </div>
-//           <div className="flex flex-col">
+//           <div className="flex flex-col items-start w-full">
 //             <div className="text-gray-500 text-sm">Participants</div>
-//             <div className="font-medium text-[#142347]">2 People</div>
+//             <Select
+//               value={people}
+//               onChange={handlePeopleChange}
+//               bordered={false}
+//               className="w-full text-[#142347] p-0"
+//               style={{ fontSize: "14px", fontWeight: "500" }}
+//               dropdownStyle={{ fontFamily: "Inter" }}
+//               suffixIcon={null}
+//             >
+//               {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
+//                 <Select.Option key={num} value={num}>
+//                   {num} People
+//                 </Select.Option>
+//               ))}
+//             </Select>
 //           </div>
 //         </div>
 //       </div>
@@ -325,7 +405,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button, DatePicker } from "antd";
+import { Button, DatePicker, Select } from "antd";
 import dayjs from "dayjs";
 import { useSearch } from "../../../context/searchContext";
 
@@ -364,9 +444,25 @@ const SearchForm = () => {
     router.push("/search");
   };
 
-  function handleDateChange(date: Dayjs, dateString: string | string[]): void {
-    throw new Error("Function not implemented.");
-  }
+  const handleDateChange = (value) => {
+    setDate(value);
+    updateSearchParams({ date: value ? value.format("YYYY-MM-DD") : "" });
+  };
+
+  const handleNightsChange = (value) => {
+    setNights(value);
+    updateSearchParams({ nights: value });
+  };
+
+  const handlePeopleChange = (value) => {
+    setPeople(value);
+    updateSearchParams({
+      participants: {
+        adults: Math.max(1, Math.floor(value * 0.7)),
+        children: Math.max(0, Math.floor(value * 0.3)),
+      },
+    });
+  };
 
   return (
     <div
@@ -548,7 +644,7 @@ const SearchForm = () => {
               />
             </svg>
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col items-start">
             <div className="text-gray-500 text-sm">Date</div>
             <DatePicker
               format="DD MMM"
@@ -558,7 +654,7 @@ const SearchForm = () => {
               bordered={false}
               allowClear={false}
               className="p-0 w-full bg-transparent text-[#142347]"
-              style={{ fontSize: "14px", fontWeight: "500" }}
+              style={{ fontSize: "14px", fontWeight: "500", textAlign: "left" }}
               suffixIcon={null}
               dropdownStyle={{ fontFamily: "Inter" }}
               defaultValue={dayjs("2023-04-15")}
@@ -600,9 +696,23 @@ const SearchForm = () => {
               />
             </svg>
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col items-start w-full">
             <div className="text-gray-500 text-sm">Nights</div>
-            <div className="font-medium text-[#142347]">5 Nights</div>
+            <Select
+              value={nights}
+              onChange={handleNightsChange}
+              bordered={false}
+              className="w-full text-[#142347] p-0"
+              style={{ fontSize: "14px", fontWeight: "500" }}
+              dropdownStyle={{ fontFamily: "Inter" }}
+              suffixIcon={null}
+            >
+              {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
+                <Select.Option key={num} value={num}>
+                  {num} Nights
+                </Select.Option>
+              ))}
+            </Select>
           </div>
         </div>
 
@@ -653,9 +763,23 @@ const SearchForm = () => {
               />
             </svg>
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col items-start w-full">
             <div className="text-gray-500 text-sm">Participants</div>
-            <div className="font-medium text-[#142347]">2 People</div>
+            <Select
+              value={people}
+              onChange={handlePeopleChange}
+              bordered={false}
+              className="w-full text-[#142347] p-0"
+              style={{ fontSize: "14px", fontWeight: "500" }}
+              dropdownStyle={{ fontFamily: "Inter" }}
+              suffixIcon={null}
+            >
+              {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
+                <Select.Option key={num} value={num}>
+                  {num} People
+                </Select.Option>
+              ))}
+            </Select>
           </div>
         </div>
       </div>
