@@ -1,3 +1,67 @@
+// "use client";
+
+// import Header from "@/components/layout/header";
+// import TravelTabs from "@/components/home/travelTabs";
+// import SearchForm from "@/components/home/searchForm";
+// import { useEffect } from "react";
+
+// export default function Home() {
+//   useEffect(() => {
+//     document.body.style.background = "#f5f5f5";
+
+//     return () => {
+//       document.body.style.background = "";
+//     };
+//   }, []);
+
+//   return (
+//     <main className="min-h-screen overflow-x-hidden">
+//       <Header />
+
+//       <div
+//         className="relative h-[500px] overflow-hidden bg-blue-400"
+//         style={{
+//           width: "100%",
+//           height: "500px",
+//         }}
+//       >
+//         <div
+//           className="absolute inset-0 w-full h-full"
+//           style={{
+//             backgroundImage: `url('https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?q=80&w=3433&auto=format&fit=crop')`,
+//             backgroundSize: "cover",
+//             backgroundPosition: "center 40%",
+//             transform: "scale(1.05)",
+//             filter: "brightness(1.05) saturate(1.1)",
+//           }}
+//         ></div>
+
+//         <div
+//           className="absolute inset-0 w-full h-full"
+//           style={{
+//             background:
+//               "linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.15))",
+//           }}
+//         ></div>
+
+//         {/* İçerik */}
+//         <div className="relative z-20 container mx-auto h-full flex flex-col justify-center items-center px-4">
+//           <div className="w-full max-w-4xl">
+//             <div className="mb-6 mt-24">
+//               <TravelTabs />
+//             </div>
+
+//             <div className="transform transition-transform duration-300">
+//               <SearchForm />
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </main>
+//   );
+// }
+
+
 "use client";
 
 import Header from "@/components/layout/header";
@@ -44,10 +108,10 @@ export default function Home() {
           }}
         ></div>
 
-        {/* İçerik */}
+        {/* Content */}
         <div className="relative z-20 container mx-auto h-full flex flex-col justify-center items-center px-4">
           <div className="w-full max-w-4xl">
-            <div className="mb-6 mt-24">
+            <div className="mb-6 mt-60">
               <TravelTabs />
             </div>
 
