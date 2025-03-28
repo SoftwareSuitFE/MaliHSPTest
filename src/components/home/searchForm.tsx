@@ -1709,6 +1709,842 @@
 
 
 
+// "use client";
+
+// import { useState, useRef } from "react";
+// import { useRouter } from "next/navigation";
+// import { Button } from "antd";
+// import dayjs from "dayjs";
+// import { useSearch } from "../../../context/searchContext";
+// import DestinationDropdown from "../dropdown/DestinationDropdown";
+// import DateRangePicker from "../DateRangePicker/DateRangePicker";
+
+// const SearchForm = () => {
+//   const router = useRouter();
+//   const { searchParams, updateSearchParams } = useSearch();
+//   const formRef = useRef<HTMLDivElement>(null);
+//   const dateFieldRef = useRef<HTMLDivElement>(null);
+
+//   // Form değerleri
+//   const [fromLocation, setFromLocation] = useState(searchParams.from || "");
+//   const [destination, setDestination] = useState(searchParams.destination || "");
+//   const [date, setDate] = useState(
+//     searchParams.date ? dayjs(searchParams.date) : dayjs("2023-04-15")
+//   );
+//   const [endDate, setEndDate] = useState(date.add(searchParams.nights || 5, "day"));
+//   const [nights, setNights] = useState(searchParams.nights || 5);
+//   const [people, setPeople] = useState(
+//     (searchParams.participants?.adults || 2) + (searchParams.participants?.children || 0)
+//   );
+
+//   // Date picker görünürlük
+//   const [showDatePicker, setShowDatePicker] = useState(false);
+
+//   const handleSearch = (e: React.MouseEvent) => {
+//     e.preventDefault();
+
+//     updateSearchParams({
+//       from: fromLocation,
+//       destination,
+//       date: date.format("YYYY-MM-DD"),
+//       nights,
+//       participants: {
+//         adults: Math.max(1, Math.floor(people * 0.7)),
+//         children: Math.max(0, Math.floor(people * 0.3)),
+//       },
+//     });
+
+//     router.push("/search");
+//   };
+
+//   // Tarih kutusuna tıklayınca takvim aç/kapa
+//   const handleDateClick = () => {
+//     setShowDatePicker((prev) => !prev);
+//   };
+
+//   // DateRangePicker değişikliği
+//   const handleDateChange = (start: dayjs.Dayjs, end: dayjs.Dayjs) => {
+//     if (dayjs.isDayjs(start) && dayjs.isDayjs(end)) {
+//       setDate(start);
+//       setEndDate(end);
+//       const nightsCount = end.diff(start, "day");
+//       setNights(nightsCount);
+
+//       // Arama parametrelerini güncelle
+//       updateSearchParams({
+//         date: start.format("YYYY-MM-DD"),
+//         nights: nightsCount,
+//       });
+//     }
+//   };
+
+//   const handleFromChange = (value: string) => {
+//     setFromLocation(value);
+//     updateSearchParams({ from: value });
+//   };
+
+//   const handleDestinationChange = (value: string) => {
+//     setDestination(value);
+//     updateSearchParams({ destination: value });
+//   };
+
+//   const handlePeopleChange = (value: number) => {
+//     setPeople(value);
+//     updateSearchParams({
+//       participants: {
+//         adults: Math.max(1, Math.floor(value * 0.7)),
+//         children: Math.max(0, Math.floor(value * 0.3)),
+//       },
+//     });
+//   };
+
+//   // 1) Package Form
+//   const renderPackageForm = () => (
+//     <>
+//       {/* From Field */}
+//       <div
+//         className="flex items-center"
+//         style={{
+//           width: "170px",
+//           height: "40px",
+//           gap: "8px",
+//           padding: "8px",
+//           borderRight: "1px solid #E1E7EF",
+//         }}
+//       >
+//         <div>
+//           <svg
+//             width="24"
+//             height="24"
+//             viewBox="0 0 24 24"
+//             fill="none"
+//             xmlns="http://www.w3.org/2000/svg"
+//           >
+//             <path
+//               d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M12 22C16 18 20 14.4183 20 10C20 5.58172 16.4183 2 12 2C7.58172 2 4 5.58172 4 10C4 14.4183 8 18 12 22Z"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//           </svg>
+//         </div>
+//         <div className="flex flex-col">
+//           <input
+//             type="text"
+//             placeholder="From"
+//             value={fromLocation}
+//             onChange={(e) => handleFromChange(e.target.value)}
+//             className="w-full font-medium bg-transparent focus:outline-none"
+//             style={{
+//               color: "#142347",
+//               fontSize: "14px",
+//               fontWeight: "500",
+//             }}
+//           />
+//         </div>
+//       </div>
+
+//       {/* Destination Field */}
+//       <div
+//         className="flex items-center"
+//         style={{
+//           width: "170px",
+//           height: "40px",
+//           gap: "8px",
+//           padding: "8px",
+//           borderRight: "1px solid #E1E7EF",
+//         }}
+//       >
+//         <div>
+//           <svg
+//             width="24"
+//             height="24"
+//             viewBox="0 0 24 24"
+//             fill="none"
+//             xmlns="http://www.w3.org/2000/svg"
+//           >
+//             <path
+//               d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M21 21L17 17"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//           </svg>
+//         </div>
+//         <div className="flex flex-col">
+//           <input
+//             type="text"
+//             placeholder="Destination"
+//             value={destination}
+//             onChange={(e) => handleDestinationChange(e.target.value)}
+//             className="w-full font-medium bg-transparent focus:outline-none"
+//             style={{
+//               color: "#142347",
+//               fontSize: "14px",
+//               fontWeight: "500",
+//             }}
+//           />
+//         </div>
+//       </div>
+
+//       {/* Date Field */}
+//       <div
+//         ref={dateFieldRef}
+//         className="flex items-center relative"
+//         style={{
+//           width: "115px",
+//           height: "40px",
+//           gap: "8px",
+//           borderRight: "1px solid #E1E7EF",
+//         }}
+//       >
+//         <div>
+//           <svg
+//             width="24"
+//             height="24"
+//             viewBox="0 0 24 24"
+//             fill="none"
+//             xmlns="http://www.w3.org/2000/svg"
+//           >
+//             <rect
+//               x="3"
+//               y="6"
+//               width="18"
+//               height="15"
+//               rx="2"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M3 10H21"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M16 2V6"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M8 2V6"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//           </svg>
+//         </div>
+//         <div className="flex flex-col w-full pl-2">
+//           <div className="text-gray-500 text-xs">Date</div>
+//           <div
+//             onClick={handleDateClick}
+//             className="text-[#142347] font-medium cursor-pointer text-sm"
+//           >
+//             {date.format("D MMM")}
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Nights Field */}
+//       <div
+//         className="flex items-center"
+//         style={{
+//           width: "110px",
+//           height: "40px",
+//           gap: "8px",
+//           borderRight: "1px solid #E1E7EF",
+//         }}
+//       >
+//         <div>
+//           <svg
+//             width="24"
+//             height="24"
+//             viewBox="0 0 24 24"
+//             fill="none"
+//             xmlns="http://www.w3.org/2000/svg"
+//           >
+//             <path
+//               d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M12.79 8.79L9.5 12.07L12.79 15.36"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//           </svg>
+//         </div>
+//         <div className="flex flex-col w-full pl-2">
+//           <div className="text-gray-500 text-xs">Nights</div>
+//           <div className="text-[#142347] text-sm font-medium">
+//             {nights} Nights
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Participants Field */}
+//       <div
+//         className="flex items-center"
+//         style={{
+//           width: "135px",
+//           height: "40px",
+//           gap: "8px",
+//         }}
+//       >
+//         <div>
+//           <svg
+//             width="24"
+//             height="24"
+//             viewBox="0 0 24 24"
+//             fill="none"
+//             xmlns="http://www.w3.org/2000/svg"
+//           >
+//             <path
+//               d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//           </svg>
+//         </div>
+//         <div className="flex flex-col w-full pl-2">
+//           <div className="text-gray-500 text-xs">Participants</div>
+//           <div className="text-[#142347] text-sm font-medium">
+//             {people} People
+//           </div>
+//         </div>
+//       </div>
+//     </>
+//   );
+
+//   // 2) Hotel Form
+//   const renderHotelForm = () => (
+//     <>
+//       {/* Destination Field with Dropdown */}
+//       <div
+//         className="flex items-center relative"
+//         style={{
+//           width: "300px",
+//           height: "40px",
+//           gap: "8px",
+//           padding: "0 8px",
+//           borderRight: "1px solid #E1E7EF",
+//         }}
+//       >
+//         <div className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10">
+//           <svg
+//             width="24"
+//             height="24"
+//             viewBox="0 0 24 24"
+//             fill="none"
+//             xmlns="http://www.w3.org/2000/svg"
+//           >
+//             <path
+//               d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M21 21L17 17"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//           </svg>
+//         </div>
+//         <div className="flex-1 pl-8">
+//           <DestinationDropdown
+//             value={destination}
+//             onChange={handleDestinationChange}
+//             onSelect={handleDestinationChange}
+//             placeholder="Destination"
+//             className="font-medium bg-transparent focus:outline-none border-none p-0 text-[#142347]"
+//             style={{
+//               fontSize: "14px",
+//               fontWeight: "500",
+//             }}
+//           />
+//         </div>
+//       </div>
+
+//       {/* Date and Nights Field Combined */}
+//       <div
+//         ref={dateFieldRef}
+//         className="flex items-center relative"
+//         style={{
+//           width: "225px",
+//           height: "40px",
+//           gap: "8px",
+//           borderRight: "1px solid #E1E7EF",
+//           paddingLeft: "8px",
+//         }}
+//       >
+//         <div>
+//           <svg
+//             width="24"
+//             height="24"
+//             viewBox="0 0 24 24"
+//             fill="none"
+//             xmlns="http://www.w3.org/2000/svg"
+//           >
+//             <rect
+//               x="3"
+//               y="6"
+//               width="18"
+//               height="15"
+//               rx="2"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M3 10H21"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M16 2V6"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M8 2V6"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//           </svg>
+//         </div>
+//         <div className="flex flex-col w-full pl-2">
+//           <div className="text-gray-500 text-xs">Date</div>
+//           <div
+//             onClick={handleDateClick}
+//             className="text-[#142347] font-medium cursor-pointer text-sm"
+//           >
+//             {date.format("D MMM")} - {nights} Nights
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Participants Field */}
+//       <div
+//         className="flex items-center"
+//         style={{
+//           width: "180px",
+//           height: "40px",
+//           gap: "8px",
+//         }}
+//       >
+//         <div>
+//           <svg
+//             width="24"
+//             height="24"
+//             viewBox="0 0 24 24"
+//             fill="none"
+//             xmlns="http://www.w3.org/2000/svg"
+//           >
+//             <path
+//               d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//           </svg>
+//         </div>
+//         <div className="flex flex-col w-full pl-2">
+//           <div className="text-gray-500 text-xs">Participants</div>
+//           <div className="text-[#142347] text-sm font-medium">
+//             {people} People
+//           </div>
+//         </div>
+//       </div>
+//     </>
+//   );
+
+//   // 3) Flight Form
+//   const renderFlightForm = () => (
+//     <>
+//       {/* From Field */}
+//       <div
+//         className="flex items-center"
+//         style={{
+//           width: "170px",
+//           height: "40px",
+//           gap: "8px",
+//           padding: "8px",
+//           borderRight: "1px solid #E1E7EF",
+//         }}
+//       >
+//         <div>
+//           <svg
+//             width="24"
+//             height="24"
+//             viewBox="0 0 24 24"
+//             fill="none"
+//             xmlns="http://www.w3.org/2000/svg"
+//           >
+//             <path
+//               d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M12 22C16 18 20 14.4183 20 10C20 5.58172 16.4183 2 12 2C7.58172 2 4 5.58172 4 10C4 14.4183 8 18 12 22Z"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//           </svg>
+//         </div>
+//         <div className="flex flex-col">
+//           <input
+//             type="text"
+//             placeholder="From"
+//             value={fromLocation}
+//             onChange={(e) => handleFromChange(e.target.value)}
+//             className="w-full font-medium bg-transparent focus:outline-none"
+//             style={{
+//               color: "#142347",
+//               fontSize: "14px",
+//               fontWeight: "500",
+//             }}
+//           />
+//         </div>
+//       </div>
+
+//       {/* To Field */}
+//       <div
+//         className="flex items-center"
+//         style={{
+//           width: "170px",
+//           height: "40px",
+//           gap: "8px",
+//           padding: "8px",
+//           borderRight: "1px solid #E1E7EF",
+//         }}
+//       >
+//         <div>
+//           <svg
+//             width="24"
+//             height="24"
+//             viewBox="0 0 24 24"
+//             fill="none"
+//             xmlns="http://www.w3.org/2000/svg"
+//           >
+//             <path
+//               d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M21 21L17 17"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//           </svg>
+//         </div>
+//         <div className="flex flex-col">
+//           <input
+//             type="text"
+//             placeholder="To"
+//             value={destination}
+//             onChange={(e) => handleDestinationChange(e.target.value)}
+//             className="w-full font-medium bg-transparent focus:outline-none"
+//             style={{
+//               color: "#142347",
+//               fontSize: "14px",
+//               fontWeight: "500",
+//             }}
+//           />
+//         </div>
+//       </div>
+
+//       {/* Date Range Field */}
+//       <div
+//         ref={dateFieldRef}
+//         className="flex items-center relative"
+//         style={{
+//           width: "230px",
+//           height: "40px",
+//           gap: "8px",
+//           borderRight: "1px solid #E1E7EF",
+//           paddingLeft: "8px",
+//         }}
+//       >
+//         <div>
+//           <svg
+//             width="24"
+//             height="24"
+//             viewBox="0 0 24 24"
+//             fill="none"
+//             xmlns="http://www.w3.org/2000/svg"
+//           >
+//             <rect
+//               x="3"
+//               y="6"
+//               width="18"
+//               height="15"
+//               rx="2"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M3 10H21"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M16 2V6"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M8 2V6"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//           </svg>
+//         </div>
+//         <div className="flex flex-col w-full pl-2">
+//           <div className="text-gray-500 text-xs">Date</div>
+//           <div
+//             onClick={handleDateClick}
+//             className="text-[#142347] font-medium cursor-pointer text-sm"
+//           >
+//             {date.format("D MMM")} - {endDate.format("D MMM")}
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Participants Field */}
+//       <div
+//         className="flex items-center"
+//         style={{
+//           width: "135px",
+//           height: "40px",
+//           gap: "8px",
+//         }}
+//       >
+//         <div>
+//           <svg
+//             width="24"
+//             height="24"
+//             viewBox="0 0 24 24"
+//             fill="none"
+//             xmlns="http://www.w3.org/2000/svg"
+//           >
+//             <path
+//               d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//             <path
+//               d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88"
+//               stroke="#142347"
+//               strokeWidth="1.5"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             />
+//           </svg>
+//         </div>
+//         <div className="flex flex-col w-full pl-2">
+//           <div className="text-gray-500 text-xs">Participants</div>
+//           <div className="text-[#142347] text-sm font-medium">{people} People</div>
+//         </div>
+//       </div>
+//     </>
+//   );
+
+//   // Travel type'a göre form içeriğini seç
+//   const renderFormContent = () => {
+//     switch (searchParams.travelType) {
+//       case "hotel":
+//         return renderHotelForm();
+//       case "flight":
+//         return renderFlightForm();
+//       case "package":
+//       default:
+//         return renderPackageForm();
+//     }
+//   };
+
+//   return (
+//     <div
+//       ref={formRef}
+//       className="flex items-center justify-between bg-white/16 backdrop-blur-sm rounded-lg shadow-lg w-full"
+//       style={{
+//         width: "930px",
+//         height: "92px",
+//         padding: "16px",
+//         gap: "8px",
+//         borderRadius: "8px",
+//         backdropFilter: "blur(4px)",
+//         boxShadow: "0px 0px 32px 0px #00000029",
+//       }}
+//     >
+//       {/* İçerik */}
+//       <div
+//         className="flex items-center justify-between bg-white rounded-lg relative"
+//         style={{
+//           width: "748px",
+//           height: "60px",
+//           padding: "8px",
+//           gap: "8px",
+//           borderRadius: "8px",
+//         }}
+//       >
+//         {renderFormContent()}
+//       </div>
+
+//       {/* SEARCH Button */}
+//       <Button
+//         type="primary"
+//         onClick={handleSearch}
+//         className="h-full border-0 hover:bg-[#d88630] text-white font-bold uppercase flex items-center justify-center"
+//         style={{
+//           width: "142px",
+//           height: "60px",
+//           borderRadius: "8px",
+//           backgroundColor: "#ED8936",
+//           fontSize: "16px",
+//           fontWeight: "700",
+//         }}
+//       >
+//         SEARCH
+//       </Button>
+
+//       {/* Date Range Picker */}
+//       {showDatePicker && (
+//         <DateRangePicker
+//           startDate={date}
+//           endDate={endDate}
+//           onChange={handleDateChange}
+//           onClose={() => setShowDatePicker(false)}
+//           visible={showDatePicker}
+//           triggerRef={dateFieldRef}
+//         />
+//       )}
+//     </div>
+//   );
+// };
+
+// export default SearchForm;
+
+
+
+
+
 "use client";
 
 import { useState, useRef } from "react";
@@ -1718,12 +2554,16 @@ import dayjs from "dayjs";
 import { useSearch } from "../../../context/searchContext";
 import DestinationDropdown from "../dropdown/DestinationDropdown";
 import DateRangePicker from "../DateRangePicker/DateRangePicker";
+import PersonPicker from "../PersonPicker/personpicker";// <-- YENİ BİLEŞEN (ayrı dosyada yer almalı)
 
 const SearchForm = () => {
   const router = useRouter();
   const { searchParams, updateSearchParams } = useSearch();
+
+  // Referanslar
   const formRef = useRef<HTMLDivElement>(null);
   const dateFieldRef = useRef<HTMLDivElement>(null);
+  const participantsRef = useRef<HTMLDivElement>(null);
 
   // Form değerleri
   const [fromLocation, setFromLocation] = useState(searchParams.from || "");
@@ -1731,38 +2571,49 @@ const SearchForm = () => {
   const [date, setDate] = useState(
     searchParams.date ? dayjs(searchParams.date) : dayjs("2023-04-15")
   );
-  const [endDate, setEndDate] = useState(date.add(searchParams.nights || 5, "day"));
-  const [nights, setNights] = useState(searchParams.nights || 5);
-  const [people, setPeople] = useState(
-    (searchParams.participants?.adults || 2) + (searchParams.participants?.children || 0)
+  const [endDate, setEndDate] = useState(
+    date.add(searchParams.nights || 5, "day")
   );
+  const [nights, setNights] = useState(searchParams.nights || 5);
 
-  // Date picker görünürlük
+  // Yetişkin/Çocuk sayısı
+  const [adults, setAdults] = useState(searchParams.participants?.adults || 2);
+  const [children, setChildren] = useState(
+    searchParams.participants?.children || 0
+  );
+  const [people, setPeople] = useState(adults + children);
+
+  // Açılır pencerelerin görünürlük state'leri
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showPersonPicker, setShowPersonPicker] = useState(false);
 
+  // SEARCH butonuna tıklanınca
   const handleSearch = (e: React.MouseEvent) => {
     e.preventDefault();
-
     updateSearchParams({
       from: fromLocation,
       destination,
       date: date.format("YYYY-MM-DD"),
       nights,
       participants: {
-        adults: Math.max(1, Math.floor(people * 0.7)),
-        children: Math.max(0, Math.floor(people * 0.3)),
+        adults,
+        children,
       },
     });
-
     router.push("/search");
   };
 
-  // Tarih kutusuna tıklayınca takvim aç/kapa
+  // Tarih alanına tıklayınca takvimi aç/kapa
   const handleDateClick = () => {
     setShowDatePicker((prev) => !prev);
   };
 
-  // DateRangePicker değişikliği
+  // Participants alanına tıklayınca PersonPicker aç/kapa
+  const handleParticipantsClick = () => {
+    setShowPersonPicker((prev) => !prev);
+  };
+
+  // DateRangePicker’dan gelen güncelleme
   const handleDateChange = (start: dayjs.Dayjs, end: dayjs.Dayjs) => {
     if (dayjs.isDayjs(start) && dayjs.isDayjs(end)) {
       setDate(start);
@@ -1770,7 +2621,6 @@ const SearchForm = () => {
       const nightsCount = end.diff(start, "day");
       setNights(nightsCount);
 
-      // Arama parametrelerini güncelle
       updateSearchParams({
         date: start.format("YYYY-MM-DD"),
         nights: nightsCount,
@@ -1778,6 +2628,21 @@ const SearchForm = () => {
     }
   };
 
+  // PersonPicker’dan gelen güncelleme
+  const handlePersonChange = (newAdults: number, newChildren: number) => {
+    setAdults(newAdults);
+    setChildren(newChildren);
+    setPeople(newAdults + newChildren);
+
+    updateSearchParams({
+      participants: {
+        adults: newAdults,
+        children: newChildren,
+      },
+    });
+  };
+
+  // From / Destination input’ları
   const handleFromChange = (value: string) => {
     setFromLocation(value);
     updateSearchParams({ from: value });
@@ -1788,17 +2653,9 @@ const SearchForm = () => {
     updateSearchParams({ destination: value });
   };
 
-  const handlePeopleChange = (value: number) => {
-    setPeople(value);
-    updateSearchParams({
-      participants: {
-        adults: Math.max(1, Math.floor(value * 0.7)),
-        children: Math.max(0, Math.floor(value * 0.3)),
-      },
-    });
-  };
+  // ----- FORMS -----
 
-  // 1) Package Form
+  // 1) Package Form (From, Destination, Date, Nights, Participants)
   const renderPackageForm = () => (
     <>
       {/* From Field */}
@@ -1813,6 +2670,7 @@ const SearchForm = () => {
         }}
       >
         <div>
+          {/* From Ikon */}
           <svg
             width="24"
             height="24"
@@ -1843,11 +2701,7 @@ const SearchForm = () => {
             value={fromLocation}
             onChange={(e) => handleFromChange(e.target.value)}
             className="w-full font-medium bg-transparent focus:outline-none"
-            style={{
-              color: "#142347",
-              fontSize: "14px",
-              fontWeight: "500",
-            }}
+            style={{ color: "#142347", fontSize: "14px", fontWeight: "500" }}
           />
         </div>
       </div>
@@ -1864,6 +2718,7 @@ const SearchForm = () => {
         }}
       >
         <div>
+          {/* Destination Ikon */}
           <svg
             width="24"
             height="24"
@@ -1894,11 +2749,7 @@ const SearchForm = () => {
             value={destination}
             onChange={(e) => handleDestinationChange(e.target.value)}
             className="w-full font-medium bg-transparent focus:outline-none"
-            style={{
-              color: "#142347",
-              fontSize: "14px",
-              fontWeight: "500",
-            }}
+            style={{ color: "#142347", fontSize: "14px", fontWeight: "500" }}
           />
         </div>
       </div>
@@ -1913,8 +2764,10 @@ const SearchForm = () => {
           gap: "8px",
           borderRight: "1px solid #E1E7EF",
         }}
+        onClick={handleDateClick}
       >
         <div>
+          {/* Date Ikon */}
           <svg
             width="24"
             height="24"
@@ -1958,10 +2811,7 @@ const SearchForm = () => {
         </div>
         <div className="flex flex-col w-full pl-2">
           <div className="text-gray-500 text-xs">Date</div>
-          <div
-            onClick={handleDateClick}
-            className="text-[#142347] font-medium cursor-pointer text-sm"
-          >
+          <div className="text-[#142347] font-medium cursor-pointer text-sm">
             {date.format("D MMM")}
           </div>
         </div>
@@ -1978,6 +2828,7 @@ const SearchForm = () => {
         }}
       >
         <div>
+          {/* Nights Ikon */}
           <svg
             width="24"
             height="24"
@@ -1986,14 +2837,7 @@ const SearchForm = () => {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-              stroke="#142347"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M12.79 8.79L9.5 12.07L12.79 15.36"
+              d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C10.3431 2 9 3.34315 9 5V9.5C9 10.0523 8.55228 10.5 8 10.5H5C3.34315 10.5 2 11.8431 2 13.5C2 15.1569 3.34315 16.5 5 16.5H9.5C10.0523 16.5 10.5 16.9477 10.5 17.5V20C10.5 21.6569 11.8431 23 13.5 23C15.1569 23 16.5 21.6569 16.5 20V5C16.5 3.34315 15.1569 2 13.5 2C12.3954 2 11.4216 2.5294 10.8 3.33978"
               stroke="#142347"
               strokeWidth="1.5"
               strokeLinecap="round"
@@ -2011,14 +2855,17 @@ const SearchForm = () => {
 
       {/* Participants Field */}
       <div
+        ref={participantsRef}
         className="flex items-center"
         style={{
           width: "135px",
           height: "40px",
           gap: "8px",
         }}
+        onClick={handleParticipantsClick}
       >
         <div>
+          {/* Participants Ikon */}
           <svg
             width="24"
             height="24"
@@ -2066,7 +2913,7 @@ const SearchForm = () => {
     </>
   );
 
-  // 2) Hotel Form
+  // 2) Hotel Form (DestinationDropdown, Date & Nights Combined, Participants)
   const renderHotelForm = () => (
     <>
       {/* Destination Field with Dropdown */}
@@ -2081,6 +2928,7 @@ const SearchForm = () => {
         }}
       >
         <div className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10">
+          {/* Destination Ikon */}
           <svg
             width="24"
             height="24"
@@ -2111,10 +2959,7 @@ const SearchForm = () => {
             onSelect={handleDestinationChange}
             placeholder="Destination"
             className="font-medium bg-transparent focus:outline-none border-none p-0 text-[#142347]"
-            style={{
-              fontSize: "14px",
-              fontWeight: "500",
-            }}
+            style={{ fontSize: "14px", fontWeight: "500" }}
           />
         </div>
       </div>
@@ -2130,8 +2975,10 @@ const SearchForm = () => {
           borderRight: "1px solid #E1E7EF",
           paddingLeft: "8px",
         }}
+        onClick={handleDateClick}
       >
         <div>
+          {/* Date Ikon */}
           <svg
             width="24"
             height="24"
@@ -2175,10 +3022,7 @@ const SearchForm = () => {
         </div>
         <div className="flex flex-col w-full pl-2">
           <div className="text-gray-500 text-xs">Date</div>
-          <div
-            onClick={handleDateClick}
-            className="text-[#142347] font-medium cursor-pointer text-sm"
-          >
+          <div className="text-[#142347] font-medium cursor-pointer text-sm">
             {date.format("D MMM")} - {nights} Nights
           </div>
         </div>
@@ -2186,14 +3030,17 @@ const SearchForm = () => {
 
       {/* Participants Field */}
       <div
+        ref={participantsRef}
         className="flex items-center"
         style={{
           width: "180px",
           height: "40px",
           gap: "8px",
         }}
+        onClick={handleParticipantsClick}
       >
         <div>
+          {/* Participants Ikon */}
           <svg
             width="24"
             height="24"
@@ -2241,7 +3088,7 @@ const SearchForm = () => {
     </>
   );
 
-  // 3) Flight Form
+  // 3) Flight Form (From, To, Date Range, Participants)
   const renderFlightForm = () => (
     <>
       {/* From Field */}
@@ -2256,6 +3103,7 @@ const SearchForm = () => {
         }}
       >
         <div>
+          {/* From Ikon */}
           <svg
             width="24"
             height="24"
@@ -2286,11 +3134,7 @@ const SearchForm = () => {
             value={fromLocation}
             onChange={(e) => handleFromChange(e.target.value)}
             className="w-full font-medium bg-transparent focus:outline-none"
-            style={{
-              color: "#142347",
-              fontSize: "14px",
-              fontWeight: "500",
-            }}
+            style={{ color: "#142347", fontSize: "14px", fontWeight: "500" }}
           />
         </div>
       </div>
@@ -2307,6 +3151,7 @@ const SearchForm = () => {
         }}
       >
         <div>
+          {/* To Ikon */}
           <svg
             width="24"
             height="24"
@@ -2337,11 +3182,7 @@ const SearchForm = () => {
             value={destination}
             onChange={(e) => handleDestinationChange(e.target.value)}
             className="w-full font-medium bg-transparent focus:outline-none"
-            style={{
-              color: "#142347",
-              fontSize: "14px",
-              fontWeight: "500",
-            }}
+            style={{ color: "#142347", fontSize: "14px", fontWeight: "500" }}
           />
         </div>
       </div>
@@ -2357,8 +3198,10 @@ const SearchForm = () => {
           borderRight: "1px solid #E1E7EF",
           paddingLeft: "8px",
         }}
+        onClick={handleDateClick}
       >
         <div>
+          {/* Date Ikon */}
           <svg
             width="24"
             height="24"
@@ -2402,10 +3245,7 @@ const SearchForm = () => {
         </div>
         <div className="flex flex-col w-full pl-2">
           <div className="text-gray-500 text-xs">Date</div>
-          <div
-            onClick={handleDateClick}
-            className="text-[#142347] font-medium cursor-pointer text-sm"
-          >
+          <div className="text-[#142347] font-medium cursor-pointer text-sm">
             {date.format("D MMM")} - {endDate.format("D MMM")}
           </div>
         </div>
@@ -2413,14 +3253,17 @@ const SearchForm = () => {
 
       {/* Participants Field */}
       <div
+        ref={participantsRef}
         className="flex items-center"
         style={{
           width: "135px",
           height: "40px",
           gap: "8px",
         }}
+        onClick={handleParticipantsClick}
       >
         <div>
+          {/* Participants Ikon */}
           <svg
             width="24"
             height="24"
@@ -2460,13 +3303,15 @@ const SearchForm = () => {
         </div>
         <div className="flex flex-col w-full pl-2">
           <div className="text-gray-500 text-xs">Participants</div>
-          <div className="text-[#142347] text-sm font-medium">{people} People</div>
+          <div className="text-[#142347] text-sm font-medium">
+            {people} People
+          </div>
         </div>
       </div>
     </>
   );
 
-  // Travel type'a göre form içeriğini seç
+  // travelType’a göre form
   const renderFormContent = () => {
     switch (searchParams.travelType) {
       case "hotel":
@@ -2493,7 +3338,7 @@ const SearchForm = () => {
         boxShadow: "0px 0px 32px 0px #00000029",
       }}
     >
-      {/* İçerik */}
+      {/* Form içerikleri */}
       <div
         className="flex items-center justify-between bg-white rounded-lg relative"
         style={{
@@ -2524,7 +3369,7 @@ const SearchForm = () => {
         SEARCH
       </Button>
 
-      {/* Date Range Picker */}
+      {/* DateRangePicker */}
       {showDatePicker && (
         <DateRangePicker
           startDate={date}
@@ -2533,6 +3378,18 @@ const SearchForm = () => {
           onClose={() => setShowDatePicker(false)}
           visible={showDatePicker}
           triggerRef={dateFieldRef}
+        />
+      )}
+
+      {/* PersonPicker */}
+      {showPersonPicker && (
+        <PersonPicker
+          adults={adults}
+          children={children}
+          onChange={handlePersonChange}
+          onClose={() => setShowPersonPicker(false)}
+          visible={showPersonPicker}
+          triggerRef={participantsRef}
         />
       )}
     </div>
