@@ -626,19 +626,12 @@
 
 // export default HotelCard;
 
-
-
 "use client";
 
-import React from "react";
+import React, { JSX } from "react";
 import { Hotel } from "../../../data/mockData";
-import {
-  UserOutlined,
-  CalendarOutlined,
-  ClockCircleOutlined,
-  TagsOutlined,
-} from "@ant-design/icons";
 import { Button } from "antd";
+import Icon from "../../../public/icons/Icon";
 
 interface HotelCardProps {
   hotel: Hotel;
@@ -696,9 +689,9 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
         <div className="flex flex-col gap-2">
           <h3 className="text-xl font-bold text-[#142347] m-0">{hotel.name}</h3>
           <div className="flex items-center gap-2">
-            <div className="flex text-yellow-500" style={{ gap: "4px" }}>
+            <div className="flex" style={{ gap: "4px" }}>
               {Array.from({ length: hotel.stars }).map((_, i) => (
-                <span key={i}>★</span>
+                <Icon key={i} name="Star" size={16} />
               ))}
             </div>
             <span
@@ -740,21 +733,21 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
             "
           >
             <div className="flex items-center gap-2 text-sm text-[#142347]">
-              <UserOutlined />
+              <Icon name="users" />
               <span>
                 {hotel.adults} Adults - {hotel.children} Child
               </span>
             </div>
             <div className="flex items-center gap-2 text-sm text-[#142347]">
-              <CalendarOutlined />
+              <Icon name="calendar" />
               <span>{hotel.date}</span>
             </div>
             <div className="flex items-center gap-2 text-sm text-[#142347]">
-              <ClockCircleOutlined />
+              <Icon name="nights" />
               <span>{hotel.nights} Nights</span>
             </div>
             <div className="flex items-center gap-2 text-sm text-[#142347]">
-              <TagsOutlined />
+              <Icon name="beds" />
               <span>{hotel.concept}</span>
             </div>
           </div>
@@ -834,4 +827,3 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
 };
 
 export default HotelCard;
-
