@@ -22,7 +22,9 @@ export type IconName =
   | "hamburger"
   | "Turkey"
   | "Germany"
-  | "England";
+  | "England"
+  | "Star"
+  | "beds";
 
 interface IconProps {
   name: IconName;
@@ -34,7 +36,7 @@ interface IconProps {
 
 export const Icon: React.FC<IconProps> = ({
   name,
-  size = 24,
+  size = 16,
   color,
   className = "",
   onClick,
@@ -45,7 +47,7 @@ export const Icon: React.FC<IconProps> = ({
       case "location":
         return (
           <svg
-            width="18"
+          width={size}
             height="22"
             viewBox="0 0 18 22"
             fill="none"
@@ -60,7 +62,7 @@ export const Icon: React.FC<IconProps> = ({
       case "search":
         return (
           <svg
-            width="20"
+          width={size}
             height="20"
             viewBox="0 0 20 20"
             fill="none"
@@ -75,7 +77,7 @@ export const Icon: React.FC<IconProps> = ({
       case "hamburger":
         return (
           <svg
-            width="16"
+            width={size}
             height="12"
             viewBox="0 0 16 12"
             fill="none"
@@ -93,7 +95,7 @@ export const Icon: React.FC<IconProps> = ({
       case "searchSm":
         return (
           <svg
-            width="14"
+          width={size}
             height="14"
             viewBox="0 0 14 14"
             fill="none"
@@ -108,7 +110,7 @@ export const Icon: React.FC<IconProps> = ({
       case "calendar":
         return (
           <svg
-            width="24"
+            width={size}
             height="25"
             viewBox="0 0 24 25"
             fill="none"
@@ -123,7 +125,7 @@ export const Icon: React.FC<IconProps> = ({
       case "users":
         return (
           <svg
-            width="24"
+            width={size}
             height="25"
             viewBox="0 0 24 25"
             fill="none"
@@ -138,7 +140,7 @@ export const Icon: React.FC<IconProps> = ({
       case "nights":
         return (
           <svg
-            width="20"
+          width={size}
             height="20"
             viewBox="0 0 20 20"
             fill="none"
@@ -153,7 +155,7 @@ export const Icon: React.FC<IconProps> = ({
       case "package":
         return (
           <svg
-            width="17"
+          width={size}
             height="17"
             viewBox="0 0 17 17"
             fill="none"
@@ -168,7 +170,7 @@ export const Icon: React.FC<IconProps> = ({
       case "hotel":
         return (
           <svg
-            width="13"
+          width={size}
             height="16"
             viewBox="0 0 13 16"
             fill="none"
@@ -183,7 +185,7 @@ export const Icon: React.FC<IconProps> = ({
       case "flight":
         return (
           <svg
-            width="17"
+          width={size}
             height="17"
             viewBox="0 0 17 17"
             fill="none"
@@ -210,7 +212,7 @@ export const Icon: React.FC<IconProps> = ({
       case "favorite":
         return (
           <svg
-            width="14"
+          width={size}
             height="12"
             viewBox="0 0 14 12"
             fill="none"
@@ -225,7 +227,7 @@ export const Icon: React.FC<IconProps> = ({
       case "phone":
         return (
           <svg
-            width="16"
+          width={size}
             height="16"
             viewBox="0 0 16 16"
             fill="none"
@@ -240,7 +242,7 @@ export const Icon: React.FC<IconProps> = ({
       case "arrow-down":
         return (
           <svg
-            width="12"
+          width={size}
             height="7"
             viewBox="0 0 12 7"
             fill="none"
@@ -255,7 +257,7 @@ export const Icon: React.FC<IconProps> = ({
       case "arrow-downSmall":
         return (
           <svg
-            width="12"
+          width={size}
             height="7"
             viewBox="0 0 12 7"
             fill="none"
@@ -267,11 +269,17 @@ export const Icon: React.FC<IconProps> = ({
             />
           </svg>
         );
+      case "Star":
+        return (
+            <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14.625 8.12915L11.8 10.4792L12.6938 14.1104C12.7349 14.2626 12.7405 14.4222 12.7103 14.577C12.68 14.7317 12.6147 14.8774 12.5194 15.003C12.424 15.1285 12.3011 15.2305 12.1602 15.3012C12.0192 15.3718 11.8639 15.4092 11.7063 15.4104C11.5132 15.4095 11.3244 15.3531 11.1625 15.2479L8.00627 13.2542H7.99377L5.06252 15.1104C4.87316 15.2299 4.65247 15.2901 4.42867 15.2834C4.20488 15.2768 3.98817 15.2034 3.80627 15.0729C3.61888 14.9362 3.47695 14.7462 3.39892 14.5278C3.3209 14.3093 3.3104 14.0724 3.36877 13.8479L4.21252 10.5292L1.37502 8.12915C1.21404 7.99463 1.09704 7.81498 1.03911 7.61334C0.981185 7.41171 0.984985 7.19735 1.05002 6.9979C1.11336 6.80146 1.23418 6.62854 1.39686 6.50152C1.55954 6.3745 1.75659 6.29921 1.96252 6.2854L5.65002 6.0479L7.05002 2.5604C7.1251 2.3694 7.25579 2.20534 7.42516 2.08945C7.59454 1.97357 7.7948 1.91119 8.00002 1.9104C8.20525 1.91119 8.40551 1.97357 8.57488 2.08945C8.74426 2.20534 8.87494 2.3694 8.95002 2.5604L10.325 6.02915L14.0375 6.2854C14.2437 6.29837 14.4412 6.37334 14.604 6.50049C14.7668 6.62763 14.8874 6.80101 14.95 6.9979C15.0151 7.19735 15.0189 7.41171 14.9609 7.61334C14.903 7.81498 14.786 7.99463 14.625 8.12915Z" fill="#ED8936"/>
+            </svg>
+        );
       case "Turkey":
         return (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="32"
+            width={size}
             height="32"
             viewBox="0 0 32 32"
           >
@@ -307,7 +315,7 @@ export const Icon: React.FC<IconProps> = ({
         return (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="32"
+            width={size}
             height="32"
             viewBox="0 0 32 32"
           >
@@ -333,7 +341,7 @@ export const Icon: React.FC<IconProps> = ({
         return (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="32"
+            width={size}
             height="32"
             viewBox="0 0 32 32"
           >
@@ -395,7 +403,7 @@ export const Icon: React.FC<IconProps> = ({
       case "close":
         return (
           <svg
-            width="14"
+          width={size}
             height="14"
             viewBox="0 0 14 14"
             fill="none"
@@ -409,6 +417,12 @@ export const Icon: React.FC<IconProps> = ({
               stroke-linejoin="round"
             />
           </svg>
+        );
+      case "beds":
+        return (
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 2.4104H1.5V0.9104C1.5 0.777792 1.44732 0.650615 1.35355 0.556847C1.25979 0.463079 1.13261 0.4104 1 0.4104C0.867392 0.4104 0.740215 0.463079 0.646447 0.556847C0.552678 0.650615 0.5 0.777792 0.5 0.9104V10.9104C0.5 11.043 0.552678 11.1702 0.646447 11.264C0.740215 11.3577 0.867392 11.4104 1 11.4104C1.13261 11.4104 1.25979 11.3577 1.35355 11.264C1.44732 11.1702 1.5 11.043 1.5 10.9104V8.9104H14.5V10.9104C14.5 11.043 14.5527 11.1702 14.6464 11.264C14.7402 11.3577 14.8674 11.4104 15 11.4104C15.1326 11.4104 15.2598 11.3577 15.3536 11.264C15.4473 11.1702 15.5 11.043 15.5 10.9104V4.9104C15.5 4.24736 15.2366 3.61147 14.7678 3.14263C14.2989 2.67379 13.663 2.4104 13 2.4104ZM1.5 3.4104H6V7.9104H1.5V3.4104ZM7 7.9104V3.4104H13C13.3973 3.41205 13.7779 3.57061 14.0588 3.85156C14.3398 4.13251 14.4984 4.51308 14.5 4.9104V7.9104H7Z" fill="#93A2B7"/>
+            </svg>
         );
       default:
         return null;
