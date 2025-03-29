@@ -3505,7 +3505,7 @@ const SearchForm = () => {
         }}
       >
         <div>
-          <Icon name="location" />
+          <Icon name="location" size={24}/>
         </div>
         <div className="flex flex-col w-full">
           <DestinationDropdown
@@ -3533,7 +3533,7 @@ const SearchForm = () => {
       >
         <div>
           {/* Destination Ikon */}
-          <Icon name="location" />
+          <Icon name="location" size={24}/>
         </div>
         <div className="flex flex-col w-full">
           <DestinationDropdown
@@ -3562,7 +3562,7 @@ const SearchForm = () => {
       >
         <div>
           {/* Date Ikon */}
-          <Icon name="calendar" />
+          <Icon name="calendar" size={24}/>
         </div>
         <div className="flex flex-col w-full pl-2">
           <div className="text-gray-500 text-xs">Date</div>
@@ -3584,7 +3584,7 @@ const SearchForm = () => {
       >
         <div>
           {/* Nights Ikon */}
-          <Icon name="nights" />
+          <Icon name="nights" size={24}/>
         </div>
         <div className="flex flex-col w-full pl-2">
           <div className="text-gray-500 text-xs">Nights</div>
@@ -3607,7 +3607,7 @@ const SearchForm = () => {
       >
         <div>
           {/* Participants Ikon */}
-          <Icon name="users" />
+          <Icon name="users" size={24} />
         </div>
         <div className="flex flex-col w-full pl-2">
           <div className="text-gray-500 text-xs">Participants</div>
@@ -3633,7 +3633,7 @@ const SearchForm = () => {
         }}
       >
         <div className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10">
-          <Icon name="location" />
+          <Icon name="location" size={24}/>
         </div>
         <div className="flex-1 pl-8">
           <DestinationDropdown
@@ -3660,7 +3660,7 @@ const SearchForm = () => {
         onClick={handleDateClick}
       >
         <div>
-          <Icon name="calendar" />
+          <Icon name="calendar" size={24}/>
         </div>
         <div className="flex flex-col w-full pl-2">
           <div className="text-gray-500 text-xs">Date</div>
@@ -3681,7 +3681,7 @@ const SearchForm = () => {
         onClick={handleParticipantsClick}
       >
         <div>
-          <Icon name="users" />
+          <Icon name="users" size={24}/>
         </div>
         <div className="flex flex-col w-full pl-2">
           <div className="text-gray-500 text-xs">Participants</div>
@@ -3708,7 +3708,7 @@ const SearchForm = () => {
         }}
       >
         <div>
-          <Icon name="location" />
+          <Icon name="location" size={24}/>
         </div>
         <div className="flex flex-col w-full">
           <DestinationDropdown
@@ -3735,7 +3735,7 @@ const SearchForm = () => {
         }}
       >
         <div>
-          <Icon name="location" />
+          <Icon name="location" size={24}/>
         </div>
         <div className="flex flex-col w-full">
           <DestinationDropdown
@@ -3764,7 +3764,7 @@ const SearchForm = () => {
         onClick={handleDateClick}
       >
         <div>
-          <Icon name="calendar" />
+          <Icon name="calendar" size={24}/>
         </div>
         <div className="flex flex-col w-full pl-2">
           <div className="text-gray-500 text-xs">Date</div>
@@ -3786,7 +3786,7 @@ const SearchForm = () => {
         onClick={handleParticipantsClick}
       >
         <div>
-          <Icon name="users" />
+          <Icon name="users" size={24}/>
         </div>
         <div className="flex flex-col w-full pl-2">
           <div className="text-gray-500 text-xs">Participants</div>

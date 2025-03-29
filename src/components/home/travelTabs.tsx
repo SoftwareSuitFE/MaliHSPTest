@@ -385,6 +385,107 @@
 
 // export default TravelTabs;
 
+
+
+
+// "use client";
+
+// import { useState } from "react";
+// import { useSearch } from "../../../context/searchContext";
+// import Icon from "../../../public/icons/Icon";
+
+// const TravelTabs = () => {
+//   const { searchParams, updateSearchParams } = useSearch();
+//   const [activeTab, setActiveTab] = useState<"package" | "hotel" | "flight">(
+//     searchParams.travelType || "package"
+//   );
+
+//   const handleTabChange = (tab: "package" | "hotel" | "flight") => {
+//     setActiveTab(tab);
+//     updateSearchParams({ travelType: tab });
+//   };
+
+//   return (
+//     <div className="flex justify-center mb-4">
+//       <div
+//         className="flex bg-white/30 backdrop-blur-sm overflow-hidden"
+//         style={{
+//           width: "365.41px",
+//           height: "40px",
+//           borderRadius: "8px",
+//           gap: "0",
+//         }}
+//       >
+//         <button
+//           onClick={() => handleTabChange("package")}
+//           className={`flex items-center justify-center transition-all duration-300 ease-in-out ${
+//             activeTab === "package"
+//               ? "bg-white text-gray-800"
+//               : "bg-transparent text-white"
+//           }`}
+//           style={{
+//             width: "130px",
+//             height: "40px",
+//             borderTopLeftRadius: "8px",
+//             borderTopRightRadius: "8px",
+//             borderBottomLeftRadius: "8px",
+//             borderBottomRightRadius: "8px",
+//           }}
+//         >
+//          <Icon name="package" size={16}/>
+//           <span className="font-semibold text-sm">Package</span>
+//         </button>
+
+//         <button
+//           onClick={() => handleTabChange("hotel")}
+//           className={`flex items-center justify-center transition-all duration-400 ease-in-out ${
+//             activeTab === "hotel"
+//               ? "bg-white text-gray-800"
+//               : "bg-transparent text-white"
+//           }`}
+//           style={{
+//             width: "107px",
+//             height: "40px",
+//             borderTopLeftRadius: "8px",
+//             borderTopRightRadius: "8px",
+//             borderBottomLeftRadius: "8px",
+//             borderBottomRightRadius: "8px",
+//           }}
+//         >
+//           <Icon name="hotel" size={16}/>
+//           <span className="font-semibold text-sm">Hotel</span>
+//         </button>
+
+//         <button
+//           onClick={() => handleTabChange("flight")}
+//           className={`flex items-center justify-center transition-all duration-300 ease-in-out ${
+//             activeTab === "flight"
+//               ? "bg-white text-gray-800"
+//               : "bg-transparent text-white"
+//           }`}
+//           style={{
+//             width: "128.41px",
+//             height: "40px",
+//             borderTopLeftRadius: "8px",
+//             borderTopRightRadius: "8px",
+//             borderBottomLeftRadius: "8px",
+//             borderBottomRightRadius: "8px",
+//           }}
+//         >
+//          <Icon name="flight" size={16}/>
+//           <span className="font-semibold text-sm">Flight</span>
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default TravelTabs;
+
+
+
+
+
 "use client";
 
 import { useState } from "react";
@@ -429,8 +530,12 @@ const TravelTabs = () => {
             borderBottomRightRadius: "8px",
           }}
         >
-         <Icon name="package" />
-          <span className="font-semibold text-sm">Package</span>
+          <div className="flex items-center">
+            <div className="mr-2">
+              <Icon name="package" size={16} />
+            </div>
+            <span className="font-semibold text-sm">Package</span>
+          </div>
         </button>
 
         <button
@@ -449,8 +554,12 @@ const TravelTabs = () => {
             borderBottomRightRadius: "8px",
           }}
         >
-          <Icon name="hotel" />
-          <span className="font-semibold text-sm">Hotel</span>
+          <div className="flex items-center">
+            <div className="mr-2">
+              <Icon name="hotel" size={16} />
+            </div>
+            <span className="font-semibold text-sm">Hotel</span>
+          </div>
         </button>
 
         <button
@@ -469,8 +578,12 @@ const TravelTabs = () => {
             borderBottomRightRadius: "8px",
           }}
         >
-         <Icon name="flight" />
-          <span className="font-semibold text-sm">Flight</span>
+          <div className="flex items-center">
+            <div className="mr-2">
+              <Icon name="flight" size={16} />
+            </div>
+            <span className="font-semibold text-sm">Flight</span>
+          </div>
         </button>
       </div>
     </div>
