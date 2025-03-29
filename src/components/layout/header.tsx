@@ -385,6 +385,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
+import Icon from "../../../public/icons/Icon";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -469,18 +470,7 @@ const Header = () => {
               }}
             >
               <span className="flex items-center mr-1">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.5 11.69L12.01 10.19C11.94 10.15 11.87 10.13 11.79 10.13C11.61 10.13 11.44 10.23 11.35 10.4L9.75 12.95C7.61 11.81 5.8 9.8 4.8 7.45L7.14 5.65C7.31 5.55 7.39 5.35 7.36 5.16L6.18 1.45C6.15 1.24 5.96 1.1 5.75 1.1H2.03C1.8 1.1 1.6 1.29 1.61 1.51C1.86 8.54 7.39 14.38 14.26 14.95C14.47 14.97 14.65 14.8 14.65 14.58V11.01C14.65 10.86 14.6 10.75 14.5 10.69H15.5Z"
-                    fill="#ED9636"
-                  />
-                </svg>
+                <Icon name="phone" />
               </span>
               {/* <span className="text-xs">+4021 210 17 17</span> */}
               <a
@@ -502,18 +492,7 @@ const Header = () => {
               }}
             >
               <span className="flex items-center mr-1">
-                <svg
-                  width="13.5"
-                  height="12"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M8 14.4167L7.05833 13.5667C3.90833 10.7167 1.83333 8.85 1.83333 6.5C1.83333 4.61667 3.28333 3.16667 5.16667 3.16667C6.23333 3.16667 7.25833 3.70833 8 4.53333C8.74167 3.70833 9.76667 3.16667 10.8333 3.16667C12.7167 3.16667 14.1667 4.61667 14.1667 6.5C14.1667 8.85 12.0917 10.7167 8.94167 13.575L8 14.4167Z"
-                    fill="#ED9636"
-                  />
-                </svg>
+                <Icon name="favorite" />
               </span>
               <span className="text-xs">Favorite</span>
             </div>
@@ -539,10 +518,7 @@ const Header = () => {
                   justifyContent: "center",
                 }}
               >
-                <SearchOutlined
-                  className="text-[#142347]"
-                  style={{ fontSize: "16px" }}
-                />
+                <Icon name="searchSm" />
               </div>
               <input
                 type="text"
@@ -588,43 +564,8 @@ const Header = () => {
                   justifyContent: "center",
                 }}
               >
-                <svg
-                  width="16"
-                  height="10"
-                  viewBox="0 0 16 10"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{ display: "block" }}
-                >
-                  <rect x="0.5" y="0.5" width="15" height="9" fill="white" />
-                  <path d="M0.5 0.5H15.5V9.5H0.5V0.5Z" fill="#012169" />
-                  <path
-                    d="M0.5 0.5L15.5 9.5L0.5 0.5ZM15.5 0.5L0.5 9.5L15.5 0.5Z"
-                    fill="black"
-                  />
-                  <path
-                    d="M0.5 0.5L15.5 9.5M15.5 0.5L0.5 9.5"
-                    stroke="white"
-                    strokeWidth="3"
-                  />
-                  <path
-                    d="M0.5 0.5L15.5 9.5M15.5 0.5L0.5 9.5"
-                    stroke="#C8102E"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M8 0.5V9.5M0.5 5H15.5"
-                    stroke="white"
-                    strokeWidth="3"
-                  />
-                  <path
-                    d="M8 0.5V9.5M0.5 5H15.5"
-                    stroke="#C8102E"
-                    strokeWidth="2"
-                  />
-                </svg>
+                <Icon name="England" />
               </div>
-
               {/* EN Text */}
               <div
                 className="flex items-center justify-center"
@@ -660,16 +601,7 @@ const Header = () => {
                   justifyContent: "center",
                 }}
               >
-                <svg
-                  width="8"
-                  height="8"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{ display: "block" }}
-                >
-                  <path d="M8 10.6667L4 6.66667H12L8 10.6667Z" fill="#142347" />
-                </svg>
+                <Icon name="arrow-downSmall" />
               </div>
             </div>
           </div>
@@ -743,20 +675,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button className="text-gray-600" aria-label="Toggle mobile menu">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
+              <Icon name="hamburger" />
             </button>
           </div>
         </div>

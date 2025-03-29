@@ -852,12 +852,6 @@
 
 // export default SearchForm;
 
-
-
-
-
-
-
 // "use client";
 
 // import { useState, useEffect, useRef } from "react";
@@ -1698,17 +1692,6 @@
 
 // export default SearchForm;
 
-
-
-
-
-
-
-
-
-
-
-
 // "use client";
 
 // import { useState, useRef } from "react";
@@ -2540,10 +2523,6 @@
 // };
 
 // export default SearchForm;
-
-
-
-
 
 // "use client";
 
@@ -3398,11 +3377,6 @@
 
 // export default SearchForm;
 
-
-
-
-
-
 "use client";
 
 import { useState, useRef } from "react";
@@ -3412,7 +3386,8 @@ import dayjs from "dayjs";
 import { useSearch } from "../../../context/searchContext";
 import DestinationDropdown from "../dropdown/DestinationDropdown";
 import DateRangePicker from "../DateRangePicker/DateRangePicker";
-import PersonPicker from "../PersonPicker/personpicker"; // <-- YENİ BİLEŞEN (ayrı dosyada yer almalı)
+import PersonPicker from "../PersonPicker/personpicker";
+import Icon from "../../../public/icons/Icon";
 
 const SearchForm = () => {
   const router = useRouter();
@@ -3425,7 +3400,9 @@ const SearchForm = () => {
 
   // Form değerleri
   const [fromLocation, setFromLocation] = useState(searchParams.from || "");
-  const [destination, setDestination] = useState(searchParams.destination || "");
+  const [destination, setDestination] = useState(
+    searchParams.destination || ""
+  );
   const [date, setDate] = useState(
     searchParams.date ? dayjs(searchParams.date) : dayjs("2023-04-15")
   );
@@ -3528,14 +3505,10 @@ const SearchForm = () => {
         }}
       >
         <div>
-          {/* From Ikon */}
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M12 22C16 18 20 14.4183 20 10C20 5.58172 16.4183 2 12 2C7.58172 2 4 5.58172 4 10C4 14.4183 8 18 12 22Z" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <Icon name="location" />
         </div>
         <div className="flex flex-col w-full">
-          <DestinationDropdown 
+          <DestinationDropdown
             value={fromLocation}
             onChange={handleFromChange}
             onSelect={handleFromChange}
@@ -3560,13 +3533,10 @@ const SearchForm = () => {
       >
         <div>
           {/* Destination Ikon */}
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M21 21L17 17" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <Icon name="location" />
         </div>
         <div className="flex flex-col w-full">
-          <DestinationDropdown 
+          <DestinationDropdown
             value={destination}
             onChange={handleDestinationChange}
             onSelect={handleDestinationChange}
@@ -3592,12 +3562,7 @@ const SearchForm = () => {
       >
         <div>
           {/* Date Ikon */}
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="3" y="6" width="18" height="15" rx="2" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M3 10H21" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M16 2V6" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M8 2V6" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <Icon name="calendar" />
         </div>
         <div className="flex flex-col w-full pl-2">
           <div className="text-gray-500 text-xs">Date</div>
@@ -3619,9 +3584,7 @@ const SearchForm = () => {
       >
         <div>
           {/* Nights Ikon */}
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C10.3431 2 9 3.34315 9 5V9.5C9 10.0523 8.55228 10.5 8 10.5H5C3.34315 10.5 2 11.8431 2 13.5C2 15.1569 3.34315 16.5 5 16.5H9.5C10.0523 16.5 10.5 16.9477 10.5 17.5V20C10.5 21.6569 11.8431 23 13.5 23C15.1569 23 16.5 21.6569 16.5 20V5C16.5 3.34315 15.1569 2 13.5 2C12.3954 2 11.4216 2.5294 10.8 3.33978" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <Icon name="nights" />
         </div>
         <div className="flex flex-col w-full pl-2">
           <div className="text-gray-500 text-xs">Nights</div>
@@ -3644,12 +3607,7 @@ const SearchForm = () => {
       >
         <div>
           {/* Participants Ikon */}
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <Icon name="users" />
         </div>
         <div className="flex flex-col w-full pl-2">
           <div className="text-gray-500 text-xs">Participants</div>
@@ -3675,10 +3633,7 @@ const SearchForm = () => {
         }}
       >
         <div className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M21 21L17 17" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <Icon name="location" />
         </div>
         <div className="flex-1 pl-8">
           <DestinationDropdown
@@ -3705,12 +3660,7 @@ const SearchForm = () => {
         onClick={handleDateClick}
       >
         <div>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="3" y="6" width="18" height="15" rx="2" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M3 10H21" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M16 2V6" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M8 2V6" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <Icon name="calendar" />
         </div>
         <div className="flex flex-col w-full pl-2">
           <div className="text-gray-500 text-xs">Date</div>
@@ -3731,12 +3681,7 @@ const SearchForm = () => {
         onClick={handleParticipantsClick}
       >
         <div>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <Icon name="users" />
         </div>
         <div className="flex flex-col w-full pl-2">
           <div className="text-gray-500 text-xs">Participants</div>
@@ -3763,13 +3708,10 @@ const SearchForm = () => {
         }}
       >
         <div>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M12 22C16 18 20 14.4183 20 10C20 5.58172 16.4183 2 12 2C7.58172 2 4 5.58172 4 10C4 14.4183 8 18 12 22Z" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <Icon name="location" />
         </div>
         <div className="flex flex-col w-full">
-          <DestinationDropdown 
+          <DestinationDropdown
             value={fromLocation}
             onChange={handleFromChange}
             onSelect={handleFromChange}
@@ -3793,13 +3735,10 @@ const SearchForm = () => {
         }}
       >
         <div>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M21 21L17 17" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <Icon name="location" />
         </div>
         <div className="flex flex-col w-full">
-          <DestinationDropdown 
+          <DestinationDropdown
             value={destination}
             onChange={handleDestinationChange}
             onSelect={handleDestinationChange}
@@ -3825,12 +3764,7 @@ const SearchForm = () => {
         onClick={handleDateClick}
       >
         <div>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="3" y="6" width="18" height="15" rx="2" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M3 10H21" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M16 2V6" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M8 2V6" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <Icon name="calendar" />
         </div>
         <div className="flex flex-col w-full pl-2">
           <div className="text-gray-500 text-xs">Date</div>
@@ -3852,12 +3786,7 @@ const SearchForm = () => {
         onClick={handleParticipantsClick}
       >
         <div>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="#142347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <Icon name="users" />
         </div>
         <div className="flex flex-col w-full pl-2">
           <div className="text-gray-500 text-xs">Participants</div>
@@ -3954,4 +3883,3 @@ const SearchForm = () => {
 };
 
 export default SearchForm;
-
