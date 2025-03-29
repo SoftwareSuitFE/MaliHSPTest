@@ -482,7 +482,16 @@ const Header = () => {
                   />
                 </svg>
               </span>
-              <span className="text-xs">+4021 210 17 17</span>
+              {/* <span className="text-xs">+4021 210 17 17</span> */}
+              <a
+                href="tel:+40212101717"
+                className="flex items-center text-[#142347]"
+              >
+                <span className="flex items-center mr-1">
+                  {/* Telefon ikonu */}
+                </span>
+                <span className="text-xs">+4021 210 17 17</span>
+              </a>
             </div>
 
             {/* Favorite Button */}
