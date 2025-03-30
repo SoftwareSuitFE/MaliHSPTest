@@ -88,6 +88,14 @@ export const translations = {
       adults: "Number of Adults",
       children: "Number of Children",
     },
+    FlightCard: {
+      adults: "{count} Adults",
+      children: "{count} Children",
+      child: "{count} Child",
+      hours: "Hours",
+      fromPrice: "from",
+      bookNow: "Book Now",
+    },
   },
   tr: {
     NotFound: {
@@ -172,6 +180,14 @@ export const translations = {
       participants: "Katılımcılar",
       adults: "Yetişkin Sayısı",
       children: "Çocuk Sayısı",
+    },
+    FlightCard: {
+      adults: "{count} Yetişkin",
+      children: "{count} Çocuk",
+      child: "{count} Çocuk",
+      hours: "Saat",
+      fromPrice: "itibaren",
+      bookNow: "Rezervasyon Yap",
     },
   },
 };

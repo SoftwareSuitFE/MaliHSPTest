@@ -1,14 +1,15 @@
-
-
 // "use client";
 
-// import React, { useState } from "react";
+// import React, { useState, useEffect, useRef } from "react";
 // import dayjs from "dayjs";
 // import { useSearch } from "@/hooks/useSearch";
-// import { StarFilled, CheckOutlined } from "@ant-design/icons";
-// import { Input, DatePicker, Select, Button } from "antd";
+// import { CheckOutlined } from "@ant-design/icons";
+// import { Select, Button } from "antd"; // Input kaldırıldı
 // import Icon from "../../../public/icons/Icon";
 // import { useLanguage } from "@/hooks/useLanguage";
+// import DateRangePicker from "@/components/DateRangePicker/DateRangePicker";
+// import PersonPicker from "@/components/PersonPicker/personpicker"; // PersonPicker eklendi
+// import DestinationDropdown from "@/components/dropdown/DestinationDropdown"; // DestinationDropdown eklendi
 
 // // Mevcut concept listesi (örnek)
 // const baseConcepts = [
@@ -25,35 +26,138 @@
 // const Filters: React.FC = () => {
 //   const { filters, updateFilters, searchParams } = useSearch();
 //   const { t } = useLanguage();
-  
+
 //   // TravelType değerini alıyoruz
 //   const travelType = searchParams.travelType || "package";
 
 //   // State'ler
-//   const [from, setFrom] = useState<string>(filters.from || "");
+//   const [from, setFrom] = useState<string>(
+//     filters.from || searchParams.from || ""
+//   );
 //   const [destination, setDestination] = useState<string>(
-//     filters.destination || ""
+//     filters.destination || searchParams.destination || ""
 //   );
-//   const [people, setPeople] = useState<number>(
-//     (filters.participants?.adults || 2) + (filters.participants?.children || 0)
+
+//   // Kişi sayıları ayrı olarak tutuyoruz
+//   const [adults, setAdults] = useState<number>(
+//     filters.participants?.adults || searchParams.participants?.adults || 2
 //   );
-//   const [date, setDate] = useState<dayjs.Dayjs | null>(
-//     filters.date ? dayjs(filters.date) : null
+//   const [children, setChildren] = useState<number>(
+//     filters.participants?.children || searchParams.participants?.children || 0
 //   );
-//   const [nights, setNights] = useState<number>(filters.nights || 5);
+//   const [people, setPeople] = useState<number>(adults + children);
+
+//   // Nights değişkenini önce tanımlıyoruz
+//   const [nights, setNights] = useState<number>(
+//     filters.nights || searchParams.nights || 5
+//   );
+
+//   // Date state'lerini tanımlıyoruz
+//   const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(() => {
+//     if (filters.date) return dayjs(filters.date);
+//     if (searchParams.date) return dayjs(searchParams.date);
+//     return null;
+//   });
+
+//   // endDate başlangıç + seçili gece sayısı kadar
+//   const [endDate, setEndDate] = useState<dayjs.Dayjs | null>(() => {
+//     if (startDate) return startDate.add(nights, "day");
+//     return null;
+//   });
+
 //   const [stars, setStars] = useState<number[]>(filters.stars || []);
 //   const [concepts, setConcepts] = useState<string[]>(
 //     filters.hotelConcepts || []
 //   );
 
+//   // DateRangePicker için visible state ve ref
+//   const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
+//   const dateFieldRef = useRef<HTMLDivElement>(null);
+
+//   // PersonPicker için visible state ve ref
+//   const [showPersonPicker, setShowPersonPicker] = useState<boolean>(false);
+//   const peopleFieldRef = useRef<HTMLDivElement>(null);
+
 //   const [showMore, setShowMore] = useState<boolean>(false);
+
+//   // searchParams değiştiğinde state'leri güncelle
+//   useEffect(() => {
+//     setFrom(searchParams.from || "");
+//     setDestination(searchParams.destination || "");
+
+//     // Kişi sayılarını güncelle
+//     const newAdults = searchParams.participants?.adults || 2;
+//     const newChildren = searchParams.participants?.children || 0;
+//     setAdults(newAdults);
+//     setChildren(newChildren);
+//     setPeople(newAdults + newChildren);
+
+//     // Önce nights güncellenir
+//     const newNights = searchParams.nights || 5;
+//     setNights(newNights);
+
+//     // Sonra startDate ve buna bağlı olarak endDate
+//     const newStartDate = searchParams.date ? dayjs(searchParams.date) : null;
+//     setStartDate(newStartDate);
+
+//     if (newStartDate) {
+//       setEndDate(newStartDate.add(newNights, "day"));
+//     } else {
+//       setEndDate(null);
+//     }
+
+//     // filters değişiklikleri de filters state'ine yansıtılsın
+//     updateFilters({
+//       from: searchParams.from || filters.from || "",
+//       destination: searchParams.destination || filters.destination || "",
+//       participants: {
+//         adults: newAdults,
+//         children: newChildren,
+//       },
+//       date: searchParams.date || filters.date || "",
+//       nights: newNights,
+//     });
+//   }, [searchParams, updateFilters]);
+
+//   // filters değiştiğinde de state'leri güncelle
+//   useEffect(() => {
+//     setFrom(filters.from || "");
+//     setDestination(filters.destination || "");
+
+//     // Kişi sayılarını güncelle
+//     const newAdults = filters.participants?.adults || 2;
+//     const newChildren = filters.participants?.children || 0;
+//     setAdults(newAdults);
+//     setChildren(newChildren);
+//     setPeople(newAdults + newChildren);
+
+//     // Önce nights güncellenir
+//     const newNights = filters.nights || 5;
+//     setNights(newNights);
+
+//     // Sonra startDate ve buna bağlı olarak endDate
+//     const newStartDate = filters.date ? dayjs(filters.date) : null;
+//     setStartDate(newStartDate);
+
+//     if (newStartDate) {
+//       setEndDate(newStartDate.add(newNights, "day"));
+//     } else {
+//       setEndDate(null);
+//     }
+
+//     setStars(filters.stars || []);
+//     setConcepts(filters.hotelConcepts || []);
+//   }, [filters]);
 
 //   // Filtreleri sıfırla
 //   const resetFilters = () => {
 //     setFrom("");
 //     setDestination("");
+//     setAdults(2);
+//     setChildren(0);
 //     setPeople(2);
-//     setDate(null);
+//     setStartDate(null);
+//     setEndDate(null);
 //     setNights(5);
 //     setStars([]);
 //     setConcepts([]);
@@ -75,20 +179,53 @@
 //     setFrom(val);
 //     updateFilters({ from: val });
 //   };
+
 //   const handleDestinationChange = (val: string) => {
 //     setDestination(val);
 //     updateFilters({ destination: val });
 //   };
-//   const handlePeopleChange = (val: number) => {
-//     setPeople(val);
-//     updateFilters({ participants: { adults: val, children: 0 } });
+
+//   // PersonPicker için onChange ve onClose fonksiyonları
+//   const handlePersonChange = (newAdults: number, newChildren: number) => {
+//     setAdults(newAdults);
+//     setChildren(newChildren);
+//     setPeople(newAdults + newChildren);
+
+//     updateFilters({
+//       participants: { adults: newAdults, children: newChildren },
+//     });
 //   };
-//   const handleDateChange = (val: dayjs.Dayjs | null) => {
-//     setDate(val);
-//     updateFilters({ date: val ? val.format("YYYY-MM-DD") : "" });
+
+//   const handlePersonPickerClose = () => {
+//     setShowPersonPicker(false);
 //   };
+
+//   // DateRangePicker için onChange ve onClose fonksiyonları
+//   const handleDateChange = (start: dayjs.Dayjs, end: dayjs.Dayjs) => {
+//     setStartDate(start);
+//     setEndDate(end);
+
+//     // Gece sayısını hesapla
+//     const nightCount = end.diff(start, "day");
+//     setNights(nightCount);
+
+//     // Filters'ı güncelle
+//     updateFilters({
+//       date: start.format("YYYY-MM-DD"),
+//       nights: nightCount,
+//     });
+//   };
+
+//   const handleDatePickerClose = () => {
+//     setShowDatePicker(false);
+//   };
+
 //   const handleNightsChange = (val: number) => {
 //     setNights(val);
+//     // endDate'i de güncelle
+//     if (startDate) {
+//       setEndDate(startDate.add(val, "day"));
+//     }
 //     updateFilters({ nights: val });
 //   };
 
@@ -122,7 +259,9 @@
 //   // Otel konseptini çevirme yardımcı fonksiyonu
 //   const translateConcept = (concept: string): string => {
 //     // Boşlukları kaldırıp, camelCase'e dönüştürme
-//     const key = concept.replace(/\s+/g, '').replace(/(?:^|\s)(\w)/g, (match, p1) => p1.toLowerCase());
+//     const key = concept
+//       .replace(/\s+/g, "")
+//       .replace(/(?:^|\s)(\w)/g, (match, p1) => p1.toLowerCase());
 //     return t("HotelConcepts", key);
 //   };
 
@@ -132,71 +271,99 @@
 //       style={{ fontFamily: "Inter" }}
 //     >
 //       {/* Filter Başlık */}
-//       <h3 className="text-sm font-normal text-[#142347] mb-6">{t("Filters", "title")}</h3>
+//       <h3 className="text-sm font-normal text-[#142347] mb-6">
+//         {t("Filters", "title")}
+//       </h3>
 
-//       {/* From - Sadece package ve flight için göster */}
+//       {/* From - Sadece package ve flight için göster - DestinationDropdown ile değiştirildi */}
 //       {(travelType === "package" || travelType === "flight") && (
 //         <div className="mb-4">
-//           <Input
-//             placeholder={t("Filters", "from")}
-//             prefix={<Icon name="location" size={14} color="#142347" />}
+//           <DestinationDropdown
 //             value={from}
-//             onChange={(e) => handleFromChange(e.target.value)}
-//             className="h-10 rounded-md border border-[#E1E7EF] text-[#142347] placeholder:text-[#142347]"
+//             onChange={handleFromChange}
+//             onSelect={handleFromChange}
+//             placeholder={t("Filters", "from")}
+//             mode="city"
+//             className="h-10 rounded-md border border-[#E1E7EF] text-[#142347] placeholder:text-[#142347] px-2"
 //           />
 //         </div>
 //       )}
 
-//       {/* Destination - Tüm tiplerde göster */}
+//       {/* Destination - Tüm tiplerde göster - DestinationDropdown ile değiştirildi */}
 //       <div className="mb-4">
-//         <Input
-//           placeholder={t("Filters", "destination")}
-//           prefix={<Icon name="hotel" size={16} color="#142347" />}
+//         <DestinationDropdown
 //           value={destination}
-//           onChange={(e) => handleDestinationChange(e.target.value)}
-//           className="h-10 rounded-md border border-[#E1E7EF] text-[#142347] placeholder:text-[#142347]"
+//           onChange={handleDestinationChange}
+//           onSelect={handleDestinationChange}
+//           placeholder={t("Filters", "destination")}
+//           mode={travelType === "hotel" ? "hotel" : "city"}
+//           className="h-10 rounded-md border border-[#E1E7EF] text-[#142347] placeholder:text-[#142347] px-2"
 //         />
 //       </div>
 
-//       {/* Participants - Tüm tiplerde göster */}
+//       {/* Participants - Tüm tiplerde göster - PersonPicker ile değiştirildi */}
 //       <div className="mb-4">
 //         <label className="block text-sm font-medium text-[#142347] mb-1">
 //           {t("Filters", "participants")}
 //         </label>
-//         <div className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3">
+//         <div
+//           ref={peopleFieldRef}
+//           className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3 cursor-pointer"
+//           onClick={() => setShowPersonPicker(true)}
+//         >
 //           <Icon name="users" size={16} color="#142347" className="mr-2" />
-//           <Select
-//             value={people}
-//             onChange={handlePeopleChange}
-//             className="flex-1 text-[#142347] font-medium"
-//             dropdownStyle={{ fontFamily: "Inter" }}
-//           >
-//             {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
-//               <Select.Option key={num} value={num}>
-//                 {t("Filters", "people", { count: num })}
-//               </Select.Option>
-//             ))}
-//           </Select>
+//           <div className="text-[#142347] font-medium flex-1">
+//             {t("Filters", "people", { count: people })}
+//           </div>
 //         </div>
+
+//         {/* PersonPicker Bileşeni */}
+//         {typeof window !== "undefined" && showPersonPicker && (
+//           <PersonPicker
+//             adults={adults}
+//             children={children}
+//             onChange={handlePersonChange}
+//             onClose={handlePersonPickerClose}
+//             visible={showPersonPicker}
+//             triggerRef={peopleFieldRef}
+//           />
+//         )}
 //       </div>
 
-//       {/* Date - Tüm tiplerde göster */}
+//       {/* Date - Tüm tiplerde göster - DateRangePicker ile değiştirildi */}
 //       <div className="mb-4">
 //         <label className="block text-sm font-medium text-[#142347] mb-1">
 //           {t("Filters", "date")}
 //         </label>
-//         <div className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3">
+//         <div
+//           ref={dateFieldRef}
+//           className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3 cursor-pointer"
+//           onClick={() => setShowDatePicker(true)}
+//         >
 //           <Icon name="calendar" size={16} color="#142347" className="mr-2" />
-//           <DatePicker
-//             format="DD MMM YYYY"
-//             placeholder={t("Filters", "date")}
-//             value={date}
-//             onChange={handleDateChange}
-//             allowClear={false}
-//             className="text-[#142347] placeholder:text-[#142347] font-medium flex-1"
-//             suffixIcon={null}
-//           />
+//           <div className="text-[#142347] font-medium flex-1">
+//             {startDate ? (
+//               <span>
+//                 {startDate.format("DD MMM YYYY")}
+//                 {endDate && ` - ${endDate.format("DD MMM")}`}
+//               </span>
+//             ) : (
+//               <span className="text-gray-400">{t("Filters", "date")}</span>
+//             )}
+//           </div>
 //         </div>
+
+//         {/* DateRangePicker Bileşeni */}
+//         {typeof window !== "undefined" && showDatePicker && (
+//           <DateRangePicker
+//             startDate={startDate || undefined}
+//             endDate={endDate || undefined}
+//             onChange={handleDateChange}
+//             onClose={handleDatePickerClose}
+//             visible={showDatePicker}
+//             triggerRef={dateFieldRef}
+//           />
+//         )}
 //       </div>
 
 //       {/* Nights - Sadece package ve hotel için göster */}
@@ -223,7 +390,7 @@
 //         </div>
 //       )}
 
-//       {/* Hotel Concept - Sadece package ve hotel için göster */}
+//       {/* Hotel Concept ve Star bileşenleri - değişmeden bırakıldı */}
 //       {(travelType === "package" || travelType === "hotel") && (
 //         <div className="mb-4">
 //           <div className="flex justify-between items-center mb-1">
@@ -255,7 +422,9 @@
 //                     `}
 //                   >
 //                     {isChecked && (
-//                       <CheckOutlined style={{ fontSize: 12, color: "#ED8936" }} />
+//                       <CheckOutlined
+//                         style={{ fontSize: 12, color: "#ED8936" }}
+//                       />
 //                     )}
 //                   </span>
 //                   <input
@@ -264,7 +433,9 @@
 //                     onChange={() => handleConceptChange(concept)}
 //                     className="hidden"
 //                   />
-//                   <span className="text-sm text-[#142347]">{translateConcept(concept)}</span>
+//                   <span className="text-sm text-[#142347]">
+//                     {translateConcept(concept)}
+//                   </span>
 //                 </label>
 //               );
 //             })}
@@ -285,7 +456,8 @@
 //                   </>
 //                 ) : (
 //                   <>
-//                     {t("Filters", "more")} <Icon name="arrow-down" size={16} color="#93A2B7" />
+//                     {t("Filters", "more")}{" "}
+//                     <Icon name="arrow-down" size={16} color="#93A2B7" />
 //                   </>
 //                 )}
 //               </Button>
@@ -294,7 +466,7 @@
 //         </div>
 //       )}
 
-//       {/* Star - Sadece package ve hotel için göster */}
+//       {/* Star kısmı */}
 //       {(travelType === "package" || travelType === "hotel") && (
 //         <div className="mb-4">
 //           <label className="block text-sm font-medium text-[#142347] mb-1">
@@ -353,19 +525,21 @@
 
 // export default Filters;
 
-
-
 // src/components/search/filters.tsx
 
 "use client";
 
-import React, { useState, useEffect } from "react";  // useEffect ekledim
+import React, { useState, useEffect, useRef } from "react";
 import dayjs from "dayjs";
 import { useSearch } from "@/hooks/useSearch";
 import { StarFilled, CheckOutlined } from "@ant-design/icons";
-import { Input, DatePicker, Select, Button } from "antd";
+import { Button } from "antd"; // Select kaldırıldı
 import Icon from "../../../public/icons/Icon";
 import { useLanguage } from "@/hooks/useLanguage";
+import DateRangePicker from "@/components/DateRangePicker/DateRangePicker";
+import PersonPicker from "@/components/PersonPicker/personpicker";
+import DestinationDropdown from "@/components/dropdown/DestinationDropdown";
+import NightPicker from "@/components/NightPicker/NightPicker"; // NightPicker eklendi
 
 // Mevcut concept listesi (örnek)
 const baseConcepts = [
@@ -382,28 +556,61 @@ const baseConcepts = [
 const Filters: React.FC = () => {
   const { filters, updateFilters, searchParams } = useSearch();
   const { t } = useLanguage();
-  
+
   // TravelType değerini alıyoruz
   const travelType = searchParams.travelType || "package";
 
   // State'ler
-  const [from, setFrom] = useState<string>(filters.from || searchParams.from || "");
+  const [from, setFrom] = useState<string>(
+    filters.from || searchParams.from || ""
+  );
   const [destination, setDestination] = useState<string>(
     filters.destination || searchParams.destination || ""
   );
-  const [people, setPeople] = useState<number>(
-    (filters.participants?.adults || searchParams.participants?.adults || 2) + 
-    (filters.participants?.children || searchParams.participants?.children || 0)
+
+  // Kişi sayıları ayrı olarak tutuyoruz
+  const [adults, setAdults] = useState<number>(
+    filters.participants?.adults || searchParams.participants?.adults || 2
   );
-  const [date, setDate] = useState<dayjs.Dayjs | null>(
-    filters.date ? dayjs(filters.date) : 
-    searchParams.date ? dayjs(searchParams.date) : null
+  const [children, setChildren] = useState<number>(
+    filters.participants?.children || searchParams.participants?.children || 0
   );
-  const [nights, setNights] = useState<number>(filters.nights || searchParams.nights || 5);
+  const [people, setPeople] = useState<number>(adults + children);
+
+  // Nights değişkeni
+  const [nights, setNights] = useState<number>(
+    filters.nights || searchParams.nights || 5
+  );
+
+  // Date state'lerini tanımlıyoruz
+  const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(() => {
+    if (filters.date) return dayjs(filters.date);
+    if (searchParams.date) return dayjs(searchParams.date);
+    return null;
+  });
+
+  // endDate başlangıç + seçili gece sayısı kadar
+  const [endDate, setEndDate] = useState<dayjs.Dayjs | null>(() => {
+    if (startDate) return startDate.add(nights, "day");
+    return null;
+  });
+
   const [stars, setStars] = useState<number[]>(filters.stars || []);
   const [concepts, setConcepts] = useState<string[]>(
     filters.hotelConcepts || []
   );
+
+  // DateRangePicker için visible state ve ref
+  const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
+  const dateFieldRef = useRef<HTMLDivElement>(null);
+
+  // PersonPicker için visible state ve ref
+  const [showPersonPicker, setShowPersonPicker] = useState<boolean>(false);
+  const peopleFieldRef = useRef<HTMLDivElement>(null);
+
+  // NightPicker için visible state ve ref
+  const [showNightPicker, setShowNightPicker] = useState<boolean>(false);
+  const nightsFieldRef = useRef<HTMLDivElement>(null);
 
   const [showMore, setShowMore] = useState<boolean>(false);
 
@@ -411,23 +618,38 @@ const Filters: React.FC = () => {
   useEffect(() => {
     setFrom(searchParams.from || "");
     setDestination(searchParams.destination || "");
-    setPeople(
-      (searchParams.participants?.adults || 2) + 
-      (searchParams.participants?.children || 0)
-    );
-    setDate(searchParams.date ? dayjs(searchParams.date) : null);
-    setNights(searchParams.nights || 5);
-    
+
+    // Kişi sayılarını güncelle
+    const newAdults = searchParams.participants?.adults || 2;
+    const newChildren = searchParams.participants?.children || 0;
+    setAdults(newAdults);
+    setChildren(newChildren);
+    setPeople(newAdults + newChildren);
+
+    // Önce nights güncellenir
+    const newNights = searchParams.nights || 5;
+    setNights(newNights);
+
+    // Sonra startDate ve buna bağlı olarak endDate
+    const newStartDate = searchParams.date ? dayjs(searchParams.date) : null;
+    setStartDate(newStartDate);
+
+    if (newStartDate) {
+      setEndDate(newStartDate.add(newNights, "day"));
+    } else {
+      setEndDate(null);
+    }
+
     // filters değişiklikleri de filters state'ine yansıtılsın
     updateFilters({
       from: searchParams.from || filters.from || "",
       destination: searchParams.destination || filters.destination || "",
       participants: {
-        adults: searchParams.participants?.adults || filters.participants?.adults || 2,
-        children: searchParams.participants?.children || filters.participants?.children || 0
+        adults: newAdults,
+        children: newChildren,
       },
       date: searchParams.date || filters.date || "",
-      nights: searchParams.nights || filters.nights || 5
+      nights: newNights,
     });
   }, [searchParams, updateFilters]);
 
@@ -435,12 +657,28 @@ const Filters: React.FC = () => {
   useEffect(() => {
     setFrom(filters.from || "");
     setDestination(filters.destination || "");
-    setPeople(
-      (filters.participants?.adults || 2) + 
-      (filters.participants?.children || 0)
-    );
-    setDate(filters.date ? dayjs(filters.date) : null);
-    setNights(filters.nights || 5);
+
+    // Kişi sayılarını güncelle
+    const newAdults = filters.participants?.adults || 2;
+    const newChildren = filters.participants?.children || 0;
+    setAdults(newAdults);
+    setChildren(newChildren);
+    setPeople(newAdults + newChildren);
+
+    // Önce nights güncellenir
+    const newNights = filters.nights || 5;
+    setNights(newNights);
+
+    // Sonra startDate ve buna bağlı olarak endDate
+    const newStartDate = filters.date ? dayjs(filters.date) : null;
+    setStartDate(newStartDate);
+
+    if (newStartDate) {
+      setEndDate(newStartDate.add(newNights, "day"));
+    } else {
+      setEndDate(null);
+    }
+
     setStars(filters.stars || []);
     setConcepts(filters.hotelConcepts || []);
   }, [filters]);
@@ -449,8 +687,11 @@ const Filters: React.FC = () => {
   const resetFilters = () => {
     setFrom("");
     setDestination("");
+    setAdults(2);
+    setChildren(0);
     setPeople(2);
-    setDate(null);
+    setStartDate(null);
+    setEndDate(null);
     setNights(5);
     setStars([]);
     setConcepts([]);
@@ -472,21 +713,59 @@ const Filters: React.FC = () => {
     setFrom(val);
     updateFilters({ from: val });
   };
+
   const handleDestinationChange = (val: string) => {
     setDestination(val);
     updateFilters({ destination: val });
   };
-  const handlePeopleChange = (val: number) => {
-    setPeople(val);
-    updateFilters({ participants: { adults: val, children: 0 } });
+
+  // PersonPicker için onChange ve onClose fonksiyonları
+  const handlePersonChange = (newAdults: number, newChildren: number) => {
+    setAdults(newAdults);
+    setChildren(newChildren);
+    setPeople(newAdults + newChildren);
+
+    updateFilters({
+      participants: { adults: newAdults, children: newChildren },
+    });
   };
-  const handleDateChange = (val: dayjs.Dayjs | null) => {
-    setDate(val);
-    updateFilters({ date: val ? val.format("YYYY-MM-DD") : "" });
+
+  const handlePersonPickerClose = () => {
+    setShowPersonPicker(false);
   };
-  const handleNightsChange = (val: number) => {
+
+  // DateRangePicker için onChange ve onClose fonksiyonları
+  const handleDateChange = (start: dayjs.Dayjs, end: dayjs.Dayjs) => {
+    setStartDate(start);
+    setEndDate(end);
+
+    // Gece sayısını hesapla
+    const nightCount = end.diff(start, "day");
+    setNights(nightCount);
+
+    // Filters'ı güncelle
+    updateFilters({
+      date: start.format("YYYY-MM-DD"),
+      nights: nightCount,
+    });
+  };
+
+  const handleDatePickerClose = () => {
+    setShowDatePicker(false);
+  };
+
+  // NightPicker için onChange ve onClose fonksiyonları
+  const handleNightChange = (val: number) => {
     setNights(val);
+    // endDate'i de güncelle
+    if (startDate) {
+      setEndDate(startDate.add(val, "day"));
+    }
     updateFilters({ nights: val });
+  };
+
+  const handleNightPickerClose = () => {
+    setShowNightPicker(false);
   };
 
   // Star seçimi
@@ -519,7 +798,9 @@ const Filters: React.FC = () => {
   // Otel konseptini çevirme yardımcı fonksiyonu
   const translateConcept = (concept: string): string => {
     // Boşlukları kaldırıp, camelCase'e dönüştürme
-    const key = concept.replace(/\s+/g, '').replace(/(?:^|\s)(\w)/g, (match, p1) => p1.toLowerCase());
+    const key = concept
+      .replace(/\s+/g, "")
+      .replace(/(?:^|\s)(\w)/g, (match, p1) => p1.toLowerCase());
     return t("HotelConcepts", key);
   };
 
@@ -529,98 +810,132 @@ const Filters: React.FC = () => {
       style={{ fontFamily: "Inter" }}
     >
       {/* Filter Başlık */}
-      <h3 className="text-sm font-normal text-[#142347] mb-6">{t("Filters", "title")}</h3>
+      <h3 className="text-sm font-normal text-[#142347] mb-6">
+        {t("Filters", "title")}
+      </h3>
 
-      {/* From - Sadece package ve flight için göster */}
+      {/* From - Sadece package ve flight için göster - DestinationDropdown ile değiştirildi */}
       {(travelType === "package" || travelType === "flight") && (
         <div className="mb-4">
-          <Input
-            placeholder={t("Filters", "from")}
-            prefix={<Icon name="location" size={14} color="#142347" />}
+          <DestinationDropdown
             value={from}
-            onChange={(e) => handleFromChange(e.target.value)}
-            className="h-10 rounded-md border border-[#E1E7EF] text-[#142347] placeholder:text-[#142347]"
+            onChange={handleFromChange}
+            onSelect={handleFromChange}
+            placeholder={t("Filters", "from")}
+            mode="city"
+            className="h-10 rounded-md border border-[#E1E7EF] text-[#142347] placeholder:text-[#142347] px-2"
           />
         </div>
       )}
 
-      {/* Destination - Tüm tiplerde göster */}
+      {/* Destination - Tüm tiplerde göster - DestinationDropdown ile değiştirildi */}
       <div className="mb-4">
-        <Input
-          placeholder={t("Filters", "destination")}
-          prefix={<Icon name="hotel" size={16} color="#142347" />}
+        <DestinationDropdown
           value={destination}
-          onChange={(e) => handleDestinationChange(e.target.value)}
-          className="h-10 rounded-md border border-[#E1E7EF] text-[#142347] placeholder:text-[#142347]"
+          onChange={handleDestinationChange}
+          onSelect={handleDestinationChange}
+          placeholder={t("Filters", "destination")}
+          mode={travelType === "hotel" ? "hotel" : "city"}
+          className="h-10 rounded-md border border-[#E1E7EF] text-[#142347] placeholder:text-[#142347] px-2"
         />
       </div>
 
-      {/* Participants - Tüm tiplerde göster */}
+      {/* Participants - Tüm tiplerde göster - PersonPicker ile değiştirildi */}
       <div className="mb-4">
         <label className="block text-sm font-medium text-[#142347] mb-1">
           {t("Filters", "participants")}
         </label>
-        <div className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3">
+        <div
+          ref={peopleFieldRef}
+          className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3 cursor-pointer"
+          onClick={() => setShowPersonPicker(true)}
+        >
           <Icon name="users" size={16} color="#142347" className="mr-2" />
-          <Select
-            value={people}
-            onChange={handlePeopleChange}
-            className="flex-1 text-[#142347] font-medium"
-            dropdownStyle={{ fontFamily: "Inter" }}
-          >
-            {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
-              <Select.Option key={num} value={num}>
-                {t("Filters", "people", { count: num })}
-              </Select.Option>
-            ))}
-          </Select>
+          <div className="text-[#142347] font-medium flex-1">
+            {t("Filters", "people", { count: people })}
+          </div>
         </div>
+
+        {/* PersonPicker Bileşeni */}
+        {typeof window !== "undefined" && showPersonPicker && (
+          <PersonPicker
+            adults={adults}
+            children={children}
+            onChange={handlePersonChange}
+            onClose={handlePersonPickerClose}
+            visible={showPersonPicker}
+            triggerRef={peopleFieldRef}
+          />
+        )}
       </div>
 
-      {/* Date - Tüm tiplerde göster */}
+      {/* Date - Tüm tiplerde göster - DateRangePicker ile değiştirildi */}
       <div className="mb-4">
         <label className="block text-sm font-medium text-[#142347] mb-1">
           {t("Filters", "date")}
         </label>
-        <div className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3">
+        <div
+          ref={dateFieldRef}
+          className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3 cursor-pointer"
+          onClick={() => setShowDatePicker(true)}
+        >
           <Icon name="calendar" size={16} color="#142347" className="mr-2" />
-          <DatePicker
-            format="DD MMM YYYY"
-            placeholder={t("Filters", "date")}
-            value={date}
-            onChange={handleDateChange}
-            allowClear={false}
-            className="text-[#142347] placeholder:text-[#142347] font-medium flex-1"
-            suffixIcon={null}
-          />
+          <div className="text-[#142347] font-medium flex-1">
+            {startDate ? (
+              <span>
+                {startDate.format("DD MMM YYYY")}
+                {endDate && ` - ${endDate.format("DD MMM")}`}
+              </span>
+            ) : (
+              <span className="text-gray-400">{t("Filters", "date")}</span>
+            )}
+          </div>
         </div>
+
+        {/* DateRangePicker Bileşeni */}
+        {typeof window !== "undefined" && showDatePicker && (
+          <DateRangePicker
+            startDate={startDate || undefined}
+            endDate={endDate || undefined}
+            onChange={handleDateChange}
+            onClose={handleDatePickerClose}
+            visible={showDatePicker}
+            triggerRef={dateFieldRef}
+          />
+        )}
       </div>
 
-      {/* Nights - Sadece package ve hotel için göster */}
+      {/* Nights - Sadece package ve hotel için göster - NightPicker ile değiştirildi */}
       {(travelType === "package" || travelType === "hotel") && (
         <div className="mb-4">
           <label className="block text-sm font-medium text-[#142347] mb-1">
             {t("Filters", "nights")}
           </label>
-          <div className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3">
+          <div
+            ref={nightsFieldRef}
+            className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3 cursor-pointer"
+            onClick={() => setShowNightPicker(true)}
+          >
             <Icon name="nights" size={16} color="#142347" className="mr-2" />
-            <Select
-              value={nights}
-              onChange={handleNightsChange}
-              className="flex-1 text-[#142347] font-medium"
-              dropdownStyle={{ fontFamily: "Inter" }}
-            >
-              {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
-                <Select.Option key={num} value={num}>
-                  {t("HotelCard", "nights", { count: num })}
-                </Select.Option>
-              ))}
-            </Select>
+            <div className="text-[#142347] font-medium flex-1">
+              {t("HotelCard", "nights", { count: nights })}
+            </div>
           </div>
+
+          {/* NightPicker Bileşeni */}
+          {typeof window !== "undefined" && showNightPicker && (
+            <NightPicker
+              nights={nights}
+              onChange={handleNightChange}
+              onClose={handleNightPickerClose}
+              visible={showNightPicker}
+              triggerRef={nightsFieldRef}
+            />
+          )}
         </div>
       )}
 
-      {/* Hotel Concept - Sadece package ve hotel için göster */}
+      {/* Hotel Concept ve Star bileşenleri - değişmeden bırakıldı */}
       {(travelType === "package" || travelType === "hotel") && (
         <div className="mb-4">
           <div className="flex justify-between items-center mb-1">
@@ -652,7 +967,9 @@ const Filters: React.FC = () => {
                     `}
                   >
                     {isChecked && (
-                      <CheckOutlined style={{ fontSize: 12, color: "#ED8936" }} />
+                      <CheckOutlined
+                        style={{ fontSize: 12, color: "#ED8936" }}
+                      />
                     )}
                   </span>
                   <input
@@ -661,7 +978,9 @@ const Filters: React.FC = () => {
                     onChange={() => handleConceptChange(concept)}
                     className="hidden"
                   />
-                  <span className="text-sm text-[#142347]">{translateConcept(concept)}</span>
+                  <span className="text-sm text-[#142347]">
+                    {translateConcept(concept)}
+                  </span>
                 </label>
               );
             })}
@@ -682,7 +1001,8 @@ const Filters: React.FC = () => {
                   </>
                 ) : (
                   <>
-                    {t("Filters", "more")} <Icon name="arrow-down" size={16} color="#93A2B7" />
+                    {t("Filters", "more")}{" "}
+                    <Icon name="arrow-down" size={16} color="#93A2B7" />
                   </>
                 )}
               </Button>
@@ -691,7 +1011,7 @@ const Filters: React.FC = () => {
         </div>
       )}
 
-      {/* Star - Sadece package ve hotel için göster */}
+      {/* Star kısmı */}
       {(travelType === "package" || travelType === "hotel") && (
         <div className="mb-4">
           <label className="block text-sm font-medium text-[#142347] mb-1">
