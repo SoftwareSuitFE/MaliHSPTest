@@ -109,7 +109,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSearch } from "../../../context/searchContext";
+import { useSearch } from "@/hooks/useSearch";
 import Icon from "../../../public/icons/Icon";
 import { useLanguage } from "@/hooks/useLanguage";
 

@@ -1,12 +1,9 @@
-
-
-
 // "use client";
 
 // import { Inter, Geist_Mono } from "next/font/google";
 // import { SearchProvider } from "../../context/searchContext";
 // import { ConfigProvider } from "antd";
-// import { LanguageProvider } from "./LanguageContext";
+// import { QueryProvider } from "./QueryProvider";
 
 // import "./globals.css";
 
@@ -29,7 +26,7 @@
 //   return (
 //     <html>
 //       <body className={`${inter.variable} ${geistMono.variable} antialiased`}>
-//         <LanguageProvider>
+//         <QueryProvider>
 //           <SearchProvider>
 //             <ConfigProvider
 //               theme={{
@@ -41,18 +38,15 @@
 //               {children}
 //             </ConfigProvider>
 //           </SearchProvider>
-//         </LanguageProvider>
+//         </QueryProvider>
 //       </body>
 //     </html>
 //   );
 // }
 
-
-
 "use client";
 
 import { Inter, Geist_Mono } from "next/font/google";
-import { SearchProvider } from "../../context/searchContext";
 import { ConfigProvider } from "antd";
 import { QueryProvider } from "./QueryProvider";
 
@@ -70,7 +64,7 @@ const geistMono = Geist_Mono({
 });
 
 export default function RootLayout({
-  children
+  children,
 }: {
   children: React.ReactNode;
 }) {
@@ -78,17 +72,15 @@ export default function RootLayout({
     <html>
       <body className={`${inter.variable} ${geistMono.variable} antialiased`}>
         <QueryProvider>
-          <SearchProvider>
-            <ConfigProvider
-              theme={{
-                token: {
-                  colorPrimary: "#ED8936",
-                },
-              }}
-            >
-              {children}
-            </ConfigProvider>
-          </SearchProvider>
+          <ConfigProvider
+            theme={{
+              token: {
+                colorPrimary: "#ED8936",
+              },
+            }}
+          >
+            {children}
+          </ConfigProvider>
         </QueryProvider>
       </body>
     </html>

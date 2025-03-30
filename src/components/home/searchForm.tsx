@@ -514,7 +514,7 @@ import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "antd";
 import dayjs from "dayjs";
-import { useSearch } from "../../../context/searchContext";
+import { useSearch } from "@/hooks/useSearch";
 import DestinationDropdown from "../dropdown/DestinationDropdown";
 import DateRangePicker from "../DateRangePicker/DateRangePicker";
 import PersonPicker from "../PersonPicker/personpicker";

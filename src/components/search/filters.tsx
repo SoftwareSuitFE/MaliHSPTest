@@ -315,16 +315,11 @@
 
 // export default Filters;
 
-
-
-
-
-
 "use client";
 
 import React, { useState } from "react";
 import dayjs from "dayjs";
-import { useSearch } from "../../../context/searchContext";
+import { useSearch } from "@/hooks/useSearch";
 import { StarFilled, CheckOutlined } from "@ant-design/icons";
 import { Input, DatePicker, Select, Button } from "antd";
 import Icon from "../../../public/icons/Icon";
@@ -439,7 +434,9 @@ const Filters: React.FC = () => {
   // Otel konseptini çevirme yardımcı fonksiyonu
   const translateConcept = (concept: string): string => {
     // Boşlukları kaldırıp, camelCase'e dönüştürme
-    const key = concept.replace(/\s+/g, '').replace(/(?:^|\s)(\w)/g, (match, p1) => p1.toLowerCase());
+    const key = concept
+      .replace(/\s+/g, "")
+      .replace(/(?:^|\s)(\w)/g, (match, p1) => p1.toLowerCase());
     return t("HotelConcepts", key);
   };
 
@@ -449,7 +446,9 @@ const Filters: React.FC = () => {
       style={{ fontFamily: "Inter" }}
     >
       {/* Filter Başlık */}
-      <h3 className="text-sm font-normal text-[#142347] mb-6">{t("Filters", "title")}</h3>
+      <h3 className="text-sm font-normal text-[#142347] mb-6">
+        {t("Filters", "title")}
+      </h3>
 
       {/* From */}
       <div className="mb-4">
@@ -575,7 +574,9 @@ const Filters: React.FC = () => {
                   onChange={() => handleConceptChange(concept)}
                   className="hidden"
                 />
-                <span className="text-sm text-[#142347]">{translateConcept(concept)}</span>
+                <span className="text-sm text-[#142347]">
+                  {translateConcept(concept)}
+                </span>
               </label>
             );
           })}
@@ -596,7 +597,8 @@ const Filters: React.FC = () => {
                 </>
               ) : (
                 <>
-                  {t("Filters", "more")} <Icon name="arrow-down" size={16} color="#93A2B7" />
+                  {t("Filters", "more")}{" "}
+                  <Icon name="arrow-down" size={16} color="#93A2B7" />
                 </>
               )}
             </Button>

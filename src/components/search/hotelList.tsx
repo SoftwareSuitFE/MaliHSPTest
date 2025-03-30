@@ -77,7 +77,7 @@
 
 import { useState, useEffect } from "react";
 import { Empty, Spin } from "antd";
-import { useSearch } from "../../../context/searchContext";
+import { useSearch } from "@/hooks/useSearch";
 import { hotels } from "../../../data/mockData";
 import HotelCard from "./hotelCard";
 import { useLanguage } from "@/hooks/useLanguage";
