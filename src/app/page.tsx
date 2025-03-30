@@ -61,9 +61,6 @@
 //   );
 // }
 
-
-
-
 // "use client";
 
 // import Header from "@/components/layout/header";
@@ -127,15 +124,6 @@
 //   );
 // }
 
-
-
-
-
-
-
-
-
-
 "use client";
 
 import Header from "@/components/layout/header";
@@ -145,8 +133,7 @@ import { useEffect } from "react";
 
 export default function Home() {
   useEffect(() => {
-    document.body.style.background = "#f5f5f5";
-
+    document.body.style.background = "#FFFFFF";
     return () => {
       document.body.style.background = "";
     };

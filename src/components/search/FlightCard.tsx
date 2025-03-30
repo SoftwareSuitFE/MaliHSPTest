@@ -127,7 +127,7 @@ const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
               <span>{flight.nights} {t("FlightCard", "hours")}</span>
             </div>
             <div className="flex items-center gap-2 text-sm text-[#142347]">
-              <Icon name="plane" />
+              <Icon name="flight" />
               <span>{flight.concept}</span>
             </div>
           </div>

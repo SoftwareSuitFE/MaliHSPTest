@@ -4,15 +4,17 @@
 // import { useRouter } from "next/navigation";
 // import { Button } from "antd";
 // import dayjs from "dayjs";
-// import { useSearch } from "../../../context/searchContext";
+// import { useSearch } from "@/hooks/useSearch";
 // import DestinationDropdown from "../dropdown/DestinationDropdown";
 // import DateRangePicker from "../DateRangePicker/DateRangePicker";
 // import PersonPicker from "../PersonPicker/personpicker";
 // import Icon from "../../../public/icons/Icon";
+// import { useLanguage } from "@/hooks/useLanguage";
 
 // const SearchForm = () => {
 //   const router = useRouter();
 //   const { searchParams, updateSearchParams } = useSearch();
+//   const { t } = useLanguage();
 
 //   // Referanslar
 //   const formRef = useRef<HTMLDivElement>(null);
@@ -69,7 +71,7 @@
 //     setShowPersonPicker((prev) => !prev);
 //   };
 
-//   // DateRangePicker’dan gelen güncelleme
+//   // DateRangePicker'dan gelen güncelleme
 //   const handleDateChange = (start: dayjs.Dayjs, end: dayjs.Dayjs) => {
 //     if (dayjs.isDayjs(start) && dayjs.isDayjs(end)) {
 //       setDate(start);
@@ -84,7 +86,7 @@
 //     }
 //   };
 
-//   // PersonPicker’dan gelen güncelleme
+//   // PersonPicker'dan gelen güncelleme
 //   const handlePersonChange = (newAdults: number, newChildren: number) => {
 //     setAdults(newAdults);
 //     setChildren(newChildren);
@@ -133,7 +135,7 @@
 //             value={fromLocation}
 //             onChange={handleFromChange}
 //             onSelect={handleFromChange}
-//             placeholder="From"
+//             placeholder={t("SearchForm", "from")}
 //             mode="city"
 //             className="w-full font-medium bg-transparent focus:outline-none"
 //             style={{ color: "#142347", fontSize: "14px", fontWeight: "500" }}
@@ -161,7 +163,7 @@
 //             value={destination}
 //             onChange={handleDestinationChange}
 //             onSelect={handleDestinationChange}
-//             placeholder="Destination"
+//             placeholder={t("SearchForm", "destination")}
 //             mode="city"
 //             className="w-full font-medium bg-transparent focus:outline-none"
 //             style={{ color: "#142347", fontSize: "14px", fontWeight: "500" }}
@@ -186,7 +188,7 @@
 //           <Icon name="calendar" size={24} />
 //         </div>
 //         <div className="flex flex-col w-full pl-2">
-//           <div className="text-gray-500 text-xs">Date</div>
+//           <div className="text-gray-500 text-xs">{t("SearchForm", "date")}</div>
 //           <div className="text-[#142347] font-medium cursor-pointer text-sm">
 //             {date.format("D MMM")}
 //           </div>
@@ -208,9 +210,11 @@
 //           <Icon name="nights" size={24} />
 //         </div>
 //         <div className="flex flex-col w-full pl-2">
-//           <div className="text-gray-500 text-xs">Nights</div>
+//           <div className="text-gray-500 text-xs">
+//             {t("SearchForm", "nights")}
+//           </div>
 //           <div className="text-[#142347] text-sm font-medium">
-//             {nights} Nights
+//             {t("SearchForm", "nightsCount", { count: nights })}
 //           </div>
 //         </div>
 //       </div>
@@ -231,16 +235,18 @@
 //           <Icon name="users" size={24} />
 //         </div>
 //         <div className="flex flex-col w-full pl-2">
-//           <div className="text-gray-500 text-xs">Participants</div>
+//           <div className="text-gray-500 text-xs">
+//             {t("SearchForm", "participants")}
+//           </div>
 //           <div className="text-[#142347] text-sm font-medium">
-//             {people} People
+//             {t("SearchForm", "people", { count: people })}
 //           </div>
 //         </div>
 //       </div>
 //     </>
 //   );
 
-//   // 2) Hotel Form (değişiklik yok)
+//   // 2) Hotel Form
 //   const renderHotelForm = () => (
 //     <>
 //       <div
@@ -261,7 +267,7 @@
 //             value={destination}
 //             onChange={handleDestinationChange}
 //             onSelect={handleDestinationChange}
-//             placeholder="Destination"
+//             placeholder={t("SearchForm", "destination")}
 //             className="font-medium bg-transparent focus:outline-none border-none p-0 text-[#142347]"
 //             style={{ fontSize: "14px", fontWeight: "500" }}
 //           />
@@ -284,9 +290,10 @@
 //           <Icon name="calendar" size={24} />
 //         </div>
 //         <div className="flex flex-col w-full pl-2">
-//           <div className="text-gray-500 text-xs">Date</div>
+//           <div className="text-gray-500 text-xs">{t("SearchForm", "date")}</div>
 //           <div className="text-[#142347] font-medium cursor-pointer text-sm">
-//             {date.format("D MMM")} - {nights} Nights
+//             {date.format("D MMM")} -{" "}
+//             {t("SearchForm", "nightsCount", { count: nights })}
 //           </div>
 //         </div>
 //       </div>
@@ -305,16 +312,18 @@
 //           <Icon name="users" size={24} />
 //         </div>
 //         <div className="flex flex-col w-full pl-2">
-//           <div className="text-gray-500 text-xs">Participants</div>
+//           <div className="text-gray-500 text-xs">
+//             {t("SearchForm", "participants")}
+//           </div>
 //           <div className="text-[#142347] text-sm font-medium">
-//             {people} People
+//             {t("SearchForm", "people", { count: people })}
 //           </div>
 //         </div>
 //       </div>
 //     </>
 //   );
 
-//   // 3) Flight Form: "from" ve "to" alanları da artık DestinationDropdown (mode="city") olarak kullanılıyor.
+//   // 3) Flight Form
 //   const renderFlightForm = () => (
 //     <>
 //       {/* From Field */}
@@ -336,7 +345,7 @@
 //             value={fromLocation}
 //             onChange={handleFromChange}
 //             onSelect={handleFromChange}
-//             placeholder="From"
+//             placeholder={t("SearchForm", "from")}
 //             mode="city"
 //             className="w-full font-medium bg-transparent focus:outline-none"
 //             style={{ color: "#142347", fontSize: "14px", fontWeight: "500" }}
@@ -363,7 +372,7 @@
 //             value={destination}
 //             onChange={handleDestinationChange}
 //             onSelect={handleDestinationChange}
-//             placeholder="To"
+//             placeholder={t("SearchForm", "to")}
 //             mode="city"
 //             className="w-full font-medium bg-transparent focus:outline-none"
 //             style={{ color: "#142347", fontSize: "14px", fontWeight: "500" }}
@@ -388,7 +397,7 @@
 //           <Icon name="calendar" size={24} />
 //         </div>
 //         <div className="flex flex-col w-full pl-2">
-//           <div className="text-gray-500 text-xs">Date</div>
+//           <div className="text-gray-500 text-xs">{t("SearchForm", "date")}</div>
 //           <div className="text-[#142347] font-medium cursor-pointer text-sm">
 //             {date.format("D MMM")} - {endDate.format("D MMM")}
 //           </div>
@@ -410,9 +419,11 @@
 //           <Icon name="users" size={24} />
 //         </div>
 //         <div className="flex flex-col w-full pl-2">
-//           <div className="text-gray-500 text-xs">Participants</div>
+//           <div className="text-gray-500 text-xs">
+//             {t("SearchForm", "participants")}
+//           </div>
 //           <div className="text-[#142347] text-sm font-medium">
-//             {people} People
+//             {t("SearchForm", "people", { count: people })}
 //           </div>
 //         </div>
 //       </div>
@@ -473,7 +484,7 @@
 //           fontWeight: "700",
 //         }}
 //       >
-//         SEARCH
+//         {t("SearchForm", "search")}
 //       </Button>
 
 //       {/* DateRangePicker */}
@@ -508,6 +519,9 @@
 
 
 
+
+// src/components/home/searchForm.tsx
+
 "use client";
 
 import { useState, useRef } from "react";
@@ -518,6 +532,7 @@ import { useSearch } from "@/hooks/useSearch";
 import DestinationDropdown from "../dropdown/DestinationDropdown";
 import DateRangePicker from "../DateRangePicker/DateRangePicker";
 import PersonPicker from "../PersonPicker/personpicker";
+import NightPicker from "@/components/NightPicker/NightPicker"; // NightPicker eklendi
 import Icon from "../../../public/icons/Icon";
 import { useLanguage } from "@/hooks/useLanguage";
 
@@ -530,6 +545,7 @@ const SearchForm = () => {
   const formRef = useRef<HTMLDivElement>(null);
   const dateFieldRef = useRef<HTMLDivElement>(null);
   const participantsRef = useRef<HTMLDivElement>(null);
+  const nightsFieldRef = useRef<HTMLDivElement>(null); // Yeni ref
 
   // Form değerleri
   const [fromLocation, setFromLocation] = useState(searchParams.from || "");
@@ -554,6 +570,7 @@ const SearchForm = () => {
   // Açılır pencerelerin görünürlük state'leri
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showPersonPicker, setShowPersonPicker] = useState(false);
+  const [showNightPicker, setShowNightPicker] = useState(false); // Yeni state
 
   // SEARCH butonuna tıklanınca
   const handleSearch = (e: React.MouseEvent) => {
@@ -579,6 +596,11 @@ const SearchForm = () => {
   // Participants alanına tıklayınca PersonPicker aç/kapa
   const handleParticipantsClick = () => {
     setShowPersonPicker((prev) => !prev);
+  };
+  
+  // Nights alanına tıklayınca NightPicker aç/kapa
+  const handleNightsClick = () => {
+    setShowNightPicker((prev) => !prev);
   };
 
   // DateRangePicker'dan gelen güncelleme
@@ -608,6 +630,16 @@ const SearchForm = () => {
         children: newChildren,
       },
     });
+  };
+  
+  // NightPicker'dan gelen güncelleme
+  const handleNightChange = (val: number) => {
+    setNights(val);
+    // endDate'i de güncelle
+    if (date) {
+      setEndDate(date.add(val, 'day'));
+    }
+    updateSearchParams({ nights: val });
   };
 
   // From / Destination alanları
@@ -705,15 +737,17 @@ const SearchForm = () => {
         </div>
       </div>
 
-      {/* Nights Field */}
+      {/* Nights Field - NightPicker ile değiştirildi */}
       <div
-        className="flex items-center"
+        ref={nightsFieldRef}
+        className="flex items-center cursor-pointer"
         style={{
           width: "110px",
           height: "40px",
           gap: "8px",
           borderRight: "1px solid #E1E7EF",
         }}
+        onClick={handleNightsClick}
       >
         <div>
           {/* Nights Ikon */}
@@ -989,7 +1023,7 @@ const SearchForm = () => {
       </Button>
 
       {/* DateRangePicker */}
-      {showDatePicker && (
+      {typeof window !== 'undefined' && showDatePicker && (
         <DateRangePicker
           startDate={date}
           endDate={endDate}
@@ -1001,7 +1035,7 @@ const SearchForm = () => {
       )}
 
       {/* PersonPicker */}
-      {showPersonPicker && (
+      {typeof window !== 'undefined' && showPersonPicker && (
         <PersonPicker
           adults={adults}
           children={children}
@@ -1009,6 +1043,17 @@ const SearchForm = () => {
           onClose={() => setShowPersonPicker(false)}
           visible={showPersonPicker}
           triggerRef={participantsRef}
+        />
+      )}
+      
+      {/* NightPicker */}
+      {typeof window !== 'undefined' && showNightPicker && (
+        <NightPicker
+          nights={nights}
+          onChange={handleNightChange}
+          onClose={() => setShowNightPicker(false)}
+          visible={showNightPicker}
+          triggerRef={nightsFieldRef}
         />
       )}
     </div>
