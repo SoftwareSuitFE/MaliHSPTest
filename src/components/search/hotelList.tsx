@@ -13,11 +13,9 @@
 
 //   useEffect(() => {
 //     setLoading(true);
-//     // Simulate API call delay
 //     const timer = setTimeout(() => {
 //       let filtered = [...hotels];
 
-//       // Filtreler
 //       if (filters.destination) {
 //         filtered = filtered.filter((hotel) =>
 //           hotel.location
@@ -72,6 +70,9 @@
 
 // export default HotelList;
 
+
+
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -79,9 +80,12 @@ import { Empty, Spin } from "antd";
 import { useSearch } from "../../../context/searchContext";
 import { hotels } from "../../../data/mockData";
 import HotelCard from "./hotelCard";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const HotelList = () => {
   const { filters } = useSearch();
+  const { t } = useLanguage();
+  
   const [filteredHotels, setFilteredHotels] = useState(hotels);
   const [loading, setLoading] = useState(true);
 
@@ -121,6 +125,7 @@ const HotelList = () => {
     return (
       <div className="bg-white p-8 rounded-lg shadow-sm flex flex-col items-center justify-center min-h-[300px]">
         <Spin size="large" />
+        <p className="mt-4 text-gray-500">{t("SearchPage", "loading")}</p>
       </div>
     );
   }
@@ -128,7 +133,7 @@ const HotelList = () => {
   if (filteredHotels.length === 0) {
     return (
       <div className="bg-white p-8 rounded-lg shadow-sm flex flex-col items-center justify-center min-h-[300px]">
-        <Empty description="No hotels match your search criteria" />
+        <Empty description={t("SearchPage", "noResults")} />
       </div>
     );
   }

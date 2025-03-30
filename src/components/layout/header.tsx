@@ -1,14 +1,26 @@
-
-
 // "use client";
 
 // import { useState } from "react";
 // import Link from "next/link";
 // import Image from "next/image";
 // import Icon from "../../../public/icons/Icon";
+// import { useLanguage } from "../../app/LanguageContext"; // LanguageContext'i import ediyoruz
 
 // const Header = () => {
 //   const [searchQuery, setSearchQuery] = useState("");
+//   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
+//   const { locale, setLocale, t } = useLanguage(); // LanguageContext'ten dil fonksiyonlarını alıyoruz
+
+//   // Dil menüsünü açıp kapatma fonksiyonu
+//   const toggleLanguageMenu = () => {
+//     setShowLanguageMenu(!showLanguageMenu);
+//   };
+
+//   // Dil değiştirme fonksiyonu
+//   const changeLanguage = (lang: string) => {
+//     setLocale(lang);
+//     setShowLanguageMenu(false);
+//   };
 
 //   return (
 //     <header className="w-full">
@@ -44,7 +56,7 @@
 //                 marginRight: "16px",
 //               }}
 //             >
-//               B2B platform
+//               {t("Header", "b2bPlatform")}
 //             </Link>
 
 //             {/* Client Care */}
@@ -61,7 +73,7 @@
 //                 marginRight: "16px",
 //               }}
 //             >
-//               Client Care
+//               {t("Header", "clientCare")}
 //             </Link>
 
 //             {/* Contact */}
@@ -78,7 +90,7 @@
 //                 marginRight: "16px",
 //               }}
 //             >
-//               Contact
+//               {t("Header", "contact")}
 //             </Link>
 
 //             {/* Phone */}
@@ -92,14 +104,10 @@
 //               <span className="flex items-center mr-1">
 //                 <Icon name="phone" />
 //               </span>
-//               {/* <span className="text-xs">+4021 210 17 17</span> */}
 //               <a
 //                 href="tel:+40212101717"
 //                 className="flex items-center text-[#142347]"
 //               >
-//                 <span className="flex items-center mr-1">
-//                   {/* Telefon ikonu */}
-//                 </span>
 //                 <span className="text-xs">+4021 210 17 17</span>
 //               </a>
 //             </div>
@@ -114,7 +122,7 @@
 //               <span className="flex items-center mr-1">
 //                 <Icon name="favorite" />
 //               </span>
-//               <span className="text-xs">Favorite</span>
+//               <span className="text-xs">{t("Header", "favorite")}</span>
 //             </div>
 
 //             {/* Search Input */}
@@ -142,7 +150,7 @@
 //               </div>
 //               <input
 //                 type="text"
-//                 placeholder="Destination or Hotel"
+//                 placeholder={t("Header", "searchPlaceholder")}
 //                 value={searchQuery}
 //                 onChange={(e) => setSearchQuery(e.target.value)}
 //                 className="w-full h-full text-xs"
@@ -166,63 +174,103 @@
 //               />
 //             </div>
 
-//             {/* EN Flag with Dropdown */}
-//             <div
-//               className="flex items-center"
-//               style={{
-//                 height: "16px",
-//               }}
-//             >
-//               {/* UK Flag */}
-//               <div
-//                 className="flex items-center justify-center"
-//                 style={{
-//                   width: "16px",
-//                   height: "16px",
-//                   display: "flex",
-//                   alignItems: "center",
-//                   justifyContent: "center",
-//                 }}
+//             {/* Language Selector */}
+//             <div className="relative">
+//               <button
+//                 onClick={toggleLanguageMenu}
+//                 className="flex items-center cursor-pointer"
+//                 style={{ height: "16px" }}
 //               >
-//                 <Icon name="England" />
-//               </div>
-//               {/* EN Text */}
-//               <div
-//                 className="flex items-center justify-center"
-//                 style={{
-//                   height: "16px",
-//                   marginLeft: "4px",
-//                   marginRight: "4px",
-//                   display: "flex",
-//                   alignItems: "center",
-//                 }}
-//               >
-//                 <span
+//                 {/* Flag Icon */}
+//                 <div
+//                   className="flex items-center justify-center"
 //                   style={{
-//                     fontFamily: "Inter",
-//                     fontWeight: 500,
-//                     fontSize: "12px",
-//                     lineHeight: "15px",
-//                     color: "#142347",
+//                     width: "16px",
+//                     height: "16px",
+//                     display: "flex",
+//                     alignItems: "center",
+//                     justifyContent: "center",
 //                   }}
 //                 >
-//                   EN
-//                 </span>
-//               </div>
+//                   {/* Not: Icon bileşeninizde "Turkey" ikonu yoksa,
+//                       bu kısmı geçici olarak sadece EN gösterecek şekilde bırakıyoruz */}
+//                   <Icon name="England" />
+//                 </div>
 
-//               {/* Down Caret */}
-//               <div
-//                 className="flex items-center justify-center"
-//                 style={{
-//                   width: "8px",
-//                   height: "16px",
-//                   display: "flex",
-//                   alignItems: "center",
-//                   justifyContent: "center",
-//                 }}
-//               >
-//                 <Icon name="arrow-downSmall" />
-//               </div>
+//                 {/* Language Code */}
+//                 <div
+//                   className="flex items-center justify-center"
+//                   style={{
+//                     height: "16px",
+//                     marginLeft: "4px",
+//                     marginRight: "4px",
+//                     display: "flex",
+//                     alignItems: "center",
+//                   }}
+//                 >
+//                   <span
+//                     style={{
+//                       fontFamily: "Inter",
+//                       fontWeight: 500,
+//                       fontSize: "12px",
+//                       lineHeight: "15px",
+//                       color: "#142347",
+//                     }}
+//                   >
+//                     {locale.toUpperCase()}
+//                   </span>
+//                 </div>
+
+//                 {/* Down Caret */}
+//                 <div
+//                   className="flex items-center justify-center"
+//                   style={{
+//                     width: "8px",
+//                     height: "16px",
+//                     display: "flex",
+//                     alignItems: "center",
+//                     justifyContent: "center",
+//                   }}
+//                 >
+//                   <Icon name="arrow-downSmall" />
+//                 </div>
+//               </button>
+
+//               {/* Language Dropdown Menu */}
+//               {showLanguageMenu && (
+//                 <div
+//                   className="absolute right-0 mt-2 bg-white rounded-md shadow-lg z-50"
+//                   style={{
+//                     width: "120px",
+//                     border: "1px solid #E1E7EF",
+//                   }}
+//                 >
+//                   <button
+//                     onClick={() => changeLanguage("en")}
+//                     className={`flex items-center w-full px-4 py-2 text-xs ${
+//                       locale === "en" ? "bg-gray-100" : ""
+//                     } hover:bg-gray-50`}
+//                   >
+//                     <div className="flex items-center justify-center mr-2">
+//                       <Icon name="England" />
+//                     </div>
+//                     <span>English</span>
+//                   </button>
+//                   <button
+//                     onClick={() => changeLanguage("tr")}
+//                     className={`flex items-center w-full px-4 py-2 text-xs ${
+//                       locale === "tr" ? "bg-gray-100" : ""
+//                     } hover:bg-gray-50`}
+//                   >
+//                     <div className="flex items-center justify-center mr-2">
+//                       {/* Not: Icon bileşeninizde Türk bayrağı yoksa, buraya eklemeniz gerekecek */}
+//                       {/* <Icon name="Turkey" /> */}
+//                       🇹🇷
+//                     </div>
+//                     <span>Türkçe</span>
+//                   </button>
+//                 </div>
+//               )}
 //             </div>
 //           </div>
 //         </div>
@@ -250,45 +298,45 @@
 //           <nav className="hidden md:flex space-x-4">
 //             <Link
 //               href="/"
-//               className="text-sm text-[#142347] hover:text-[#0057b8] w-[139px] h-[17px] flex items-center"
+//               className="text-sm text-[#142347] hover:text-[#0057b8] flex items-center"
 //               style={{ fontFamily: "Inter" }}
 //             >
-//               Popular Destinations
+//               {t("Header", "popularDestinations")}
 //             </Link>
 //             <Link
 //               href="/"
-//               className="text-sm text-[#142347] hover:text-[#0057b8] w-[72px] h-[17px] flex items-center"
+//               className="text-sm text-[#142347] hover:text-[#0057b8] flex items-center"
 //               style={{ fontFamily: "Inter" }}
 //             >
-//               Top Hotels
+//               {t("Header", "topHotels")}
 //             </Link>
 //             <Link
 //               href="/"
-//               className="text-sm text-[#142347] hover:text-[#0057b8] w-[79px] h-[17px] flex items-center"
+//               className="text-sm text-[#142347] hover:text-[#0057b8] flex items-center"
 //               style={{ fontFamily: "Inter" }}
 //             >
-//               Last Minute
+//               {t("Header", "lastMinute")}
 //             </Link>
 //             <Link
 //               href="/"
-//               className="text-sm text-[#142347] hover:text-[#0057b8] w-[101px] h-[17px] flex items-center"
+//               className="text-sm text-[#142347] hover:text-[#0057b8] flex items-center"
 //               style={{ fontFamily: "Inter" }}
 //             >
-//               Recommended
+//               {t("Header", "recommended")}
 //             </Link>
 //             <Link
 //               href="/"
-//               className="text-sm text-[#142347] hover:text-[#0057b8] w-[106px] h-[17px] flex items-center"
+//               className="text-sm text-[#142347] hover:text-[#0057b8] flex items-center"
 //               style={{ fontFamily: "Inter" }}
 //             >
-//               Charter Antalya
+//               {t("Header", "charterAntalya")}
 //             </Link>
 //             <Link
 //               href="/"
-//               className="text-sm text-[#142347] hover:text-[#0057b8] w-[125px] h-[17px] flex items-center"
+//               className="text-sm text-[#142347] hover:text-[#0057b8] flex items-center"
 //               style={{ fontFamily: "Inter" }}
 //             >
-//               City Break Istanbul
+//               {t("Header", "cityBreakIstanbul")}
 //             </Link>
 //           </nav>
 
@@ -308,27 +356,25 @@
 
 
 
-
-
 "use client";
 
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Icon from "../../../public/icons/Icon";
-import { useLanguage } from "../../app/LanguageContext"; // LanguageContext'i import ediyoruz
+import { useLanguage } from "@/hooks/useLanguage";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
-  const { locale, setLocale, t } = useLanguage(); // LanguageContext'ten dil fonksiyonlarını alıyoruz
+  const { locale, setLocale, t } = useLanguage();
 
-  // Dil menüsünü açıp kapatma fonksiyonu
+  // Toggle language menu
   const toggleLanguageMenu = () => {
     setShowLanguageMenu(!showLanguageMenu);
   };
 
-  // Dil değiştirme fonksiyonu
+  // Change language function
   const changeLanguage = (lang: string) => {
     setLocale(lang);
     setShowLanguageMenu(false);
@@ -504,8 +550,6 @@ const Header = () => {
                     justifyContent: "center",
                   }}
                 >
-                  {/* Not: Icon bileşeninizde "Turkey" ikonu yoksa,
-                      bu kısmı geçici olarak sadece EN gösterecek şekilde bırakıyoruz */}
                   <Icon name="England" />
                 </div>
                 
@@ -575,8 +619,6 @@ const Header = () => {
                     } hover:bg-gray-50`}
                   >
                     <div className="flex items-center justify-center mr-2">
-                      {/* Not: Icon bileşeninizde Türk bayrağı yoksa, buraya eklemeniz gerekecek */}
-                      {/* <Icon name="Turkey" /> */}
                       🇹🇷
                     </div>
                     <span>Türkçe</span>

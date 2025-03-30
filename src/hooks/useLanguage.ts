@@ -1,0 +1,42 @@
+// hooks/useLanguage.ts
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  getCurrentLanguage,
+  saveLanguage,
+  translate,
+} from "@/services/languageService";
+
+// Query key for language
+export const LANGUAGE_QUERY_KEY = "language";
+
+// Hook for language-related operations
+export function useLanguage() {
+  const queryClient = useQueryClient();
+
+  // Get current language with React Query
+  const { data: locale = "en" } = useQuery({
+    queryKey: [LANGUAGE_QUERY_KEY],
+    queryFn: getCurrentLanguage,
+    staleTime: Infinity, // Language won't change unless we explicitly mutate it
+    cacheTime: Infinity,
+  });
+
+  // Mutation to change language
+  const { mutate: setLocale } = useMutation({
+    mutationFn: (newLocale: string) => {
+      saveLanguage(newLocale);
+      return newLocale;
+    },
+    onSuccess: (newLocale) => {
+      // Update the cached value
+      queryClient.setQueryData([LANGUAGE_QUERY_KEY], newLocale);
+    },
+  });
+
+  // Translation function with support for dynamic values
+  const t = (namespace: string, key: string, params?: Record<string, any>): string => {
+    return translate(locale, namespace, key, params);
+  };
+
+  return { locale, setLocale, t };
+}

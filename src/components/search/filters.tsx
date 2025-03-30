@@ -3,17 +3,9 @@
 // import React, { useState } from "react";
 // import dayjs from "dayjs";
 // import { useSearch } from "../../../context/searchContext";
-// import {
-//   EnvironmentOutlined,
-//   CalendarOutlined,
-//   TeamOutlined,
-//   DownOutlined,
-//   UpOutlined,
-//   StarFilled,
-//   CheckOutlined,
-//   CloudOutlined,
-// } from "@ant-design/icons";
+// import { StarFilled, CheckOutlined } from "@ant-design/icons";
 // import { Input, DatePicker, Select, Button } from "antd";
+// import Icon from "../../../public/icons/Icon";
 
 // // Mevcut concept listesi (örnek)
 // const baseConcepts = [
@@ -30,7 +22,7 @@
 // const Filters: React.FC = () => {
 //   const { filters, updateFilters } = useSearch();
 
-//   // State’ler
+//   // State'ler
 //   const [from, setFrom] = useState<string>(filters.from || "");
 //   const [destination, setDestination] = useState<string>(
 //     filters.destination || ""
@@ -132,7 +124,7 @@
 //       <div className="mb-4">
 //         <Input
 //           placeholder="From"
-//           prefix={<EnvironmentOutlined style={{ color: "#142347" }} />}
+//           prefix={<Icon name="location" size={14} color="#142347" />}
 //           value={from}
 //           onChange={(e) => handleFromChange(e.target.value)}
 //           className="h-10 rounded-md border border-[#E1E7EF] text-[#142347] placeholder:text-[#142347]"
@@ -143,7 +135,7 @@
 //       <div className="mb-4">
 //         <Input
 //           placeholder="Destination"
-//           prefix={<EnvironmentOutlined style={{ color: "#142347" }} />}
+//           prefix={<Icon name="hotel" size={16} color="#142347" />}
 //           value={destination}
 //           onChange={(e) => handleDestinationChange(e.target.value)}
 //           className="h-10 rounded-md border border-[#E1E7EF] text-[#142347] placeholder:text-[#142347]"
@@ -156,7 +148,7 @@
 //           Participants
 //         </label>
 //         <div className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3">
-//           <TeamOutlined style={{ color: "#142347" }} className="mr-2" />
+//           <Icon name="users" size={16} color="#142347" className="mr-2" />
 //           <Select
 //             value={people}
 //             onChange={handlePeopleChange}
@@ -178,7 +170,7 @@
 //           Date
 //         </label>
 //         <div className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3">
-//           <CalendarOutlined style={{ color: "#142347" }} className="mr-2" />
+//           <Icon name="calendar" size={16} color="#142347" className="mr-2" />
 //           <DatePicker
 //             format="DD MMM YYYY"
 //             placeholder="Select date"
@@ -186,19 +178,17 @@
 //             onChange={handleDateChange}
 //             allowClear={false}
 //             className="text-[#142347] placeholder:text-[#142347] font-medium flex-1"
-//             // dropdownStyle={{ fontFamily: "Inter" }}
 //             suffixIcon={null}
 //           />
 //         </div>
 //       </div>
-
 //       {/* Nights */}
 //       <div className="mb-4">
 //         <label className="block text-sm font-medium text-[#142347] mb-1">
 //           Nights
 //         </label>
 //         <div className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3">
-//           <CloudOutlined style={{ color: "#142347" }} className="mr-2" />
+//           <Icon name="nights" size={16} color="#142347" className="mr-2" />
 //           <Select
 //             value={nights}
 //             onChange={handleNightsChange}
@@ -268,11 +258,14 @@
 //             >
 //               {showMore ? (
 //                 <>
-//                   Less <UpOutlined style={{ fontSize: "10px" }} />
+//                   Less{" "}
+//                   <div className="transform rotate-180">
+//                     <Icon name="arrow-down" size={16} color="#93A2B7" />
+//                   </div>
 //                 </>
 //               ) : (
 //                 <>
-//                   More <DownOutlined style={{ fontSize: "10px" }} />
+//                   More <Icon name="arrow-down" size={16} color="#93A2B7" />
 //                 </>
 //               )}
 //             </Button>
@@ -304,7 +297,7 @@
 //                     <div className="w-2 h-2 rounded-full bg-[#ED8936]" />
 //                   )}
 //                 </div>
-//                 <StarFilled style={{ color: "#ED8936", fontSize: "16px" }} />
+//                 <Icon name="Star" />
 //                 <span
 //                   className="text-sm font-medium"
 //                   style={{ color: "#142347" }}
@@ -324,6 +317,9 @@
 
 
 
+
+
+
 "use client";
 
 import React, { useState } from "react";
@@ -332,6 +328,7 @@ import { useSearch } from "../../../context/searchContext";
 import { StarFilled, CheckOutlined } from "@ant-design/icons";
 import { Input, DatePicker, Select, Button } from "antd";
 import Icon from "../../../public/icons/Icon";
+import { useLanguage } from "@/hooks/useLanguage";
 
 // Mevcut concept listesi (örnek)
 const baseConcepts = [
@@ -347,6 +344,7 @@ const baseConcepts = [
 
 const Filters: React.FC = () => {
   const { filters, updateFilters } = useSearch();
+  const { t } = useLanguage();
 
   // State'ler
   const [from, setFrom] = useState<string>(filters.from || "");
@@ -438,18 +436,25 @@ const Filters: React.FC = () => {
   // Gösterilecek concept listesi
   const visibleConcepts = showMore ? baseConcepts : baseConcepts.slice(0, 4);
 
+  // Otel konseptini çevirme yardımcı fonksiyonu
+  const translateConcept = (concept: string): string => {
+    // Boşlukları kaldırıp, camelCase'e dönüştürme
+    const key = concept.replace(/\s+/g, '').replace(/(?:^|\s)(\w)/g, (match, p1) => p1.toLowerCase());
+    return t("HotelConcepts", key);
+  };
+
   return (
     <div
       className="bg-white p-6 rounded-lg shadow-sm sticky top-4"
       style={{ fontFamily: "Inter" }}
     >
       {/* Filter Başlık */}
-      <h3 className="text-sm font-normal text-[#142347] mb-6">Filter</h3>
+      <h3 className="text-sm font-normal text-[#142347] mb-6">{t("Filters", "title")}</h3>
 
       {/* From */}
       <div className="mb-4">
         <Input
-          placeholder="From"
+          placeholder={t("Filters", "from")}
           prefix={<Icon name="location" size={14} color="#142347" />}
           value={from}
           onChange={(e) => handleFromChange(e.target.value)}
@@ -460,7 +465,7 @@ const Filters: React.FC = () => {
       {/* Destination */}
       <div className="mb-4">
         <Input
-          placeholder="Destination"
+          placeholder={t("Filters", "destination")}
           prefix={<Icon name="hotel" size={16} color="#142347" />}
           value={destination}
           onChange={(e) => handleDestinationChange(e.target.value)}
@@ -471,7 +476,7 @@ const Filters: React.FC = () => {
       {/* Participants */}
       <div className="mb-4">
         <label className="block text-sm font-medium text-[#142347] mb-1">
-          Participants
+          {t("Filters", "participants")}
         </label>
         <div className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3">
           <Icon name="users" size={16} color="#142347" className="mr-2" />
@@ -483,7 +488,7 @@ const Filters: React.FC = () => {
           >
             {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
               <Select.Option key={num} value={num}>
-                {num} People
+                {t("Filters", "people", { count: num })}
               </Select.Option>
             ))}
           </Select>
@@ -493,13 +498,13 @@ const Filters: React.FC = () => {
       {/* Date */}
       <div className="mb-4">
         <label className="block text-sm font-medium text-[#142347] mb-1">
-          Date
+          {t("Filters", "date")}
         </label>
         <div className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3">
           <Icon name="calendar" size={16} color="#142347" className="mr-2" />
           <DatePicker
             format="DD MMM YYYY"
-            placeholder="Select date"
+            placeholder={t("Filters", "date")}
             value={date}
             onChange={handleDateChange}
             allowClear={false}
@@ -511,7 +516,7 @@ const Filters: React.FC = () => {
       {/* Nights */}
       <div className="mb-4">
         <label className="block text-sm font-medium text-[#142347] mb-1">
-          Nights
+          {t("Filters", "nights")}
         </label>
         <div className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3">
           <Icon name="nights" size={16} color="#142347" className="mr-2" />
@@ -523,7 +528,7 @@ const Filters: React.FC = () => {
           >
             {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
               <Select.Option key={num} value={num}>
-                {num} Nights
+                {t("HotelCard", "nights", { count: num })}
               </Select.Option>
             ))}
           </Select>
@@ -534,7 +539,7 @@ const Filters: React.FC = () => {
       <div className="mb-4">
         <div className="flex justify-between items-center mb-1">
           <label className="text-sm font-medium text-[#142347]">
-            Hotel Concept
+            {t("Filters", "hotelConcept")}
           </label>
           <Button
             type="link"
@@ -543,7 +548,7 @@ const Filters: React.FC = () => {
             className="p-0"
             style={{ color: "#ED8936" }}
           >
-            Reset
+            {t("Filters", "reset")}
           </Button>
         </div>
         <div className="space-y-2">
@@ -570,7 +575,7 @@ const Filters: React.FC = () => {
                   onChange={() => handleConceptChange(concept)}
                   className="hidden"
                 />
-                <span className="text-sm text-[#142347]">{concept}</span>
+                <span className="text-sm text-[#142347]">{translateConcept(concept)}</span>
               </label>
             );
           })}
@@ -584,14 +589,14 @@ const Filters: React.FC = () => {
             >
               {showMore ? (
                 <>
-                  Less{" "}
+                  {t("Filters", "less")}{" "}
                   <div className="transform rotate-180">
                     <Icon name="arrow-down" size={16} color="#93A2B7" />
                   </div>
                 </>
               ) : (
                 <>
-                  More <Icon name="arrow-down" size={16} color="#93A2B7" />
+                  {t("Filters", "more")} <Icon name="arrow-down" size={16} color="#93A2B7" />
                 </>
               )}
             </Button>
@@ -602,7 +607,7 @@ const Filters: React.FC = () => {
       {/* Star */}
       <div className="mb-4">
         <label className="block text-sm font-medium text-[#142347] mb-1">
-          Star
+          {t("Filters", "star")}
         </label>
         <div className="flex flex-col gap-2">
           {[1, 2, 3, 4, 5].map((starValue) => {
