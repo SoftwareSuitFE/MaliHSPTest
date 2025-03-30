@@ -78,6 +78,16 @@ export const translations = {
         "The page you're looking for might have been moved, deleted, or never existed.",
       actionButton: "Back to Homepage",
     },
+    DateRangePicker: {
+      nights: "{count} Nights",
+      flexibleDaysPrefix: "+/- 3 days",
+      flexibleDates: "Flexible Dates",
+    },
+    PersonPicker: {
+      participants: "Participants",
+      adults: "Number of Adults",
+      children: "Number of Children",
+    },
   },
   tr: {
     NotFound: {
@@ -152,6 +162,16 @@ export const translations = {
       spa: "Spa",
       golf: "Golf",
       mountainResort: "Dağ Tesisi",
+    },
+    DateRangePicker: {
+      nights: "{count} Gece",
+      flexibleDates: "Esnek Tarihler",
+      plusMinusDays: "+/- 3 gün",
+    },
+    PersonPicker: {
+      participants: "Katılımcılar",
+      adults: "Yetişkin Sayısı",
+      children: "Çocuk Sayısı",
     },
   },
 };

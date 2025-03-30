@@ -354,8 +354,6 @@
 
 // export default Header;
 
-
-
 "use client";
 
 import { useState } from "react";
@@ -550,9 +548,13 @@ const Header = () => {
                     justifyContent: "center",
                   }}
                 >
-                  <Icon name="England" />
+                  {locale === "tr" ? (
+                    <Icon name="Turkey" />
+                  ) : (
+                    <Icon name="England" />
+                  )}
                 </div>
-                
+
                 {/* Language Code */}
                 <div
                   className="flex items-center justify-center"
@@ -619,7 +621,7 @@ const Header = () => {
                     } hover:bg-gray-50`}
                   >
                     <div className="flex items-center justify-center mr-2">
-                      🇹🇷
+                      <Icon name="Turkey" />
                     </div>
                     <span>Türkçe</span>
                   </button>
