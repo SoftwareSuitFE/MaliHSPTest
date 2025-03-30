@@ -10,12 +10,38 @@ const translations = {
     TestPage: {
       title: "Test Page",
       welcome: "Welcome to the test page!"
+    },
+    Header: {
+      b2bPlatform: "B2B platform",
+      clientCare: "Client Care",
+      contact: "Contact",
+      favorite: "Favorite",
+      searchPlaceholder: "Destination or Hotel",
+      popularDestinations: "Popular Destinations",
+      topHotels: "Top Hotels",
+      lastMinute: "Last Minute",
+      recommended: "Recommended",
+      charterAntalya: "Charter Antalya",
+      cityBreakIstanbul: "City Break Istanbul"
     }
   },
   tr: {
     TestPage: {
       title: "Test Sayfası",
       welcome: "Test sayfasına hoş geldiniz!"
+    },
+    Header: {
+      b2bPlatform: "B2B platformu",
+      clientCare: "Müşteri Hizmetleri",
+      contact: "İletişim",
+      favorite: "Favoriler",
+      searchPlaceholder: "Destinasyon veya Otel",
+      popularDestinations: "Popüler Destinasyonlar",
+      topHotels: "En İyi Oteller",
+      lastMinute: "Son Dakika",
+      recommended: "Önerilen",
+      charterAntalya: "Antalya Charter",
+      cityBreakIstanbul: "İstanbul Şehir Turu"
     }
   }
 };
@@ -47,10 +73,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     if (LANGUAGES.includes(newLocale)) {
       setLocale(newLocale);
       localStorage.setItem("language", newLocale);
-      // URL'yi güncelle (opsiyonel)
-      const url = new URL(window.location.href);
-      url.searchParams.set("locale", newLocale);
-      window.history.pushState({}, "", url);
     }
   };
 

@@ -1,10 +1,11 @@
+
+
 // "use client";
 
 // import { useState } from "react";
 // import Link from "next/link";
 // import Image from "next/image";
-// import { Input } from "antd";
-// import { SearchOutlined } from "@ant-design/icons";
+// import Icon from "../../../public/icons/Icon";
 
 // const Header = () => {
 //   const [searchQuery, setSearchQuery] = useState("");
@@ -89,20 +90,18 @@
 //               }}
 //             >
 //               <span className="flex items-center mr-1">
-//                 <svg
-//                   width="16"
-//                   height="16"
-//                   viewBox="0 0 16 16"
-//                   fill="none"
-//                   xmlns="http://www.w3.org/2000/svg"
-//                 >
-//                   <path
-//                     d="M15.5 11.69L12.01 10.19C11.94 10.15 11.87 10.13 11.79 10.13C11.61 10.13 11.44 10.23 11.35 10.4L9.75 12.95C7.61 11.81 5.8 9.8 4.8 7.45L7.14 5.65C7.31 5.55 7.39 5.35 7.36 5.16L6.18 1.45C6.15 1.24 5.96 1.1 5.75 1.1H2.03C1.8 1.1 1.6 1.29 1.61 1.51C1.86 8.54 7.39 14.38 14.26 14.95C14.47 14.97 14.65 14.8 14.65 14.58V11.01C14.65 10.86 14.6 10.75 14.5 10.69H15.5Z"
-//                     fill="#ED9636"
-//                   />
-//                 </svg>
+//                 <Icon name="phone" />
 //               </span>
-//               <span className="text-xs">+4021 210 17 17</span>
+//               {/* <span className="text-xs">+4021 210 17 17</span> */}
+//               <a
+//                 href="tel:+40212101717"
+//                 className="flex items-center text-[#142347]"
+//               >
+//                 <span className="flex items-center mr-1">
+//                   {/* Telefon ikonu */}
+//                 </span>
+//                 <span className="text-xs">+4021 210 17 17</span>
+//               </a>
 //             </div>
 
 //             {/* Favorite Button */}
@@ -113,18 +112,7 @@
 //               }}
 //             >
 //               <span className="flex items-center mr-1">
-//                 <svg
-//                   width="13.5"
-//                   height="12"
-//                   viewBox="0 0 16 16"
-//                   fill="none"
-//                   xmlns="http://www.w3.org/2000/svg"
-//                 >
-//                   <path
-//                     d="M8 14.4167L7.05833 13.5667C3.90833 10.7167 1.83333 8.85 1.83333 6.5C1.83333 4.61667 3.28333 3.16667 5.16667 3.16667C6.23333 3.16667 7.25833 3.70833 8 4.53333C8.74167 3.70833 9.76667 3.16667 10.8333 3.16667C12.7167 3.16667 14.1667 4.61667 14.1667 6.5C14.1667 8.85 12.0917 10.7167 8.94167 13.575L8 14.4167Z"
-//                     fill="#ED9636"
-//                   />
-//                 </svg>
+//                 <Icon name="favorite" />
 //               </span>
 //               <span className="text-xs">Favorite</span>
 //             </div>
@@ -150,10 +138,7 @@
 //                   justifyContent: "center",
 //                 }}
 //               >
-//                 <SearchOutlined
-//                   className="text-[#142347]"
-//                   style={{ fontSize: "16px" }}
-//                 />
+//                 <Icon name="searchSm" />
 //               </div>
 //               <input
 //                 type="text"
@@ -199,43 +184,8 @@
 //                   justifyContent: "center",
 //                 }}
 //               >
-//                 <svg
-//                   width="16"
-//                   height="10"
-//                   viewBox="0 0 16 10"
-//                   fill="none"
-//                   xmlns="http://www.w3.org/2000/svg"
-//                   style={{ display: "block" }}
-//                 >
-//                   <rect x="0.5" y="0.5" width="15" height="9" fill="white" />
-//                   <path d="M0.5 0.5H15.5V9.5H0.5V0.5Z" fill="#012169" />
-//                   <path
-//                     d="M0.5 0.5L15.5 9.5L0.5 0.5ZM15.5 0.5L0.5 9.5L15.5 0.5Z"
-//                     fill="black"
-//                   />
-//                   <path
-//                     d="M0.5 0.5L15.5 9.5M15.5 0.5L0.5 9.5"
-//                     stroke="white"
-//                     strokeWidth="3"
-//                   />
-//                   <path
-//                     d="M0.5 0.5L15.5 9.5M15.5 0.5L0.5 9.5"
-//                     stroke="#C8102E"
-//                     strokeWidth="2"
-//                   />
-//                   <path
-//                     d="M8 0.5V9.5M0.5 5H15.5"
-//                     stroke="white"
-//                     strokeWidth="3"
-//                   />
-//                   <path
-//                     d="M8 0.5V9.5M0.5 5H15.5"
-//                     stroke="#C8102E"
-//                     strokeWidth="2"
-//                   />
-//                 </svg>
+//                 <Icon name="England" />
 //               </div>
-
 //               {/* EN Text */}
 //               <div
 //                 className="flex items-center justify-center"
@@ -271,16 +221,7 @@
 //                   justifyContent: "center",
 //                 }}
 //               >
-//                 <svg
-//                   width="8"
-//                   height="8"
-//                   viewBox="0 0 16 16"
-//                   fill="none"
-//                   xmlns="http://www.w3.org/2000/svg"
-//                   style={{ display: "block" }}
-//                 >
-//                   <path d="M8 10.6667L4 6.66667H12L8 10.6667Z" fill="#142347" />
-//                 </svg>
+//                 <Icon name="arrow-downSmall" />
 //               </div>
 //             </div>
 //           </div>
@@ -354,20 +295,7 @@
 //           {/* Mobile Menu Button */}
 //           <div className="md:hidden">
 //             <button className="text-gray-600" aria-label="Toggle mobile menu">
-//               <svg
-//                 xmlns="http://www.w3.org/2000/svg"
-//                 className="h-6 w-6"
-//                 fill="none"
-//                 viewBox="0 0 24 24"
-//                 stroke="currentColor"
-//               >
-//                 <path
-//                   strokeLinecap="round"
-//                   strokeLinejoin="round"
-//                   strokeWidth={2}
-//                   d="M4 6h16M4 12h16M4 18h16"
-//                 />
-//               </svg>
+//               <Icon name="hamburger" />
 //             </button>
 //           </div>
 //         </div>
@@ -378,17 +306,33 @@
 
 // export default Header;
 
+
+
+
+
 "use client";
 
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Input } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
 import Icon from "../../../public/icons/Icon";
+import { useLanguage } from "../../app/LanguageContext"; // LanguageContext'i import ediyoruz
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [showLanguageMenu, setShowLanguageMenu] = useState(false);
+  const { locale, setLocale, t } = useLanguage(); // LanguageContext'ten dil fonksiyonlarını alıyoruz
+
+  // Dil menüsünü açıp kapatma fonksiyonu
+  const toggleLanguageMenu = () => {
+    setShowLanguageMenu(!showLanguageMenu);
+  };
+
+  // Dil değiştirme fonksiyonu
+  const changeLanguage = (lang: string) => {
+    setLocale(lang);
+    setShowLanguageMenu(false);
+  };
 
   return (
     <header className="w-full">
@@ -424,7 +368,7 @@ const Header = () => {
                 marginRight: "16px",
               }}
             >
-              B2B platform
+              {t("Header", "b2bPlatform")}
             </Link>
 
             {/* Client Care */}
@@ -441,7 +385,7 @@ const Header = () => {
                 marginRight: "16px",
               }}
             >
-              Client Care
+              {t("Header", "clientCare")}
             </Link>
 
             {/* Contact */}
@@ -458,7 +402,7 @@ const Header = () => {
                 marginRight: "16px",
               }}
             >
-              Contact
+              {t("Header", "contact")}
             </Link>
 
             {/* Phone */}
@@ -472,14 +416,10 @@ const Header = () => {
               <span className="flex items-center mr-1">
                 <Icon name="phone" />
               </span>
-              {/* <span className="text-xs">+4021 210 17 17</span> */}
               <a
                 href="tel:+40212101717"
                 className="flex items-center text-[#142347]"
               >
-                <span className="flex items-center mr-1">
-                  {/* Telefon ikonu */}
-                </span>
                 <span className="text-xs">+4021 210 17 17</span>
               </a>
             </div>
@@ -494,7 +434,7 @@ const Header = () => {
               <span className="flex items-center mr-1">
                 <Icon name="favorite" />
               </span>
-              <span className="text-xs">Favorite</span>
+              <span className="text-xs">{t("Header", "favorite")}</span>
             </div>
 
             {/* Search Input */}
@@ -522,7 +462,7 @@ const Header = () => {
               </div>
               <input
                 type="text"
-                placeholder="Destination or Hotel"
+                placeholder={t("Header", "searchPlaceholder")}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full h-full text-xs"
@@ -546,63 +486,103 @@ const Header = () => {
               />
             </div>
 
-            {/* EN Flag with Dropdown */}
-            <div
-              className="flex items-center"
-              style={{
-                height: "16px",
-              }}
-            >
-              {/* UK Flag */}
-              <div
-                className="flex items-center justify-center"
-                style={{
-                  width: "16px",
-                  height: "16px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
+            {/* Language Selector */}
+            <div className="relative">
+              <button
+                onClick={toggleLanguageMenu}
+                className="flex items-center cursor-pointer"
+                style={{ height: "16px" }}
               >
-                <Icon name="England" />
-              </div>
-              {/* EN Text */}
-              <div
-                className="flex items-center justify-center"
-                style={{
-                  height: "16px",
-                  marginLeft: "4px",
-                  marginRight: "4px",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <span
+                {/* Flag Icon */}
+                <div
+                  className="flex items-center justify-center"
                   style={{
-                    fontFamily: "Inter",
-                    fontWeight: 500,
-                    fontSize: "12px",
-                    lineHeight: "15px",
-                    color: "#142347",
+                    width: "16px",
+                    height: "16px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                   }}
                 >
-                  EN
-                </span>
-              </div>
+                  {/* Not: Icon bileşeninizde "Turkey" ikonu yoksa,
+                      bu kısmı geçici olarak sadece EN gösterecek şekilde bırakıyoruz */}
+                  <Icon name="England" />
+                </div>
+                
+                {/* Language Code */}
+                <div
+                  className="flex items-center justify-center"
+                  style={{
+                    height: "16px",
+                    marginLeft: "4px",
+                    marginRight: "4px",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "Inter",
+                      fontWeight: 500,
+                      fontSize: "12px",
+                      lineHeight: "15px",
+                      color: "#142347",
+                    }}
+                  >
+                    {locale.toUpperCase()}
+                  </span>
+                </div>
 
-              {/* Down Caret */}
-              <div
-                className="flex items-center justify-center"
-                style={{
-                  width: "8px",
-                  height: "16px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Icon name="arrow-downSmall" />
-              </div>
+                {/* Down Caret */}
+                <div
+                  className="flex items-center justify-center"
+                  style={{
+                    width: "8px",
+                    height: "16px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Icon name="arrow-downSmall" />
+                </div>
+              </button>
+
+              {/* Language Dropdown Menu */}
+              {showLanguageMenu && (
+                <div
+                  className="absolute right-0 mt-2 bg-white rounded-md shadow-lg z-50"
+                  style={{
+                    width: "120px",
+                    border: "1px solid #E1E7EF",
+                  }}
+                >
+                  <button
+                    onClick={() => changeLanguage("en")}
+                    className={`flex items-center w-full px-4 py-2 text-xs ${
+                      locale === "en" ? "bg-gray-100" : ""
+                    } hover:bg-gray-50`}
+                  >
+                    <div className="flex items-center justify-center mr-2">
+                      <Icon name="England" />
+                    </div>
+                    <span>English</span>
+                  </button>
+                  <button
+                    onClick={() => changeLanguage("tr")}
+                    className={`flex items-center w-full px-4 py-2 text-xs ${
+                      locale === "tr" ? "bg-gray-100" : ""
+                    } hover:bg-gray-50`}
+                  >
+                    <div className="flex items-center justify-center mr-2">
+                      {/* Not: Icon bileşeninizde Türk bayrağı yoksa, buraya eklemeniz gerekecek */}
+                      {/* <Icon name="Turkey" /> */}
+                      🇹🇷
+                    </div>
+                    <span>Türkçe</span>
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -630,45 +610,45 @@ const Header = () => {
           <nav className="hidden md:flex space-x-4">
             <Link
               href="/"
-              className="text-sm text-[#142347] hover:text-[#0057b8] w-[139px] h-[17px] flex items-center"
+              className="text-sm text-[#142347] hover:text-[#0057b8] flex items-center"
               style={{ fontFamily: "Inter" }}
             >
-              Popular Destinations
+              {t("Header", "popularDestinations")}
             </Link>
             <Link
               href="/"
-              className="text-sm text-[#142347] hover:text-[#0057b8] w-[72px] h-[17px] flex items-center"
+              className="text-sm text-[#142347] hover:text-[#0057b8] flex items-center"
               style={{ fontFamily: "Inter" }}
             >
-              Top Hotels
+              {t("Header", "topHotels")}
             </Link>
             <Link
               href="/"
-              className="text-sm text-[#142347] hover:text-[#0057b8] w-[79px] h-[17px] flex items-center"
+              className="text-sm text-[#142347] hover:text-[#0057b8] flex items-center"
               style={{ fontFamily: "Inter" }}
             >
-              Last Minute
+              {t("Header", "lastMinute")}
             </Link>
             <Link
               href="/"
-              className="text-sm text-[#142347] hover:text-[#0057b8] w-[101px] h-[17px] flex items-center"
+              className="text-sm text-[#142347] hover:text-[#0057b8] flex items-center"
               style={{ fontFamily: "Inter" }}
             >
-              Recommended
+              {t("Header", "recommended")}
             </Link>
             <Link
               href="/"
-              className="text-sm text-[#142347] hover:text-[#0057b8] w-[106px] h-[17px] flex items-center"
+              className="text-sm text-[#142347] hover:text-[#0057b8] flex items-center"
               style={{ fontFamily: "Inter" }}
             >
-              Charter Antalya
+              {t("Header", "charterAntalya")}
             </Link>
             <Link
               href="/"
-              className="text-sm text-[#142347] hover:text-[#0057b8] w-[125px] h-[17px] flex items-center"
+              className="text-sm text-[#142347] hover:text-[#0057b8] flex items-center"
               style={{ fontFamily: "Inter" }}
             >
-              City Break Istanbul
+              {t("Header", "cityBreakIstanbul")}
             </Link>
           </nav>
 
