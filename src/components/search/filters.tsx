@@ -3,13 +3,14 @@
 // import React, { useState, useEffect, useRef } from "react";
 // import dayjs from "dayjs";
 // import { useSearch } from "@/hooks/useSearch";
-// import { CheckOutlined } from "@ant-design/icons";
-// import { Select, Button } from "antd"; // Input kaldırıldı
+// import { StarFilled, CheckOutlined } from "@ant-design/icons";
+// import { Button } from "antd"; // Select kaldırıldı
 // import Icon from "../../../public/icons/Icon";
 // import { useLanguage } from "@/hooks/useLanguage";
 // import DateRangePicker from "@/components/DateRangePicker/DateRangePicker";
-// import PersonPicker from "@/components/PersonPicker/personpicker"; // PersonPicker eklendi
-// import DestinationDropdown from "@/components/dropdown/DestinationDropdown"; // DestinationDropdown eklendi
+// import PersonPicker from "@/components/PersonPicker/personpicker";
+// import DestinationDropdown from "@/components/dropdown/DestinationDropdown";
+// import NightPicker from "@/components/NightPicker/NightPicker"; // NightPicker eklendi
 
 // // Mevcut concept listesi (örnek)
 // const baseConcepts = [
@@ -47,7 +48,7 @@
 //   );
 //   const [people, setPeople] = useState<number>(adults + children);
 
-//   // Nights değişkenini önce tanımlıyoruz
+//   // Nights değişkeni
 //   const [nights, setNights] = useState<number>(
 //     filters.nights || searchParams.nights || 5
 //   );
@@ -77,6 +78,10 @@
 //   // PersonPicker için visible state ve ref
 //   const [showPersonPicker, setShowPersonPicker] = useState<boolean>(false);
 //   const peopleFieldRef = useRef<HTMLDivElement>(null);
+
+//   // NightPicker için visible state ve ref
+//   const [showNightPicker, setShowNightPicker] = useState<boolean>(false);
+//   const nightsFieldRef = useRef<HTMLDivElement>(null);
 
 //   const [showMore, setShowMore] = useState<boolean>(false);
 
@@ -220,13 +225,18 @@
 //     setShowDatePicker(false);
 //   };
 
-//   const handleNightsChange = (val: number) => {
+//   // NightPicker için onChange ve onClose fonksiyonları
+//   const handleNightChange = (val: number) => {
 //     setNights(val);
 //     // endDate'i de güncelle
 //     if (startDate) {
 //       setEndDate(startDate.add(val, "day"));
 //     }
 //     updateFilters({ nights: val });
+//   };
+
+//   const handleNightPickerClose = () => {
+//     setShowNightPicker(false);
 //   };
 
 //   // Star seçimi
@@ -366,27 +376,33 @@
 //         )}
 //       </div>
 
-//       {/* Nights - Sadece package ve hotel için göster */}
+//       {/* Nights - Sadece package ve hotel için göster - NightPicker ile değiştirildi */}
 //       {(travelType === "package" || travelType === "hotel") && (
 //         <div className="mb-4">
 //           <label className="block text-sm font-medium text-[#142347] mb-1">
 //             {t("Filters", "nights")}
 //           </label>
-//           <div className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3">
+//           <div
+//             ref={nightsFieldRef}
+//             className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3 cursor-pointer"
+//             onClick={() => setShowNightPicker(true)}
+//           >
 //             <Icon name="nights" size={16} color="#142347" className="mr-2" />
-//             <Select
-//               value={nights}
-//               onChange={handleNightsChange}
-//               className="flex-1 text-[#142347] font-medium"
-//               dropdownStyle={{ fontFamily: "Inter" }}
-//             >
-//               {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
-//                 <Select.Option key={num} value={num}>
-//                   {t("HotelCard", "nights", { count: num })}
-//                 </Select.Option>
-//               ))}
-//             </Select>
+//             <div className="text-[#142347] font-medium flex-1">
+//               {t("HotelCard", "nights", { count: nights })}
+//             </div>
 //           </div>
+
+//           {/* NightPicker Bileşeni */}
+//           {typeof window !== "undefined" && showNightPicker && (
+//             <NightPicker
+//               nights={nights}
+//               onChange={handleNightChange}
+//               onClose={handleNightPickerClose}
+//               visible={showNightPicker}
+//               triggerRef={nightsFieldRef}
+//             />
+//           )}
 //         </div>
 //       )}
 
@@ -525,7 +541,6 @@
 
 // export default Filters;
 
-// src/components/search/filters.tsx
 
 "use client";
 
@@ -533,15 +548,15 @@ import React, { useState, useEffect, useRef } from "react";
 import dayjs from "dayjs";
 import { useSearch } from "@/hooks/useSearch";
 import { StarFilled, CheckOutlined } from "@ant-design/icons";
-import { Button } from "antd"; // Select kaldırıldı
+import { Button } from "antd";
 import Icon from "../../../public/icons/Icon";
 import { useLanguage } from "@/hooks/useLanguage";
 import DateRangePicker from "@/components/DateRangePicker/DateRangePicker";
 import PersonPicker from "@/components/PersonPicker/personpicker";
 import DestinationDropdown from "@/components/dropdown/DestinationDropdown";
-import NightPicker from "@/components/NightPicker/NightPicker"; // NightPicker eklendi
+import NightPicker from "@/components/NightPicker/NightPicker";
 
-// Mevcut concept listesi (örnek)
+// Mevcut concept listesi
 const baseConcepts = [
   "Beach Hotel",
   "Adult Hotel",
@@ -568,7 +583,7 @@ const Filters: React.FC = () => {
     filters.destination || searchParams.destination || ""
   );
 
-  // Kişi sayıları ayrı olarak tutuyoruz
+  // Kişi sayıları
   const [adults, setAdults] = useState<number>(
     filters.participants?.adults || searchParams.participants?.adults || 2
   );
@@ -582,7 +597,7 @@ const Filters: React.FC = () => {
     filters.nights || searchParams.nights || 5
   );
 
-  // Date state'lerini tanımlıyoruz
+  // Date state'leri
   const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(() => {
     if (filters.date) return dayjs(filters.date);
     if (searchParams.date) return dayjs(searchParams.date);
@@ -804,54 +819,101 @@ const Filters: React.FC = () => {
     return t("HotelConcepts", key);
   };
 
+  // Figma stil tanımlamaları
+  const headerStyle = {
+    fontFamily: "Inter",
+    fontWeight: 400,
+    fontSize: "12px",
+    lineHeight: "100%",
+    letterSpacing: "0%",
+    color: "#142347",
+  };
+
+  const fieldTextStyle = {
+    fontFamily: "Inter",
+    fontWeight: 500,
+    fontSize: "14px",
+    lineHeight: "100%",
+    letterSpacing: "0%",
+    color: "#142347",
+  };
+
+  const iconStyle = {
+    width: "16px",
+    height: "16px",
+  };
+
   return (
     <div
       className="bg-white p-6 rounded-lg shadow-sm sticky top-4"
       style={{ fontFamily: "Inter" }}
     >
       {/* Filter Başlık */}
-      <h3 className="text-sm font-normal text-[#142347] mb-6">
+      <h3 
+        className="text-sm mb-6"
+        style={headerStyle}
+      >
         {t("Filters", "title")}
       </h3>
 
       {/* From - Sadece package ve flight için göster - DestinationDropdown ile değiştirildi */}
       {(travelType === "package" || travelType === "flight") && (
         <div className="mb-4">
-          <DestinationDropdown
-            value={from}
-            onChange={handleFromChange}
-            onSelect={handleFromChange}
-            placeholder={t("Filters", "from")}
-            mode="city"
-            className="h-10 rounded-md border border-[#E1E7EF] text-[#142347] placeholder:text-[#142347] px-2"
-          />
+          <div className="h-10 flex items-center rounded-md border border-[#E1E7EF] overflow-hidden">
+            <div className="flex items-center h-full pl-3 pr-2">
+              <Icon name="location" size={16} color="#142347" />
+            </div>
+            <DestinationDropdown
+              value={from}
+              onChange={handleFromChange}
+              onSelect={handleFromChange}
+              placeholder={t("Filters", "from")}
+              mode="city"
+              className="h-full rounded-md text-[#142347] placeholder:text-[#142347] w-full border-none focus:outline-none"
+              style={fieldTextStyle}
+            />
+          </div>
         </div>
       )}
 
       {/* Destination - Tüm tiplerde göster - DestinationDropdown ile değiştirildi */}
       <div className="mb-4">
-        <DestinationDropdown
-          value={destination}
-          onChange={handleDestinationChange}
-          onSelect={handleDestinationChange}
-          placeholder={t("Filters", "destination")}
-          mode={travelType === "hotel" ? "hotel" : "city"}
-          className="h-10 rounded-md border border-[#E1E7EF] text-[#142347] placeholder:text-[#142347] px-2"
-        />
+        <div className="h-10 flex items-center rounded-md border border-[#E1E7EF] overflow-hidden">
+          <div className="flex items-center h-full pl-3 pr-2">
+            <Icon name="location" size={16} color="#142347" />
+          </div>
+          <DestinationDropdown
+            value={destination}
+            onChange={handleDestinationChange}
+            onSelect={handleDestinationChange}
+            placeholder={t("Filters", "destination")}
+            mode={travelType === "hotel" ? "hotel" : "city"}
+            className="h-full rounded-md text-[#142347] placeholder:text-[#142347] w-full border-none focus:outline-none"
+            style={fieldTextStyle}
+          />
+        </div>
       </div>
 
       {/* Participants - Tüm tiplerde göster - PersonPicker ile değiştirildi */}
       <div className="mb-4">
-        <label className="block text-sm font-medium text-[#142347] mb-1">
+        <label 
+          className="block mb-1"
+          style={headerStyle}
+        >
           {t("Filters", "participants")}
         </label>
         <div
           ref={peopleFieldRef}
-          className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3 cursor-pointer"
+          className="h-10 flex items-center rounded-md border border-[#E1E7EF] cursor-pointer overflow-hidden"
           onClick={() => setShowPersonPicker(true)}
         >
-          <Icon name="users" size={16} color="#142347" className="mr-2" />
-          <div className="text-[#142347] font-medium flex-1">
+          <div className="flex items-center h-full pl-3 pr-2">
+            <Icon name="users" size={16} color="#142347" />
+          </div>
+          <div 
+            className="text-[#142347] flex-1"
+            style={fieldTextStyle}
+          >
             {t("Filters", "people", { count: people })}
           </div>
         </div>
@@ -871,16 +933,24 @@ const Filters: React.FC = () => {
 
       {/* Date - Tüm tiplerde göster - DateRangePicker ile değiştirildi */}
       <div className="mb-4">
-        <label className="block text-sm font-medium text-[#142347] mb-1">
+        <label 
+          className="block mb-1"
+          style={headerStyle}
+        >
           {t("Filters", "date")}
         </label>
         <div
           ref={dateFieldRef}
-          className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3 cursor-pointer"
+          className="h-10 flex items-center rounded-md border border-[#E1E7EF] cursor-pointer overflow-hidden"
           onClick={() => setShowDatePicker(true)}
         >
-          <Icon name="calendar" size={16} color="#142347" className="mr-2" />
-          <div className="text-[#142347] font-medium flex-1">
+          <div className="flex items-center h-full pl-3 pr-2">
+            <Icon name="calendar" size={16} color="#142347" />
+          </div>
+          <div 
+            className="text-[#142347] flex-1"
+            style={fieldTextStyle}
+          >
             {startDate ? (
               <span>
                 {startDate.format("DD MMM YYYY")}
@@ -908,16 +978,24 @@ const Filters: React.FC = () => {
       {/* Nights - Sadece package ve hotel için göster - NightPicker ile değiştirildi */}
       {(travelType === "package" || travelType === "hotel") && (
         <div className="mb-4">
-          <label className="block text-sm font-medium text-[#142347] mb-1">
+          <label 
+            className="block mb-1"
+            style={headerStyle}
+          >
             {t("Filters", "nights")}
           </label>
           <div
             ref={nightsFieldRef}
-            className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3 cursor-pointer"
+            className="h-10 flex items-center rounded-md border border-[#E1E7EF] cursor-pointer overflow-hidden"
             onClick={() => setShowNightPicker(true)}
           >
-            <Icon name="nights" size={16} color="#142347" className="mr-2" />
-            <div className="text-[#142347] font-medium flex-1">
+            <div className="flex items-center h-full pl-3 pr-2">
+              <Icon name="nights" size={16} color="#142347" />
+            </div>
+            <div 
+              className="text-[#142347] flex-1"
+              style={fieldTextStyle}
+            >
               {t("HotelCard", "nights", { count: nights })}
             </div>
           </div>
@@ -935,11 +1013,14 @@ const Filters: React.FC = () => {
         </div>
       )}
 
-      {/* Hotel Concept ve Star bileşenleri - değişmeden bırakıldı */}
+      {/* Hotel Concept */}
       {(travelType === "package" || travelType === "hotel") && (
         <div className="mb-4">
           <div className="flex justify-between items-center mb-1">
-            <label className="text-sm font-medium text-[#142347]">
+            <label 
+              className="text-sm"
+              style={headerStyle}
+            >
               {t("Filters", "hotelConcept")}
             </label>
             <Button
@@ -978,7 +1059,10 @@ const Filters: React.FC = () => {
                     onChange={() => handleConceptChange(concept)}
                     className="hidden"
                   />
-                  <span className="text-sm text-[#142347]">
+                  <span 
+                    className="text-sm text-[#142347]"
+                    style={fieldTextStyle}
+                  >
                     {translateConcept(concept)}
                   </span>
                 </label>
@@ -1014,7 +1098,10 @@ const Filters: React.FC = () => {
       {/* Star kısmı */}
       {(travelType === "package" || travelType === "hotel") && (
         <div className="mb-4">
-          <label className="block text-sm font-medium text-[#142347] mb-1">
+          <label 
+            className="block mb-1"
+            style={headerStyle}
+          >
             {t("Filters", "star")}
           </label>
           <div className="flex flex-col gap-2">
@@ -1036,10 +1123,10 @@ const Filters: React.FC = () => {
                       <div className="w-2 h-2 rounded-full bg-[#ED8936]" />
                     )}
                   </div>
-                  <Icon name="Star" />
+                  <Icon name="Star" size={16} color="#ED8936" />
                   <span
-                    className="text-sm font-medium"
-                    style={{ color: "#142347" }}
+                    className="text-sm"
+                    style={{ ...fieldTextStyle, color: "#142347" }}
                   >
                     {starValue}+
                   </span>
