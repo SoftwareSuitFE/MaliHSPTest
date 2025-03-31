@@ -3,6 +3,9 @@
 :root {
   --background: #f5f5f5;
   --foreground: #171717;
+  --primary-text: #142347;  /* Ana metin rengi */
+  --primary-accent: #ED8936; /* Vurgu rengi - Turuncu */
+  --border-color: #CAD4E0;  /* Border rengi */
 }
 
 @theme inline {
@@ -20,8 +23,8 @@ body {
 
 /* Ant Design Override */
 .ant-btn-primary {
-  background-color: #ed8936 !important;
-  border-color: #ed8936 !important;
+  background-color: var(--primary-accent) !important;
+  border-color: var(--primary-accent) !important;
 }
 
 .ant-btn-primary:hover {
@@ -30,12 +33,12 @@ body {
 }
 
 .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
-  background-color: #ed8936 !important;
+  background-color: var(--primary-accent) !important;
 }
 
 .ant-input-affix-wrapper:focus,
 .ant-input-affix-wrapper:focus-within {
-  border-color: #ed8936 !important;
+  border-color: var(--primary-accent) !important;
   box-shadow: 0 0 0 2px rgba(237, 137, 54, 0.2) !important;
 }
 
@@ -77,10 +80,17 @@ body {
 /* Fix for search button */
 .search-button {
   border-radius: 0 8px 8px 0 !important;
-  background-color: #ed8936 !important;
+  background-color: var(--primary-accent) !important;
 }
 
-/* Mevcut globals.css dosyanızın sonuna ekleyin */
+/* Filter input styles */
+.filter-input {
+  width: 220px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: #FFFFFF;
+}
 
 /* 404 Sayfası Animasyonları */
 @keyframes float {
@@ -112,5 +122,76 @@ body {
   50% {
     transform: translateY(0);
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+
+/* Responsive Filter Styles */
+@media (max-width: 1023px) {
+  /* Ana container'ın genişliği */
+  .bg-white.rounded-lg.sticky {
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+  
+  /* Tüm form alanları tam genişlikte */
+  .filter-input, .form-field {
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+  
+  /* Hotel Concept ve Star container'ının yan yana düzenlemesi */
+  .hotel-concept-star-container {
+    display: flex;
+    flex-direction: row !important;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  /* Hotel Concept container'ı %50 genişlik */
+  .hotel-concept-container {
+    width: 48% !important;
+    max-width: none !important;
+  }
+
+  /* Star container'ı %50 genişlik */
+  .star-container {
+    width: 48% !important;
+    max-width: none !important;
+  }
+  
+  /* Form öğelerinin içindeki maksimum genişlikleri kaldır */
+  .hotel-concept-container div, .star-container div,
+  .hotel-concept-container label, .star-container label {
+    max-width: none !important;
+    width: 100% !important;
+  }
+  
+  /* Checkbox gruplarının ve item'ların genişliklerini düzenle */
+  .hotel-concept-container [style*="width"], .star-container [style*="width"] {
+    width: 100% !important;
+    max-width: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Normal durumda alt alta görünüm */
+  .hotel-concept-star-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .hotel-concept-container, .star-container {
+    width: 100%;
+  }
+  
+  /* Filter input'ların sabit genişliği */
+  .filter-input {
+    width: 220px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: #FFFFFF;
   }
 }

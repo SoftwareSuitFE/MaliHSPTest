@@ -43,7 +43,7 @@ export default function SearchPage(): JSX.Element {
       <Header />
       <section className="container mx-auto mt-8 px-4">
         <div className="max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[270px_minmax(0,1fr)] gap-0">
+          <div className="grid grid-cols-1 lg:grid-cols-[270px_minmax(0,1fr)] gap-4">
             <div className="p-6">
               <Filters />
             </div>

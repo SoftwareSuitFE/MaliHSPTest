@@ -541,7 +541,6 @@
 
 // export default Filters;
 
-
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
@@ -845,21 +844,23 @@ const Filters: React.FC = () => {
 
   return (
     <div
-      className="bg-white p-6 rounded-lg shadow-sm sticky top-4"
-      style={{ fontFamily: "Inter" }}
+      className="bg-white rounded-lg sticky top-4 w-full lg:w-[268px]"
+      style={{
+        fontFamily: "Inter",
+        borderRadius: "8px",
+        border: "1px solid #F0F4F8",
+        padding: "24px",
+      }}
     >
       {/* Filter Başlık */}
-      <h3 
-        className="text-sm mb-6"
-        style={headerStyle}
-      >
+      <h3 className="text-sm font-normal text-[#142347] mb-6">
         {t("Filters", "title")}
       </h3>
 
       {/* From - Sadece package ve flight için göster - DestinationDropdown ile değiştirildi */}
       {(travelType === "package" || travelType === "flight") && (
         <div className="mb-4">
-          <div className="h-10 flex items-center rounded-md border border-[#E1E7EF] overflow-hidden">
+          <div className="filter-input flex items-center rounded-md overflow-hidden w-full">
             <div className="flex items-center h-full pl-3 pr-2">
               <Icon name="location" size={16} color="#142347" />
             </div>
@@ -878,7 +879,7 @@ const Filters: React.FC = () => {
 
       {/* Destination - Tüm tiplerde göster - DestinationDropdown ile değiştirildi */}
       <div className="mb-4">
-        <div className="h-10 flex items-center rounded-md border border-[#E1E7EF] overflow-hidden">
+        <div className="filter-input flex items-center rounded-md overflow-hidden w-full">
           <div className="flex items-center h-full pl-3 pr-2">
             <Icon name="location" size={16} color="#142347" />
           </div>
@@ -896,24 +897,18 @@ const Filters: React.FC = () => {
 
       {/* Participants - Tüm tiplerde göster - PersonPicker ile değiştirildi */}
       <div className="mb-4">
-        <label 
-          className="block mb-1"
-          style={headerStyle}
-        >
+        <label className="block mb-1 text-[#142347]" style={headerStyle}>
           {t("Filters", "participants")}
         </label>
         <div
           ref={peopleFieldRef}
-          className="h-10 flex items-center rounded-md border border-[#E1E7EF] cursor-pointer overflow-hidden"
+          className="filter-input flex items-center cursor-pointer overflow-hidden w-full"
           onClick={() => setShowPersonPicker(true)}
         >
           <div className="flex items-center h-full pl-3 pr-2">
             <Icon name="users" size={16} color="#142347" />
           </div>
-          <div 
-            className="text-[#142347] flex-1"
-            style={fieldTextStyle}
-          >
+          <div className="text-[#142347] flex-1" style={fieldTextStyle}>
             {t("Filters", "people", { count: people })}
           </div>
         </div>
@@ -933,24 +928,18 @@ const Filters: React.FC = () => {
 
       {/* Date - Tüm tiplerde göster - DateRangePicker ile değiştirildi */}
       <div className="mb-4">
-        <label 
-          className="block mb-1"
-          style={headerStyle}
-        >
+        <label className="block mb-1 text-[#142347]" style={headerStyle}>
           {t("Filters", "date")}
         </label>
         <div
           ref={dateFieldRef}
-          className="h-10 flex items-center rounded-md border border-[#E1E7EF] cursor-pointer overflow-hidden"
+          className="filter-input flex items-center cursor-pointer overflow-hidden w-full"
           onClick={() => setShowDatePicker(true)}
         >
           <div className="flex items-center h-full pl-3 pr-2">
             <Icon name="calendar" size={16} color="#142347" />
           </div>
-          <div 
-            className="text-[#142347] flex-1"
-            style={fieldTextStyle}
-          >
+          <div className="text-[#142347] flex-1" style={fieldTextStyle}>
             {startDate ? (
               <span>
                 {startDate.format("DD MMM YYYY")}
@@ -978,24 +967,18 @@ const Filters: React.FC = () => {
       {/* Nights - Sadece package ve hotel için göster - NightPicker ile değiştirildi */}
       {(travelType === "package" || travelType === "hotel") && (
         <div className="mb-4">
-          <label 
-            className="block mb-1"
-            style={headerStyle}
-          >
+          <label className="block mb-1 text-[#142347]" style={headerStyle}>
             {t("Filters", "nights")}
           </label>
           <div
             ref={nightsFieldRef}
-            className="h-10 flex items-center rounded-md border border-[#E1E7EF] cursor-pointer overflow-hidden"
+            className="filter-input flex items-center cursor-pointer overflow-hidden w-full"
             onClick={() => setShowNightPicker(true)}
           >
             <div className="flex items-center h-full pl-3 pr-2">
               <Icon name="nights" size={16} color="#142347" />
             </div>
-            <div 
-              className="text-[#142347] flex-1"
-              style={fieldTextStyle}
-            >
+            <div className="text-[#142347] flex-1" style={fieldTextStyle}>
               {t("HotelCard", "nights", { count: nights })}
             </div>
           </div>
@@ -1017,10 +1000,7 @@ const Filters: React.FC = () => {
       {(travelType === "package" || travelType === "hotel") && (
         <div className="mb-4">
           <div className="flex justify-between items-center mb-1">
-            <label 
-              className="text-sm"
-              style={headerStyle}
-            >
+            <label className="text-sm" style={headerStyle}>
               {t("Filters", "hotelConcept")}
             </label>
             <Button
@@ -1041,55 +1021,81 @@ const Filters: React.FC = () => {
                   key={concept}
                   className="flex items-center cursor-pointer select-none"
                 >
-                  <span
-                    className={`
-                      relative w-5 h-5 mr-2 rounded-sm border-2 flex items-center justify-center
-                      ${isChecked ? "border-[#ED8936]" : "border-[#E2E2E2]"}
-                    `}
+                  <div
+                    style={{
+                      width: "220px",
+                      height: "17px",
+                      gap: "8px",
+                      borderRadius: "8px",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
                   >
-                    {isChecked && (
-                      <CheckOutlined
-                        style={{ fontSize: 12, color: "#ED8936" }}
-                      />
-                    )}
-                  </span>
-                  <input
-                    type="checkbox"
-                    checked={isChecked}
-                    onChange={() => handleConceptChange(concept)}
-                    className="hidden"
-                  />
-                  <span 
-                    className="text-sm text-[#142347]"
-                    style={fieldTextStyle}
-                  >
-                    {translateConcept(concept)}
-                  </span>
+                    <span
+                      className={`
+                        relative flex items-center justify-center mr-2
+                        ${isChecked ? "" : ""}
+                      `}
+                      style={{
+                        width: "16px",
+                        height: "16px",
+                        borderRadius: "2px",
+                        border: isChecked
+                          ? "2px solid #ED8936"
+                          : "2px solid #E2E2E2",
+                      }}
+                    >
+                      {isChecked && (
+                        <CheckOutlined
+                          style={{ fontSize: 12, color: "#ED8936" }}
+                        />
+                      )}
+                    </span>
+                    <input
+                      type="checkbox"
+                      checked={isChecked}
+                      onChange={() => handleConceptChange(concept)}
+                      className="hidden"
+                    />
+                    <span
+                      className="text-sm text-[#142347]"
+                      style={fieldTextStyle}
+                    >
+                      {translateConcept(concept)}
+                    </span>
+                  </div>
                 </label>
               );
             })}
             {baseConcepts.length > 4 && (
-              <Button
-                type="link"
-                size="small"
+              <div
+                className="flex items-center cursor-pointer"
+                style={{
+                  width: "220px",
+                  height: "16px",
+                  gap: "8px",
+                  borderRadius: "8px",
+                }}
                 onClick={() => setShowMore(!showMore)}
-                className="p-0 flex items-center gap-1"
-                style={{ color: "#93A2B7" }}
               >
-                {showMore ? (
-                  <>
-                    {t("Filters", "less")}{" "}
-                    <div className="transform rotate-180">
-                      <Icon name="arrow-down" size={16} color="#93A2B7" />
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    {t("Filters", "more")}{" "}
-                    <Icon name="arrow-down" size={16} color="#93A2B7" />
-                  </>
-                )}
-              </Button>
+                <Icon
+                  name="arrow-down"
+                  size={16}
+                  color="#93A2B7"
+                  className={showMore ? "transform rotate-180" : ""}
+                />
+                <span
+                  style={{
+                    fontFamily: "Inter",
+                    fontWeight: 500,
+                    fontSize: "12px",
+                    lineHeight: "100%",
+                    color: "#93A2B7",
+                  }}
+                >
+                  {showMore ? t("Filters", "less") : t("Filters", "more")}
+                </span>
+              </div>
             )}
           </div>
         </div>
@@ -1098,10 +1104,7 @@ const Filters: React.FC = () => {
       {/* Star kısmı */}
       {(travelType === "package" || travelType === "hotel") && (
         <div className="mb-4">
-          <label 
-            className="block mb-1"
-            style={headerStyle}
-          >
+          <label className="block mb-1" style={headerStyle}>
             {t("Filters", "star")}
           </label>
           <div className="flex flex-col gap-2">
