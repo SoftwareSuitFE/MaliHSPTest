@@ -171,110 +171,93 @@ const HotelList = () => {
   const [filteredFlights, setFilteredFlights] = useState(flights);
   const [loading, setLoading] = useState(true);
 
-  // Hotel filtreleme
-  useEffect(() => {
-    if (travelType !== "flight") {
-      setLoading(true);
-      const timer = setTimeout(() => {
-        let filtered = [...hotels];
+// Hotel filtreleme
+useEffect(() => {
+  if (travelType !== "flight") {
+    setLoading(true);
+    const timer = setTimeout(() => {
+      let filtered = [...hotels];
 
-        if (filters.destination) {
-          filtered = filtered.filter((hotel) =>
-            hotel.location
-              .toLowerCase()
-              .includes(filters.destination.toLowerCase())
-          );
-        }
-        if (filters.hotelConcepts && filters.hotelConcepts.length > 0) {
-          filtered = filtered.filter((hotel) =>
-            filters.hotelConcepts.some((concept) =>
-              hotel.categories.includes(concept)
-            )
-          );
-        }
-        if (filters.stars && filters.stars.length > 0) {
-          filtered = filtered.filter((hotel) =>
-            filters.stars.includes(hotel.stars)
-          );
-        }
+      // Destination filtrelemesi
+      if (filters.destination) {
+        filtered = filtered.filter((hotel) =>
+          hotel.location
+            .toLowerCase()
+            .includes(filters.destination.toLowerCase())
+        );
+      }
+      
+      // Hotel Concept filtrelemesi - her otel için tek kategori
+      if (filters.hotelConcepts && filters.hotelConcepts.length > 0) {
+        filtered = filtered.filter((hotel) =>
+          hotel.categories.some((category) =>
+            filters.hotelConcepts.includes(category)
+          )
+        );
+      }
+      
+      // Yıldız filtrelemesi
+      if (filters.stars && filters.stars.length > 0) {
+        filtered = filtered.filter((hotel) =>
+          filters.stars.some(star => hotel.stars >= star)
+        );
+      }
 
-        setFilteredHotels(filtered);
-        setLoading(false);
-      }, 500);
+      setFilteredHotels(filtered);
+      setLoading(false);
+    }, 500);
 
-      return () => clearTimeout(timer);
-    }
-  }, [filters, travelType]);
+    return () => clearTimeout(timer);
+  }
+}, [filters, travelType]);
 
-  // Flight filtreleme
-  useEffect(() => {
-    if (travelType === "flight") {
-      setLoading(true);
-      const timer = setTimeout(() => {
-        let filtered = [...flights];
 
-        // Destination filtrelemesi
-        if (filters.destination) {
-          filtered = filtered.filter((flight) =>
-            flight.location
-              .toLowerCase()
-              .includes(filters.destination.toLowerCase())
-          );
-        }
+// Flight filtreleme
+useEffect(() => {
+  if (travelType === "flight") {
+    setLoading(true);
+    const timer = setTimeout(() => {
+      let filtered = [...flights];
 
-        // From (Nereden) filtrelemesi
-        if (filters.from) {
-          filtered = filtered.filter((flight) =>
-            flight.name.toLowerCase().includes(filters.from.toLowerCase())
-          );
-        }
+      // Destination filtrelemesi
+      if (filters.destination) {
+        filtered = filtered.filter((flight) =>
+          flight.location
+            .toLowerCase()
+            .includes(filters.destination.toLowerCase())
+        );
+      }
+      
+      // From (Nereden) filtrelemesi
+      if (filters.from) {
+        filtered = filtered.filter((flight) =>
+          flight.name
+            .toLowerCase()
+            .includes(filters.from.toLowerCase())
+        );
+      }
+      
+      // Yıldız filtrelemesi
+      if (filters.stars && filters.stars.length > 0) {
+        filtered = filtered.filter((flight) =>
+          filters.stars.some(star => flight.stars >= star)
+        );
+      }
+      
+      // Flight Concept filtrelemesi - sadece categories dizisindeki tek değere bakıyoruz
+      if (filters.flightConcepts && filters.flightConcepts.length > 0) {
+        filtered = filtered.filter((flight) => 
+          filters.flightConcepts.includes(flight.categories[0])
+        );
+      }
 
-        // Yıldız filtrelemesi
-        if (filters.stars && filters.stars.length > 0) {
-          filtered = filtered.filter((flight) =>
-            filters.stars.some((star) => flight.stars >= star)
-          );
-        }
+      setFilteredFlights(filtered);
+      setLoading(false);
+    }, 500);
 
-        // Flight Concept filtrelemesi - daha kapsamlı yaklaşım
-        if (filters.flightConcepts && filters.flightConcepts.length > 0) {
-          filtered = filtered.filter((flight) => {
-            for (const filterConcept of filters.flightConcepts) {
-              // Concept alanında arama
-              if (flight.concept === filterConcept) {
-                return true;
-              }
-
-              // Categories dizisinde arama
-              if (flight.categories.includes(filterConcept)) {
-                return true;
-              }
-
-              // Direct Flight, One Stop gibi kategorilerde daha esnek eşleştirme
-              // (Bazı uçuşlar "Direct Flight" kategorisine sahip olabilir)
-              const lowerFilterConcept = filterConcept.toLowerCase();
-              const matchesCategory = flight.categories.some(
-                (category) =>
-                  category.toLowerCase().includes(lowerFilterConcept) ||
-                  lowerFilterConcept.includes(category.toLowerCase())
-              );
-
-              if (matchesCategory) {
-                return true;
-              }
-            }
-
-            return false;
-          });
-        }
-
-        setFilteredFlights(filtered);
-        setLoading(false);
-      }, 500);
-
-      return () => clearTimeout(timer);
-    }
-  }, [filters, travelType]);
+    return () => clearTimeout(timer);
+  }
+}, [filters, travelType]);
 
   if (loading) {
     return (

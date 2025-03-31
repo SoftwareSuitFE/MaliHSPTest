@@ -1,4 +1,7 @@
 // services/languageService.ts
+
+import ComingSoon from "@/app/comingsoon/page";
+
 // Supported languages
 export const LANGUAGES = ["en", "tr"];
 
@@ -104,9 +107,13 @@ export const translations = {
       premiumEconomy: "Premium Economy",
       directFlight: "Direct Flight",
       oneStop: "One Stop",
-      refundable: "Refundable",
-      international: "International",
+      multipleStops: "Multiple Stops",
       domestic: "Domestic",
+    },
+    ComingSoon: {
+      title: "Coming Soon",
+      message: "We are working on it. Please check back later.",
+      button: "Return Home",
     },
   },
   tr: {
@@ -208,10 +215,14 @@ export const translations = {
       firstClass: "Birinci Sınıf",
       premiumEconomy: "Premium Ekonomi",
       directFlight: "Direkt Uçuş",
-      oneStop: "Bir Duraklı",
-      refundable: "İade Edilebilir",
-      international: "Uluslararası",
+      oneStop: "Bir Aktarmalı",
+      multipleStops: "Çok Aktarmalı",
       domestic: "Yurtiçi",
+    },
+    ComingSoon: {
+      title: "Yakında Hizmetinizdeyiz",
+      message: "Üzerinde çalışıyoruz. Lütfen daha sonra tekrar deneyiniz.",
+      button: "Ana Sayfaya Dön",
     },
   },
 };

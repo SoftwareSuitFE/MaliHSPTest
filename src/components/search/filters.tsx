@@ -648,17 +648,20 @@ const baseConcepts = [
 ];
 
 // Flight concept listesi - mockData.ts'den alınan verilerle
+// filters.tsx içinde sadeleştirilmiş flightConcepts listesi
+
 const flightConcepts = [
+  // Uçuş Sınıfları
   "Economy Class",
   "Business Class",
   "First Class", 
   "Premium Economy",
+  
+  // Uçuş Türleri
   "Direct Flight",
   "One Stop",
   "Multiple Stops",
-  "International",
-  "Domestic",
-  "Long Haul"
+  "Domestic"
 ];
 
 
