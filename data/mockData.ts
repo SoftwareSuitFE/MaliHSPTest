@@ -19,17 +19,17 @@ export interface Hotel {
 // Yeni Flight arayüzü - HotelCard ile uyumlu olacak şekilde
 export interface Flight {
   id: number;
-  name: string;        // uçuş firmasının ismi
-  location: string;    // uçuş yapılacak şehir,ülke
-  stars: number;       // yıldız sayısı (havayolu firmasının)
-  rating: number;      // puanlama
-  adults: number;      // kişi sayısı (yetişkin)
-  children: number;    // kişi sayısı (çocuk)
-  date: string;        // uçuş tarih bilgisi
-  nights: number;      // uçuş süresi (saat) - HotelCard ile uyumlu olması için nights alanını kullanıyoruz
-  concept: string;     // uçuş türü - HotelCard ile uyumlu olması için concept alanını kullanıyoruz
-  price: number;       // fiyat bilgisi
-  image: string;       // resim (uçak resmi)
+  name: string; // uçuş firmasının ismi
+  location: string; // uçuş yapılacak şehir,ülke
+  stars: number; // yıldız sayısı (havayolu firmasının)
+  rating: number; // puanlama
+  adults: number; // kişi sayısı (yetişkin)
+  children: number; // kişi sayısı (çocuk)
+  date: string; // uçuş tarih bilgisi
+  nights: number; // uçuş süresi (saat) - HotelCard ile uyumlu olması için nights alanını kullanıyoruz
+  concept: string; // uçuş türü - HotelCard ile uyumlu olması için concept alanını kullanıyoruz
+  price: number; // fiyat bilgisi
+  image: string; // resim (uçak resmi)
   categories: string[]; // kategoriler
 }
 
@@ -449,7 +449,7 @@ export const hotels: Hotel[] = [
     image:
       "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
     categories: ["Mountain Resort"],
-  }
+  },
 ];
 // Yeni Uçuş Verileri
 // mockData.ts dosyasındaki flights verisini güncelle
@@ -533,7 +533,7 @@ export const flights: Flight[] = [
     nights: 3,
     concept: "Economy Class",
     price: 180,
-    image: 
+    image:
       "https://images.unsplash.com/photo-1508672019048-805c876b67e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
     categories: ["Economy Class"],
   },
@@ -681,7 +681,7 @@ export const flights: Flight[] = [
     nights: 10,
     concept: "First Class",
     price: 1400,
-    image: 
+    image:
       "https://images.unsplash.com/photo-1517479149777-5f3b1511d5ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
     categories: ["First Class"],
   },
@@ -747,7 +747,7 @@ export const flights: Flight[] = [
     nights: 7,
     concept: "Premium Economy",
     price: 680,
-    image: 
+    image:
       "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
     categories: ["Premium Economy"],
   },
@@ -763,7 +763,7 @@ export const flights: Flight[] = [
     nights: 6,
     concept: "Premium Economy",
     price: 550,
-    image: 
+    image:
       "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
     categories: ["Premium Economy"],
   },
@@ -779,7 +779,7 @@ export const flights: Flight[] = [
     nights: 4,
     concept: "Premium Economy",
     price: 540,
-    image: 
+    image:
       "https://images.unsplash.com/photo-1542296332-2e4473faf563?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
     categories: ["Premium Economy"],
   },
@@ -829,7 +829,7 @@ export const flights: Flight[] = [
     nights: 3,
     concept: "Direct Flight",
     price: 490,
-    image: 
+    image:
       "https://images.unsplash.com/photo-1564356042750-56a4144051b7?q=80&w=2748&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categories: ["Direct Flight"],
   },
@@ -847,7 +847,7 @@ export const flights: Flight[] = [
     nights: 2,
     concept: "One Stop",
     price: 170,
-    image: 
+    image:
       "https://images.unsplash.com/photo-1576234699886-7eb7f11aecb7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
     categories: ["One Stop"],
   },
@@ -863,7 +863,7 @@ export const flights: Flight[] = [
     nights: 13,
     concept: "One Stop",
     price: 1200,
-    image: 
+    image:
       "https://plus.unsplash.com/premium_photo-1679758630055-99ebb2df7d77?q=80&w=2664&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categories: ["One Stop"],
   },
@@ -881,7 +881,7 @@ export const flights: Flight[] = [
     nights: 12,
     concept: "Multiple Stops",
     price: 1150,
-    image: 
+    image:
       "https://images.unsplash.com/photo-1568183532574-84e5df605b6b?q=80&w=2748&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categories: ["Multiple Stops"],
   },
@@ -950,7 +950,7 @@ export const flights: Flight[] = [
     image:
       "https://images.unsplash.com/photo-1508672019048-805c876b67e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
     categories: ["Domestic"],
-  }
+  },
 ];
 
 export const destinations: string[] = [
@@ -981,6 +981,55 @@ export const destinations: string[] = [
   "Konya",
   "Diyarbakir",
   "Adana",
+  "Kaleiçi",
+  "Lara",
+  "Gümbet",
+  "Taksim",
+  "Sultanahmet",
+  "Kadikoy",
+  "Galata",
+  "Ölüdeniz",
+  "Patara",
+  "Kalkan",
+  "Kas",
+  "Marmaris",
+  "Dalyan",
+  "Kalkan",
+  "Alanya",
+  "Side",
+  "Kemer",
+  "Belek",
+  "Antalya",
+  "Istanbul",
+  "Izmir",
+  "Pamukkale",
+  "Efes",
+  "diyarbakır",
+  "Mardin",
+  "Van",
+  "Trabzon",
+  "Rize",
+  "Artvin",
+  "Batum",
+  "Gürcistan",
+  "Yunanistan",
+  "Sakarya",
+  "Sapanca",
+  "Maşukiye",
+  "Kartepe",
+  "Uludağ",
+  "Erciyes",
+  "Palandöken",
+  "Kartalkaya",
+  "Kastamonu",
+  "Ilgaz",
+  "Kastamonu",
+  "Niğde",
+  "Nevşehir",
+  "Kayseri",
+  "Aksaray",
+  "Konya",
+  "Karaman",
 ];
 
 export const hotelConcepts: string[] = [
@@ -1052,17 +1101,20 @@ export const flightCategories: string[] = [
 export const popularDestinations: string[] = [
   "Antalya",
   "Bodrum",
-  "Istanbul",
-  "Alanya",
+  "İstanbul",
+  "Ankara",
   "Marmaris",
   "Fethiye",
-  "Izmir",
+  "İzmir",
+  "Alanya",
   "Cappadocia",
-  "Oludeniz",
+  "Ölüdeniz",
   "Side",
-  "Kusadasi",
+  "Kuşadasi",
   "Belek",
   "Kemer",
-  "Cesme",
+  "Ceşme",
   "Kalkan",
+  "Kemer",
+  "Konya",
 ];
