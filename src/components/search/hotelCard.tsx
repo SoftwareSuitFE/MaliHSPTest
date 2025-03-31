@@ -5,6 +5,7 @@ import { Hotel } from "../../../data/mockData";
 import { Button } from "antd";
 import Icon from "../../../public/icons/Icon";
 import { useLanguage } from "@/hooks/useLanguage";
+import { useRouter } from "next/navigation"; // 1. Adım: useRouter'ı içeri aktarın
 
 interface HotelCardProps {
   hotel: Hotel;
@@ -12,14 +13,20 @@ interface HotelCardProps {
 
 const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
   const { t } = useLanguage();
+  const router = useRouter(); // 2. Adım: router'ı başlatın
+
+  // 3. Adım: Yönlendirme fonksiyonunu oluşturun
+  const handleContinue = () => {
+    router.push("/comingsoon");
+  };
 
   return (
     <div
       className="
         flex
         flex-col
-        lg:flex-row  /* 1024px+ => resim + içerik yan yana */
-        items-start  /* Üst kenardan hizala */
+        lg:flex-row
+        items-start
         gap-4
         w-full
       "
@@ -32,8 +39,8 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
           h-[268px]
           rounded-[8px]
           overflow-hidden
-          lg:w-[363px]   /* 1024–1279 arası resim sabit 363px */
-          xl:flex-1      /* 1280+ resim genişleyebilir */
+          lg:w-[363px]
+          xl:flex-1
         "
       >
         <img
@@ -55,8 +62,8 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
           flex
           flex-col
           gap-4
-          lg:w-[457px]   /* 1024–1279 arası content sabit 457px */
-          xl:flex-1      /* 1280+ içerik de genişleyebilir */
+          lg:w-[457px]
+          xl:flex-1
         "
         style={{ minHeight: "271px" }}
       >
@@ -143,7 +150,7 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
               md:items-end
             "
           >
-            {/* Fiyat Bilgisi: mt-auto => 1024px+ (lg) 'da fiyata margin-top ekleyerek aşağı itebilirsiniz. */}
+            {/* Fiyat Bilgisi */}
             <div className="mt-auto lg:mt-auto flex flex-col items-end w-full">
               <span
                 style={{
@@ -182,8 +189,9 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
 
             {/* Buton */}
             <Button
+              onClick={handleContinue} // Butona tıklanınca yönlendirme işlemini tetikler
               style={{
-                width: "100%", // mobilde tam genişlik
+                width: "100%",
                 height: "45px",
                 borderRadius: "4px",
                 background: "#ED8936",
@@ -193,7 +201,6 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
                 lineHeight: "100%",
                 color: "#FFFFFF",
                 textAlign: "center",
-
               }}
             >
               {t("HotelCard", "continue")}
