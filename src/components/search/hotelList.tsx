@@ -281,6 +281,7 @@ useEffect(() => {
   }
 
   return (
+    // <section className="container mx-auto mt-8 px-4"></section>
     <div className="flex flex-col space-y-8">
       {showFlights
         ? filteredFlights.map((flight) => (

@@ -20,7 +20,7 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
         flex-col
         lg:flex-row  /* 1024px+ => resim + içerik yan yana */
         items-start  /* Üst kenardan hizala */
-        gap-2
+        gap-4
         w-full
       "
       style={{ fontFamily: "Inter" }}

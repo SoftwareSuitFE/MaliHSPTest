@@ -12,7 +12,7 @@
 // import DestinationDropdown from "@/components/dropdown/DestinationDropdown";
 // import NightPicker from "@/components/NightPicker/NightPicker";
 
-// // Mevcut concept listesi
+// // Hotel concept listesi
 // const baseConcepts = [
 //   "Beach Hotel",
 //   "Adult Hotel",
@@ -22,6 +22,23 @@
 //   "Spa",
 //   "Golf",
 //   "Mountain Resort",
+// ];
+
+// // Flight concept listesi - mockData.ts'den alınan verilerle
+// // filters.tsx içinde sadeleştirilmiş flightConcepts listesi
+
+// const flightConcepts = [
+//   // Uçuş Sınıfları
+//   "Economy Class",
+//   "Business Class",
+//   "First Class",
+//   "Premium Economy",
+
+//   // Uçuş Türleri
+//   "Direct Flight",
+//   "One Stop",
+//   "Multiple Stops",
+//   "Domestic",
 // ];
 
 // const Filters: React.FC = () => {
@@ -70,6 +87,9 @@
 //   const [concepts, setConcepts] = useState<string[]>(
 //     filters.hotelConcepts || []
 //   );
+//   const [flightConceptsSelected, setFlightConceptsSelected] = useState<
+//     string[]
+//   >(filters.flightConcepts || []);
 
 //   // DateRangePicker için visible state ve ref
 //   const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
@@ -84,6 +104,7 @@
 //   const nightsFieldRef = useRef<HTMLDivElement>(null);
 
 //   const [showMore, setShowMore] = useState<boolean>(false);
+//   const [showMoreFlight, setShowMoreFlight] = useState<boolean>(false);
 
 //   // searchParams değiştiğinde state'leri güncelle
 //   useEffect(() => {
@@ -152,6 +173,7 @@
 
 //     setStars(filters.stars || []);
 //     setConcepts(filters.hotelConcepts || []);
+//     setFlightConceptsSelected(filters.flightConcepts || []);
 //   }, [filters]);
 
 //   // Filtreleri sıfırla
@@ -166,7 +188,9 @@
 //     setNights(5);
 //     setStars([]);
 //     setConcepts([]);
+//     setFlightConceptsSelected([]);
 //     setShowMore(false);
+//     setShowMoreFlight(false);
 
 //     updateFilters({
 //       from: "",
@@ -175,6 +199,7 @@
 //       date: "",
 //       nights: 5,
 //       hotelConcepts: [],
+//       flightConcepts: [],
 //       stars: [],
 //     });
 //   };
@@ -263,8 +288,23 @@
 //     updateFilters({ hotelConcepts: newConcepts });
 //   };
 
+//   // Flight Concept seçimi
+//   const handleFlightConceptChange = (concept: string) => {
+//     let newConcepts: string[];
+//     if (flightConceptsSelected.includes(concept)) {
+//       newConcepts = flightConceptsSelected.filter((c) => c !== concept);
+//     } else {
+//       newConcepts = [...flightConceptsSelected, concept];
+//     }
+//     setFlightConceptsSelected(newConcepts);
+//     updateFilters({ flightConcepts: newConcepts });
+//   };
+
 //   // Gösterilecek concept listesi
 //   const visibleConcepts = showMore ? baseConcepts : baseConcepts.slice(0, 4);
+//   const visibleFlightConcepts = showMoreFlight
+//     ? flightConcepts
+//     : flightConcepts.slice(0, 4);
 
 //   // Otel konseptini çevirme yardımcı fonksiyonu
 //   const translateConcept = (concept: string): string => {
@@ -273,6 +313,15 @@
 //       .replace(/\s+/g, "")
 //       .replace(/(?:^|\s)(\w)/g, (match, p1) => p1.toLowerCase());
 //     return t("HotelConcepts", key);
+//   };
+
+//   // Uçuş konseptini çevirme yardımcı fonksiyonu
+//   const translateFlightConcept = (concept: string): string => {
+//     // Boşlukları kaldırıp, camelCase'e dönüştürme
+//     const key = concept
+//       .replace(/\s+/g, "")
+//       .replace(/(?:^|\s)(\w)/g, (match, p1) => p1.toLowerCase());
+//     return t("FlightConcepts", key);
 //   };
 
 //   // Figma stil tanımlamaları
@@ -558,8 +607,115 @@
 //         </div>
 //       )}
 
-//       {/* Star kısmı */}
-//       {(travelType === "package" || travelType === "hotel") && (
+//       {/* Flight Concept - Sadece flight için göster */}
+//       {travelType === "flight" && (
+//         <div className="mb-4">
+//           <div className="flex justify-between items-center mb-1">
+//             <label className="text-sm" style={headerStyle}>
+//               {t("Filters", "flightConcept")}
+//             </label>
+//             <Button
+//               type="link"
+//               size="small"
+//               onClick={resetFilters}
+//               className="p-0"
+//               style={{ color: "#ED8936" }}
+//             >
+//               {t("Filters", "reset")}
+//             </Button>
+//           </div>
+//           <div className="space-y-2">
+//             {visibleFlightConcepts.map((concept) => {
+//               const isChecked = flightConceptsSelected.includes(concept);
+//               return (
+//                 <label
+//                   key={concept}
+//                   className="flex items-center cursor-pointer select-none"
+//                 >
+//                   <div
+//                     style={{
+//                       width: "220px",
+//                       height: "17px",
+//                       gap: "8px",
+//                       borderRadius: "8px",
+//                       display: "flex",
+//                       alignItems: "center",
+//                     }}
+//                   >
+//                     <span
+//                       className={`
+//                         relative flex items-center justify-center mr-2
+//                         ${isChecked ? "" : ""}
+//                       `}
+//                       style={{
+//                         width: "16px",
+//                         height: "16px",
+//                         borderRadius: "2px",
+//                         border: isChecked
+//                           ? "2px solid #ED8936"
+//                           : "2px solid #E2E2E2",
+//                       }}
+//                     >
+//                       {isChecked && (
+//                         <CheckOutlined
+//                           style={{ fontSize: 12, color: "#ED8936" }}
+//                         />
+//                       )}
+//                     </span>
+//                     <input
+//                       type="checkbox"
+//                       checked={isChecked}
+//                       onChange={() => handleFlightConceptChange(concept)}
+//                       className="hidden"
+//                     />
+//                     <span
+//                       className="text-sm text-[#142347]"
+//                       style={fieldTextStyle}
+//                     >
+//                       {translateFlightConcept(concept)}
+//                     </span>
+//                   </div>
+//                 </label>
+//               );
+//             })}
+//             {flightConcepts.length > 4 && (
+//               <div
+//                 className="flex items-center cursor-pointer"
+//                 style={{
+//                   width: "220px",
+//                   height: "16px",
+//                   gap: "8px",
+//                   borderRadius: "8px",
+//                 }}
+//                 onClick={() => setShowMoreFlight(!showMoreFlight)}
+//               >
+//                 <Icon
+//                   name="arrow-down"
+//                   size={16}
+//                   color="#93A2B7"
+//                   className={showMoreFlight ? "transform rotate-180" : ""}
+//                 />
+//                 <span
+//                   style={{
+//                     fontFamily: "Inter",
+//                     fontWeight: 500,
+//                     fontSize: "12px",
+//                     lineHeight: "100%",
+//                     color: "#93A2B7",
+//                   }}
+//                 >
+//                   {showMoreFlight ? t("Filters", "less") : t("Filters", "more")}
+//                 </span>
+//               </div>
+//             )}
+//           </div>
+//         </div>
+//       )}
+
+//       {/* Star kısmı - hem hotel/package hem de flight için göster */}
+//       {(travelType === "package" ||
+//         travelType === "hotel" ||
+//         travelType === "flight") && (
 //         <div className="mb-4">
 //           <label className="block mb-1" style={headerStyle}>
 //             {t("Filters", "star")}
@@ -597,20 +753,7 @@
 //         </div>
 //       )}
 
-//       {/* Reset butonu - Flight için resetFilters'ı görüntülemem gerektiğinden eklendi */}
-//       {travelType === "flight" && (
-//         <div className="mb-4 flex justify-end">
-//           <Button
-//             type="link"
-//             size="small"
-//             onClick={resetFilters}
-//             className="p-0"
-//             style={{ color: "#ED8936" }}
-//           >
-//             {t("Filters", "reset")}
-//           </Button>
-//         </div>
-//       )}
+//       {/* Reset butonu - Flight için reset Button kaldırıldı çünkü Flight Concept kısmında var */}
 //     </div>
 //   );
 // };
@@ -619,14 +762,11 @@
 
 
 
-// Modified portion of filters.tsx file
-
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
 import dayjs from "dayjs";
 import { useSearch } from "@/hooks/useSearch";
-import { CheckOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import Icon from "../../../public/icons/Icon";
 import { useLanguage } from "@/hooks/useLanguage";
@@ -663,7 +803,6 @@ const flightConcepts = [
   "Multiple Stops",
   "Domestic"
 ];
-
 
 const Filters: React.FC = () => {
   const { filters, updateFilters, searchParams } = useSearch();
@@ -1160,22 +1299,26 @@ const Filters: React.FC = () => {
                     }}
                   >
                     <span
-                      className={`
-                        relative flex items-center justify-center mr-2
-                        ${isChecked ? "" : ""}
-                      `}
+                      className="relative flex items-center justify-center mr-2"
                       style={{
                         width: "16px",
                         height: "16px",
-                        borderRadius: "2px",
-                        border: isChecked
-                          ? "2px solid #ED8936"
-                          : "2px solid #E2E2E2",
+                        borderRadius: "4px",
+                        background: "#FFFFFF",
+                        border: isChecked ? "1px solid #ED8936" : "1px solid #CAD4E0",
+                        position: "relative",
                       }}
                     >
                       {isChecked && (
-                        <CheckOutlined
-                          style={{ fontSize: 12, color: "#ED8936" }}
+                        <Icon
+                          name="thick"
+                          style={{
+                            position: "absolute",
+                            width: "8px",
+                            height: "5.573103904724121px",
+                            top: "5px",
+                            left: "4px",
+                          }}
                         />
                       )}
                     </span>
@@ -1265,22 +1408,26 @@ const Filters: React.FC = () => {
                     }}
                   >
                     <span
-                      className={`
-                        relative flex items-center justify-center mr-2
-                        ${isChecked ? "" : ""}
-                      `}
+                      className="relative flex items-center justify-center mr-2"
                       style={{
                         width: "16px",
                         height: "16px",
-                        borderRadius: "2px",
-                        border: isChecked
-                          ? "2px solid #ED8936"
-                          : "2px solid #E2E2E2",
+                        borderRadius: "4px",
+                        background: "#FFFFFF",
+                        border: isChecked ? "1px solid #ED8936" : "1px solid #CAD4E0",
+                        position: "relative",
                       }}
                     >
                       {isChecked && (
-                        <CheckOutlined
-                          style={{ fontSize: 12, color: "#ED8936" }}
+                        <Icon
+                          name="thick"
+                          style={{
+                            position: "absolute",
+                            width: "8px",
+                            height: "5.573103904724121px",
+                            top: "5px",
+                            left: "4px",
+                          }}
                         />
                       )}
                     </span>
