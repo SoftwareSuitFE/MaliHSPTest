@@ -1064,8 +1064,8 @@ const Filters: React.FC = () => {
   };
 
   // Gösterilecek concept listesi
-  const visibleConcepts = showMore ? baseConcepts : baseConcepts.slice(0, 4);
-  const visibleFlightConcepts = showMoreFlight ? flightConcepts : flightConcepts.slice(0, 4);
+  const visibleConcepts = showMore ? baseConcepts : baseConcepts.slice(0, 5);
+  const visibleFlightConcepts = showMoreFlight ? flightConcepts : flightConcepts.slice(0, 3);
 
   // Otel konseptini çevirme yardımcı fonksiyonu
   const translateConcept = (concept: string): string => {
