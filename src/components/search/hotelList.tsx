@@ -70,8 +70,6 @@
 
 // export default HotelList;
 
-
-
 // "use client";
 
 // import { useState, useEffect } from "react";
@@ -165,10 +163,10 @@ import { useLanguage } from "@/hooks/useLanguage";
 const HotelList = () => {
   const { filters, searchParams } = useSearch();
   const { t } = useLanguage();
-  
+
   // travelType'ı searchParams'dan al
   const travelType = searchParams.travelType || "package";
-  
+
   const [filteredHotels, setFilteredHotels] = useState(hotels);
   const [filteredFlights, setFilteredFlights] = useState(flights);
   const [loading, setLoading] = useState(true);
@@ -215,6 +213,7 @@ const HotelList = () => {
       const timer = setTimeout(() => {
         let filtered = [...flights];
 
+        // Destination filtrelemesi
         if (filters.destination) {
           filtered = filtered.filter((flight) =>
             flight.location
@@ -222,12 +221,52 @@ const HotelList = () => {
               .includes(filters.destination.toLowerCase())
           );
         }
-        if (filters.stars && filters.stars.length > 0) {
+
+        // From (Nereden) filtrelemesi
+        if (filters.from) {
           filtered = filtered.filter((flight) =>
-            filters.stars.includes(flight.stars)
+            flight.name.toLowerCase().includes(filters.from.toLowerCase())
           );
         }
-        // Burada uçuş kategorilerine göre de filtreleme ekleyebilirsiniz
+
+        // Yıldız filtrelemesi
+        if (filters.stars && filters.stars.length > 0) {
+          filtered = filtered.filter((flight) =>
+            filters.stars.some((star) => flight.stars >= star)
+          );
+        }
+
+        // Flight Concept filtrelemesi - daha kapsamlı yaklaşım
+        if (filters.flightConcepts && filters.flightConcepts.length > 0) {
+          filtered = filtered.filter((flight) => {
+            for (const filterConcept of filters.flightConcepts) {
+              // Concept alanında arama
+              if (flight.concept === filterConcept) {
+                return true;
+              }
+
+              // Categories dizisinde arama
+              if (flight.categories.includes(filterConcept)) {
+                return true;
+              }
+
+              // Direct Flight, One Stop gibi kategorilerde daha esnek eşleştirme
+              // (Bazı uçuşlar "Direct Flight" kategorisine sahip olabilir)
+              const lowerFilterConcept = filterConcept.toLowerCase();
+              const matchesCategory = flight.categories.some(
+                (category) =>
+                  category.toLowerCase().includes(lowerFilterConcept) ||
+                  lowerFilterConcept.includes(category.toLowerCase())
+              );
+
+              if (matchesCategory) {
+                return true;
+              }
+            }
+
+            return false;
+          });
+        }
 
         setFilteredFlights(filtered);
         setLoading(false);
@@ -261,9 +300,12 @@ const HotelList = () => {
   return (
     <div className="flex flex-col space-y-8">
       {showFlights
-        ? filteredFlights.map((flight) => <FlightCard key={flight.id} flight={flight} />)
-        : filteredHotels.map((hotel) => <HotelCard key={hotel.id} hotel={hotel} />)
-      }
+        ? filteredFlights.map((flight) => (
+            <FlightCard key={flight.id} flight={flight} />
+          ))
+        : filteredHotels.map((hotel) => (
+            <HotelCard key={hotel.id} hotel={hotel} />
+          ))}
     </div>
   );
 };

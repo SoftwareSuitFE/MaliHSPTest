@@ -3,16 +3,16 @@
 // import React, { useState, useEffect, useRef } from "react";
 // import dayjs from "dayjs";
 // import { useSearch } from "@/hooks/useSearch";
-// import { StarFilled, CheckOutlined } from "@ant-design/icons";
-// import { Button } from "antd"; // Select kaldırıldı
+// import { CheckOutlined } from "@ant-design/icons";
+// import { Button } from "antd";
 // import Icon from "../../../public/icons/Icon";
 // import { useLanguage } from "@/hooks/useLanguage";
 // import DateRangePicker from "@/components/DateRangePicker/DateRangePicker";
 // import PersonPicker from "@/components/PersonPicker/personpicker";
 // import DestinationDropdown from "@/components/dropdown/DestinationDropdown";
-// import NightPicker from "@/components/NightPicker/NightPicker"; // NightPicker eklendi
+// import NightPicker from "@/components/NightPicker/NightPicker";
 
-// // Mevcut concept listesi (örnek)
+// // Mevcut concept listesi
 // const baseConcepts = [
 //   "Beach Hotel",
 //   "Adult Hotel",
@@ -39,7 +39,7 @@
 //     filters.destination || searchParams.destination || ""
 //   );
 
-//   // Kişi sayıları ayrı olarak tutuyoruz
+//   // Kişi sayıları
 //   const [adults, setAdults] = useState<number>(
 //     filters.participants?.adults || searchParams.participants?.adults || 2
 //   );
@@ -53,7 +53,7 @@
 //     filters.nights || searchParams.nights || 5
 //   );
 
-//   // Date state'lerini tanımlıyoruz
+//   // Date state'leri
 //   const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(() => {
 //     if (filters.date) return dayjs(filters.date);
 //     if (searchParams.date) return dayjs(searchParams.date);
@@ -275,10 +275,39 @@
 //     return t("HotelConcepts", key);
 //   };
 
+//   // Figma stil tanımlamaları
+//   const headerStyle = {
+//     fontFamily: "Inter",
+//     fontWeight: 400,
+//     fontSize: "12px",
+//     lineHeight: "100%",
+//     letterSpacing: "0%",
+//     color: "#142347",
+//   };
+
+//   const fieldTextStyle = {
+//     fontFamily: "Inter",
+//     fontWeight: 500,
+//     fontSize: "14px",
+//     lineHeight: "100%",
+//     letterSpacing: "0%",
+//     color: "#142347",
+//   };
+
+//   const iconStyle = {
+//     width: "16px",
+//     height: "16px",
+//   };
+
 //   return (
 //     <div
-//       className="bg-white p-6 rounded-lg shadow-sm sticky top-4"
-//       style={{ fontFamily: "Inter" }}
+//       className="bg-white rounded-lg sticky top-4 w-full lg:w-[268px]"
+//       style={{
+//         fontFamily: "Inter",
+//         borderRadius: "8px",
+//         border: "1px solid #F0F4F8",
+//         padding: "24px",
+//       }}
 //     >
 //       {/* Filter Başlık */}
 //       <h3 className="text-sm font-normal text-[#142347] mb-6">
@@ -288,41 +317,55 @@
 //       {/* From - Sadece package ve flight için göster - DestinationDropdown ile değiştirildi */}
 //       {(travelType === "package" || travelType === "flight") && (
 //         <div className="mb-4">
-//           <DestinationDropdown
-//             value={from}
-//             onChange={handleFromChange}
-//             onSelect={handleFromChange}
-//             placeholder={t("Filters", "from")}
-//             mode="city"
-//             className="h-10 rounded-md border border-[#E1E7EF] text-[#142347] placeholder:text-[#142347] px-2"
-//           />
+//           <div className="filter-input flex items-center rounded-md overflow-hidden w-full">
+//             <div className="flex items-center h-full pl-3 pr-2">
+//               <Icon name="location" size={16} color="#142347" />
+//             </div>
+//             <DestinationDropdown
+//               value={from}
+//               onChange={handleFromChange}
+//               onSelect={handleFromChange}
+//               placeholder={t("Filters", "from")}
+//               mode="city"
+//               className="h-full rounded-md text-[#142347] placeholder:text-[#142347] w-full border-none focus:outline-none"
+//               style={fieldTextStyle}
+//             />
+//           </div>
 //         </div>
 //       )}
 
 //       {/* Destination - Tüm tiplerde göster - DestinationDropdown ile değiştirildi */}
 //       <div className="mb-4">
-//         <DestinationDropdown
-//           value={destination}
-//           onChange={handleDestinationChange}
-//           onSelect={handleDestinationChange}
-//           placeholder={t("Filters", "destination")}
-//           mode={travelType === "hotel" ? "hotel" : "city"}
-//           className="h-10 rounded-md border border-[#E1E7EF] text-[#142347] placeholder:text-[#142347] px-2"
-//         />
+//         <div className="filter-input flex items-center rounded-md overflow-hidden w-full">
+//           <div className="flex items-center h-full pl-3 pr-2">
+//             <Icon name="location" size={16} color="#142347" />
+//           </div>
+//           <DestinationDropdown
+//             value={destination}
+//             onChange={handleDestinationChange}
+//             onSelect={handleDestinationChange}
+//             placeholder={t("Filters", "destination")}
+//             mode={travelType === "hotel" ? "hotel" : "city"}
+//             className="h-full rounded-md text-[#142347] placeholder:text-[#142347] w-full border-none focus:outline-none"
+//             style={fieldTextStyle}
+//           />
+//         </div>
 //       </div>
 
 //       {/* Participants - Tüm tiplerde göster - PersonPicker ile değiştirildi */}
 //       <div className="mb-4">
-//         <label className="block text-sm font-medium text-[#142347] mb-1">
+//         <label className="block mb-1 text-[#142347]" style={headerStyle}>
 //           {t("Filters", "participants")}
 //         </label>
 //         <div
 //           ref={peopleFieldRef}
-//           className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3 cursor-pointer"
+//           className="filter-input flex items-center cursor-pointer overflow-hidden w-full"
 //           onClick={() => setShowPersonPicker(true)}
 //         >
-//           <Icon name="users" size={16} color="#142347" className="mr-2" />
-//           <div className="text-[#142347] font-medium flex-1">
+//           <div className="flex items-center h-full pl-3 pr-2">
+//             <Icon name="users" size={16} color="#142347" />
+//           </div>
+//           <div className="text-[#142347] flex-1" style={fieldTextStyle}>
 //             {t("Filters", "people", { count: people })}
 //           </div>
 //         </div>
@@ -342,16 +385,18 @@
 
 //       {/* Date - Tüm tiplerde göster - DateRangePicker ile değiştirildi */}
 //       <div className="mb-4">
-//         <label className="block text-sm font-medium text-[#142347] mb-1">
+//         <label className="block mb-1 text-[#142347]" style={headerStyle}>
 //           {t("Filters", "date")}
 //         </label>
 //         <div
 //           ref={dateFieldRef}
-//           className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3 cursor-pointer"
+//           className="filter-input flex items-center cursor-pointer overflow-hidden w-full"
 //           onClick={() => setShowDatePicker(true)}
 //         >
-//           <Icon name="calendar" size={16} color="#142347" className="mr-2" />
-//           <div className="text-[#142347] font-medium flex-1">
+//           <div className="flex items-center h-full pl-3 pr-2">
+//             <Icon name="calendar" size={16} color="#142347" />
+//           </div>
+//           <div className="text-[#142347] flex-1" style={fieldTextStyle}>
 //             {startDate ? (
 //               <span>
 //                 {startDate.format("DD MMM YYYY")}
@@ -379,16 +424,18 @@
 //       {/* Nights - Sadece package ve hotel için göster - NightPicker ile değiştirildi */}
 //       {(travelType === "package" || travelType === "hotel") && (
 //         <div className="mb-4">
-//           <label className="block text-sm font-medium text-[#142347] mb-1">
+//           <label className="block mb-1 text-[#142347]" style={headerStyle}>
 //             {t("Filters", "nights")}
 //           </label>
 //           <div
 //             ref={nightsFieldRef}
-//             className="h-10 flex items-center rounded-md border border-[#E1E7EF] px-3 cursor-pointer"
+//             className="filter-input flex items-center cursor-pointer overflow-hidden w-full"
 //             onClick={() => setShowNightPicker(true)}
 //           >
-//             <Icon name="nights" size={16} color="#142347" className="mr-2" />
-//             <div className="text-[#142347] font-medium flex-1">
+//             <div className="flex items-center h-full pl-3 pr-2">
+//               <Icon name="nights" size={16} color="#142347" />
+//             </div>
+//             <div className="text-[#142347] flex-1" style={fieldTextStyle}>
 //               {t("HotelCard", "nights", { count: nights })}
 //             </div>
 //           </div>
@@ -406,11 +453,11 @@
 //         </div>
 //       )}
 
-//       {/* Hotel Concept ve Star bileşenleri - değişmeden bırakıldı */}
+//       {/* Hotel Concept */}
 //       {(travelType === "package" || travelType === "hotel") && (
 //         <div className="mb-4">
 //           <div className="flex justify-between items-center mb-1">
-//             <label className="text-sm font-medium text-[#142347]">
+//             <label className="text-sm" style={headerStyle}>
 //               {t("Filters", "hotelConcept")}
 //             </label>
 //             <Button
@@ -431,52 +478,81 @@
 //                   key={concept}
 //                   className="flex items-center cursor-pointer select-none"
 //                 >
-//                   <span
-//                     className={`
-//                       relative w-5 h-5 mr-2 rounded-sm border-2 flex items-center justify-center
-//                       ${isChecked ? "border-[#ED8936]" : "border-[#E2E2E2]"}
-//                     `}
+//                   <div
+//                     style={{
+//                       width: "220px",
+//                       height: "17px",
+//                       gap: "8px",
+//                       borderRadius: "8px",
+//                       display: "flex",
+//                       alignItems: "center",
+//                     }}
 //                   >
-//                     {isChecked && (
-//                       <CheckOutlined
-//                         style={{ fontSize: 12, color: "#ED8936" }}
-//                       />
-//                     )}
-//                   </span>
-//                   <input
-//                     type="checkbox"
-//                     checked={isChecked}
-//                     onChange={() => handleConceptChange(concept)}
-//                     className="hidden"
-//                   />
-//                   <span className="text-sm text-[#142347]">
-//                     {translateConcept(concept)}
-//                   </span>
+//                     <span
+//                       className={`
+//                         relative flex items-center justify-center mr-2
+//                         ${isChecked ? "" : ""}
+//                       `}
+//                       style={{
+//                         width: "16px",
+//                         height: "16px",
+//                         borderRadius: "2px",
+//                         border: isChecked
+//                           ? "2px solid #ED8936"
+//                           : "2px solid #E2E2E2",
+//                       }}
+//                     >
+//                       {isChecked && (
+//                         <CheckOutlined
+//                           style={{ fontSize: 12, color: "#ED8936" }}
+//                         />
+//                       )}
+//                     </span>
+//                     <input
+//                       type="checkbox"
+//                       checked={isChecked}
+//                       onChange={() => handleConceptChange(concept)}
+//                       className="hidden"
+//                     />
+//                     <span
+//                       className="text-sm text-[#142347]"
+//                       style={fieldTextStyle}
+//                     >
+//                       {translateConcept(concept)}
+//                     </span>
+//                   </div>
 //                 </label>
 //               );
 //             })}
 //             {baseConcepts.length > 4 && (
-//               <Button
-//                 type="link"
-//                 size="small"
+//               <div
+//                 className="flex items-center cursor-pointer"
+//                 style={{
+//                   width: "220px",
+//                   height: "16px",
+//                   gap: "8px",
+//                   borderRadius: "8px",
+//                 }}
 //                 onClick={() => setShowMore(!showMore)}
-//                 className="p-0 flex items-center gap-1"
-//                 style={{ color: "#93A2B7" }}
 //               >
-//                 {showMore ? (
-//                   <>
-//                     {t("Filters", "less")}{" "}
-//                     <div className="transform rotate-180">
-//                       <Icon name="arrow-down" size={16} color="#93A2B7" />
-//                     </div>
-//                   </>
-//                 ) : (
-//                   <>
-//                     {t("Filters", "more")}{" "}
-//                     <Icon name="arrow-down" size={16} color="#93A2B7" />
-//                   </>
-//                 )}
-//               </Button>
+//                 <Icon
+//                   name="arrow-down"
+//                   size={16}
+//                   color="#93A2B7"
+//                   className={showMore ? "transform rotate-180" : ""}
+//                 />
+//                 <span
+//                   style={{
+//                     fontFamily: "Inter",
+//                     fontWeight: 500,
+//                     fontSize: "12px",
+//                     lineHeight: "100%",
+//                     color: "#93A2B7",
+//                   }}
+//                 >
+//                   {showMore ? t("Filters", "less") : t("Filters", "more")}
+//                 </span>
+//               </div>
 //             )}
 //           </div>
 //         </div>
@@ -485,7 +561,7 @@
 //       {/* Star kısmı */}
 //       {(travelType === "package" || travelType === "hotel") && (
 //         <div className="mb-4">
-//           <label className="block text-sm font-medium text-[#142347] mb-1">
+//           <label className="block mb-1" style={headerStyle}>
 //             {t("Filters", "star")}
 //           </label>
 //           <div className="flex flex-col gap-2">
@@ -507,10 +583,10 @@
 //                       <div className="w-2 h-2 rounded-full bg-[#ED8936]" />
 //                     )}
 //                   </div>
-//                   <Icon name="Star" />
+//                   <Icon name="Star" size={16} color="#ED8936" />
 //                   <span
-//                     className="text-sm font-medium"
-//                     style={{ color: "#142347" }}
+//                     className="text-sm"
+//                     style={{ ...fieldTextStyle, color: "#142347" }}
 //                   >
 //                     {starValue}+
 //                   </span>
@@ -541,6 +617,10 @@
 
 // export default Filters;
 
+
+
+// Modified portion of filters.tsx file
+
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
@@ -555,7 +635,7 @@ import PersonPicker from "@/components/PersonPicker/personpicker";
 import DestinationDropdown from "@/components/dropdown/DestinationDropdown";
 import NightPicker from "@/components/NightPicker/NightPicker";
 
-// Mevcut concept listesi
+// Hotel concept listesi
 const baseConcepts = [
   "Beach Hotel",
   "Adult Hotel",
@@ -566,6 +646,21 @@ const baseConcepts = [
   "Golf",
   "Mountain Resort",
 ];
+
+// Flight concept listesi - mockData.ts'den alınan verilerle
+const flightConcepts = [
+  "Economy Class",
+  "Business Class",
+  "First Class", 
+  "Premium Economy",
+  "Direct Flight",
+  "One Stop",
+  "Multiple Stops",
+  "International",
+  "Domestic",
+  "Long Haul"
+];
+
 
 const Filters: React.FC = () => {
   const { filters, updateFilters, searchParams } = useSearch();
@@ -613,6 +708,9 @@ const Filters: React.FC = () => {
   const [concepts, setConcepts] = useState<string[]>(
     filters.hotelConcepts || []
   );
+  const [flightConceptsSelected, setFlightConceptsSelected] = useState<string[]>(
+    filters.flightConcepts || []
+  );
 
   // DateRangePicker için visible state ve ref
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
@@ -627,6 +725,7 @@ const Filters: React.FC = () => {
   const nightsFieldRef = useRef<HTMLDivElement>(null);
 
   const [showMore, setShowMore] = useState<boolean>(false);
+  const [showMoreFlight, setShowMoreFlight] = useState<boolean>(false);
 
   // searchParams değiştiğinde state'leri güncelle
   useEffect(() => {
@@ -695,6 +794,7 @@ const Filters: React.FC = () => {
 
     setStars(filters.stars || []);
     setConcepts(filters.hotelConcepts || []);
+    setFlightConceptsSelected(filters.flightConcepts || []);
   }, [filters]);
 
   // Filtreleri sıfırla
@@ -709,7 +809,9 @@ const Filters: React.FC = () => {
     setNights(5);
     setStars([]);
     setConcepts([]);
+    setFlightConceptsSelected([]);
     setShowMore(false);
+    setShowMoreFlight(false);
 
     updateFilters({
       from: "",
@@ -718,6 +820,7 @@ const Filters: React.FC = () => {
       date: "",
       nights: 5,
       hotelConcepts: [],
+      flightConcepts: [],
       stars: [],
     });
   };
@@ -806,8 +909,21 @@ const Filters: React.FC = () => {
     updateFilters({ hotelConcepts: newConcepts });
   };
 
+  // Flight Concept seçimi
+  const handleFlightConceptChange = (concept: string) => {
+    let newConcepts: string[];
+    if (flightConceptsSelected.includes(concept)) {
+      newConcepts = flightConceptsSelected.filter((c) => c !== concept);
+    } else {
+      newConcepts = [...flightConceptsSelected, concept];
+    }
+    setFlightConceptsSelected(newConcepts);
+    updateFilters({ flightConcepts: newConcepts });
+  };
+
   // Gösterilecek concept listesi
   const visibleConcepts = showMore ? baseConcepts : baseConcepts.slice(0, 4);
+  const visibleFlightConcepts = showMoreFlight ? flightConcepts : flightConcepts.slice(0, 4);
 
   // Otel konseptini çevirme yardımcı fonksiyonu
   const translateConcept = (concept: string): string => {
@@ -816,6 +932,15 @@ const Filters: React.FC = () => {
       .replace(/\s+/g, "")
       .replace(/(?:^|\s)(\w)/g, (match, p1) => p1.toLowerCase());
     return t("HotelConcepts", key);
+  };
+
+  // Uçuş konseptini çevirme yardımcı fonksiyonu
+  const translateFlightConcept = (concept: string): string => {
+    // Boşlukları kaldırıp, camelCase'e dönüştürme
+    const key = concept
+      .replace(/\s+/g, "")
+      .replace(/(?:^|\s)(\w)/g, (match, p1) => p1.toLowerCase());
+    return t("FlightConcepts", key);
   };
 
   // Figma stil tanımlamaları
@@ -1101,8 +1226,113 @@ const Filters: React.FC = () => {
         </div>
       )}
 
-      {/* Star kısmı */}
-      {(travelType === "package" || travelType === "hotel") && (
+      {/* Flight Concept - Sadece flight için göster */}
+      {travelType === "flight" && (
+        <div className="mb-4">
+          <div className="flex justify-between items-center mb-1">
+            <label className="text-sm" style={headerStyle}>
+              {t("Filters", "flightConcept")}
+            </label>
+            <Button
+              type="link"
+              size="small"
+              onClick={resetFilters}
+              className="p-0"
+              style={{ color: "#ED8936" }}
+            >
+              {t("Filters", "reset")}
+            </Button>
+          </div>
+          <div className="space-y-2">
+            {visibleFlightConcepts.map((concept) => {
+              const isChecked = flightConceptsSelected.includes(concept);
+              return (
+                <label
+                  key={concept}
+                  className="flex items-center cursor-pointer select-none"
+                >
+                  <div
+                    style={{
+                      width: "220px",
+                      height: "17px",
+                      gap: "8px",
+                      borderRadius: "8px",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <span
+                      className={`
+                        relative flex items-center justify-center mr-2
+                        ${isChecked ? "" : ""}
+                      `}
+                      style={{
+                        width: "16px",
+                        height: "16px",
+                        borderRadius: "2px",
+                        border: isChecked
+                          ? "2px solid #ED8936"
+                          : "2px solid #E2E2E2",
+                      }}
+                    >
+                      {isChecked && (
+                        <CheckOutlined
+                          style={{ fontSize: 12, color: "#ED8936" }}
+                        />
+                      )}
+                    </span>
+                    <input
+                      type="checkbox"
+                      checked={isChecked}
+                      onChange={() => handleFlightConceptChange(concept)}
+                      className="hidden"
+                    />
+                    <span
+                      className="text-sm text-[#142347]"
+                      style={fieldTextStyle}
+                    >
+                      {translateFlightConcept(concept)}
+                    </span>
+                  </div>
+                </label>
+              );
+            })}
+            {flightConcepts.length > 4 && (
+              <div
+                className="flex items-center cursor-pointer"
+                style={{
+                  width: "220px",
+                  height: "16px",
+                  gap: "8px",
+                  borderRadius: "8px",
+                }}
+                onClick={() => setShowMoreFlight(!showMoreFlight)}
+              >
+                <Icon
+                  name="arrow-down"
+                  size={16}
+                  color="#93A2B7"
+                  className={showMoreFlight ? "transform rotate-180" : ""}
+                />
+                <span
+                  style={{
+                    fontFamily: "Inter",
+                    fontWeight: 500,
+                    fontSize: "12px",
+                    lineHeight: "100%",
+                    color: "#93A2B7",
+                  }}
+                >
+                  {showMoreFlight ? t("Filters", "less") : t("Filters", "more")}
+                </span>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Star kısmı - hem hotel/package hem de flight için göster */}
+      {(travelType === "package" || travelType === "hotel" || travelType === "flight") && (
         <div className="mb-4">
           <label className="block mb-1" style={headerStyle}>
             {t("Filters", "star")}
@@ -1140,20 +1370,7 @@ const Filters: React.FC = () => {
         </div>
       )}
 
-      {/* Reset butonu - Flight için resetFilters'ı görüntülemem gerektiğinden eklendi */}
-      {travelType === "flight" && (
-        <div className="mb-4 flex justify-end">
-          <Button
-            type="link"
-            size="small"
-            onClick={resetFilters}
-            className="p-0"
-            style={{ color: "#ED8936" }}
-          >
-            {t("Filters", "reset")}
-          </Button>
-        </div>
-      )}
+      {/* Reset butonu - Flight için reset Button kaldırıldı çünkü Flight Concept kısmında var */}
     </div>
   );
 };

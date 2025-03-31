@@ -1,7 +1,4 @@
-// src/components/search/FlightCard.tsx
-
-"use client";
-
+// FlightCard.tsx - Sabit ikon kullanımı ile güncellenmiş
 import React, { JSX } from "react";
 import { Flight } from "../../../data/mockData";
 import { Button } from "antd";
@@ -14,6 +11,12 @@ interface FlightCardProps {
 
 const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
   const { t } = useLanguage();
+
+  // Uçuş sınıfı adını tercüme eden yardımcı fonksiyon 
+  const translateFlightConcept = (concept: string): string => {
+    // Bu örnekte doğrudan concept döndürüyoruz
+    return concept;
+  };
 
   return (
     <div
@@ -127,8 +130,8 @@ const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
               <span>{flight.nights} {t("FlightCard", "hours")}</span>
             </div>
             <div className="flex items-center gap-2 text-sm text-[#142347]">
-              <Icon name="flight" />
-              <span>{flight.concept}</span>
+              <Icon name="flight" size={16} color="#142347" />
+              <span>{translateFlightConcept(flight.concept)}</span>
             </div>
           </div>
 

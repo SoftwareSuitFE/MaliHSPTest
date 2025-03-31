@@ -277,6 +277,7 @@ export const hotels: Hotel[] = [
 ];
 
 // Yeni Uçuş Verileri
+// mockData.ts dosyasındaki flights verisini güncelle
 export const flights: Flight[] = [
   {
     id: 1,
@@ -288,11 +289,11 @@ export const flights: Flight[] = [
     children: 1,
     date: "28 July 2023",
     nights: 4, // Uçuş süresi 4 saat
-    concept: "Direct Flight", // Uçuş türü
+    concept: "Economy Class", // Değiştirildi: "Direct Flight" -> "Economy Class"
     price: 450,
     image:
       "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
-    categories: ["Economy Class", "Refundable", "International"],
+    categories: ["Economy Class", "Direct Flight", "International"],
   },
   {
     id: 2,
@@ -304,11 +305,11 @@ export const flights: Flight[] = [
     children: 0,
     date: "3 August 2023",
     nights: 6, // Uçuş süresi 6 saat
-    concept: "One Stop", // Uçuş türü
+    concept: "Business Class", // Değiştirildi: "One Stop" -> "Business Class"
     price: 520,
     image:
       "https://images.unsplash.com/photo-1556388158-158ea5ccacbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
-    categories: ["Business Class", "Non-refundable", "International"],
+    categories: ["Business Class", "One Stop", "International"],
   },
   {
     id: 3,
@@ -320,11 +321,11 @@ export const flights: Flight[] = [
     children: 2,
     date: "15 August 2023",
     nights: 8, // Uçuş süresi 8 saat
-    concept: "Direct Flight", // Uçuş türü
+    concept: "First Class", // Değiştirildi: "Direct Flight" -> "First Class"
     price: 780,
     image:
       "https://images.unsplash.com/photo-1570710891163-6d3b5c47248b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
-    categories: ["First Class", "Refundable", "International"],
+    categories: ["First Class", "Direct Flight", "International"],
   },
   {
     id: 4,
@@ -336,11 +337,11 @@ export const flights: Flight[] = [
     children: 0,
     date: "20 August 2023",
     nights: 2, // Uçuş süresi 2 saat
-    concept: "Direct Flight", // Uçuş türü
+    concept: "Economy Class", // Değiştirildi: "Direct Flight" -> "Economy Class"
     price: 280,
     image:
       "https://images.unsplash.com/photo-1608023136037-626dad6c6188?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
-    categories: ["Economy Class", "Low Cost", "Domestic"],
+    categories: ["Economy Class", "Direct Flight", "Domestic"],
   },
   {
     id: 5,
@@ -352,11 +353,11 @@ export const flights: Flight[] = [
     children: 1,
     date: "10 September 2023",
     nights: 7, // Uçuş süresi 7 saat
-    concept: "One Stop", // Uçuş türü
+    concept: "Business Class", // Değiştirildi: "One Stop" -> "Business Class"
     price: 650,
     image:
       "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
-    categories: ["Business Class", "Refundable", "International"],
+    categories: ["Business Class", "One Stop", "International"],
   },
   {
     id: 6,
@@ -368,11 +369,11 @@ export const flights: Flight[] = [
     children: 0,
     date: "5 August 2023",
     nights: 5, // Uçuş süresi 5 saat
-    concept: "Direct Flight", // Uçuş türü
+    concept: "Premium Economy", // Değiştirildi: "Direct Flight" -> "Premium Economy"
     price: 580,
     image:
       "https://images.unsplash.com/photo-1606768666853-403c90a981ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
-    categories: ["Premium Economy", "Refundable", "International"],
+    categories: ["Premium Economy", "Direct Flight", "International"],
   },
   {
     id: 7,
@@ -384,11 +385,11 @@ export const flights: Flight[] = [
     children: 1,
     date: "12 August 2023",
     nights: 12, // Uçuş süresi 12 saat
-    concept: "One Stop", // Uçuş türü
+    concept: "First Class", // Değiştirildi: "One Stop" -> "First Class"
     price: 950,
     image:
       "https://images.unsplash.com/photo-1569629743817-70d8db6c323b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
-    categories: ["First Class", "Refundable", "International", "Long Haul"],
+    categories: ["First Class", "One Stop", "International", "Long Haul"],
   },
   {
     id: 8,
@@ -400,11 +401,11 @@ export const flights: Flight[] = [
     children: 0,
     date: "18 August 2023",
     nights: 4, // Uçuş süresi 4 saat
-    concept: "Direct Flight", // Uçuş türü
+    concept: "Business Class", // Değiştirildi: "Direct Flight" -> "Business Class"
     price: 510,
     image:
       "https://images.unsplash.com/photo-1533201357341-8d79b10dd0f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
-    categories: ["Business Class", "Refundable", "International"],
+    categories: ["Business Class", "Direct Flight", "International"],
   },
   {
     id: 9,
@@ -416,11 +417,11 @@ export const flights: Flight[] = [
     children: 0,
     date: "22 August 2023",
     nights: 1, // Uçuş süresi 1 saat
-    concept: "Direct Flight", // Uçuş türü
+    concept: "Economy Class", // Değiştirildi: "Direct Flight" -> "Economy Class"
     price: 150,
     image:
       "https://images.unsplash.com/photo-1525624286412-4099c83c1bc8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
-    categories: ["Economy Class", "Low Cost", "Domestic"],
+    categories: ["Economy Class", "Direct Flight", "Domestic"],
   },
   {
     id: 10,
@@ -432,11 +433,11 @@ export const flights: Flight[] = [
     children: 2,
     date: "25 August 2023",
     nights: 9, // Uçuş süresi 9 saat
-    concept: "One Stop", // Uçuş türü
+    concept: "Business Class", // Değiştirildi: "One Stop" -> "Business Class"
     price: 820,
     image:
       "https://images.unsplash.com/photo-1631807719683-25f08bb2e296?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    categories: ["Business Class", "Refundable", "International", "Long Haul"],
+    categories: ["Business Class", "One Stop", "International", "Long Haul"],
   },
   {
     id: 11,
@@ -448,11 +449,11 @@ export const flights: Flight[] = [
     children: 0,
     date: "1 September 2023",
     nights: 5, // Uçuş süresi 5 saat
-    concept: "Direct Flight", // Uçuş türü
+    concept: "Premium Economy", // Değiştirildi: "Direct Flight" -> "Premium Economy"
     price: 560,
     image:
       "https://images.unsplash.com/photo-1517479149777-5f3b1511d5ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
-    categories: ["Premium Economy", "Refundable", "International"],
+    categories: ["Premium Economy", "Direct Flight", "International"],
   },
   {
     id: 12,
@@ -464,11 +465,11 @@ export const flights: Flight[] = [
     children: 1,
     date: "5 September 2023",
     nights: 3, // Uçuş süresi 3 saat
-    concept: "Direct Flight", // Uçuş türü
+    concept: "Economy Class", // Değiştirildi: "Direct Flight" -> "Economy Class"
     price: 320,
     image:
       "https://images.unsplash.com/photo-1488085061387-422e29b40080?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
-    categories: ["Economy Class", "Charter Flight", "Seasonal"],
+    categories: ["Economy Class", "Direct Flight", "Charter Flight", "Seasonal"],
   },
   {
     id: 13,
@@ -480,11 +481,11 @@ export const flights: Flight[] = [
     children: 0,
     date: "10 September 2023",
     nights: 14, // Uçuş süresi 14 saat
-    concept: "Multiple Stops", // Uçuş türü
+    concept: "First Class", // Değiştirildi: "Multiple Stops" -> "First Class"
     price: 1250,
     image:
       "https://images.unsplash.com/photo-1713763539964-443b76028c9c?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    categories: ["First Class", "Refundable", "International", "Long Haul"],
+    categories: ["First Class", "Multiple Stops", "International", "Long Haul"],
   },
   {
     id: 14,
@@ -496,11 +497,11 @@ export const flights: Flight[] = [
     children: 1,
     date: "15 September 2023",
     nights: 11, // Uçuş süresi 11 saat
-    concept: "Direct Flight", // Uçuş türü
+    concept: "Business Class", // Değiştirildi: "Direct Flight" -> "Business Class"
     price: 980,
     image:
       "https://images.unsplash.com/photo-1583508915901-b5f84c1dcde1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
-    categories: ["Business Class", "Refundable", "International", "Long Haul"],
+    categories: ["Business Class", "Direct Flight", "International", "Long Haul"],
   },
   {
     id: 15,
@@ -512,11 +513,11 @@ export const flights: Flight[] = [
     children: 2,
     date: "20 September 2023",
     nights: 2, // Uçuş süresi 2 saat
-    concept: "Direct Flight", // Uçuş türü
+    concept: "Economy Class", // Değiştirildi: "Direct Flight" -> "Economy Class"
     price: 290,
     image:
       "https://images.unsplash.com/photo-1474302770737-173ee21bab63?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
-    categories: ["Economy Class", "Charter Flight", "Domestic"],
+    categories: ["Economy Class", "Direct Flight", "Charter Flight", "Domestic"],
   },
 ];
 

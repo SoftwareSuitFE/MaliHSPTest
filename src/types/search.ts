@@ -21,5 +21,6 @@ export interface Filters {
   date: string;
   nights: number;
   hotelConcepts: string[];
+  flightConcepts: string[];
   stars: number[];
 }

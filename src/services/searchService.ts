@@ -29,6 +29,7 @@ const DEFAULT_FILTERS: Filters = {
   date: "",
   nights: 5,
   hotelConcepts: [],
+  flightConcepts: [], // New field
   stars: [],
 };
 
