@@ -698,7 +698,7 @@ const SearchForm = () => {
       >
         <div>
           {/* Destination Ikon */}
-          <Icon name="location" size={24}/>
+          <Icon name="search" size={24}/>
         </div>
         <div className="flex flex-col w-full">
           <DestinationDropdown
