@@ -166,11 +166,11 @@ const TravelTabs = () => {
             borderBottomRightRadius: "8px",
           }}
         >
-          <div className="flex items-center">
+          <div className="flex items-center cursor-pointer">
             <div className="mr-2">
               <Icon name="package" size={16} />
             </div>
-            <span className="font-semibold text-sm">{packageText}</span>
+            <span className="font-semibold text-sm text-[#142347]">{packageText}</span>
           </div>
         </button>
 
@@ -190,11 +190,11 @@ const TravelTabs = () => {
             borderBottomRightRadius: "8px",
           }}
         >
-          <div className="flex items-center">
+          <div className="flex items-center cursor-pointer">
             <div className="mr-2">
               <Icon name="hotel" size={16} />
             </div>
-            <span className="font-semibold text-sm">{hotelText}</span>
+            <span className="font-semibold text-sm text-[#142347]">{hotelText}</span>
           </div>
         </button>
 
@@ -214,11 +214,11 @@ const TravelTabs = () => {
             borderBottomRightRadius: "8px",
           }}
         >
-          <div className="flex items-center">
+          <div className="flex items-center cursor-pointer">
             <div className="mr-2">
               <Icon name="flight" size={16} />
             </div>
-            <span className="font-semibold text-sm">{flightText}</span>
+            <span className="font-semibold text-sm text-[#142347]">{flightText}</span>
           </div>
         </button>
       </div>

@@ -716,7 +716,7 @@ const SearchForm = () => {
       {/* Date Field */}
       <div
         ref={dateFieldRef}
-        className="flex items-center relative"
+        className="flex items-center relative cursor-pointer"
         style={{
           width: "115px",
           height: "40px",
@@ -764,7 +764,7 @@ const SearchForm = () => {
       {/* Participants Field */}
       <div
         ref={participantsRef}
-        className="flex items-center"
+        className="flex items-center cursor-pointer"
         style={{
           width: "135px",
           height: "40px",
