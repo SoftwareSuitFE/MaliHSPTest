@@ -546,7 +546,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import dayjs from "dayjs";
 import { useSearch } from "@/hooks/useSearch";
-import { StarFilled, CheckOutlined } from "@ant-design/icons";
+import { CheckOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import Icon from "../../../public/icons/Icon";
 import { useLanguage } from "@/hooks/useLanguage";
