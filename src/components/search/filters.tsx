@@ -3,7 +3,6 @@
 // import React, { useState, useEffect, useRef } from "react";
 // import dayjs from "dayjs";
 // import { useSearch } from "@/hooks/useSearch";
-// import { CheckOutlined } from "@ant-design/icons";
 // import { Button } from "antd";
 // import Icon from "../../../public/icons/Icon";
 // import { useLanguage } from "@/hooks/useLanguage";
@@ -301,10 +300,10 @@
 //   };
 
 //   // Gösterilecek concept listesi
-//   const visibleConcepts = showMore ? baseConcepts : baseConcepts.slice(0, 4);
+//   const visibleConcepts = showMore ? baseConcepts : baseConcepts.slice(0, 5);
 //   const visibleFlightConcepts = showMoreFlight
 //     ? flightConcepts
-//     : flightConcepts.slice(0, 4);
+//     : flightConcepts.slice(0, 5);
 
 //   // Otel konseptini çevirme yardımcı fonksiyonu
 //   const translateConcept = (concept: string): string => {
@@ -448,7 +447,7 @@
 //           <div className="text-[#142347] flex-1" style={fieldTextStyle}>
 //             {startDate ? (
 //               <span>
-//                 {startDate.format("DD MMM YYYY")}
+//                 {startDate.format("DD MMM")}
 //                 {endDate && ` - ${endDate.format("DD MMM")}`}
 //               </span>
 //             ) : (
@@ -538,22 +537,28 @@
 //                     }}
 //                   >
 //                     <span
-//                       className={`
-//                         relative flex items-center justify-center mr-2
-//                         ${isChecked ? "" : ""}
-//                       `}
+//                       className="relative flex items-center justify-center mr-2"
 //                       style={{
 //                         width: "16px",
 //                         height: "16px",
-//                         borderRadius: "2px",
+//                         borderRadius: "4px",
+//                         background: "#FFFFFF",
 //                         border: isChecked
-//                           ? "2px solid #ED8936"
-//                           : "2px solid #E2E2E2",
+//                           ? "1px solid #ED8936"
+//                           : "1px solid #CAD4E0",
+//                         position: "relative",
 //                       }}
 //                     >
 //                       {isChecked && (
-//                         <CheckOutlined
-//                           style={{ fontSize: 12, color: "#ED8936" }}
+//                         <Icon
+//                           name="thick"
+//                           style={{
+//                             position: "absolute",
+//                             width: "8px",
+//                             height: "5.573103904724121px",
+//                             top: "5px",
+//                             left: "4px",
+//                           }}
 //                         />
 //                       )}
 //                     </span>
@@ -643,22 +648,28 @@
 //                     }}
 //                   >
 //                     <span
-//                       className={`
-//                         relative flex items-center justify-center mr-2
-//                         ${isChecked ? "" : ""}
-//                       `}
+//                       className="relative flex items-center justify-center mr-2"
 //                       style={{
 //                         width: "16px",
 //                         height: "16px",
-//                         borderRadius: "2px",
+//                         borderRadius: "4px",
+//                         background: "#FFFFFF",
 //                         border: isChecked
-//                           ? "2px solid #ED8936"
-//                           : "2px solid #E2E2E2",
+//                           ? "1px solid #ED8936"
+//                           : "1px solid #CAD4E0",
+//                         position: "relative",
 //                       }}
 //                     >
 //                       {isChecked && (
-//                         <CheckOutlined
-//                           style={{ fontSize: 12, color: "#ED8936" }}
+//                         <Icon
+//                           name="thick"
+//                           style={{
+//                             position: "absolute",
+//                             width: "8px",
+//                             height: "5.573103904724121px",
+//                             top: "5px",
+//                             left: "4px",
+//                           }}
 //                         />
 //                       )}
 //                     </span>
@@ -787,9 +798,7 @@ const baseConcepts = [
   "Mountain Resort",
 ];
 
-// Flight concept listesi - mockData.ts'den alınan verilerle
-// filters.tsx içinde sadeleştirilmiş flightConcepts listesi
-
+// Flight concept listesi
 const flightConcepts = [
   // Uçuş Sınıfları
   "Economy Class",
@@ -1063,9 +1072,9 @@ const Filters: React.FC = () => {
     updateFilters({ flightConcepts: newConcepts });
   };
 
-  // Gösterilecek concept listesi
+  // Gösterilecek concept listesi - 5 olarak güncellendi (görüntülerde 5 gösterildiği için)
   const visibleConcepts = showMore ? baseConcepts : baseConcepts.slice(0, 5);
-  const visibleFlightConcepts = showMoreFlight ? flightConcepts : flightConcepts.slice(0, 3);
+  const visibleFlightConcepts = showMoreFlight ? flightConcepts : flightConcepts.slice(0, 5);
 
   // Otel konseptini çevirme yardımcı fonksiyonu
   const translateConcept = (concept: string): string => {
@@ -1104,9 +1113,17 @@ const Filters: React.FC = () => {
     color: "#142347",
   };
 
-  const iconStyle = {
-    width: "16px",
-    height: "16px",
+  // Ekran görüntülerinden alınan kesin ölçüler
+  const inputFieldStyle = {
+    width: "220px",  // İç inputların genişliği
+    height: "48px",
+    borderRadius: "8px",
+    border: "1px solid #E2E8F0",
+    background: "#FFFFFF",
+  };
+
+  const sectionStyle = {
+    width: "220px",
   };
 
   return (
@@ -1119,57 +1136,86 @@ const Filters: React.FC = () => {
         padding: "24px",
       }}
     >
-      {/* Filter Başlık */}
-      <h3 className="text-sm font-normal text-[#142347] mb-6">
-        {t("Filters", "title")}
-      </h3>
+      {/* 1. GRUP: Filter, From ve Destination */}
+      <div style={{ marginBottom: "32px" }}>
+        {/* Filter Başlık */}
+        <h3 
+          className="text-sm font-normal text-[#142347]"
+          style={{ fontSize: "14px", marginBottom: "16px" }}
+        >
+          {t("Filters", "title")}
+        </h3>
 
-      {/* From - Sadece package ve flight için göster - DestinationDropdown ile değiştirildi */}
-      {(travelType === "package" || travelType === "flight") && (
-        <div className="mb-4">
-          <div className="filter-input flex items-center rounded-md overflow-hidden w-full">
+        {/* From - Sadece package ve flight için göster */}
+        {(travelType === "package" || travelType === "flight") && (
+          <div style={{ marginBottom: "16px" }}>
+            <div 
+              className="filter-input flex items-center rounded-md overflow-hidden w-full"
+              style={{
+                ...inputFieldStyle,
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <div className="flex items-center h-full pl-3 pr-2">
+                <Icon name="location" size={16} color="#142347" />
+              </div>
+              <DestinationDropdown
+                value={from}
+                onChange={handleFromChange}
+                onSelect={handleFromChange}
+                placeholder={t("Filters", "from")}
+                mode="city"
+                className="h-full rounded-md text-[#142347] placeholder:text-[#142347] w-full border-none focus:outline-none"
+                style={fieldTextStyle}
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Destination - Tüm tiplerde göster */}
+        <div>
+          <div 
+            className="filter-input flex items-center rounded-md overflow-hidden w-full"
+            style={{
+              ...inputFieldStyle,
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <div className="flex items-center h-full pl-3 pr-2">
               <Icon name="location" size={16} color="#142347" />
             </div>
             <DestinationDropdown
-              value={from}
-              onChange={handleFromChange}
-              onSelect={handleFromChange}
-              placeholder={t("Filters", "from")}
-              mode="city"
+              value={destination}
+              onChange={handleDestinationChange}
+              onSelect={handleDestinationChange}
+              placeholder={t("Filters", "destination")}
+              mode={travelType === "hotel" ? "hotel" : "city"}
               className="h-full rounded-md text-[#142347] placeholder:text-[#142347] w-full border-none focus:outline-none"
               style={fieldTextStyle}
             />
           </div>
         </div>
-      )}
-
-      {/* Destination - Tüm tiplerde göster - DestinationDropdown ile değiştirildi */}
-      <div className="mb-4">
-        <div className="filter-input flex items-center rounded-md overflow-hidden w-full">
-          <div className="flex items-center h-full pl-3 pr-2">
-            <Icon name="location" size={16} color="#142347" />
-          </div>
-          <DestinationDropdown
-            value={destination}
-            onChange={handleDestinationChange}
-            onSelect={handleDestinationChange}
-            placeholder={t("Filters", "destination")}
-            mode={travelType === "hotel" ? "hotel" : "city"}
-            className="h-full rounded-md text-[#142347] placeholder:text-[#142347] w-full border-none focus:outline-none"
-            style={fieldTextStyle}
-          />
-        </div>
       </div>
 
-      {/* Participants - Tüm tiplerde göster - PersonPicker ile değiştirildi */}
-      <div className="mb-4">
-        <label className="block mb-1 text-[#142347]" style={headerStyle}>
+      {/* 2. GRUP: Participants */}
+      <div style={{ marginBottom: "32px" }}>
+        <label 
+          className="block text-[#142347]" 
+          style={{ ...headerStyle, marginBottom: "8px", display: "block" }}
+        >
           {t("Filters", "participants")}
         </label>
         <div
           ref={peopleFieldRef}
           className="filter-input flex items-center cursor-pointer overflow-hidden w-full"
+          style={{
+            ...inputFieldStyle,
+            display: "flex",
+            alignItems: "center",
+            cursor: "pointer",
+          }}
           onClick={() => setShowPersonPicker(true)}
         >
           <div className="flex items-center h-full pl-3 pr-2">
@@ -1193,14 +1239,23 @@ const Filters: React.FC = () => {
         )}
       </div>
 
-      {/* Date - Tüm tiplerde göster - DateRangePicker ile değiştirildi */}
-      <div className="mb-4">
-        <label className="block mb-1 text-[#142347]" style={headerStyle}>
+      {/* 3. GRUP: Date */}
+      <div style={{ marginBottom: "32px" }}>
+        <label 
+          className="block text-[#142347]" 
+          style={{ ...headerStyle, marginBottom: "8px", display: "block" }}
+        >
           {t("Filters", "date")}
         </label>
         <div
           ref={dateFieldRef}
           className="filter-input flex items-center cursor-pointer overflow-hidden w-full"
+          style={{
+            ...inputFieldStyle,
+            display: "flex",
+            alignItems: "center",
+            cursor: "pointer",
+          }}
           onClick={() => setShowDatePicker(true)}
         >
           <div className="flex items-center h-full pl-3 pr-2">
@@ -1210,7 +1265,6 @@ const Filters: React.FC = () => {
             {startDate ? (
               <span>
                 {startDate.format("DD MMM YYYY")}
-                {endDate && ` - ${endDate.format("DD MMM")}`}
               </span>
             ) : (
               <span className="text-gray-400">{t("Filters", "date")}</span>
@@ -1231,15 +1285,24 @@ const Filters: React.FC = () => {
         )}
       </div>
 
-      {/* Nights - Sadece package ve hotel için göster - NightPicker ile değiştirildi */}
+      {/* 4. GRUP: Nights - Sadece package ve hotel için göster */}
       {(travelType === "package" || travelType === "hotel") && (
-        <div className="mb-4">
-          <label className="block mb-1 text-[#142347]" style={headerStyle}>
+        <div style={{ marginBottom: "32px" }}>
+          <label 
+            className="block text-[#142347]" 
+            style={{ ...headerStyle, marginBottom: "8px", display: "block" }}
+          >
             {t("Filters", "nights")}
           </label>
           <div
             ref={nightsFieldRef}
             className="filter-input flex items-center cursor-pointer overflow-hidden w-full"
+            style={{
+              ...inputFieldStyle,
+              display: "flex",
+              alignItems: "center",
+              cursor: "pointer",
+            }}
             onClick={() => setShowNightPicker(true)}
           >
             <div className="flex items-center h-full pl-3 pr-2">
@@ -1263,11 +1326,14 @@ const Filters: React.FC = () => {
         </div>
       )}
 
-      {/* Hotel Concept */}
+      {/* 5. GRUP: Hotel Concept */}
       {(travelType === "package" || travelType === "hotel") && (
-        <div className="mb-4">
-          <div className="flex justify-between items-center mb-1">
-            <label className="text-sm" style={headerStyle}>
+        <div style={{ marginBottom: "32px" }}>
+          <div className="flex justify-between items-center" style={{ marginBottom: "8px" }}>
+            <label 
+              className="text-sm"
+              style={{ ...headerStyle }}
+            >
               {t("Filters", "hotelConcept")}
             </label>
             <Button
@@ -1275,25 +1341,35 @@ const Filters: React.FC = () => {
               size="small"
               onClick={resetFilters}
               className="p-0"
-              style={{ color: "#ED8936" }}
+              style={{ color: "#ED8936", padding: 0 }}
             >
               {t("Filters", "reset")}
             </Button>
           </div>
-          <div className="space-y-2">
-            {visibleConcepts.map((concept) => {
+          <div 
+            className="space-y-2"
+            style={{ 
+              ...sectionStyle, 
+              height: showMore ? "auto" : "164px", // More basıldığında otomatik yükseklik
+              transition: "height 0.3s ease"
+            }}
+          >
+            {visibleConcepts.map((concept, index) => {
               const isChecked = concepts.includes(concept);
               return (
                 <label
                   key={concept}
                   className="flex items-center cursor-pointer select-none"
+                  style={{ 
+                    marginBottom: index === visibleConcepts.length - 1 ? 0 : "10px",
+                    display: "flex",
+                    alignItems: "center"
+                  }}
                 >
                   <div
                     style={{
                       width: "220px",
-                      height: "17px",
-                      gap: "8px",
-                      borderRadius: "8px",
+                      height: "24px", // Ekran görüntüsünden alınan değer
                       display: "flex",
                       alignItems: "center",
                     }}
@@ -1307,6 +1383,10 @@ const Filters: React.FC = () => {
                         background: "#FFFFFF",
                         border: isChecked ? "1px solid #ED8936" : "1px solid #CAD4E0",
                         position: "relative",
+                        marginRight: "8px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
                       }}
                     >
                       {isChecked && (
@@ -1338,14 +1418,17 @@ const Filters: React.FC = () => {
                 </label>
               );
             })}
-            {baseConcepts.length > 4 && (
+            {baseConcepts.length > 5 && (
               <div
                 className="flex items-center cursor-pointer"
                 style={{
                   width: "220px",
                   height: "16px",
                   gap: "8px",
-                  borderRadius: "8px",
+                  marginTop: "12px",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center"
                 }}
                 onClick={() => setShowMore(!showMore)}
               >
@@ -1354,6 +1437,7 @@ const Filters: React.FC = () => {
                   size={16}
                   color="#93A2B7"
                   className={showMore ? "transform rotate-180" : ""}
+                  style={{ marginRight: "8px" }}
                 />
                 <span
                   style={{
@@ -1372,11 +1456,14 @@ const Filters: React.FC = () => {
         </div>
       )}
 
-      {/* Flight Concept - Sadece flight için göster */}
+      {/* 5. GRUP: Flight Concept - Sadece flight için göster */}
       {travelType === "flight" && (
-        <div className="mb-4">
-          <div className="flex justify-between items-center mb-1">
-            <label className="text-sm" style={headerStyle}>
+        <div style={{ marginBottom: "32px" }}>
+          <div className="flex justify-between items-center" style={{ marginBottom: "8px" }}>
+            <label 
+              className="text-sm"
+              style={{ ...headerStyle }}
+            >
               {t("Filters", "flightConcept")}
             </label>
             <Button
@@ -1384,25 +1471,35 @@ const Filters: React.FC = () => {
               size="small"
               onClick={resetFilters}
               className="p-0"
-              style={{ color: "#ED8936" }}
+              style={{ color: "#ED8936", padding: 0 }}
             >
               {t("Filters", "reset")}
             </Button>
           </div>
-          <div className="space-y-2">
-            {visibleFlightConcepts.map((concept) => {
+          <div 
+            className="space-y-2"
+            style={{ 
+              ...sectionStyle, 
+              height: showMoreFlight ? "auto" : "164px", // More basıldığında otomatik yükseklik
+              transition: "height 0.3s ease"
+            }}
+          >
+            {visibleFlightConcepts.map((concept, index) => {
               const isChecked = flightConceptsSelected.includes(concept);
               return (
                 <label
                   key={concept}
                   className="flex items-center cursor-pointer select-none"
+                  style={{ 
+                    marginBottom: index === visibleFlightConcepts.length - 1 ? 0 : "10px",
+                    display: "flex",
+                    alignItems: "center"
+                  }}
                 >
                   <div
                     style={{
                       width: "220px",
-                      height: "17px",
-                      gap: "8px",
-                      borderRadius: "8px",
+                      height: "24px", // Ekran görüntüsünden alınan değer
                       display: "flex",
                       alignItems: "center",
                     }}
@@ -1416,6 +1513,10 @@ const Filters: React.FC = () => {
                         background: "#FFFFFF",
                         border: isChecked ? "1px solid #ED8936" : "1px solid #CAD4E0",
                         position: "relative",
+                        marginRight: "8px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
                       }}
                     >
                       {isChecked && (
@@ -1447,14 +1548,17 @@ const Filters: React.FC = () => {
                 </label>
               );
             })}
-            {flightConcepts.length > 4 && (
+            {flightConcepts.length > 5 && (
               <div
                 className="flex items-center cursor-pointer"
                 style={{
                   width: "220px",
                   height: "16px",
                   gap: "8px",
-                  borderRadius: "8px",
+                  marginTop: "12px",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center"
                 }}
                 onClick={() => setShowMoreFlight(!showMoreFlight)}
               >
@@ -1463,6 +1567,7 @@ const Filters: React.FC = () => {
                   size={16}
                   color="#93A2B7"
                   className={showMoreFlight ? "transform rotate-180" : ""}
+                  style={{ marginRight: "8px" }}
                 />
                 <span
                   style={{
@@ -1481,46 +1586,84 @@ const Filters: React.FC = () => {
         </div>
       )}
 
-      {/* Star kısmı - hem hotel/package hem de flight için göster */}
-      {(travelType === "package" || travelType === "hotel" || travelType === "flight") && (
-        <div className="mb-4">
-          <label className="block mb-1" style={headerStyle}>
-            {t("Filters", "star")}
-          </label>
-          <div className="flex flex-col gap-2">
-            {[1, 2, 3, 4, 5].map((starValue) => {
-              const isActive = stars.includes(starValue);
-              return (
+      {/* 6. GRUP: Star */}
+      <div>
+        <label 
+          className="block text-[#142347]" 
+          style={{ ...headerStyle, marginBottom: "8px", display: "block" }}
+        >
+          {t("Filters", "star")}
+        </label>
+        <div className="star-selection" style={{ ...sectionStyle, height: "140px" }}>
+          {[1, 2, 3, 4, 5].map((starValue, index) => {
+            const isActive = stars.includes(starValue);
+            return (
+              <div
+                key={starValue}
+                className="flex items-center cursor-pointer select-none"
+                onClick={() => handleStarClick(starValue)}
+                style={{ 
+                  marginBottom: index === 4 ? 0 : "10px",
+                  display: "flex",
+                  alignItems: "center", 
+                  cursor: "pointer",
+                  height: "20px"
+                }}
+              >
                 <div
-                  key={starValue}
-                  className="flex items-center gap-2 cursor-pointer select-none"
-                  onClick={() => handleStarClick(starValue)}
+                  className="radio-button"
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    borderRadius: "50%",
+                    border: `2px solid ${isActive ? "#ED8936" : "#E2E2E2"}`,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginRight: "8px"
+                  }}
                 >
-                  <div
-                    className={`
-                      relative w-5 h-5 rounded-full border-2 flex items-center justify-center
-                      ${isActive ? "border-[#ED8936]" : "border-[#E2E2E2]"}
-                    `}
-                  >
-                    {isActive && (
-                      <div className="w-2 h-2 rounded-full bg-[#ED8936]" />
-                    )}
-                  </div>
-                  <Icon name="Star" size={16} color="#ED8936" />
+                  {isActive && (
+                    <div 
+                      className="radio-inner"
+                      style={{
+                        width: "8px",
+                        height: "8px",
+                        borderRadius: "50%",
+                        backgroundColor: "#ED8936",
+                        display: "block"
+                      }}
+                    />
+                  )}
+                </div>
+                <div 
+                  style={{ 
+                    display: "flex", 
+                    alignItems: "center" 
+                  }}
+                >
+                  <Icon 
+                    name="Star" 
+                    size={16} 
+                    color="#ED8936" 
+                    style={{ marginRight: "8px" }}
+                  />
                   <span
-                    className="text-sm"
-                    style={{ ...fieldTextStyle, color: "#142347" }}
+                    style={{
+                      ...fieldTextStyle,
+                      color: "#142347",
+                      fontSize: "14px",
+                      fontWeight: 500
+                    }}
                   >
                     {starValue}+
                   </span>
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
-      )}
-
-      {/* Reset butonu - Flight için reset Button kaldırıldı çünkü Flight Concept kısmında var */}
+      </div>
     </div>
   );
 };

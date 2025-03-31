@@ -193,6 +193,7 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
                 lineHeight: "100%",
                 color: "#FFFFFF",
                 textAlign: "center",
+
               }}
             >
               {t("HotelCard", "continue")}
