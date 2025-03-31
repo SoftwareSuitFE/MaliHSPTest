@@ -1,9 +1,11 @@
-// FlightCard.tsx - Sabit ikon kullanımı ile güncellenmiş
+"use client";
+
 import React, { JSX } from "react";
 import { Flight } from "../../../data/mockData";
 import { Button } from "antd";
 import Icon from "../../../public/icons/Icon";
 import { useLanguage } from "@/hooks/useLanguage";
+import { useRouter } from "next/navigation"; // useRouter'ı içe aktarıyoruz
 
 interface FlightCardProps {
   flight: Flight;
@@ -11,11 +13,17 @@ interface FlightCardProps {
 
 const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
   const { t } = useLanguage();
+  const router = useRouter(); // router'ı başlatıyoruz
 
-  // Uçuş sınıfı adını tercüme eden yardımcı fonksiyon 
+  // Uçuş sınıfı adını tercüme eden yardımcı fonksiyon
   const translateFlightConcept = (concept: string): string => {
     // Bu örnekte doğrudan concept döndürüyoruz
     return concept;
+  };
+
+  // Yönlendirme işlemi için event handler
+  const handleBookNow = () => {
+    router.push("/comingsoon");
   };
 
   return (
@@ -67,7 +75,9 @@ const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
       >
         {/* Üst Row: Havayolu adı, yıldızlar, lokasyon */}
         <div className="flex flex-col gap-2">
-          <h3 className="text-xl font-bold text-[#142347] m-0">{flight.name}</h3>
+          <h3 className="text-xl font-bold text-[#142347] m-0">
+            {flight.name}
+          </h3>
           <div className="flex items-center gap-2">
             <div className="flex" style={{ gap: "4px" }}>
               {Array.from({ length: flight.stars }).map((_, i) => (
@@ -115,10 +125,12 @@ const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
             <div className="flex items-center gap-2 text-sm text-[#142347]">
               <Icon name="users" />
               <span>
-                {t("FlightCard", "adults", { count: flight.adults })} - 
-                {flight.children === 1 
-                  ? ` ${t("FlightCard", "child", { count: flight.children })}` 
-                  : ` ${t("FlightCard", "children", { count: flight.children })}`}
+                {t("FlightCard", "adults", { count: flight.adults })} -
+                {flight.children === 1
+                  ? ` ${t("FlightCard", "child", { count: flight.children })}`
+                  : ` ${t("FlightCard", "children", {
+                      count: flight.children,
+                    })}`}
               </span>
             </div>
             <div className="flex items-center gap-2 text-sm text-[#142347]">
@@ -127,7 +139,9 @@ const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
             </div>
             <div className="flex items-center gap-2 text-sm text-[#142347]">
               <Icon name="nights" />
-              <span>{flight.nights} {t("FlightCard", "hours")}</span>
+              <span>
+                {flight.nights} {t("FlightCard", "hours")}
+              </span>
             </div>
             <div className="flex items-center gap-2 text-sm text-[#142347]">
               <Icon name="flight" size={16} color="#142347" />
@@ -187,6 +201,7 @@ const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
 
             {/* Buton */}
             <Button
+              onClick={handleBookNow} // Butona tıklayınca yönlendirme işlemi gerçekleşir
               style={{
                 width: "100%", // mobilde tam genişlik
                 height: "45px",

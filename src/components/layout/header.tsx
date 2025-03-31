@@ -52,257 +52,276 @@
 //           backgroundColor: "#F0F4F8",
 //         }}
 //       >
-//         {/* Üst navigasyonu search sayfasıyla uyumlu konteyner içine alıyoruz */}
-//         <div className="container mx-auto px-4">
-//           <div
-//             className="flex justify-end items-center"
-//             style={{
-//               height: "32px",
-//             }}
-//           >
-//             {/* All elements aligned to the right */}
-//             <div className="flex items-center">
-//               {/* B2B platform */}
-//               <Link
-//                 href="/comingsoon"
-//                 className="text-[#142347] hover:text-[#0057b8] text-xs font-medium flex items-center"
-//                 style={{
-//                   height: "16px",
-//                   fontFamily: "Inter",
-//                   fontSize: "12px",
-//                   fontWeight: 500,
-//                   lineHeight: "100%",
-//                   letterSpacing: "0%",
-//                   marginRight: "16px",
-//                 }}
-//               >
-//                 {t("Header", "b2bPlatform")}
-//               </Link>
+//         {/* Üst navigasyon - tam 1120px genişlikte */}
+//         <div
+//           style={{
+//             maxWidth: "1120px",
+//             margin: "0 auto",
+//             paddingLeft: "16px",
+//             paddingRight: "16px",
+//             height: "32px",
+//           }}
+//           className="flex justify-end items-center"
+//         >
+//           {/* All elements aligned to the right */}
+//           <div className="flex items-center">
+//             {/* B2B platform */}
+//             <Link
+//               href="/comingsoon"
+//               className="text-[#142347] hover:text-[#0057b8] text-xs font-medium flex items-center"
+//               style={{
+//                 height: "16px",
+//                 fontFamily: "Inter",
+//                 fontSize: "12px",
+//                 fontWeight: 500,
+//                 lineHeight: "100%",
+//                 letterSpacing: "0%",
+//                 marginRight: "16px",
+//               }}
+//             >
+//               {t("Header", "b2bPlatform")}
+//             </Link>
 
-//               {/* Client Care */}
-//               <Link
-//                 href="/comingsoon"
-//                 className="text-[#142347] hover:text-[#0057b8] text-xs font-medium flex items-center"
-//                 style={{
-//                   height: "16px",
-//                   fontFamily: "Inter",
-//                   fontSize: "12px",
-//                   fontWeight: 500,
-//                   lineHeight: "100%",
-//                   letterSpacing: "0%",
-//                   marginRight: "16px",
-//                 }}
-//               >
-//                 {t("Header", "clientCare")}
-//               </Link>
+//             {/* Client Care */}
+//             <Link
+//               href="/comingsoon"
+//               className="text-[#142347] hover:text-[#0057b8] text-xs font-medium flex items-center"
+//               style={{
+//                 height: "16px",
+//                 fontFamily: "Inter",
+//                 fontSize: "12px",
+//                 fontWeight: 500,
+//                 lineHeight: "100%",
+//                 letterSpacing: "0%",
+//                 marginRight: "16px",
+//               }}
+//             >
+//               {t("Header", "clientCare")}
+//             </Link>
 
-//               {/* Contact */}
-//               <Link
-//                 href="/comingsoon"
-//                 className="text-[#142347] hover:text-[#0057b8] text-xs font-medium flex items-center"
-//                 style={{
-//                   height: "16px",
-//                   fontFamily: "Inter",
-//                   fontSize: "12px",
-//                   fontWeight: 500,
-//                   lineHeight: "100%",
-//                   letterSpacing: "0%",
-//                   marginRight: "16px",
-//                 }}
-//               >
-//                 {t("Header", "contact")}
-//               </Link>
+//             {/* Contact */}
+//             <Link
+//               href="/comingsoon"
+//               className="text-[#142347] hover:text-[#0057b8] text-xs font-medium flex items-center"
+//               style={{
+//                 height: "16px",
+//                 fontFamily: "Inter",
+//                 fontSize: "12px",
+//                 fontWeight: 500,
+//                 lineHeight: "100%",
+//                 letterSpacing: "0%",
+//                 marginRight: "16px",
+//               }}
+//             >
+//               {t("Header", "contact")}
+//             </Link>
 
-//               {/* Phone */}
+//             {/* Phone */}
+//             <div
+//               className="flex items-center text-[#142347] mr-4"
+//               style={{
+//                 height: "16px",
+//                 paddingLeft: "16px",
+//               }}
+//             >
+//               <span className="flex items-center mr-1">
+//                 <Icon name="phone" />
+//               </span>
+//               <a
+//                 href="tel:+40212101717"
+//                 className="flex items-center text-[#142347]"
+//               >
+//                 <span className="text-xs">+4021 210 17 17</span>
+//               </a>
+//             </div>
+
+//             {/* Favorite Button */}
+//             <div
+//               onClick={handleAddFavorite}
+//               className="flex items-center text-[#142347] mr-4 cursor-pointer"
+//               style={{
+//                 height: "16px",
+//               }}
+//             >
+//               <span className="flex items-center mr-1">
+//                 <Icon name="favorite" />
+//               </span>
+//               <span className="text-xs">{t("Header", "favorite")}</span>
+//             </div>
+
+//             {/* Search Input */}
+//             <div
+//               className="relative mr-4"
+//               style={{
+//                 width: "200px",
+//                 height: "32px",
+//               }}
+//             >
 //               <div
-//                 className="flex items-center text-[#142347] mr-4"
 //                 style={{
+//                   position: "absolute",
+//                   width: "16px",
 //                   height: "16px",
-//                   paddingLeft: "16px",
+//                   top: "8px",
+//                   left: "9px",
+//                   zIndex: 10,
+//                   display: "flex",
+//                   alignItems: "center",
+//                   justifyContent: "center",
 //                 }}
 //               >
-//                 <span className="flex items-center mr-1">
-//                   <Icon name="phone" />
-//                 </span>
-//                 <a
-//                   href="tel:+40212101717"
-//                   className="flex items-center text-[#142347]"
-//                 >
-//                   <span className="text-xs">+4021 210 17 17</span>
-//                 </a>
+//                 <Icon name="searchSm" />
 //               </div>
-
-//               {/* Favorite Button */}
-//               <div
-//                 onClick={handleAddFavorite}
-//                 className="flex items-center text-[#142347] mr-4 cursor-pointer"
-//                 style={{
-//                   height: "16px",
-//                 }}
-//               >
-//                 <span className="flex items-center mr-1">
-//                   <Icon name="favorite" />
-//                 </span>
-//                 <span className="text-xs">{t("Header", "favorite")}</span>
-//               </div>
-
-//               {/* Search Input */}
-//               <div
-//                 className="relative mr-4"
+//               <input
+//                 type="text"
+//                 placeholder={t("Header", "searchPlaceholder")}
+//                 value={searchQuery}
+//                 onChange={(e) => setSearchQuery(e.target.value)}
+//                 className="w-full h-full text-xs"
 //                 style={{
 //                   width: "200px",
 //                   height: "32px",
+//                   borderRadius: "8px",
+//                   background: "#F7F9FB",
+//                   border: "1px solid #E1E7EF",
+//                   fontFamily: "Inter",
+//                   fontSize: "12px",
+//                   fontWeight: 400,
+//                   lineHeight: "100%",
+//                   color: "#142347",
+//                   paddingLeft: "32px",
+//                   paddingTop: "0",
+//                   paddingBottom: "0",
+//                   display: "flex",
+//                   alignItems: "center",
 //                 }}
+//               />
+//             </div>
+
+//             {/* Language Selector */}
+//             <div className="relative">
+//               <button
+//                 onClick={toggleLanguageMenu}
+//                 className="flex items-center cursor-pointer"
+//                 style={{ height: "16px" }}
 //               >
+//                 {/* Flag Icon */}
 //                 <div
+//                   className="flex items-center justify-center"
 //                   style={{
-//                     position: "absolute",
 //                     width: "16px",
 //                     height: "16px",
-//                     top: "8px",
-//                     left: "9px",
-//                     zIndex: 10,
 //                     display: "flex",
 //                     alignItems: "center",
 //                     justifyContent: "center",
 //                   }}
 //                 >
-//                   <Icon name="searchSm" />
+//                   {locale === "tr" ? (
+//                     <Icon name="Turkey" />
+//                   ) : (
+//                     <Icon name="England" />
+//                   )}
 //                 </div>
-//                 <input
-//                   type="text"
-//                   placeholder={t("Header", "searchPlaceholder")}
-//                   value={searchQuery}
-//                   onChange={(e) => setSearchQuery(e.target.value)}
-//                   className="w-full h-full text-xs"
+
+//                 {/* Language Code */}
+//                 <div
+//                   className="flex items-center justify-center"
 //                   style={{
-//                     width: "200px",
-//                     height: "32px",
-//                     borderRadius: "8px",
-//                     background: "#F7F9FB",
-//                     border: "1px solid #E1E7EF",
-//                     fontFamily: "Inter",
-//                     fontSize: "12px",
-//                     fontWeight: 400,
-//                     lineHeight: "100%",
-//                     color: "#142347",
-//                     paddingLeft: "32px",
-//                     paddingTop: "0",
-//                     paddingBottom: "0",
+//                     height: "16px",
+//                     marginLeft: "4px",
+//                     marginRight: "4px",
 //                     display: "flex",
 //                     alignItems: "center",
 //                   }}
-//                 />
-//               </div>
-
-//               {/* Language Selector */}
-//               <div className="relative">
-//                 <button
-//                   onClick={toggleLanguageMenu}
-//                   className="flex items-center cursor-pointer"
-//                   style={{ height: "16px" }}
 //                 >
-//                   {/* Flag Icon */}
-//                   <div
-//                     className="flex items-center justify-center"
+//                   <span
 //                     style={{
-//                       width: "16px",
-//                       height: "16px",
-//                       display: "flex",
-//                       alignItems: "center",
-//                       justifyContent: "center",
+//                       fontFamily: "Inter",
+//                       fontWeight: 500,
+//                       fontSize: "12px",
+//                       lineHeight: "15px",
+//                       color: "#142347",
 //                     }}
 //                   >
-//                     {locale === "tr" ? (
-//                       <Icon name="Turkey" />
-//                     ) : (
+//                     {locale.toUpperCase()}
+//                   </span>
+//                 </div>
+
+//                 {/* Down Caret */}
+//                 <div
+//                   className="flex items-center justify-center"
+//                   style={{
+//                     width: "8px",
+//                     height: "16px",
+//                     display: "flex",
+//                     alignItems: "center",
+//                     justifyContent: "center",
+//                   }}
+//                 >
+//                   <Icon name="arrow-downSmall" />
+//                 </div>
+//               </button>
+
+//               {/* Language Dropdown Menu */}
+//               {showLanguageMenu && (
+//                 <div
+//                   className="absolute right-0 mt-2 bg-white rounded-md shadow-lg z-50"
+//                   style={{
+//                     width: "120px",
+//                     border: "1px solid #E1E7EF",
+//                   }}
+//                 >
+//                   <button
+//                     onClick={() => changeLanguage("en")}
+//                     className={`flex items-center w-full px-4 py-2 text-xs ${
+//                       locale === "en" ? "bg-gray-100" : ""
+//                     } hover:bg-gray-50`}
+//                   >
+//                     <div className="flex items-center justify-center mr-2">
 //                       <Icon name="England" />
-//                     )}
-//                   </div>
-
-//                   {/* Language Code */}
-//                   <div
-//                     className="flex items-center justify-center"
-//                     style={{
-//                       height: "16px",
-//                       marginLeft: "4px",
-//                       marginRight: "4px",
-//                       display: "flex",
-//                       alignItems: "center",
-//                     }}
+//                     </div>
+//                     <span>English</span>
+//                   </button>
+//                   <button
+//                     onClick={() => changeLanguage("tr")}
+//                     className={`flex items-center w-full px-4 py-2 text-xs ${
+//                       locale === "tr" ? "bg-gray-100" : ""
+//                     } hover:bg-gray-50`}
 //                   >
-//                     <span
-//                       style={{
-//                         fontFamily: "Inter",
-//                         fontWeight: 500,
-//                         fontSize: "12px",
-//                         lineHeight: "15px",
-//                         color: "#142347",
-//                       }}
-//                     >
-//                       {locale.toUpperCase()}
-//                     </span>
-//                   </div>
-
-//                   {/* Down Caret */}
-//                   <div
-//                     className="flex items-center justify-center"
-//                     style={{
-//                       width: "8px",
-//                       height: "16px",
-//                       display: "flex",
-//                       alignItems: "center",
-//                       justifyContent: "center",
-//                     }}
-//                   >
-//                     <Icon name="arrow-downSmall" />
-//                   </div>
-//                 </button>
-
-//                 {/* Language Dropdown Menu */}
-//                 {showLanguageMenu && (
-//                   <div
-//                     className="absolute right-0 mt-2 bg-white rounded-md shadow-lg z-50"
-//                     style={{
-//                       width: "120px",
-//                       border: "1px solid #E1E7EF",
-//                     }}
-//                   >
-//                     <button
-//                       onClick={() => changeLanguage("en")}
-//                       className={`flex items-center w-full px-4 py-2 text-xs ${
-//                         locale === "en" ? "bg-gray-100" : ""
-//                       } hover:bg-gray-50`}
-//                     >
-//                       <div className="flex items-center justify-center mr-2">
-//                         <Icon name="England" />
-//                       </div>
-//                       <span>English</span>
-//                     </button>
-//                     <button
-//                       onClick={() => changeLanguage("tr")}
-//                       className={`flex items-center w-full px-4 py-2 text-xs ${
-//                         locale === "tr" ? "bg-gray-100" : ""
-//                       } hover:bg-gray-50`}
-//                     >
-//                       <div className="flex items-center justify-center mr-2">
-//                         <Icon name="Turkey" />
-//                       </div>
-//                       <span>Türkçe</span>
-//                     </button>
-//                   </div>
-//                 )}
-//               </div>
+//                     <div className="flex items-center justify-center mr-2">
+//                       <Icon name="Turkey" />
+//                     </div>
+//                     <span>Türkçe</span>
+//                   </button>
+//                 </div>
+//               )}
 //             </div>
 //           </div>
 //         </div>
 //       </div>
 
-//       {/* Main Navigation - Search sayfasıyla aynı container yapısını kullanıyoruz */}
-//       <div className="container mx-auto px-4 py-4">
-//         {/* Tam olarak aynı kabın içinde olmasını sağlıyoruz */}
-//         <div className="flex justify-between items-center">
-//           <div className="flex items-center">
+//       {/* Main Navigation - Düzeltilmiş yükseklikler */}
+//       <div
+//         style={{
+//           width: "100%",
+//           backgroundColor: "#FFFFFF",
+//           height: "71.91px", // Dış div'in tam yüksekliği
+//         }}
+//       >
+//         <div
+//           style={{
+//             maxWidth: "1120px",
+//             margin: "0 auto",
+//             paddingLeft: "16px",
+//             paddingRight: "16px",
+//             paddingTop: "16px", // Üstten 16px boşluk
+//             paddingBottom: "16px", // Alttan 16px boşluk
+//             height: "71.91px", // Toplam yükseklik
+//           }}
+//           className="flex justify-between items-center"
+//         >
+//           {/* İç içerik - 39.91px yüksekliğinde */}
+//           <div className="flex items-center" style={{ height: "39.91px" }}>
 //             <Link href="/" className="flex items-center">
 //               <div className="relative w-[156.17px] h-[39.91px]">
 //                 <Image
@@ -315,7 +334,10 @@
 //             </Link>
 //           </div>
 
-//           <nav className="hidden md:flex space-x-4">
+//           <nav
+//             className="hidden md:flex space-x-4"
+//             style={{ height: "39.91px" }}
+//           >
 //             <Link
 //               href="/comingsoon"
 //               className="text-sm text-[#142347] hover:text-[#0057b8] flex items-center"
@@ -375,9 +397,633 @@
 // export default Header;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// "use client";
+
+// import { useState, useEffect } from "react";
+// import Link from "next/link";
+// import Image from "next/image";
+// import Icon from "../../../public/icons/Icon";
+// import { useLanguage } from "@/hooks/useLanguage";
+
+// const Header = () => {
+//   const [searchQuery, setSearchQuery] = useState("");
+//   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
+//   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+//   const { locale, setLocale, t } = useLanguage();
+  
+//   // Check if window is less than 768px (mobile)
+//   const [isMobile, setIsMobile] = useState(false);
+  
+//   useEffect(() => {
+//     // Set initial state
+//     setIsMobile(window.innerWidth < 768);
+    
+//     // Add resize listener
+//     const handleResize = () => {
+//       setIsMobile(window.innerWidth < 768);
+//       // Close mobile menu when resizing above mobile breakpoint
+//       if (window.innerWidth >= 768) {
+//         setIsMobileMenuOpen(false);
+//       }
+//     };
+    
+//     window.addEventListener('resize', handleResize);
+    
+//     // Clean up
+//     return () => {
+//       window.removeEventListener('resize', handleResize);
+//     };
+//   }, []);
+
+//   // Toggle language menu
+//   const toggleLanguageMenu = () => {
+//     setShowLanguageMenu(!showLanguageMenu);
+//   };
+
+//   // Toggle mobile menu
+//   const toggleMobileMenu = () => {
+//     setIsMobileMenuOpen(!isMobileMenuOpen);
+//   };
+
+//   // Change language function
+//   const changeLanguage = (lang: string) => {
+//     setLocale(lang);
+//     setShowLanguageMenu(false);
+//   };
+
+//   // Favorilere ekle fonksiyonu
+//   const handleAddFavorite = () => {
+//     const url = window.location.href;
+//     const title = document.title;
+//     try {
+//       if (window.external && "AddFavorite" in window.external) {
+//         window.external.AddFavorite(url, title);
+//       } else {
+//         alert(
+//           "Tarayıcınız otomatik yer imlerine eklemeyi desteklemiyor. Lütfen Ctrl+D (Mac: Cmd+D) tuş kombinasyonunu kullanın."
+//         );
+//       }
+//     } catch (error) {
+//       alert(
+//         "Tarayıcınız yer imlerine eklemeyi desteklemiyor. Lütfen manuel olarak ekleyin."
+//       );
+//     }
+//   };
+
+//   // Added overflow hidden to body when mobile menu is open
+//   useEffect(() => {
+//     if (isMobileMenuOpen) {
+//       document.body.style.overflow = 'hidden';
+//     } else {
+//       document.body.style.overflow = '';
+//     }
+    
+//     // Cleanup function for navigation
+//     return () => {
+//       document.body.style.overflow = '';
+//     };
+//   }, [isMobileMenuOpen]);
+  
+//   // Router change event listener to close mobile menu on page navigation
+//   useEffect(() => {
+//     const handleRouteChange = () => {
+//       if (isMobileMenuOpen) {
+//         setIsMobileMenuOpen(false);
+//         document.body.style.overflow = '';
+//       }
+//     };
+    
+//     // Listen for route changes
+//     window.addEventListener('popstate', handleRouteChange);
+    
+//     return () => {
+//       window.removeEventListener('popstate', handleRouteChange);
+//     };
+//   }, [isMobileMenuOpen]);
+
+//   // Language selector component - reused in mobile and desktop
+//   const LanguageSelector = ({ className = "" }) => (
+//     <div className={`relative ${className}`}>
+//       <button
+//         onClick={toggleLanguageMenu}
+//         className="flex items-center cursor-pointer"
+//         style={{ height: "16px" }}
+//       >
+//         {/* Flag Icon */}
+//         <div
+//           className="flex items-center justify-center"
+//           style={{
+//             width: "16px",
+//             height: "16px",
+//             display: "flex",
+//             alignItems: "center",
+//             justifyContent: "center",
+//           }}
+//         >
+//           {locale === "tr" ? (
+//             <Icon name="Turkey" />
+//           ) : (
+//             <Icon name="England" />
+//           )}
+//         </div>
+
+//         {/* Language Code - hide on mobile */}
+//         <div
+//           className="hidden md:flex items-center justify-center"
+//           style={{
+//             height: "16px",
+//             marginLeft: "4px",
+//             marginRight: "4px",
+//             display: "flex",
+//             alignItems: "center",
+//           }}
+//         >
+//           <span
+//             style={{
+//               fontFamily: "Inter",
+//               fontWeight: 500,
+//               fontSize: "12px",
+//               lineHeight: "15px",
+//               color: "#142347",
+//             }}
+//           >
+//             {locale.toUpperCase()}
+//           </span>
+//         </div>
+
+//         {/* Down Caret - hide on mobile */}
+//         <div
+//           className="hidden md:flex items-center justify-center"
+//           style={{
+//             width: "8px",
+//             height: "16px",
+//             display: "flex",
+//             alignItems: "center",
+//             justifyContent: "center",
+//           }}
+//         >
+//           <Icon name="arrow-downSmall" />
+//         </div>
+//       </button>
+
+//       {/* Language Dropdown Menu */}
+//       {showLanguageMenu && (
+//         <div
+//           className="absolute right-0 mt-2 bg-white rounded-md shadow-lg z-50"
+//           style={{
+//             width: "120px",
+//             border: "1px solid #E1E7EF",
+//           }}
+//         >
+//           <button
+//             onClick={() => changeLanguage("en")}
+//             className={`flex items-center w-full px-4 py-2 text-xs ${
+//               locale === "en" ? "bg-gray-100" : ""
+//             } hover:bg-gray-50`}
+//           >
+//             <div className="flex items-center justify-center mr-2">
+//               <Icon name="England" />
+//             </div>
+//             <span>English</span>
+//           </button>
+//           <button
+//             onClick={() => changeLanguage("tr")}
+//             className={`flex items-center w-full px-4 py-2 text-xs ${
+//               locale === "tr" ? "bg-gray-100" : ""
+//             } hover:bg-gray-50`}
+//           >
+//             <div className="flex items-center justify-center mr-2">
+//               <Icon name="Turkey" />
+//             </div>
+//             <span>Türkçe</span>
+//           </button>
+//         </div>
+//       )}
+//     </div>
+//   );
+
+//   return (
+//     <header className="w-full">
+//       {/* Top Navigation Bar - Hide on mobile */}
+//       <div
+//         className="hidden md:block"
+//         style={{
+//           height: "40px",
+//           paddingTop: "4px",
+//           paddingBottom: "4px",
+//           backgroundColor: "#F0F4F8",
+//         }}
+//       >
+//         {/* Üst navigasyon - tam 1120px genişlikte */}
+//         <div 
+//           style={{
+//             maxWidth: "1120px",
+//             margin: "0 auto",
+//             paddingLeft: "16px",
+//             paddingRight: "16px",
+//             height: "32px",
+//           }}
+//           className="flex justify-end items-center"
+//         >
+//           {/* All elements aligned to the right */}
+//           <div className="flex items-center">
+//             {/* B2B platform */}
+//             <Link
+//               href="/comingsoon"
+//               className="text-[#142347] hover:text-[#0057b8] text-xs font-medium flex items-center"
+//               style={{
+//                 height: "16px",
+//                 fontFamily: "Inter",
+//                 fontSize: "12px",
+//                 fontWeight: 500,
+//                 lineHeight: "100%",
+//                 letterSpacing: "0%",
+//                 marginRight: "16px",
+//               }}
+//             >
+//               {t("Header", "b2bPlatform")}
+//             </Link>
+
+//             {/* Client Care */}
+//             <Link
+//               href="/comingsoon"
+//               className="text-[#142347] hover:text-[#0057b8] text-xs font-medium flex items-center"
+//               style={{
+//                 height: "16px",
+//                 fontFamily: "Inter",
+//                 fontSize: "12px",
+//                 fontWeight: 500,
+//                 lineHeight: "100%",
+//                 letterSpacing: "0%",
+//                 marginRight: "16px",
+//               }}
+//             >
+//               {t("Header", "clientCare")}
+//             </Link>
+
+//             {/* Contact */}
+//             <Link
+//               href="/comingsoon"
+//               className="text-[#142347] hover:text-[#0057b8] text-xs font-medium flex items-center"
+//               style={{
+//                 height: "16px",
+//                 fontFamily: "Inter",
+//                 fontSize: "12px",
+//                 fontWeight: 500,
+//                 lineHeight: "100%",
+//                 letterSpacing: "0%",
+//                 marginRight: "16px",
+//               }}
+//             >
+//               {t("Header", "contact")}
+//             </Link>
+
+//             {/* Phone */}
+//             <div
+//               className="flex items-center text-[#142347] mr-4"
+//               style={{
+//                 height: "16px",
+//                 paddingLeft: "16px",
+//               }}
+//             >
+//               <span className="flex items-center mr-1">
+//                 <Icon name="phone" />
+//               </span>
+//               <a
+//                 href="tel:+40212101717"
+//                 className="flex items-center text-[#142347]"
+//               >
+//                 <span className="text-xs">+4021 210 17 17</span>
+//               </a>
+//             </div>
+
+//             {/* Favorite Button */}
+//             <div
+//               onClick={handleAddFavorite}
+//               className="flex items-center text-[#142347] mr-4 cursor-pointer"
+//               style={{
+//                 height: "16px",
+//               }}
+//             >
+//               <span className="flex items-center mr-1">
+//                 <Icon name="favorite" />
+//               </span>
+//               <span className="text-xs">{t("Header", "favorite")}</span>
+//             </div>
+
+//             {/* Search Input */}
+//             <div
+//               className="relative mr-4"
+//               style={{
+//                 width: "200px",
+//                 height: "32px",
+//               }}
+//             >
+//               <div
+//                 style={{
+//                   position: "absolute",
+//                   width: "16px",
+//                   height: "16px",
+//                   top: "8px",
+//                   left: "9px",
+//                   zIndex: 10,
+//                   display: "flex",
+//                   alignItems: "center",
+//                   justifyContent: "center",
+//                 }}
+//               >
+//                 <Icon name="searchSm" />
+//               </div>
+//               <input
+//                 type="text"
+//                 placeholder={t("Header", "searchPlaceholder")}
+//                 value={searchQuery}
+//                 onChange={(e) => setSearchQuery(e.target.value)}
+//                 className="w-full h-full text-xs"
+//                 style={{
+//                   width: "200px",
+//                   height: "32px",
+//                   borderRadius: "8px",
+//                   background: "#F7F9FB",
+//                   border: "1px solid #E1E7EF",
+//                   fontFamily: "Inter",
+//                   fontSize: "12px",
+//                   fontWeight: 400,
+//                   lineHeight: "100%",
+//                   color: "#142347",
+//                   paddingLeft: "32px",
+//                   paddingTop: "0",
+//                   paddingBottom: "0",
+//                   display: "flex",
+//                   alignItems: "center",
+//                 }}
+//               />
+//             </div>
+
+//             {/* Language Selector - Desktop */}
+//             <LanguageSelector />
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Main Navigation - Mobile & Desktop */}
+//       <div 
+//         style={{
+//           width: "100%",
+//           backgroundColor: "#FFFFFF",
+//           height: "71.91px", // Dış div'in tam yüksekliği
+//         }}
+//       >
+//         <div 
+//           style={{
+//             maxWidth: "1120px",
+//             margin: "0 auto",
+//             paddingLeft: "16px",
+//             paddingRight: "16px",
+//             paddingTop: "16px",    // Üstten 16px boşluk 
+//             paddingBottom: "16px", // Alttan 16px boşluk
+//             height: "71.91px",     // Toplam yükseklik
+//           }}
+//           className="flex justify-between items-center"
+//         >
+//           {/* Mobile View: Left - Language Selector */}
+//           <div className="md:hidden flex items-center">
+//             <LanguageSelector />
+//           </div>
+
+//           {/* Logo - Center on mobile */}
+//           <div className={`flex items-center ${isMobile ? 'mx-auto' : ''}`} style={{ height: "39.91px" }}>
+//             <Link href="/" className="flex items-center">
+//               <div className="relative w-[156.17px] h-[39.91px]">
+//                 <Image
+//                   src="/logo/travelgo.svg"
+//                   alt="TRAVELGO"
+//                   fill
+//                   style={{ objectFit: "contain" }}
+//                 />
+//               </div>
+//             </Link>
+//           </div>
+
+//           {/* Desktop navigation */}
+//           <nav className="hidden md:flex space-x-4" style={{ height: "39.91px" }}>
+//             <Link
+//               href="/comingsoon"
+//               className="text-sm text-[#142347] hover:text-[#0057b8] flex items-center"
+//               style={{ fontFamily: "Inter" }}
+//             >
+//               {t("Header", "popularDestinations")}
+//             </Link>
+//             <Link
+//               href="/comingsoon"
+//               className="text-sm text-[#142347] hover:text-[#0057b8] flex items-center"
+//               style={{ fontFamily: "Inter" }}
+//             >
+//               {t("Header", "topHotels")}
+//             </Link>
+//             <Link
+//               href="/comingsoon"
+//               className="text-sm text-[#142347] hover:text-[#0057b8] flex items-center"
+//               style={{ fontFamily: "Inter" }}
+//             >
+//               {t("Header", "lastMinute")}
+//             </Link>
+//             <Link
+//               href="/comingsoon"
+//               className="text-sm text-[#142347] hover:text-[#0057b8] flex items-center"
+//               style={{ fontFamily: "Inter" }}
+//             >
+//               {t("Header", "recommended")}
+//             </Link>
+//             <Link
+//               href="/comingsoon"
+//               className="text-sm text-[#142347] hover:text-[#0057b8] flex items-center"
+//               style={{ fontFamily: "Inter" }}
+//             >
+//               {t("Header", "charterAntalya")}
+//             </Link>
+//             <Link
+//               href="/comingsoon"
+//               className="text-sm text-[#142347] hover:text-[#0057b8] flex items-center"
+//               style={{ fontFamily: "Inter" }}
+//             >
+//               {t("Header", "cityBreakIstanbul")}
+//             </Link>
+//           </nav>
+
+//           {/* Mobile Menu Button - Right on mobile */}
+//           <div className="md:hidden">
+//             <button 
+//               className="text-gray-800" 
+//               aria-label="Toggle mobile menu"
+//               onClick={toggleMobileMenu}
+//             >
+//               {isMobileMenuOpen ? (
+//                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+//                   <line x1="18" y1="6" x2="6" y2="18"></line>
+//                   <line x1="6" y1="6" x2="18" y2="18"></line>
+//                 </svg>
+//               ) : (
+//                 <Icon name="hamburger" />
+//               )}
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Mobile Menu Overlay */}
+//       {isMobileMenuOpen && (
+//         <div className="md:hidden fixed inset-0 bg-white z-50 pt-24 overflow-y-auto pb-16">
+//           <div className="px-4 space-y-6">
+//             {/* Top Navigation Items */}
+//             <div className="border-b border-gray-200 pb-4 space-y-4">
+//               <Link
+//                 href="/comingsoon"
+//                 className="text-[#142347] py-2 flex items-center text-base"
+//                 onClick={() => setIsMobileMenuOpen(false)}
+//               >
+//                 {t("Header", "b2bPlatform")}
+//               </Link>
+              
+//               <Link
+//                 href="/comingsoon"
+//                 className="text-[#142347] py-2 flex items-center text-base"
+//                 onClick={() => setIsMobileMenuOpen(false)}
+//               >
+//                 {t("Header", "clientCare")}
+//               </Link>
+              
+//               <Link
+//                 href="/comingsoon"
+//                 className="text-[#142347] py-2 flex items-center text-base"
+//                 onClick={() => setIsMobileMenuOpen(false)}
+//               >
+//                 {t("Header", "contact")}
+//               </Link>
+              
+//               <a
+//                 href="tel:+40212101717"
+//                 className="text-[#142347] py-2 flex items-center text-base"
+//                 onClick={() => setIsMobileMenuOpen(false)}
+//               >
+//                 <span className="flex items-center mr-1">
+//                   <Icon name="phone" />
+//                 </span>
+//                 <span>+4021 210 17 17</span>
+//               </a>
+              
+//               <button
+//                 onClick={() => {
+//                   handleAddFavorite();
+//                   setIsMobileMenuOpen(false);
+//                 }}
+//                 className="text-[#142347] py-2 flex items-center text-base w-full text-left"
+//               >
+//                 <span className="flex items-center mr-1">
+//                   <Icon name="favorite" />
+//                 </span>
+//                 <span>{t("Header", "favorite")}</span>
+//               </button>
+              
+//               <div className="py-2">
+//                 <div className="relative">
+//                   <div className="absolute left-2 top-1/2 transform -translate-y-1/2">
+//                     <Icon name="searchSm" />
+//                   </div>
+//                   <input
+//                     type="text"
+//                     placeholder={t("Header", "searchPlaceholder")}
+//                     value={searchQuery}
+//                     onChange={(e) => setSearchQuery(e.target.value)}
+//                     className="w-full py-2 pl-8 pr-4 border border-gray-300 rounded-lg text-sm"
+//                   />
+//                 </div>
+//               </div>
+//             </div>
+            
+//             {/* Main Navigation Items */}
+//             <div className="space-y-4">
+//               <Link
+//                 href="/comingsoon"
+//                 className="text-[#142347] py-2 flex items-center text-base"
+//                 onClick={() => setIsMobileMenuOpen(false)}
+//               >
+//                 {t("Header", "popularDestinations")}
+//               </Link>
+              
+//               <Link
+//                 href="/comingsoon"
+//                 className="text-[#142347] py-2 flex items-center text-base"
+//                 onClick={() => setIsMobileMenuOpen(false)}
+//               >
+//                 {t("Header", "topHotels")}
+//               </Link>
+              
+//               <Link
+//                 href="/comingsoon"
+//                 className="text-[#142347] py-2 flex items-center text-base"
+//                 onClick={() => setIsMobileMenuOpen(false)}
+//               >
+//                 {t("Header", "lastMinute")}
+//               </Link>
+              
+//               <Link
+//                 href="/comingsoon"
+//                 className="text-[#142347] py-2 flex items-center text-base"
+//                 onClick={() => setIsMobileMenuOpen(false)}
+//               >
+//                 {t("Header", "recommended")}
+//               </Link>
+              
+//               <Link
+//                 href="/comingsoon"
+//                 className="text-[#142347] py-2 flex items-center text-base"
+//                 onClick={() => setIsMobileMenuOpen(false)}
+//               >
+//                 {t("Header", "charterAntalya")}
+//               </Link>
+              
+//               <Link
+//                 href="/comingsoon"
+//                 className="text-[#142347] py-2 flex items-center text-base"
+//                 onClick={() => setIsMobileMenuOpen(false)}
+//               >
+//                 {t("Header", "cityBreakIstanbul")}
+//               </Link>
+//             </div>
+//           </div>
+//         </div>
+//       )}
+//     </header>
+//   );
+// };
+
+// export default Header;
+
+
+
+
+
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Icon from "../../../public/icons/Icon";
@@ -386,11 +1032,41 @@ import { useLanguage } from "@/hooks/useLanguage";
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { locale, setLocale, t } = useLanguage();
+  
+  // Check if window is less than 768px (mobile)
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    // Set initial state
+    setIsMobile(window.innerWidth < 768);
+    
+    // Add resize listener
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+      // Close mobile menu when resizing above mobile breakpoint
+      if (window.innerWidth >= 768) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    // Clean up
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   // Toggle language menu
   const toggleLanguageMenu = () => {
     setShowLanguageMenu(!showLanguageMenu);
+  };
+
+  // Toggle mobile menu
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   // Change language function
@@ -418,10 +1094,145 @@ const Header = () => {
     }
   };
 
+  // Added overflow hidden to body when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    
+    // Cleanup function for navigation
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+  
+  // Router change event listener to close mobile menu on page navigation
+  useEffect(() => {
+    const handleRouteChange = () => {
+      if (isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+        document.body.style.overflow = '';
+      }
+    };
+    
+    // Listen for route changes
+    window.addEventListener('popstate', handleRouteChange);
+    
+    return () => {
+      window.removeEventListener('popstate', handleRouteChange);
+    };
+  }, [isMobileMenuOpen]);
+
+  // Language selector component - reused in mobile and desktop
+  const LanguageSelector = ({ className = "", isMobileView = false }) => (
+    <div className={`relative ${className}`}>
+      <button
+        onClick={toggleLanguageMenu}
+        className="flex items-center cursor-pointer"
+        style={{ height: "16px" }}
+      >
+        {/* Flag Icon */}
+        <div
+          className="flex items-center justify-center"
+          style={{
+            width: "16px",
+            height: "16px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {locale === "tr" ? (
+            <Icon name="Turkey" />
+          ) : (
+            <Icon name="England" />
+          )}
+        </div>
+
+        {/* Language Code - hide on mobile */}
+        <div
+          className="hidden md:flex items-center justify-center"
+          style={{
+            height: "16px",
+            marginLeft: "4px",
+            marginRight: "4px",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "Inter",
+              fontWeight: 500,
+              fontSize: "12px",
+              lineHeight: "15px",
+              color: "#142347",
+            }}
+          >
+            {locale.toUpperCase()}
+          </span>
+        </div>
+
+        {/* Down Caret - hide on mobile */}
+        <div
+          className="hidden md:flex items-center justify-center"
+          style={{
+            width: "8px",
+            height: "16px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Icon name="arrow-downSmall" />
+        </div>
+      </button>
+
+      {/* Language Dropdown Menu */}
+      {showLanguageMenu && (
+        <div
+          className="absolute mt-2 bg-white rounded-md shadow-lg z-50"
+          style={{
+            width: "120px",
+            border: "1px solid #E1E7EF",
+            right: isMobileView ? "0" : "auto", // Sağ tarafta olacak şekilde mobil görünümde
+            left: isMobileView ? "auto" : "0",  // Desktop'ta solda
+          }}
+        >
+          <button
+            onClick={() => changeLanguage("en")}
+            className={`flex items-center w-full px-4 py-2 text-xs ${
+              locale === "en" ? "bg-gray-100" : ""
+            } hover:bg-gray-50`}
+          >
+            <div className="flex items-center justify-center mr-2">
+              <Icon name="England" />
+            </div>
+            <span>English</span>
+          </button>
+          <button
+            onClick={() => changeLanguage("tr")}
+            className={`flex items-center w-full px-4 py-2 text-xs ${
+              locale === "tr" ? "bg-gray-100" : ""
+            } hover:bg-gray-50`}
+          >
+            <div className="flex items-center justify-center mr-2">
+              <Icon name="Turkey" />
+            </div>
+            <span>Türkçe</span>
+          </button>
+        </div>
+      )}
+    </div>
+  );
+
   return (
     <header className="w-full">
-      {/* Top Navigation Bar */}
+      {/* Top Navigation Bar - Hide on mobile */}
       <div
+        className="hidden md:block"
         style={{
           height: "40px",
           paddingTop: "4px",
@@ -575,109 +1386,13 @@ const Header = () => {
               />
             </div>
 
-            {/* Language Selector */}
-            <div className="relative">
-              <button
-                onClick={toggleLanguageMenu}
-                className="flex items-center cursor-pointer"
-                style={{ height: "16px" }}
-              >
-                {/* Flag Icon */}
-                <div
-                  className="flex items-center justify-center"
-                  style={{
-                    width: "16px",
-                    height: "16px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  {locale === "tr" ? (
-                    <Icon name="Turkey" />
-                  ) : (
-                    <Icon name="England" />
-                  )}
-                </div>
-
-                {/* Language Code */}
-                <div
-                  className="flex items-center justify-center"
-                  style={{
-                    height: "16px",
-                    marginLeft: "4px",
-                    marginRight: "4px",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <span
-                    style={{
-                      fontFamily: "Inter",
-                      fontWeight: 500,
-                      fontSize: "12px",
-                      lineHeight: "15px",
-                      color: "#142347",
-                    }}
-                  >
-                    {locale.toUpperCase()}
-                  </span>
-                </div>
-
-                {/* Down Caret */}
-                <div
-                  className="flex items-center justify-center"
-                  style={{
-                    width: "8px",
-                    height: "16px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Icon name="arrow-downSmall" />
-                </div>
-              </button>
-
-              {/* Language Dropdown Menu */}
-              {showLanguageMenu && (
-                <div
-                  className="absolute right-0 mt-2 bg-white rounded-md shadow-lg z-50"
-                  style={{
-                    width: "120px",
-                    border: "1px solid #E1E7EF",
-                  }}
-                >
-                  <button
-                    onClick={() => changeLanguage("en")}
-                    className={`flex items-center w-full px-4 py-2 text-xs ${
-                      locale === "en" ? "bg-gray-100" : ""
-                    } hover:bg-gray-50`}
-                  >
-                    <div className="flex items-center justify-center mr-2">
-                      <Icon name="England" />
-                    </div>
-                    <span>English</span>
-                  </button>
-                  <button
-                    onClick={() => changeLanguage("tr")}
-                    className={`flex items-center w-full px-4 py-2 text-xs ${
-                      locale === "tr" ? "bg-gray-100" : ""
-                    } hover:bg-gray-50`}
-                  >
-                    <div className="flex items-center justify-center mr-2">
-                      <Icon name="Turkey" />
-                    </div>
-                    <span>Türkçe</span>
-                  </button>
-                </div>
-              )}
-            </div>
+            {/* Language Selector - Desktop */}
+            <LanguageSelector />
           </div>
         </div>
       </div>
 
-      {/* Main Navigation - Düzeltilmiş yükseklikler */}
+      {/* Main Navigation - Mobile & Desktop */}
       <div 
         style={{
           width: "100%",
@@ -697,8 +1412,13 @@ const Header = () => {
           }}
           className="flex justify-between items-center"
         >
-          {/* İç içerik - 39.91px yüksekliğinde */}
-          <div className="flex items-center" style={{ height: "39.91px" }}>
+          {/* Mobile View: Left - Language Selector */}
+          <div className="md:hidden flex items-center" style={{ position: "relative" }}>
+            <LanguageSelector isMobileView={true} />
+          </div>
+
+          {/* Logo - Center on mobile */}
+          <div className={`flex items-center ${isMobile ? 'mx-auto' : ''}`} style={{ height: "39.91px" }}>
             <Link href="/" className="flex items-center">
               <div className="relative w-[156.17px] h-[39.91px]">
                 <Image
@@ -711,6 +1431,7 @@ const Header = () => {
             </Link>
           </div>
 
+          {/* Desktop navigation */}
           <nav className="hidden md:flex space-x-4" style={{ height: "39.91px" }}>
             <Link
               href="/comingsoon"
@@ -756,14 +1477,148 @@ const Header = () => {
             </Link>
           </nav>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Right on mobile */}
           <div className="md:hidden">
-            <button className="text-gray-600" aria-label="Toggle mobile menu">
-              <Icon name="hamburger" />
+            <button 
+              className="text-gray-800 flex items-center justify-center" 
+              aria-label="Toggle mobile menu"
+              onClick={toggleMobileMenu}
+              style={{ width: "24px", height: "24px" }}
+            >
+              {isMobileMenuOpen ? (
+               <Icon name="close" size={16} />
+               
+              ) : (
+                <Icon name="hamburger" />
+              )}
             </button>
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden fixed inset-0 bg-white z-50 pt-24 overflow-y-auto pb-16">
+          <div className="px-4 space-y-6">
+            {/* Top Navigation Items */}
+            <div className="border-b border-gray-200 pb-4 space-y-4">
+              <Link
+                href="/comingsoon"
+                className="text-[#142347] py-2 flex items-center text-base"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t("Header", "b2bPlatform")}
+              </Link>
+              
+              <Link
+                href="/comingsoon"
+                className="text-[#142347] py-2 flex items-center text-base"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t("Header", "clientCare")}
+              </Link>
+              
+              <Link
+                href="/comingsoon"
+                className="text-[#142347] py-2 flex items-center text-base"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t("Header", "contact")}
+              </Link>
+              
+              <a
+                href="tel:+40212101717"
+                className="text-[#142347] py-2 flex items-center text-base"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <span className="flex items-center mr-1">
+                  <Icon name="phone" />
+                </span>
+                <span>+4021 210 17 17</span>
+              </a>
+              
+              <button
+                onClick={() => {
+                  handleAddFavorite();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="text-[#142347] py-2 flex items-center text-base w-full text-left"
+              >
+                <span className="flex items-center mr-1">
+                  <Icon name="favorite" />
+                </span>
+                <span>{t("Header", "favorite")}</span>
+              </button>
+              
+              <div className="py-2">
+                <div className="relative">
+                  <div className="absolute left-2 top-1/2 transform -translate-y-1/2">
+                    <Icon name="searchSm" />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder={t("Header", "searchPlaceholder")}
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full py-2 pl-8 pr-4 border border-gray-300 rounded-lg text-sm"
+                  />
+                </div>
+              </div>
+            </div>
+            
+            {/* Main Navigation Items */}
+            <div className="space-y-4">
+              <Link
+                href="/comingsoon"
+                className="text-[#142347] py-2 flex items-center text-base"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t("Header", "popularDestinations")}
+              </Link>
+              
+              <Link
+                href="/comingsoon"
+                className="text-[#142347] py-2 flex items-center text-base"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t("Header", "topHotels")}
+              </Link>
+              
+              <Link
+                href="/comingsoon"
+                className="text-[#142347] py-2 flex items-center text-base"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t("Header", "lastMinute")}
+              </Link>
+              
+              <Link
+                href="/comingsoon"
+                className="text-[#142347] py-2 flex items-center text-base"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t("Header", "recommended")}
+              </Link>
+              
+              <Link
+                href="/comingsoon"
+                className="text-[#142347] py-2 flex items-center text-base"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t("Header", "charterAntalya")}
+              </Link>
+              
+              <Link
+                href="/comingsoon"
+                className="text-[#142347] py-2 flex items-center text-base"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t("Header", "cityBreakIstanbul")}
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
