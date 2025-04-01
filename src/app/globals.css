@@ -222,3 +222,52 @@ body {
     background-color: white !important;
   }
 }
+
+
+
+
+
+/* SearchForm Responsive Styles */
+@media (max-width: 767px) {
+  /* Ana SearchForm container */
+  div[style*="width: 930px"][style*="height: 92px"] {
+    width: 100% !important;
+    max-width: 930px !important;
+    height: auto !important;
+    flex-direction: column !important;
+    padding: 16px !important;
+    gap: 16px !important;
+  }
+  
+  /* İç form container */
+  div[style*="width: 748px"][style*="height: 60px"] {
+    width: 100% !important;
+    height: auto !important;
+    flex-direction: column !important;
+    padding: 16px !important;
+    gap: 16px !important;
+    background-color: white !important;
+  }
+  
+  /* Form elemanları */
+  div[style*="width: 748px"][style*="height: 60px"] > div[style*="width"],
+  div[style*="width: 748px"][style*="height: 60px"] > div[class*="flex items-center"] {
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: 1px solid #E1E7EF !important;
+    padding-bottom: 12px !important;
+    padding-top: 0 !important;
+  }
+  
+  /* Son form elemanı için alt border kaldır */
+  div[style*="width: 748px"][style*="height: 60px"] > div:last-child {
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
+  
+  /* Search butonu */
+  button[style*="width: 142px"][style*="height: 60px"] {
+    width: 100% !important;
+    margin-top: 8px !important;
+  }
+}
