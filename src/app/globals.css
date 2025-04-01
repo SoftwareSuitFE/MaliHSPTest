@@ -416,6 +416,7 @@ body {
 
 
 /* SearchForm Animation Styles */
+/* SearchForm Animation Styles */
 /* Form container için geçiş efekti */
 div[style*="width: 748px"][style*="height: 60px"] {
   transition: all 0.3s ease-in-out !important;
@@ -424,18 +425,57 @@ div[style*="width: 748px"][style*="height: 60px"] {
 /* Form içindeki elemanlar için geçişleri yumuşatma */
 div[style*="width: 748px"][style*="height: 60px"] > div {
   transition: all 0.3s ease-in-out !important;
-  animation: fadeInUp 0.35s ease-in-out !important;
+  animation: slideInFromLeft 0.35s ease-in-out !important;
 }
 
-/* Yeni eklenen form elemanları için yukarıdan aşağıya geçiş animasyonu */
-@keyframes fadeInUp {
+/* Yeni eklenen form elemanları için soldan sağa geçiş animasyonu */
+@keyframes slideInFromLeft {
   from {
     opacity: 0;
-    transform: translateY(-15px);
+    transform: translateX(-30px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
+  }
+}
+
+/* Package tab'ına tıklandığında soldan gelen animasyon */
+[data-travel-type="package"] div[style*="width: 748px"][style*="height: 60px"] > div {
+  animation: slideInFromLeft 0.35s ease-in-out !important;
+}
+
+/* Hotel tab'ına tıklandığında ortadan yayılan animasyon */
+[data-travel-type="hotel"] div[style*="width: 748px"][style*="height: 60px"] > div {
+  animation: slideInFromCenter 0.35s ease-in-out !important;
+}
+
+/* Flight tab'ına tıklandığında sağdan gelen animasyon */
+[data-travel-type="flight"] div[style*="width: 748px"][style*="height: 60px"] > div {
+  animation: slideInFromRight 0.35s ease-in-out !important;
+}
+
+/* Sağdan sola geçiş animasyonu */
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Ortadan yayılma animasyonu */
+@keyframes slideInFromCenter {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
