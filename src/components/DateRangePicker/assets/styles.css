@@ -1,0 +1,17 @@
+/* DateRangePicker için dinamik stiller CSS custom property'ler ile */
+.dateRangePickerContainer {
+  top: var(--dropdown-top);
+  left: var(--dropdown-left);
+  width: var(--dropdown-width);
+  max-width: 630px;
+}
+
+/* Önceki ay butonu için ek stil */
+.prevMonthButton {
+  left: -12px;
+}
+
+/* Sonraki ay butonu için ek stil */
+.nextMonthButton {
+  right: -12px;
+}
