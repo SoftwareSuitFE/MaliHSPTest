@@ -1,109 +1,292 @@
-/* Arka plandaki büyük container */
-.searchFormContainer {
-    width: 930px;
-    height: 92px;
-    padding: 16px;
-    gap: 8px;
-    border-radius: 8px;
-    backdrop-filter: blur(4px);
-    box-shadow: 0px 0px 32px 0px #00000029;
+/* Ana form container stilleri */
+.search-form-container {
+  width: 930px;
+  height: 92px;
+  padding: 16px;
+  gap: 8px;
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0px 0px 32px 0px #00000029;
+}
+
+/* İç form container stilleri */
+.search-form-inner {
+  width: 748px;
+  height: 60px;
+  padding: 8px;
+  gap: 8px;
+  border-radius: 8px;
+}
+
+/* From Field */
+.search-form-field-from {
+  width: 170px;
+  height: 40px;
+  gap: 8px;
+  padding: 8px;
+  border-right: 1px solid #E1E7EF;
+}
+
+/* Destination Field */
+.search-form-field-destination {
+  width: 170px;
+  height: 40px;
+  gap: 8px;
+  padding: 8px;
+  border-right: 1px solid #E1E7EF;
+}
+
+/* Date Field */
+.search-form-field-date {
+  width: 115px;
+  height: 40px;
+  gap: 8px;
+  border-right: 1px solid #E1E7EF;
+}
+
+/* Nights Field */
+.search-form-field-nights {
+  width: 110px;
+  height: 40px;
+  gap: 8px;
+  border-right: 1px solid #E1E7EF;
+}
+
+/* Participants Field */
+.search-form-field-participants {
+  width: 135px;
+  height: 40px;
+  gap: 8px;
+}
+
+/* Search Button */
+.search-form-button {
+  width: 142px;
+  height: 60px;
+  border-radius: 8px;
+  background-color: #ED8936;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* DestinationDropdown */
+.search-form-dropdown {
+  color: #142347;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Hotel Form - Destination Field */
+.hotel-form-field-destination {
+  width: 300px;
+  height: 40px;
+  gap: 8px;
+  padding: 0 8px;
+  border-right: 1px solid #E1E7EF;
+}
+
+/* Hotel Form - Date Field */
+.hotel-form-field-date {
+  width: 225px;
+  height: 40px;
+  gap: 8px;
+  border-right: 1px solid #E1E7EF;
+  padding-left: 8px;
+}
+
+/* Hotel Form - Participants Field */
+.hotel-form-field-participants {
+  width: 180px;
+  height: 40px;
+  gap: 8px;
+}
+
+/* Flight Form - Date Field */
+.flight-form-field-date {
+  width: 230px;
+  height: 40px;
+  gap: 8px;
+  border-right: 1px solid #E1E7EF;
+  padding-left: 8px;
+}
+
+/* Field text labels */
+.field-label {
+  color: #808080;
+  font-size: 12px;
+}
+
+/* Field text values */
+.field-value {
+  color: #142347;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* SearchForm Responsive Styles - 1024px için güncellendi */
+@media (max-width: 1023px) {
+  /* Hero alanını büyütelim ki tüm içerik sığsın */
+  div.relative.h-\[500px\].overflow-hidden.bg-blue-400,
+  div.relative.h-\[500px\].overflow-hidden.bg-blue-400
+    > div.absolute.inset-0.w-full.h-full {
+    height: auto !important;
+    min-height: 850px !important;
   }
-  
-  /* İçteki beyaz kutu (form alanlarını saran container) */
-  .searchFormInnerContainer {
-    width: 748px;
-    height: 60px;
-    padding: 8px;
-    gap: 8px;
-    border-radius: 8px;
+
+  /* TravelTabs ve Form alanını düzenleyelim */
+  div.relative.z-20.container.mx-auto.h-full {
+    height: auto !important;
+    padding-bottom: 32px !important;
   }
-  
-  /* Paket/Flight vs. form alanlarında tekrar eden 170px genişlikteki kutu */
-  .searchFormField170 {
-    width: 170px;
-    height: 40px;
-    gap: 8px;
-    padding: 8px;
-    border-right: 1px solid #e1e7ef;
+
+  /* TravelTabs'ın margin-top değerini azaltalım */
+  div.mb-6.mt-48 {
+    margin-top: 24px !important;
   }
-  
-  /* 115px genişlikli tarih alanı */
-  .searchFormField115 {
-    width: 115px;
-    height: 40px;
-    gap: 8px;
-    border-right: 1px solid #e1e7ef;
+
+  /* Ana SearchForm container */
+  .search-form-container {
+    width: 100% !important;
+    max-width: 930px !important;
+    height: auto !important;
+    flex-direction: column !important;
+    padding: 16px !important;
+    gap: 16px !important;
   }
-  
-  /* 110px genişlikli nights alanı */
-  .searchFormField110 {
-    width: 110px;
-    height: 40px;
-    gap: 8px;
-    border-right: 1px solid #e1e7ef;
+
+  /* İç form container */
+  .search-form-inner {
+    width: 100% !important;
+    height: auto !important;
+    flex-direction: column !important;
+    padding: 12px !important;
+    gap: 12px !important;
+    background-color: white !important;
   }
-  
-  /* 135px genişlikli participants alanı */
-  .searchFormField135 {
-    width: 135px;
-    height: 40px;
-    gap: 8px;
+
+  /* Form elemanları */
+  .search-form-inner > div {
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: 1px solid #e1e7ef !important;
+    padding: 8px 4px !important;
+    min-height: 60px !important;
+    height: auto !important;
   }
-  
-  /* Hotel formunda kullanılan 300px genişlikli alan */
-  .hotelFormField300 {
-    width: 300px;
-    height: 40px;
-    gap: 8px;
-    padding: 0 8px;
-    border-right: 1px solid #e1e7ef;
+
+  /* Son form elemanı için alt border kaldır */
+  .search-form-inner > div:last-child {
+    border-bottom: none !important;
   }
-  
-  /* Hotel formunda tarih alanı (225px) */
-  .hotelFormDateField225 {
-    width: 225px;
-    height: 40px;
-    gap: 8px;
-    border-right: 1px solid #e1e7ef;
-    padding-left: 8px;
+
+  /* İkona sahip kapsayıcılar */
+  .search-form-inner div.flex.flex-col {
+    width: calc(100% - 32px) !important;
   }
-  
-  /* Hotel formunda participants (180px) */
-  .hotelFormParticipants180 {
-    width: 180px;
-    height: 40px;
-    gap: 8px;
+
+  /* Search butonu */
+  .search-form-button {
+    width: 100% !important;
+    margin-top: 8px !important;
+    height: 60px !important;
   }
-  
-  /* Flight formunda tarih alanı (230px) */
-  .flightFormDateField230 {
-    width: 230px;
-    height: 40px;
-    gap: 8px;
-    border-right: 1px solid #e1e7ef;
-    padding-left: 8px;
+
+  /* From ve Destination Field'lar için */
+  .search-form-field-from,
+  .search-form-field-destination,
+  .hotel-form-field-destination {
+    width: 100% !important;
+    border-right: none !important;
   }
-  
-  /* Search butonunun genişlik, yükseklik vs. */
-  .searchButton142 {
-    width: 142px;
-    height: 60px;
-    border-radius: 8px;
-    background-color: #ed8936;
-    font-size: 16px;
-    font-weight: 700;
+
+  /* Date Field'lar için */
+  .search-form-field-date,
+  .hotel-form-field-date,
+  .flight-form-field-date {
+    width: 100% !important;
+    border-right: none !important;
   }
-  
-  /* DestinationDropdown gibi yerlerde tekrar eden renk ve font ayarları */
-  .dropDownStyleCommon {
-    color: #142347;
-    font-size: 14px;
-    font-weight: 500;
+
+  /* Nights Field için */
+  .search-form-field-nights {
+    width: 100% !important;
+    border-right: none !important;
   }
-  
-  /* Hotel formunda “text-[#142347]” ile renk verilmiş yerlere boyut ve weight tanımı */
-  .fontSize14Weight500 {
-    font-size: 14px;
-    font-weight: 500;
+
+  /* Participants Field için */
+  .search-form-field-participants,
+  .hotel-form-field-participants {
+    width: 100% !important;
   }
-  
+}
+
+/* DateRangePicker Responsive Styles */
+@media (max-width: 700px) {
+  /* DateRangePicker container */
+  .fixed.bg-white.rounded-lg.shadow-lg.z-50[style*='width'] {
+    width: 95% !important;
+    max-width: 95% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    max-height: 80vh !important;
+    overflow-y: auto !important;
+    top: 10vh !important;
+  }
+
+  /* İki ay görünümünü alt alta getir */
+  .relative.flex.justify-between.px-4 {
+    flex-direction: column !important;
+    gap: 10px !important;
+    padding: 0 !important;
+  }
+
+  /* Padding ve margin ayarlamaları */
+  .fixed.bg-white.rounded-lg.shadow-lg.z-50[style*='width'] .p-4 {
+    padding: 10px !important;
+  }
+
+  /* Aylar arasındaki sınırı belirginleştir */
+  .relative.flex.justify-between.px-4 > div.flex-1:first-child {
+    border-bottom: 1px solid #e1e7ef !important;
+    padding-bottom: 10px !important;
+  }
+
+  /* Önceki ay ve sonraki ay butonlarının konumunu ayarla */
+  .relative.flex.justify-between.px-4 button[style*='left: -12px'] {
+    left: 0 !important;
+    top: 30% !important;
+  }
+
+  .relative.flex.justify-between.px-4 button[style*='right: -12px'] {
+    right: 0 !important;
+    bottom: 20px !important;
+    top: auto !important;
+  }
+}
+
+/* SearchForm Animation Styles */
+/* Form container için geçiş efekti */
+.search-form-inner {
+  transition: all 0.3s ease-in-out !important;
+}
+
+/* Form içindeki elemanlar için geçişleri yumuşatma */
+.search-form-inner > div {
+  transition: all 0.3s ease-in-out !important;
+  animation: slideInFromLeft 0.35s ease-in-out !important;
+}
+
+/* Package tab'ına tıklandığında soldan gelen animasyon */
+[data-travel-type='package'] .search-form-inner > div {
+  animation: slideInFromLeft 0.35s ease-in-out !important;
+}
+
+/* Hotel tab'ına tıklandığında ortadan yayılan animasyon */
+[data-travel-type='hotel'] .search-form-inner > div {
+  animation: slideInFromCenter 0.35s ease-in-out !important;
+}
+
+/* Flight tab'ına tıklandığında sağdan gelen animasyon */
+[data-travel-type='flight'] .search-form-inner > div {
+  animation: slideInFromRight 0.35s ease-in-out !important;
+}
