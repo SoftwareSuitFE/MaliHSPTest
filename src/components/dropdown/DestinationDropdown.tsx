@@ -326,7 +326,7 @@ import {
   destinations,
   hotels,
 } from '../../../data/mockData';
-import './assets/styles.css';
+// import './assets/styles.css';
 
 interface DestinationDropdownProps {
   value: string;
