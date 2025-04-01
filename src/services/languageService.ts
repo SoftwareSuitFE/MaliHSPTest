@@ -20,6 +20,7 @@ export const translations = {
       recommended: "Recommended",
       charterAntalya: "Charter Antalya",
       cityBreakIstanbul: "City Break Istanbul",
+      language:"Language Option"
     },
     TravelTabs: {
       package: "Package",
@@ -136,6 +137,7 @@ export const translations = {
       recommended: "Önerilen",
       charterAntalya: "Antalya Charter",
       cityBreakIstanbul: "İstanbul Şehir Turu",
+      language:"Dil Seçenekleri"
     },
     TravelTabs: {
       package: "Paket",
@@ -224,6 +226,7 @@ export const translations = {
       message: "Üzerinde çalışıyoruz. Lütfen daha sonra tekrar deneyiniz.",
       button: "Ana Sayfaya Dön",
     },
+    
   },
 };
 
