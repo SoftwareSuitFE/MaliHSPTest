@@ -4,12 +4,14 @@
 .filters-container {
   font-family: 'Inter';
   border-radius: 8px;
-  border: 1px solid #F0F4F8;
+  border: 1px solid #f0f4f8;
   padding: 24px;
   background-color: white;
   position: sticky;
   top: 4px;
   width: 100%;
+  overflow-y: auto; /* Her zaman dikey kaydırmayı etkinleştir */
+  scrollbar-width: thin; /* Firefox için ince kaydırma çubuğu */
 }
 
 @media (min-width: 1024px) {
@@ -59,8 +61,8 @@
   width: 220px;
   height: 40px;
   border-radius: 8px;
-  border: 1px solid #CAD4E0;
-  background: #FFFFFF;
+  border: 1px solid #cad4e0;
+  background: #ffffff;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -94,7 +96,7 @@
 
 /* Reset button style */
 .filters-reset-button {
-  color: #ED8936 !important;
+  color: #ed8936 !important;
   padding: 0 !important;
   margin: 0 !important;
   height: auto !important;
@@ -126,7 +128,7 @@
   width: 16px;
   height: 16px;
   border-radius: 4px;
-  background: #FFFFFF;
+  background: #ffffff;
   position: relative;
   margin-right: 8px;
   display: flex;
@@ -134,10 +136,10 @@
   justify-content: center;
 }
 .filters-checkbox-box.active {
-  border: 1px solid #ED8936;
+  border: 1px solid #ed8936;
 }
 .filters-checkbox-box.inactive {
-  border: 1px solid #CAD4E0;
+  border: 1px solid #cad4e0;
 }
 
 /* Checkbox check mark */
@@ -171,7 +173,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 100%;
-  color: #93A2B7;
+  color: #93a2b7;
 }
 
 /* Star container for rating selection */
@@ -206,10 +208,10 @@
   flex-shrink: 0;
 }
 .filters-radio-button.active {
-  border: 2px solid #ED8936;
+  border: 2px solid #ed8936;
 }
 .filters-radio-button.inactive {
-  border: 2px solid #E2E2E2;
+  border: 2px solid #e2e2e2;
 }
 
 /* Inner circle for active radio button */
@@ -217,7 +219,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: #ED8936;
+  background-color: #ed8936;
   display: block;
 }
 
@@ -278,7 +280,7 @@
 @media (max-width: 1023px) {
   /* Filtre konteyneri zaten width: 100% ama yine de ekleyebilirsiniz. */
   .filters-container {
-    width: 100%; 
+    width: 100%;
     /* position: sticky kalabilir, eğer mobilde de üstte sabit durmasını istiyorsanız.
        Mobilde yukarıda sabit durması istenmiyorsa, 
        position: static; top: auto; şeklinde güncelleyebilirsiniz. */
@@ -298,4 +300,179 @@
   /* .filters-concept-container {
     height: auto !important;
   } */
+}
+
+/* Ekran yüksekliği için responsive çözüm - filters.css dosyasının sonuna ekleyin */
+
+/* Ekran yüksekliği için media sorguları */
+@media (max-height: 800px) {
+  .filters-container {
+    max-height: 80vh; /* Ekran yüksekliğinin %80'i */
+    overflow-y: auto; /* Dikey taşmada kaydırma çubuğu göster */
+    padding-right: 20px; /* Kaydırma çubuğu için biraz daha alan */
+  }
+
+  /* Kaydırma çubuğunu özelleştirme */
+  .filters-container::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .filters-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  border-radius: 10px;
+  }
+
+  .filters-container::-webkit-scrollbar-thumb {
+    background: #CAD4E0;
+    border-radius: 10px;
+  }
+
+  .filters-container::-webkit-scrollbar-thumb:hover {
+    background: #93A2B7;
+  }
+}
+
+/* Daha küçük ekranlar için daha fazla alan */
+@media (max-height: 600px) {
+  .filters-container {
+    max-height: 85vh;
+  }
+}
+
+/* Çok küçük ekranlar için daha da fazla alan */
+@media (max-height: 500px) {
+  .filters-container {
+    max-height: 90vh;
+  }
+}
+
+/* Kaydırma çubuğu görünümünü iyileştirmek için sticky pozisyonunu koruyun */
+@media (max-height: 800px) {
+  /* Sticky davranışını korumak için */
+  .filters-container {
+    position: sticky;
+    top: 4px;
+    z-index: 10; /* Diğer içeriklerin üzerinde kalmasını sağlar */
+  }
+}
+
+
+
+
+/* Orta büyüklükteki ekranlar için ayarlar */
+@media (max-height: 900px) {
+  .filters-container {
+    max-height: 85vh;
+    padding: 16px; /* Padding'i azalt */
+  }
+  
+  /* Grupların alt boşluğunu azalt */
+  .filters-group {
+    margin-bottom: 20px;
+  }
+  
+  /* Başlık alt boşluğunu azalt */
+  .filters-title {
+    margin-bottom: 12px;
+  }
+}
+
+/* Küçük ekranlar için ayarlar */
+@media (max-height: 768px) {
+  .filters-container {
+    max-height: 92vh;
+    padding: 12px;
+  }
+  
+  .filters-group {
+    margin-bottom: 16px;
+  }
+  
+  .filters-title {
+    margin-bottom: 8px;
+  }
+  
+  /* Input alanları arasındaki boşluğu azalt */
+  .filters-input-wrapper {
+    margin-bottom: 12px;
+  }
+  
+  /* Concept label'ları arasındaki boşluğu azalt */
+  .filters-concept-label {
+    margin-bottom: 6px;
+  }
+}
+
+/* Çok küçük ekranlar için ayarlar */
+@media (max-height: 600px) {
+  .filters-container {
+    max-height: 96vh;
+    padding: 8px;
+  }
+  
+  .filters-group {
+    margin-bottom: 12px;
+  }
+  
+  /* Label margin'lerini azalt */
+  .filters-label {
+    margin-bottom: 4px;
+  }
+  
+  /* Star container yüksekliğini azalt */
+  .filters-star-container {
+    height: auto;
+    max-height: 120px;
+  }
+  
+  /* Star satırları arasındaki boşluğu azalt */
+  .filters-star-row {
+    margin-bottom: 6px;
+  }
+  
+  /* Concept bölümlerinin yüksekliklerini azalt */
+  .filters-section.collapsed {
+    height: 140px;
+  }
+  
+  /* More container margin'ini azalt */
+  .filters-more-container {
+    margin-top: 8px;
+  }
+}
+
+/* Çok çok küçük ekranlar için ayarlar */
+@media (max-height: 500px) {
+  .filters-container {
+    max-height: 98vh;
+    padding: 6px;
+  }
+  
+  .filters-group {
+    margin-bottom: 8px;
+  }
+  
+  /* Input field yüksekliğini azalt */
+  .filters-input-field {
+    height: 34px;
+  }
+  
+  /* Collapsed section yüksekliğini azalt */
+  .filters-section.collapsed {
+    height: 120px;
+  }
+}
+
+/* Safari ve iOS için özel fix */
+@supports (-webkit-overflow-scrolling: touch) {
+  .filters-container {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Sticky pozisyonunu koruyalım ama scrollbarın düzgün çalışmasını sağlayalım */
+.filters-container {
+  position: sticky;
+  top: 4px;
+  z-index: 10;
 }
