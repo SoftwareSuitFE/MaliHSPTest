@@ -16,11 +16,283 @@
 @import './components/travelTabs.css';
 @import './layouts/search.css';
 
+/* === Colors.css === */
 :root {
+  /* Ana Renkler */
+  --background: #f5f5f5;
+  --foreground: #171717;
+  --primary-text: #142347;
+  --primary-accent: #ed8936;
+  --border-color: #cad4e0;
+
+  /* Durum Renkleri */
+  --success: #4caf50;
+  --warning: #ffc107;
+  --error: #f44336;
+  --info: #2196f3;
+
+  /* Gölgeler */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+  /* Root için temel değişkenler */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+/* === Typography.css === */
+:root {
+  /* Font aileleri */
+  --font-sans:
+    'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Arial, sans-serif;
+
+  /* Font boyutları */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.5rem; /* 24px */
+  --text-3xl: 1.875rem; /* 30px */
+  --text-4xl: 2.25rem; /* 36px */
+  --text-5xl: 3rem; /* 48px */
+
+  /* Font ağırlıkları */
+  --font-thin: 100;
+  --font-extralight: 200;
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+  --font-black: 900;
+
+  /* Satır yükseklikleri */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+
+  /* Harf aralıkları */
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+}
+
+/* Başlık stilleri */
+.h1 {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+}
+
+.h2 {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+}
+
+.h3 {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-snug);
+}
+
+.h4 {
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-snug);
+}
+
+.h5 {
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-normal);
+}
+
+/* Metin stilleri */
+.text-sm {
+  font-size: var(--text-sm);
+}
+
+.text-base {
+  font-size: var(--text-base);
+}
+
+.text-lg {
+  font-size: var(--text-lg);
+}
+
+.text-xl {
+  font-size: var(--text-xl);
+}
+
+/* Font ağırlık sınıfları */
+.font-normal {
+  font-weight: var(--font-normal);
+}
+
+.font-medium {
+  font-weight: var(--font-medium);
+}
+
+.font-semibold {
+  font-weight: var(--font-semibold);
+}
+
+.font-bold {
+  font-weight: var(--font-bold);
+}
+
+/* Responsive medya sorguları için başlık stilleri */
+@media (max-width: 768px) {
+  .h1 {
+    font-size: var(--text-3xl);
+  }
+
+  .h2 {
+    font-size: var(--text-2xl);
+  }
+
+  .h3 {
+    font-size: var(--text-xl);
+  }
+}
+
+/* === Animations.css === */
+/* 404 Sayfası Animasyonları */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-bounce {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(-5%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* Yeni eklenen form elemanları için soldan sağa geçiş animasyonu */
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Sağdan sola geçiş animasyonu */
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Ortadan yayılma animasyonu */
+@keyframes slideInFromCenter {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Pulse animasyonu - aktif tab için hafif vurgu */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* === Responsive.css === */
+/* Header Responsive Styles - 1024px için güncellendi */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Header'da md: prefix kullanan elemanları 1024px breakpoint için düzenle */
+
+  /* Üst mavi bar 768-1024px arasında da gizli kalsın */
+  header div.hidden.md\:block {
+    display: none !important;
+  }
+
+  /* Hamburger menü butonu 768-1024px arasında da görünür olsun */
+  header .md\:hidden {
+    display: flex !important;
+  }
+
+  /* Masaüstü navigasyon menüsü 768-1024px arasında da gizli kalsın */
+  header nav.hidden.md\:flex {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Normal durumda alt alta görünüm */
+  .hotel-concept-star-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hotel-concept-container,
+  .star-container {
+    width: 100%;
+  }
+
+  /* Filter input'ların sabit genişliği */
+  .filter-input {
+    width: 220px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: #ffffff;
+  }
 }
 
 body {
@@ -352,7 +624,6 @@ body {
   font-size: 12px !important;
 }
 
-/* SearchForm Animation Styles */
 /* SearchForm Animation Styles */
 /* Form container için geçiş efekti */
 div[style*='width: 748px'][style*='height: 60px'] {
