@@ -1,16 +1,36 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
+import js from '@eslint/js';
+import { FlatCompat } from '@eslint/eslintrc';
 const compat = new FlatCompat({
-  baseDirectory: __dirname,
+  // import.meta.dirname is available after Node.js v20.11.0
+  baseDirectory: import.meta.dirname,
+  recommendedConfig: js.configs.recommended,
 });
-
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...compat.config({
+    extends: ['eslint:recommended', 'next'],
+    rules: {
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          args: 'all',
+          argsIgnorePattern: '^_',
+          caughtErrors: 'all',
+          caughtErrorsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          ignoreRestSiblings: true,
+        },
+      ],
+      'no-console': 'warn',
+      'no-unused-vars': 'error',
+      'no-undef': 'error',
+      'no-extra-semi': 'error',
+      'no-mixed-spaces-and-tabs': 'error',
+      'no-multiple-empty-lines': ['error', { max: 1 }],
+      'no-trailing-spaces': 'error',
+      // quotes: ['error', 'single'],
+      semi: ['error', 'always'],
+    },
+  }),
 ];
-
 export default eslintConfig;
