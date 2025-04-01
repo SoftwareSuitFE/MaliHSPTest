@@ -1,0 +1,188 @@
+/* header.css - header.tsx'deki inline stillerin CSS karşılıkları */
+
+/* ===============================
+   Dil Seçici (LanguageSelector)
+   =============================== */
+.language-selector-btn {
+  height: 16px;
+}
+
+.flag-icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.language-code-container {
+  height: 16px;
+  margin-left: 4px;
+  margin-right: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.language-code-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #142347;
+}
+
+.arrow-icon-container {
+  width: 8px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dil menüsü - Desktop için */
+.language-menu-desktop {
+  width: 120px;
+  border: 1px solid #e1e7ef;
+  top: 100%;
+  margin-top: 8px;
+  left: 0;
+}
+
+/* Dil menüsü - Mobil için */
+.language-menu-mobile {
+  width: 120px;
+  border: 1px solid #e1e7ef;
+  top: 100%;
+  margin-top: 8px;
+  right: 0;
+}
+
+/* ===============================
+     Üst Bar (Header Top Bar)
+     =============================== */
+.header-top-bar {
+  height: 40px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background-color: #f0f4f8;
+}
+
+.header-top-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  height: 32px;
+}
+
+/* Üst bar linkleri */
+.header-top-link {
+  height: 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: 0;
+  margin-right: 16px;
+}
+
+/* Telefon ve Favori alanları */
+.header-phone {
+  height: 16px;
+  padding-left: 16px;
+  margin-right: 16px;
+}
+
+.header-favorite {
+  height: 16px;
+  margin-right: 16px;
+  cursor: pointer;
+}
+
+/* Arama alanı */
+.header-search-container {
+  width: 200px;
+  height: 32px;
+  margin-right: 16px;
+  position: relative;
+}
+
+.header-search-icon {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 8px;
+  left: 9px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-search-input {
+  width: 200px;
+  height: 32px;
+  border-radius: 8px;
+  background: #f7f9fb;
+  border: 1px solid #e1e7ef;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 100%;
+  color: #142347;
+  padding-left: 32px;
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* ===============================
+     Ana Navigation
+     =============================== */
+.header-nav-container {
+  width: 100%;
+  background-color: #ffffff;
+  height: 71.91px;
+}
+
+.header-nav-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  height: 71.91px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-logo-container {
+  height: 39.91px;
+  display: flex;
+  align-items: center;
+}
+
+.header-nav {
+  height: 39.91px;
+}
+
+.header-nav-link {
+  font-family: 'Inter', sans-serif;
+}
+
+/* ===============================
+     Mobil Menü Butonları
+     =============================== */
+.mobile-menu-btn {
+  width: 24px;
+  height: 24px;
+}
+
+.mobile-menu-close-btn {
+  width: 24px;
+  height: 24px;
+}
