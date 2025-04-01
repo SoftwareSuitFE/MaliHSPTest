@@ -135,16 +135,7 @@
 //   const renderPackageForm = () => (
 //     <>
 //       {/* From Field */}
-//       <div
-//         className="flex items-center"
-//         style={{
-//           width: '170px',
-//           height: '40px',
-//           gap: '8px',
-//           padding: '8px',
-//           borderRight: '1px solid #E1E7EF',
-//         }}
-//       >
+//       <div className="flex items-center search-form-field-from">
 //         <div>
 //           <Icon name="location" size={24} />
 //         </div>
@@ -155,23 +146,13 @@
 //             onSelect={handleFromChange}
 //             placeholder={t('SearchForm', 'from')}
 //             mode="city"
-//             className="w-full font-medium bg-transparent focus:outline-none"
-//             style={{ color: '#142347', fontSize: '14px', fontWeight: '500' }}
+//             className="w-full font-medium bg-transparent focus:outline-none search-form-dropdown"
 //           />
 //         </div>
 //       </div>
 
 //       {/* Destination Field */}
-//       <div
-//         className="flex items-center"
-//         style={{
-//           width: '170px',
-//           height: '40px',
-//           gap: '8px',
-//           padding: '8px',
-//           borderRight: '1px solid #E1E7EF',
-//         }}
-//       >
+//       <div className="flex items-center search-form-field-destination">
 //         <div>
 //           {/* Destination Ikon */}
 //           <Icon name="search" size={24} />
@@ -183,8 +164,7 @@
 //             onSelect={handleDestinationChange}
 //             placeholder={t('SearchForm', 'destination')}
 //             mode="city"
-//             className="w-full font-medium bg-transparent focus:outline-none"
-//             style={{ color: '#142347', fontSize: '14px', fontWeight: '500' }}
+//             className="w-full font-medium bg-transparent focus:outline-none search-form-dropdown"
 //           />
 //         </div>
 //       </div>
@@ -192,13 +172,7 @@
 //       {/* Date Field */}
 //       <div
 //         ref={dateFieldRef}
-//         className="flex items-center relative cursor-pointer"
-//         style={{
-//           width: '115px',
-//           height: '40px',
-//           gap: '8px',
-//           borderRight: '1px solid #E1E7EF',
-//         }}
+//         className="flex items-center relative cursor-pointer search-form-field-date"
 //         onClick={handleDateClick}
 //       >
 //         <div>
@@ -206,8 +180,8 @@
 //           <Icon name="calendar" size={24} />
 //         </div>
 //         <div className="flex flex-col w-full pl-2">
-//           <div className="text-gray-500 text-xs">{t('SearchForm', 'date')}</div>
-//           <div className="text-[#142347] font-medium cursor-pointer text-sm">
+//           <div className="field-label">{t('SearchForm', 'date')}</div>
+//           <div className="field-value cursor-pointer">
 //             {date.format('D MMM')}
 //           </div>
 //         </div>
@@ -216,13 +190,7 @@
 //       {/* Nights Field - NightPicker ile değiştirildi */}
 //       <div
 //         ref={nightsFieldRef}
-//         className="flex items-center cursor-pointer"
-//         style={{
-//           width: '110px',
-//           height: '40px',
-//           gap: '8px',
-//           borderRight: '1px solid #E1E7EF',
-//         }}
+//         className="flex items-center cursor-pointer search-form-field-nights"
 //         onClick={handleNightsClick}
 //       >
 //         <div>
@@ -230,10 +198,8 @@
 //           <Icon name="nights" size={24} />
 //         </div>
 //         <div className="flex flex-col w-full pl-2">
-//           <div className="text-gray-500 text-xs">
-//             {t('SearchForm', 'nights')}
-//           </div>
-//           <div className="text-[#142347] text-sm font-medium">
+//           <div className="field-label">{t('SearchForm', 'nights')}</div>
+//           <div className="field-value">
 //             {t('SearchForm', 'nightsCount', { count: nights })}
 //           </div>
 //         </div>
@@ -242,12 +208,7 @@
 //       {/* Participants Field */}
 //       <div
 //         ref={participantsRef}
-//         className="flex items-center cursor-pointer"
-//         style={{
-//           width: '135px',
-//           height: '40px',
-//           gap: '8px',
-//         }}
+//         className="flex items-center cursor-pointer search-form-field-participants"
 //         onClick={handleParticipantsClick}
 //       >
 //         <div>
@@ -255,10 +216,8 @@
 //           <Icon name="users" size={24} />
 //         </div>
 //         <div className="flex flex-col w-full pl-2">
-//           <div className="text-gray-500 text-xs">
-//             {t('SearchForm', 'participants')}
-//           </div>
-//           <div className="text-[#142347] text-sm font-medium">
+//           <div className="field-label">{t('SearchForm', 'participants')}</div>
+//           <div className="field-value">
 //             {t('SearchForm', 'people', { count: people })}
 //           </div>
 //         </div>
@@ -269,16 +228,7 @@
 //   // 2) Hotel Form
 //   const renderHotelForm = () => (
 //     <>
-//       <div
-//         className="flex items-center relative cursor-pointer"
-//         style={{
-//           width: '300px',
-//           height: '40px',
-//           gap: '8px',
-//           padding: '0 8px',
-//           borderRight: '1px solid #E1E7EF',
-//         }}
-//       >
+//       <div className="flex items-center relative cursor-pointer hotel-form-field-destination">
 //         <div className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10">
 //           <Icon name="location" size={24} />
 //         </div>
@@ -288,30 +238,22 @@
 //             onChange={handleDestinationChange}
 //             onSelect={handleDestinationChange}
 //             placeholder={t('SearchForm', 'destination')}
-//             className="font-medium bg-transparent focus:outline-none border-none p-0 text-[#142347]"
-//             style={{ fontSize: '14px', fontWeight: '500' }}
+//             className="font-medium bg-transparent focus:outline-none border-none p-0 search-form-dropdown"
 //           />
 //         </div>
 //       </div>
 
 //       <div
 //         ref={dateFieldRef}
-//         className="flex items-center relative cursor-pointer"
-//         style={{
-//           width: '225px',
-//           height: '40px',
-//           gap: '8px',
-//           borderRight: '1px solid #E1E7EF',
-//           paddingLeft: '8px',
-//         }}
+//         className="flex items-center relative cursor-pointer hotel-form-field-date"
 //         onClick={handleDateClick}
 //       >
 //         <div>
 //           <Icon name="calendar" size={24} />
 //         </div>
 //         <div className="flex flex-col w-full pl-2 cursor-pointer">
-//           <div className="text-gray-500 text-xs">{t('SearchForm', 'date')}</div>
-//           <div className="text-[#142347] font-medium cursor-pointer text-sm">
+//           <div className="field-label">{t('SearchForm', 'date')}</div>
+//           <div className="field-value">
 //             {date.format('D MMM')} -{' '}
 //             {t('SearchForm', 'nightsCount', { count: nights })}
 //           </div>
@@ -320,22 +262,15 @@
 
 //       <div
 //         ref={participantsRef}
-//         className="flex items-center cursor-pointer"
-//         style={{
-//           width: '180px',
-//           height: '40px',
-//           gap: '8px',
-//         }}
+//         className="flex items-center cursor-pointer hotel-form-field-participants"
 //         onClick={handleParticipantsClick}
 //       >
 //         <div className="cursor-pointer">
 //           <Icon name="users" size={24} />
 //         </div>
 //         <div className="flex flex-col w-full pl-2">
-//           <div className="text-gray-500 text-xs">
-//             {t('SearchForm', 'participants')}
-//           </div>
-//           <div className="text-[#142347] text-sm font-medium">
+//           <div className="field-label">{t('SearchForm', 'participants')}</div>
+//           <div className="field-value">
 //             {t('SearchForm', 'people', { count: people })}
 //           </div>
 //         </div>
@@ -347,16 +282,7 @@
 //   const renderFlightForm = () => (
 //     <>
 //       {/* From Field */}
-//       <div
-//         className="flex items-center"
-//         style={{
-//           width: '170px',
-//           height: '40px',
-//           gap: '8px',
-//           padding: '8px',
-//           borderRight: '1px solid #E1E7EF',
-//         }}
-//       >
+//       <div className="flex items-center search-form-field-from">
 //         <div>
 //           <Icon name="location" size={24} />
 //         </div>
@@ -367,23 +293,13 @@
 //             onSelect={handleFromChange}
 //             placeholder={t('SearchForm', 'from')}
 //             mode="city"
-//             className="w-full font-medium bg-transparent focus:outline-none"
-//             style={{ color: '#142347', fontSize: '14px', fontWeight: '500' }}
+//             className="w-full font-medium bg-transparent focus:outline-none search-form-dropdown"
 //           />
 //         </div>
 //       </div>
 
 //       {/* To Field */}
-//       <div
-//         className="flex items-center"
-//         style={{
-//           width: '170px',
-//           height: '40px',
-//           gap: '8px',
-//           padding: '8px',
-//           borderRight: '1px solid #E1E7EF',
-//         }}
-//       >
+//       <div className="flex items-center search-form-field-destination">
 //         <div>
 //           <Icon name="location" size={24} />
 //         </div>
@@ -394,8 +310,7 @@
 //             onSelect={handleDestinationChange}
 //             placeholder={t('SearchForm', 'to')}
 //             mode="city"
-//             className="w-full font-medium bg-transparent focus:outline-none"
-//             style={{ color: '#142347', fontSize: '14px', fontWeight: '500' }}
+//             className="w-full font-medium bg-transparent focus:outline-none search-form-dropdown"
 //           />
 //         </div>
 //       </div>
@@ -403,22 +318,15 @@
 //       {/* Date Range Field */}
 //       <div
 //         ref={dateFieldRef}
-//         className="flex items-center relative cursor-pointer"
-//         style={{
-//           width: '230px',
-//           height: '40px',
-//           gap: '8px',
-//           borderRight: '1px solid #E1E7EF',
-//           paddingLeft: '8px',
-//         }}
+//         className="flex items-center relative cursor-pointer flight-form-field-date"
 //         onClick={handleDateClick}
 //       >
 //         <div className="cursor-pointer">
 //           <Icon name="calendar" size={24} />
 //         </div>
 //         <div className="flex flex-col w-full pl-2 cursor-pointer">
-//           <div className="text-gray-500 text-xs">{t('SearchForm', 'date')}</div>
-//           <div className="text-[#142347] font-medium cursor-pointer text-sm">
+//           <div className="field-label">{t('SearchForm', 'date')}</div>
+//           <div className="field-value">
 //             {date.format('D MMM')} - {endDate.format('D MMM')}
 //           </div>
 //         </div>
@@ -427,22 +335,15 @@
 //       {/* Participants Field */}
 //       <div
 //         ref={participantsRef}
-//         className="flex items-center cursor-pointer"
-//         style={{
-//           width: '135px',
-//           height: '40px',
-//           gap: '8px',
-//         }}
+//         className="flex items-center cursor-pointer search-form-field-participants"
 //         onClick={handleParticipantsClick}
 //       >
 //         <div className="cursor-pointer">
 //           <Icon name="users" size={24} />
 //         </div>
 //         <div className="flex flex-col w-full pl-2 cursor-pointer">
-//           <div className="text-gray-500 text-xs">
-//             {t('SearchForm', 'participants')}
-//           </div>
-//           <div className="text-[#142347] text-sm font-medium">
+//           <div className="field-label">{t('SearchForm', 'participants')}</div>
+//           <div className="field-value">
 //             {t('SearchForm', 'people', { count: people })}
 //           </div>
 //         </div>
@@ -465,28 +366,10 @@
 //   return (
 //     <div
 //       ref={formRef}
-//       className="flex items-center justify-between bg-white/16 backdrop-blur-sm rounded-lg shadow-lg w-full"
-//       style={{
-//         width: '930px',
-//         height: '92px',
-//         padding: '16px',
-//         gap: '8px',
-//         borderRadius: '8px',
-//         backdropFilter: 'blur(4px)',
-//         boxShadow: '0px 0px 32px 0px #00000029',
-//       }}
+//       className="flex items-center justify-between bg-white/16 backdrop-blur-sm rounded-lg shadow-lg w-full search-form-container"
 //     >
 //       {/* Form içerikleri */}
-//       <div
-//         className="flex items-center justify-between bg-white rounded-lg relative"
-//         style={{
-//           width: '748px',
-//           height: '60px',
-//           padding: '8px',
-//           gap: '8px',
-//           borderRadius: '8px',
-//         }}
-//       >
+//       <div className="flex items-center justify-between bg-white rounded-lg relative search-form-inner">
 //         {renderFormContent()}
 //       </div>
 
@@ -494,15 +377,7 @@
 //       <Button
 //         type="primary"
 //         onClick={handleSearch}
-//         className="h-full border-0 hover:bg-[#d88630] text-white font-bold uppercase flex items-center justify-center"
-//         style={{
-//           width: '142px',
-//           height: '60px',
-//           borderRadius: '8px',
-//           backgroundColor: '#ED8936',
-//           fontSize: '16px',
-//           fontWeight: '700',
-//         }}
+//         className="h-full border-0 hover:bg-[#d88630] text-white font-bold uppercase flex items-center justify-center search-form-button"
 //       >
 //         {t('SearchForm', 'search')}
 //       </Button>
@@ -546,8 +421,6 @@
 // };
 
 // export default SearchForm;
-
-
 
 
 'use client';
@@ -927,6 +800,7 @@ const SearchForm = () => {
     <div
       ref={formRef}
       className="flex items-center justify-between bg-white/16 backdrop-blur-sm rounded-lg shadow-lg w-full search-form-container"
+      data-travel-type={searchParams.travelType || 'package'}
     >
       {/* Form içerikleri */}
       <div className="flex items-center justify-between bg-white rounded-lg relative search-form-inner">
