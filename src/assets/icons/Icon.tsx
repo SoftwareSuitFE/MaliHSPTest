@@ -26,7 +26,10 @@ export type IconName =
   | 'Star'
   | 'beds'
   | 'flighttime'
-  | 'thick';
+  | 'thick'
+  | 'comingsoon'
+  | 'triangletop'
+  | 'cirleclock';
 
 interface IconProps {
   name: IconName;
@@ -122,6 +125,96 @@ export const Icon: React.FC<IconProps> = ({
               d="M19.5 3.9104H17.25V3.1604C17.25 2.96149 17.171 2.77072 17.0303 2.63007C16.8897 2.48942 16.6989 2.4104 16.5 2.4104C16.3011 2.4104 16.1103 2.48942 15.9697 2.63007C15.829 2.77072 15.75 2.96149 15.75 3.1604V3.9104H8.25V3.1604C8.25 2.96149 8.17098 2.77072 8.03033 2.63007C7.88968 2.48942 7.69891 2.4104 7.5 2.4104C7.30109 2.4104 7.11032 2.48942 6.96967 2.63007C6.82902 2.77072 6.75 2.96149 6.75 3.1604V3.9104H4.5C4.10218 3.9104 3.72064 4.06844 3.43934 4.34974C3.15804 4.63104 3 5.01258 3 5.4104V20.4104C3 20.8082 3.15804 21.1898 3.43934 21.4711C3.72064 21.7524 4.10218 21.9104 4.5 21.9104H19.5C19.8978 21.9104 20.2794 21.7524 20.5607 21.4711C20.842 21.1898 21 20.8082 21 20.4104V5.4104C21 5.01258 20.842 4.63104 20.5607 4.34974C20.2794 4.06844 19.8978 3.9104 19.5 3.9104ZM6.75 5.4104V6.1604C6.75 6.35931 6.82902 6.55008 6.96967 6.69073C7.11032 6.83138 7.30109 6.9104 7.5 6.9104C7.69891 6.9104 7.88968 6.83138 8.03033 6.69073C8.17098 6.55008 8.25 6.35931 8.25 6.1604V5.4104H15.75V6.1604C15.75 6.35931 15.829 6.55008 15.9697 6.69073C16.1103 6.83138 16.3011 6.9104 16.5 6.9104C16.6989 6.9104 16.8897 6.83138 17.0303 6.69073C17.171 6.55008 17.25 6.35931 17.25 6.1604V5.4104H19.5V8.4104H4.5V5.4104H6.75ZM19.5 20.4104H4.5V9.9104H19.5V20.4104Z"
               fill="#142347"
             />
+          </svg>
+        );
+      case 'triangletop':
+        return (
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="text-orange-500"
+          >
+            <polygon points="12,0 24,24 0,24" />
+          </svg>
+        );
+      case 'cirleclock':
+        return (
+          <svg
+            className="w-full h-full text-orange-500"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="50"
+              cy="50"
+              r="45"
+              stroke="currentColor"
+              strokeWidth="3"
+              strokeDasharray="10 5"
+            />
+          </svg>
+        );
+      case 'comingsoon':
+        return (
+          <svg
+            className="clock-face"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {/* Saat çerçevesi */}
+            <circle
+              cx="50"
+              cy="50"
+              r="40"
+              stroke="currentColor"
+              strokeWidth="4"
+              fill="#FFF1E5"
+            />
+
+            {/* Saat merkezindeki nokta */}
+            <circle cx="50" cy="50" r="3" fill="currentColor" />
+
+            {/* Saat akrebini temsil eden ok */}
+            <line
+              className="clock-hand-hour"
+              x1="50"
+              y1="50"
+              x2="50"
+              y2="25"
+              stroke="currentColor"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+
+            {/* Dakika akrebi */}
+            <line
+              className="clock-hand-minute"
+              x1="50"
+              y1="50"
+              x2="70"
+              y2="50"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+
+            {/* Saat işaretleri */}
+            {[...Array(12)].map((_, i) => (
+              <line
+                key={i}
+                x1="50"
+                y1="15"
+                x2="50"
+                y2="20"
+                stroke="currentColor"
+                strokeWidth={i % 3 === 0 ? '2' : '1'}
+                transform={`rotate(${i * 30} 50 50)`}
+              />
+            ))}
           </svg>
         );
       case 'users':

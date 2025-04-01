@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/hooks/useLanguage';
-
+import Icon from '@/assets/icons/Icon';
 
 const ComingSoon = () => {
   const { t } = useLanguage();
@@ -22,95 +22,17 @@ const ComingSoon = () => {
           <div className="clock-container">
             {/* Dış halka - sürekli dönen animasyon */}
             <div className="outer-ring">
-              <svg
-                className="w-full h-full text-orange-500"
-                viewBox="0 0 100 100"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="50"
-                  cy="50"
-                  r="45"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeDasharray="10 5"
-                />
-              </svg>
+              <Icon name="cirleclock" />
             </div>
 
             {/* İç kısım - saat */}
             <div className="inner-clock">
-              <svg
-                className="clock-face"
-                viewBox="0 0 100 100"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                {/* Saat çerçevesi */}
-                <circle
-                  cx="50"
-                  cy="50"
-                  r="40"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                  fill="#FFF1E5"
-                />
-
-                {/* Saat merkezindeki nokta */}
-                <circle cx="50" cy="50" r="3" fill="currentColor" />
-
-                {/* Saat akrebini temsil eden ok */}
-                <line
-                  className="clock-hand-hour"
-                  x1="50"
-                  y1="50"
-                  x2="50"
-                  y2="25"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                />
-
-                {/* Dakika akrebi */}
-                <line
-                  className="clock-hand-minute"
-                  x1="50"
-                  y1="50"
-                  x2="70"
-                  y2="50"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-
-                {/* Saat işaretleri */}
-                {[...Array(12)].map((_, i) => (
-                  <line
-                    key={i}
-                    x1="50"
-                    y1="15"
-                    x2="50"
-                    y2="20"
-                    stroke="currentColor"
-                    strokeWidth={i % 3 === 0 ? '2' : '1'}
-                    transform={`rotate(${i * 30} 50 50)`}
-                  />
-                ))}
-              </svg>
+              <Icon name="comingsoon" />
             </div>
 
             {/* Üst üçgen - pulsing */}
             <div className="triangle-top">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="text-orange-500"
-              >
-                <polygon points="12,0 24,24 0,24" />
-              </svg>
+              <Icon name="triangletop" />
             </div>
           </div>
         </div>
