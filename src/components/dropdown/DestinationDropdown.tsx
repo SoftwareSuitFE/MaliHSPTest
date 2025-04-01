@@ -1,12 +1,12 @@
-// "use client";
+// 'use client';
 
-// import { useState, useEffect, useRef } from "react";
-// import { createPortal } from "react-dom";
+// import { useState, useEffect, useRef } from 'react';
+// import { createPortal } from 'react-dom';
 // import {
 //   popularDestinations,
 //   destinations,
 //   hotels,
-// } from "../../../data/mockData";
+// } from '../../../data/mockData';
 
 // interface DestinationDropdownProps {
 //   value: string;
@@ -15,88 +15,56 @@
 //   placeholder?: string;
 //   className?: string;
 //   style?: React.CSSProperties;
+//   mode?: 'hotel' | 'city';
 // }
 
-// // Helper para birleştirmek ve filtreleyip tekil sonuç döndürmek için
+// // Mevcut otel modu için fonksiyon
 // const getUniqueLocations = () => {
-//   // Önce otellerin konumlarını alalım
 //   const hotelLocations = hotels.map((hotel) => {
 //     // Otelin konumunu, sadece şehir kısmını alalım (Belek, Turkey -> Belek)
-//     const location = hotel.location.split(",")[0].trim();
+//     const location = hotel.location.split(',')[0].trim();
 //     return {
 //       name: `${location} Otelleri`,
 //       subtext: `${location}, Türkiye`,
-//       type: "hotel",
+//       type: 'hotel',
 //     };
 //   });
 
-//   // Tüm destinasyon listesinden yer isimleri
 //   const destinationsList = [...destinations].map((dest) => ({
 //     name: `${dest}`,
 //     subtext: `${dest}, Türkiye`,
-//     type: "destination",
+//     type: 'destination',
 //   }));
 
-//   // Tüm listeleri birleştir
 //   const allLocations = [...hotelLocations, ...destinationsList];
 
-//   // Tekrarlanan isimleri temizle (name'e göre)
 //   const uniqueLocations = Array.from(
-//     new Map(allLocations.map((item) => [item.name, item])).values()
+//     new Map(allLocations.map((item) => [item.name, item])).values(),
 //   );
 
 //   return uniqueLocations;
 // };
 
-// // Özel otel türleri listesi
-// const specialHotelTypes = [
-//   {
-//     name: "Antalya Merkez Otelleri",
-//     subtext: "Antalya, Türkiye",
-//     type: "special",
-//   },
-//   {
-//     name: "Antalya Göynük Otelleri",
-//     subtext: "Antalya, Türkiye",
-//     type: "special",
-//   },
-//   {
-//     name: "Antalya Şehiriçi Otelleri",
-//     subtext: "Antalya, Türkiye",
-//     type: "special",
-//   },
-//   {
-//     name: "Antalya Denize Sıfır Oteller",
-//     subtext: "Antalya, Türkiye",
-//     type: "special",
-//   },
-//   {
-//     name: "Antalya Balayı Otelleri",
-//     subtext: "Antalya, Türkiye",
-//     type: "special",
-//   },
-//   {
-//     name: "Antalya Aquaparklı Oteller",
-//     subtext: "Antalya, Türkiye",
-//     type: "special",
-//   },
-//   {
-//     name: "Antalya Her Şey Dahil Oteller",
-//     subtext: "Antalya, Türkiye",
-//     type: "special",
-//   },
-// ];
+// // Yeni: Şehir modu için fonksiyon
+// const getCityOptions = () => {
+//   return destinations.map((city) => ({
+//     name: city,
+//     subtext: `${city}, Türkiye`,
+//     type: 'city',
+//   }));
+// };
 
 // const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
 //   value,
 //   onChange,
 //   onSelect,
-//   placeholder = "Destination",
-//   className = "",
+//   placeholder = 'Destination',
+//   className = '',
 //   style = {},
+//   mode = 'hotel',
 // }) => {
 //   const [isOpen, setIsOpen] = useState(false);
-//   const [searchTerm, setSearchTerm] = useState("");
+//   const [searchTerm, setSearchTerm] = useState('');
 //   const [filteredLocations, setFilteredLocations] = useState([]);
 //   const [popularLocations, setPopularLocations] = useState<any[]>([]);
 //   const [dropdownPosition, setDropdownPosition] = useState({
@@ -110,36 +78,50 @@
 
 //   // Popüler lokasyonları belirleme
 //   useEffect(() => {
-//     const popularLocs = popularDestinations.map((dest) => ({
-//       name: `${dest}`,
-//       subtext: `${dest}, Türkiye`,
-//       type: "popular",
-//     }));
-//     setPopularLocations(popularLocs);
-//   }, []);
+//     if (mode === 'city') {
+//       const popularLocs = popularDestinations.map((dest) => ({
+//         name: dest,
+//         subtext: `${dest}, Türkiye`,
+//         type: 'city',
+//       }));
+//       setPopularLocations(popularLocs);
+//     } else {
+//       const popularLocs = popularDestinations.map((dest) => ({
+//         name: dest,
+//         subtext: `${dest}, Türkiye`,
+//         type: 'popular',
+//       }));
+//       setPopularLocations(popularLocs);
+//     }
+//   }, [mode]);
 
-//   // Arama terimi değiştiğinde filtreleme yapar
+//   // Arama terimi değiştiğinde filtreleme
 //   useEffect(() => {
-//     if (searchTerm === "") {
-//       // Arama yoksa, sadece popüler lokasyonları göster
+//     if (searchTerm === '') {
 //       setFilteredLocations([]);
 //     } else {
-//       // Tüm kaynaklardan arama yap
-//       const allLocations = getUniqueLocations();
-
-//       // "Antalya" gibi anahtar kelimeler varsa özel otel tiplerini de ekle
-//       if (searchTerm.toLowerCase().includes("antalya")) {
-//         allLocations.push(...specialHotelTypes);
+//       if (mode === 'city') {
+//         const allCities = getCityOptions();
+//         const filtered = allCities.filter(
+//           (city) =>
+//             city.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+//             city.subtext.toLowerCase().includes(searchTerm.toLowerCase()),
+//         );
+//         setFilteredLocations(filtered);
+//       } else {
+//         const allLocations = getUniqueLocations();
+//         if (searchTerm.toLowerCase().includes('antalya')) {
+//           // İsteğe bağlı: Antalya gibi özel durumlar için özel otel tipleri eklenebilir
+//         }
+//         const filtered = allLocations.filter(
+//           (location) =>
+//             location.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+//             location.subtext.toLowerCase().includes(searchTerm.toLowerCase()),
+//         );
+//         setFilteredLocations(filtered);
 //       }
-
-//       const filtered = allLocations.filter(
-//         (location) =>
-//           location.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-//           location.subtext.toLowerCase().includes(searchTerm.toLowerCase())
-//       );
-//       setFilteredLocations(filtered);
 //     }
-//   }, [searchTerm]);
+//   }, [searchTerm, mode]);
 
 //   // Dışarı tıklandığında dropdown kapanır
 //   useEffect(() => {
@@ -153,10 +135,9 @@
 //         setIsOpen(false);
 //       }
 //     }
-
-//     document.addEventListener("mousedown", handleClickOutside);
+//     document.addEventListener('mousedown', handleClickOutside);
 //     return () => {
-//       document.removeEventListener("mousedown", handleClickOutside);
+//       document.removeEventListener('mousedown', handleClickOutside);
 //     };
 //   }, []);
 
@@ -179,26 +160,17 @@
 //   };
 
 //   const handleItemClick = (location) => {
-//     // Bu kısım çok önemli - doğrudan input değerini set ediyoruz
 //     if (inputRef.current) {
-//       // 1. Input değerini DOM seviyesinde güncelle
 //       inputRef.current.value = location.name;
-
-//       // 2. Formu ve React state'lerini bilgilendir
 //       onChange(location.name);
 //       onSelect(location.name);
-
-//       // 3. Arama terimini güncelle
 //       setSearchTerm(location.name);
 //     }
-
-//     // Dropdown'ı kapat
 //     setIsOpen(false);
 //   };
 
-//   // Portalla dropdown'ı oluştur
 //   let dropdownElement = null;
-//   if (isOpen && typeof document !== "undefined") {
+//   if (isOpen && typeof document !== 'undefined') {
 //     dropdownElement = createPortal(
 //       <div
 //         ref={dropdownRef}
@@ -206,14 +178,19 @@
 //         style={{
 //           top: `${dropdownPosition.top}px`,
 //           left: `${dropdownPosition.left}px`,
-//           width: `${dropdownPosition.width}px`,
-//           maxHeight: "300px",
+//           // width: `${dropdownPosition.width}px`,
+//           width: '250px',
+//           maxHeight: '300px',
 //         }}
 //       >
 //         {/* Başlık ve Kapat Butonu */}
 //         <div className="flex justify-between items-center border-b border-gray-200 px-3 py-2">
 //           <span className="text-sm font-medium">
-//             {searchTerm === "" ? "Popüler tatil noktaları" : "Sonuçlar"}
+//             {searchTerm === ''
+//               ? mode === 'city'
+//                 ? 'Popüler şehirler'
+//                 : 'Popüler tatil noktaları'
+//               : 'Sonuçlar'}
 //           </span>
 //           <button
 //             onClick={() => setIsOpen(false)}
@@ -221,7 +198,13 @@
 //           >
 //             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
 //               <path
-//                 d="M18 6L6 18M6 6L18 18"
+//                 d="M18 6L6 18"
+//                 stroke="#333"
+//                 strokeWidth="2"
+//                 strokeLinecap="round"
+//               />
+//               <path
+//                 d="M6 6L18 18"
 //                 stroke="#333"
 //                 strokeWidth="2"
 //                 strokeLinecap="round"
@@ -232,8 +215,7 @@
 
 //         {/* Dropdown İçeriği */}
 //         <div>
-//           {searchTerm === "" ? (
-//             // Popüler destinasyonlar
+//           {searchTerm === '' ? (
 //             popularLocations.slice(0, 5).map((location, index) => (
 //               <div
 //                 key={`popular-${index}`}
@@ -269,7 +251,6 @@
 //               </div>
 //             ))
 //           ) : filteredLocations.length > 0 ? (
-//             // Arama sonuçları
 //             filteredLocations.slice(0, 5).map((location, index) => (
 //               <div
 //                 key={`filter-${index}`}
@@ -309,13 +290,12 @@
 //           )}
 //         </div>
 //       </div>,
-//       document.body
+//       document.body,
 //     );
 //   }
 
 //   return (
 //     <div className="relative">
-//       {/* Normal HTML input kullan - React'ın state mekanizmasını atla */}
 //       <input
 //         ref={inputRef}
 //         type="text"
@@ -327,13 +307,15 @@
 //         className={`w-full p-2 focus:outline-none ${className}`}
 //         style={{ ...style }}
 //       />
-
 //       {dropdownElement}
 //     </div>
 //   );
 // };
 
 // export default DestinationDropdown;
+
+
+
 
 'use client';
 
@@ -344,6 +326,7 @@ import {
   destinations,
   hotels,
 } from '../../../data/mockData';
+import './assets/styles.css';
 
 interface DestinationDropdownProps {
   value: string;
@@ -490,6 +473,14 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
     }
   }, [isOpen]);
 
+  // Dropdown container için CSS custom property'leri güncelle
+  useEffect(() => {
+    if (dropdownRef.current) {
+      dropdownRef.current.style.setProperty('--dropdown-top', `${dropdownPosition.top}px`);
+      dropdownRef.current.style.setProperty('--dropdown-left', `${dropdownPosition.left}px`);
+    }
+  }, [dropdownPosition, isOpen]);
+
   const handleInputChange = (e) => {
     const value = e.target.value;
     setSearchTerm(value);
@@ -511,14 +502,7 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
     dropdownElement = createPortal(
       <div
         ref={dropdownRef}
-        className="fixed bg-white border border-gray-200 rounded-md shadow-lg overflow-y-auto z-50"
-        style={{
-          top: `${dropdownPosition.top}px`,
-          left: `${dropdownPosition.left}px`,
-          // width: `${dropdownPosition.width}px`,
-          width: '250px',
-          maxHeight: '300px',
-        }}
+        className="fixed bg-white border border-gray-200 rounded-md shadow-lg overflow-y-auto z-50 destinationDropdownContainer"
       >
         {/* Başlık ve Kapat Butonu */}
         <div className="flex justify-between items-center border-b border-gray-200 px-3 py-2">
