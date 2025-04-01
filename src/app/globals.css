@@ -291,3 +291,23 @@ body {
     height: 60px !important;
   }
 }
+
+/* Header Responsive Styles - 1024px için güncellendi */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Header'da md: prefix kullanan elemanları 1024px breakpoint için düzenle */
+  
+  /* Üst mavi bar 768-1024px arasında da gizli kalsın */
+  header div.hidden.md\:block {
+    display: none !important;
+  }
+  
+  /* Hamburger menü butonu 768-1024px arasında da görünür olsun */
+  header .md\:hidden {
+    display: flex !important;
+  }
+  
+  /* Masaüstü navigasyon menüsü 768-1024px arasında da gizli kalsın */
+  header nav.hidden.md\:flex {
+    display: none !important;
+  }
+}
