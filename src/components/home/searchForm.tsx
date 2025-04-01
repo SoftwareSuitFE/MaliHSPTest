@@ -790,7 +790,7 @@ const SearchForm = () => {
   const renderHotelForm = () => (
     <>
       <div
-        className="flex items-center relative"
+        className="flex items-center relative cursor-pointer"
         style={{
           width: "300px",
           height: "40px",
@@ -816,7 +816,7 @@ const SearchForm = () => {
 
       <div
         ref={dateFieldRef}
-        className="flex items-center relative"
+        className="flex items-center relative cursor-pointer"
         style={{
           width: "225px",
           height: "40px",
@@ -829,7 +829,7 @@ const SearchForm = () => {
         <div>
           <Icon name="calendar" size={24}/>
         </div>
-        <div className="flex flex-col w-full pl-2">
+        <div className="flex flex-col w-full pl-2 cursor-pointer">
           <div className="text-gray-500 text-xs">{t("SearchForm", "date")}</div>
           <div className="text-[#142347] font-medium cursor-pointer text-sm">
             {date.format("D MMM")} - {t("SearchForm", "nightsCount", { count: nights })}
@@ -839,7 +839,7 @@ const SearchForm = () => {
 
       <div
         ref={participantsRef}
-        className="flex items-center"
+        className="flex items-center cursor-pointer"
         style={{
           width: "180px",
           height: "40px",
@@ -847,7 +847,7 @@ const SearchForm = () => {
         }}
         onClick={handleParticipantsClick}
       >
-        <div>
+        <div className="cursor-pointer">
           <Icon name="users" size={24}/>
         </div>
         <div className="flex flex-col w-full pl-2">
@@ -920,7 +920,7 @@ const SearchForm = () => {
       {/* Date Range Field */}
       <div
         ref={dateFieldRef}
-        className="flex items-center relative"
+        className="flex items-center relative cursor-pointer"
         style={{
           width: "230px",
           height: "40px",
@@ -930,10 +930,10 @@ const SearchForm = () => {
         }}
         onClick={handleDateClick}
       >
-        <div>
+        <div className="cursor-pointer">
           <Icon name="calendar" size={24}/>
         </div>
-        <div className="flex flex-col w-full pl-2">
+        <div className="flex flex-col w-full pl-2 cursor-pointer">
           <div className="text-gray-500 text-xs">{t("SearchForm", "date")}</div>
           <div className="text-[#142347] font-medium cursor-pointer text-sm">
             {date.format("D MMM")} - {endDate.format("D MMM")}
@@ -944,7 +944,7 @@ const SearchForm = () => {
       {/* Participants Field */}
       <div
         ref={participantsRef}
-        className="flex items-center"
+        className="flex items-center cursor-pointer"
         style={{
           width: "135px",
           height: "40px",
@@ -952,10 +952,10 @@ const SearchForm = () => {
         }}
         onClick={handleParticipantsClick}
       >
-        <div>
+        <div className="cursor-pointer">
           <Icon name="users" size={24}/>
         </div>
-        <div className="flex flex-col w-full pl-2">
+        <div className="flex flex-col w-full pl-2 cursor-pointer">
           <div className="text-gray-500 text-xs">{t("SearchForm", "participants")}</div>
           <div className="text-[#142347] text-sm font-medium">
             {t("SearchForm", "people", { count: people })}
