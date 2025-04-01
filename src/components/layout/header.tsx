@@ -957,7 +957,7 @@ const Header = () => {
                   handleAddFavorite();
                   setIsMobileMenuOpen(false);
                 }}
-                className="text-[#142347] py-2 flex items-center text-base w-full text-left"
+                className="text-[#142347] py-2 flex items-center text-base w-full text-left cursor-pointer"
               >
                 <span className="flex items-center mr-1">
                   <Icon name="favorite" />
