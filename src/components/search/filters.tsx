@@ -779,7 +779,7 @@ import React, { useState, useEffect, useRef } from "react";
 import dayjs from "dayjs";
 import { useSearch } from "@/hooks/useSearch";
 import { Button } from "antd";
-import Icon from "../../../public/icons/Icon";
+import Icon from "../../assets/icons/Icon";
 import { useLanguage } from "@/hooks/useLanguage";
 import DateRangePicker from "@/components/DateRangePicker/DateRangePicker";
 import PersonPicker from "@/components/PersonPicker/personpicker";

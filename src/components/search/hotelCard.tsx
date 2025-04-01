@@ -3,7 +3,7 @@
 import React, { JSX } from "react";
 import { Hotel } from "../../../data/mockData";
 import { Button } from "antd";
-import Icon from "../../../public/icons/Icon";
+import Icon from "../../assets/icons/Icon";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useRouter } from "next/navigation"; // 1. Adım: useRouter'ı içeri aktarın
 

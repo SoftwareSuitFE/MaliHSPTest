@@ -533,7 +533,7 @@ import DestinationDropdown from "../dropdown/DestinationDropdown";
 import DateRangePicker from "../DateRangePicker/DateRangePicker";
 import PersonPicker from "../PersonPicker/personpicker";
 import NightPicker from "@/components/NightPicker/NightPicker"; // NightPicker eklendi
-import Icon from "../../../public/icons/Icon";
+import Icon from "../../assets/icons/Icon";
 import { useLanguage } from "@/hooks/useLanguage";
 
 const SearchForm = () => {

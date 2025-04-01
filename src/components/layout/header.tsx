@@ -618,7 +618,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Icon from "../../../public/icons/Icon";
+import Icon from "../../assets/icons/Icon";
 import { useLanguage } from "@/hooks/useLanguage";
 
 const Header = () => {

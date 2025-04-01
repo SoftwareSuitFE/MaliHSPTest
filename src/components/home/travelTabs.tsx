@@ -110,7 +110,7 @@
 
 import { useState, useEffect } from "react";
 import { useSearch } from "@/hooks/useSearch";
-import Icon from "../../../public/icons/Icon";
+import Icon from "../../assets/icons/Icon";
 import { useLanguage } from "@/hooks/useLanguage";
 
 const TravelTabs = () => {
