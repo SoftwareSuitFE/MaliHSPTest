@@ -196,8 +196,8 @@ body {
   }
 }
 
-/* TravelTabs Responsive Styles */
-@media (max-width: 767px) {
+/* TravelTabs Responsive Styles - 1024px için güncellendi */
+@media (max-width: 1023px) {
   /* TravelTabs responsive styling */
   .flex.justify-center.mb-4 > div[style*="width: 365.41px"] {
     flex-direction: column !important;
@@ -223,13 +223,8 @@ body {
   }
 }
 
-
-
-
-
-/* SearchForm Responsive Styles */
-/* SearchForm Responsive Styles */
-@media (max-width: 767px) {
+/* SearchForm Responsive Styles - 1024px için güncellendi */
+@media (max-width: 1023px) {
   /* Hero alanını büyütelim ki tüm içerik sığsın */
   div.relative.h-\[500px\].overflow-hidden.bg-blue-400,
   div.relative.h-\[500px\].overflow-hidden.bg-blue-400 > div.absolute.inset-0.w-full.h-full {
