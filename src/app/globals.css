@@ -411,54 +411,58 @@ body {
 }
 
 
+
+
+
+
 /* SearchForm Animation Styles */
 /* Form container için geçiş efekti */
 div[style*="width: 748px"][style*="height: 60px"] {
-transition: all 0.4s ease-in-out !important;
+  transition: all 0.3s ease-in-out !important;
 }
 
 /* Form içindeki elemanlar için geçişleri yumuşatma */
 div[style*="width: 748px"][style*="height: 60px"] > div {
-transition: all 0.4s ease-in-out !important;
-animation: fadeInUp 0.5s ease-in-out !important;
+  transition: all 0.3s ease-in-out !important;
+  animation: fadeInUp 0.35s ease-in-out !important;
 }
 
 /* Yeni eklenen form elemanları için yukarıdan aşağıya geçiş animasyonu */
 @keyframes fadeInUp {
-from {
-  opacity: 0;
-  transform: translateY(-15px);
-}
-to {
-  opacity: 1;
-  transform: translateY(0);
-}
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Tablar arası geçişte form içeriğinin geçişi için */
 .transform.transition-transform.duration-300 {
-transition: all 0.5s ease-in-out !important;
+  transition: all 0.35s ease-in-out !important;
 }
 
 /* Travel tabları arasındaki geçiş için animasyon */
 .flex.justify-center.mb-4 > div button {
-transition: all 0.3s ease-in-out !important;
+  transition: all 0.25s ease-in-out !important;
 }
 
 /* Aktif olan tab'a tıklanınca hafif vurgu efekti */
 .flex.justify-center.mb-4 > div button[class*="bg-white"] {
-animation: pulse 0.5s !important;
+  animation: pulse 0.35s !important;
 }
 
 /* Pulse animasyonu - aktif tab için hafif vurgu */
 @keyframes pulse {
-0% {
-  transform: scale(1);
-}
-50% {
-  transform: scale(1.05);
-}
-100% {
-  transform: scale(1);
-}
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
