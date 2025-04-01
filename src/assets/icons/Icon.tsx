@@ -1,32 +1,32 @@
-"use client";
+'use client';
 
-import React from "react";
-import Image from "next/image";
+import React from 'react';
+import Image from 'next/image';
 
 // İkon tipleri - projenizde kullanılan tüm ikonları burada tanımlayın
 export type IconName =
-  | "location"
-  | "search"
-  | "calendar"
-  | "nights"
-  | "users"
-  | "package"
-  | "hotel"
-  | "flight"
-  | "favorite"
-  | "phone"
-  | "arrow-down"
-  | "arrow-downSmall"
-  | "close"
-  | "searchSm"
-  | "hamburger"
-  | "Turkey"
-  | "Germany"
-  | "England"
-  | "Star"
-  | "beds"
-  | "flighttime"
-  | "thick";
+  | 'location'
+  | 'search'
+  | 'calendar'
+  | 'nights'
+  | 'users'
+  | 'package'
+  | 'hotel'
+  | 'flight'
+  | 'favorite'
+  | 'phone'
+  | 'arrow-down'
+  | 'arrow-downSmall'
+  | 'close'
+  | 'searchSm'
+  | 'hamburger'
+  | 'Turkey'
+  | 'Germany'
+  | 'England'
+  | 'Star'
+  | 'beds'
+  | 'flighttime'
+  | 'thick';
 
 interface IconProps {
   name: IconName;
@@ -40,13 +40,13 @@ export const Icon: React.FC<IconProps> = ({
   name,
   size = 16,
   color,
-  className = "",
+  className = '',
   onClick,
 }) => {
   // SVG ikonları direkt olarak kullanma - stroke rengi değiştirilebilir olanlar için
   const renderSvgIcon = () => {
     switch (name) {
-      case "location":
+      case 'location':
         return (
           <svg
             width={size}
@@ -61,7 +61,7 @@ export const Icon: React.FC<IconProps> = ({
             />
           </svg>
         );
-      case "search":
+      case 'search':
         return (
           <svg
             width={size}
@@ -76,7 +76,7 @@ export const Icon: React.FC<IconProps> = ({
             />
           </svg>
         );
-      case "hamburger":
+      case 'hamburger':
         return (
           <svg
             width={size}
@@ -94,7 +94,7 @@ export const Icon: React.FC<IconProps> = ({
             />
           </svg>
         );
-      case "searchSm":
+      case 'searchSm':
         return (
           <svg
             width={size}
@@ -109,7 +109,7 @@ export const Icon: React.FC<IconProps> = ({
             />
           </svg>
         );
-      case "calendar":
+      case 'calendar':
         return (
           <svg
             width={size}
@@ -124,7 +124,7 @@ export const Icon: React.FC<IconProps> = ({
             />
           </svg>
         );
-      case "users":
+      case 'users':
         return (
           <svg
             width={size}
@@ -139,7 +139,7 @@ export const Icon: React.FC<IconProps> = ({
             />
           </svg>
         );
-      case "nights":
+      case 'nights':
         return (
           <svg
             width={size}
@@ -154,7 +154,7 @@ export const Icon: React.FC<IconProps> = ({
             />
           </svg>
         );
-      case "package":
+      case 'package':
         return (
           <svg
             width={size}
@@ -169,7 +169,7 @@ export const Icon: React.FC<IconProps> = ({
             />
           </svg>
         );
-      case "hotel":
+      case 'hotel':
         return (
           <svg
             width={size}
@@ -184,7 +184,7 @@ export const Icon: React.FC<IconProps> = ({
             />
           </svg>
         );
-      case "flight":
+      case 'flight':
         return (
           <svg
             width={size}
@@ -211,7 +211,7 @@ export const Icon: React.FC<IconProps> = ({
             </defs>
           </svg>
         );
-      case "favorite":
+      case 'favorite':
         return (
           <svg
             width={size}
@@ -226,7 +226,7 @@ export const Icon: React.FC<IconProps> = ({
             />
           </svg>
         );
-      case "phone":
+      case 'phone':
         return (
           <svg
             width={size}
@@ -241,7 +241,7 @@ export const Icon: React.FC<IconProps> = ({
             />
           </svg>
         );
-      case "thick":
+      case 'thick':
         return (
           <svg
             width="10"
@@ -265,7 +265,7 @@ export const Icon: React.FC<IconProps> = ({
             </defs>
           </svg>
         );
-      case "arrow-down":
+      case 'arrow-down':
         return (
           <svg
             width={size}
@@ -280,7 +280,7 @@ export const Icon: React.FC<IconProps> = ({
             />
           </svg>
         );
-      case "flighttime":
+      case 'flighttime':
         return (
           <svg
             width="20"
@@ -297,7 +297,7 @@ export const Icon: React.FC<IconProps> = ({
             />
           </svg>
         );
-      case "arrow-downSmall":
+      case 'arrow-downSmall':
         return (
           <svg
             width={size}
@@ -312,7 +312,7 @@ export const Icon: React.FC<IconProps> = ({
             />
           </svg>
         );
-      case "Star":
+      case 'Star':
         return (
           <svg
             width="16"
@@ -327,7 +327,7 @@ export const Icon: React.FC<IconProps> = ({
             />
           </svg>
         );
-      case "Turkey":
+      case 'Turkey':
         return (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -363,7 +363,7 @@ export const Icon: React.FC<IconProps> = ({
             ></path>
           </svg>
         );
-      case "Germany":
+      case 'Germany':
         return (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -389,7 +389,7 @@ export const Icon: React.FC<IconProps> = ({
             ></path>
           </svg>
         );
-      case "England":
+      case 'England':
         return (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -452,7 +452,7 @@ export const Icon: React.FC<IconProps> = ({
             ></path>
           </svg>
         );
-      case "close":
+      case 'close':
         return (
           <svg
             width={size}
@@ -470,7 +470,7 @@ export const Icon: React.FC<IconProps> = ({
             />
           </svg>
         );
-      case "beds":
+      case 'beds':
         return (
           <svg
             width="16"

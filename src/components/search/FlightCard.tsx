@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React, { JSX } from "react";
-import { Flight } from "../../../data/mockData";
-import { Button } from "antd";
-import Icon from "../../assets/icons/Icon";
-import { useLanguage } from "@/hooks/useLanguage";
-import { useRouter } from "next/navigation"; // useRouter'ı içe aktarıyoruz
+import React, { JSX } from 'react';
+import { Flight } from '../../../data/mockData';
+import { Button } from 'antd';
+import Icon from '../../assets/icons/Icon';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useRouter } from 'next/navigation'; // useRouter'ı içe aktarıyoruz
 
 interface FlightCardProps {
   flight: Flight;
@@ -23,7 +23,7 @@ const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
 
   // Yönlendirme işlemi için event handler
   const handleBookNow = () => {
-    router.push("/comingsoon");
+    router.push('/comingsoon');
   };
 
   return (
@@ -36,7 +36,7 @@ const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
         gap-2
         w-full
       "
-      style={{ fontFamily: "Inter" }}
+      style={{ fontFamily: 'Inter' }}
     >
       {/* Sol: Görsel */}
       <div
@@ -71,7 +71,7 @@ const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
           lg:w-[457px]   /* 1024–1279 arası content sabit 457px */
           xl:flex-1      /* 1280+ içerik de genişleyebilir */
         "
-        style={{ minHeight: "271px" }}
+        style={{ minHeight: '271px' }}
       >
         {/* Üst Row: Havayolu adı, yıldızlar, lokasyon */}
         <div className="flex flex-col gap-2">
@@ -79,7 +79,7 @@ const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
             {flight.name}
           </h3>
           <div className="flex items-center gap-2">
-            <div className="flex" style={{ gap: "4px" }}>
+            <div className="flex" style={{ gap: '4px' }}>
               {Array.from({ length: flight.stars }).map((_, i) => (
                 <Icon key={i} name="Star" size={16} />
               ))}
@@ -87,10 +87,10 @@ const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
             <span
               style={{
                 fontWeight: 500,
-                fontSize: "14px",
-                lineHeight: "100%",
-                color: "#142347",
-                whiteSpace: "nowrap",
+                fontSize: '14px',
+                lineHeight: '100%',
+                color: '#142347',
+                whiteSpace: 'nowrap',
               }}
             >
               {flight.location}
@@ -125,10 +125,10 @@ const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
             <div className="flex items-center gap-2 text-sm text-[#142347]">
               <Icon name="users" />
               <span>
-                {t("FlightCard", "adults", { count: flight.adults })} -
+                {t('FlightCard', 'adults', { count: flight.adults })} -
                 {flight.children === 1
-                  ? ` ${t("FlightCard", "child", { count: flight.children })}`
-                  : ` ${t("FlightCard", "children", {
+                  ? ` ${t('FlightCard', 'child', { count: flight.children })}`
+                  : ` ${t('FlightCard', 'children', {
                       count: flight.children,
                     })}`}
               </span>
@@ -140,7 +140,7 @@ const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
             <div className="flex items-center gap-2 text-sm text-[#142347]">
               <Icon name="nights" />
               <span>
-                {flight.nights} {t("FlightCard", "hours")}
+                {flight.nights} {t('FlightCard', 'hours')}
               </span>
             </div>
             <div className="flex items-center gap-2 text-sm text-[#142347]">
@@ -167,10 +167,10 @@ const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
               <span
                 style={{
                   fontWeight: 700,
-                  fontSize: "14px",
-                  lineHeight: "100%",
-                  textDecoration: "line-through",
-                  color: "#93A2B7",
+                  fontSize: '14px',
+                  lineHeight: '100%',
+                  textDecoration: 'line-through',
+                  color: '#93A2B7',
                 }}
               >
                 {flight.price + 200}€
@@ -179,19 +179,19 @@ const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
                 <span
                   style={{
                     fontWeight: 400,
-                    fontSize: "12px",
-                    lineHeight: "100%",
-                    color: "#64748A",
+                    fontSize: '12px',
+                    lineHeight: '100%',
+                    color: '#64748A',
                   }}
                 >
-                  {t("FlightCard", "fromPrice")}
+                  {t('FlightCard', 'fromPrice')}
                 </span>
                 <span
                   style={{
                     fontWeight: 700,
-                    fontSize: "20px",
-                    lineHeight: "100%",
-                    color: "#64748A",
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    color: '#64748A',
                   }}
                 >
                   {flight.price}€
@@ -203,19 +203,19 @@ const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
             <Button
               onClick={handleBookNow} // Butona tıklayınca yönlendirme işlemi gerçekleşir
               style={{
-                width: "100%", // mobilde tam genişlik
-                height: "45px",
-                borderRadius: "4px",
-                background: "#ED8936",
-                border: "none",
+                width: '100%', // mobilde tam genişlik
+                height: '45px',
+                borderRadius: '4px',
+                background: '#ED8936',
+                border: 'none',
                 fontWeight: 700,
-                fontSize: "14px",
-                lineHeight: "100%",
-                color: "#FFFFFF",
-                textAlign: "center",
+                fontSize: '14px',
+                lineHeight: '100%',
+                color: '#FFFFFF',
+                textAlign: 'center',
               }}
             >
-              {t("FlightCard", "bookNow")}
+              {t('FlightCard', 'bookNow')}
             </Button>
           </div>
         </div>

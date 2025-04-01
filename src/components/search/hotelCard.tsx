@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React, { JSX } from "react";
-import { Hotel } from "../../../data/mockData";
-import { Button } from "antd";
-import Icon from "../../assets/icons/Icon";
-import { useLanguage } from "@/hooks/useLanguage";
-import { useRouter } from "next/navigation"; // 1. Adım: useRouter'ı içeri aktarın
+import React, { JSX } from 'react';
+import { Hotel } from '../../../data/mockData';
+import { Button } from 'antd';
+import Icon from '../../assets/icons/Icon';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useRouter } from 'next/navigation'; // 1. Adım: useRouter'ı içeri aktarın
 
 interface HotelCardProps {
   hotel: Hotel;
@@ -17,7 +17,7 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
 
   // 3. Adım: Yönlendirme fonksiyonunu oluşturun
   const handleContinue = () => {
-    router.push("/comingsoon");
+    router.push('/comingsoon');
   };
 
   return (
@@ -30,7 +30,7 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
         gap-4
         w-full
       "
-      style={{ fontFamily: "Inter" }}
+      style={{ fontFamily: 'Inter' }}
     >
       {/* Sol: Görsel */}
       <div
@@ -65,13 +65,13 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
           lg:w-[457px]
           xl:flex-1
         "
-        style={{ minHeight: "271px" }}
+        style={{ minHeight: '271px' }}
       >
         {/* Üst Row: Otel adı, yıldızlar, lokasyon */}
         <div className="flex flex-col gap-2">
           <h3 className="text-xl font-bold text-[#142347] m-0">{hotel.name}</h3>
           <div className="flex items-center gap-2">
-            <div className="flex" style={{ gap: "4px" }}>
+            <div className="flex" style={{ gap: '4px' }}>
               {Array.from({ length: hotel.stars }).map((_, i) => (
                 <Icon key={i} name="Star" size={16} />
               ))}
@@ -79,10 +79,10 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
             <span
               style={{
                 fontWeight: 500,
-                fontSize: "14px",
-                lineHeight: "100%",
-                color: "#142347",
-                whiteSpace: "nowrap",
+                fontSize: '14px',
+                lineHeight: '100%',
+                color: '#142347',
+                whiteSpace: 'nowrap',
               }}
             >
               {hotel.location}
@@ -117,10 +117,10 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
             <div className="flex items-center gap-2 text-sm text-[#142347]">
               <Icon name="users" />
               <span>
-                {t("HotelCard", "adults", { count: hotel.adults })} -
+                {t('HotelCard', 'adults', { count: hotel.adults })} -
                 {hotel.children === 1
-                  ? ` ${t("HotelCard", "child", { count: hotel.children })}`
-                  : ` ${t("HotelCard", "children", { count: hotel.children })}`}
+                  ? ` ${t('HotelCard', 'child', { count: hotel.children })}`
+                  : ` ${t('HotelCard', 'children', { count: hotel.children })}`}
               </span>
             </div>
             <div className="flex items-center gap-2 text-sm text-[#142347]">
@@ -129,11 +129,11 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
             </div>
             <div className="flex items-center gap-2 text-sm text-[#142347]">
               <Icon name="nights" />
-              <span>{t("HotelCard", "nights", { count: hotel.nights })}</span>
+              <span>{t('HotelCard', 'nights', { count: hotel.nights })}</span>
             </div>
             <div className="flex items-center gap-2 text-sm text-[#142347]">
               <Icon name="beds" />
-              <span>{hotel.categories.join(", ")}</span>
+              <span>{hotel.categories.join(', ')}</span>
             </div>
           </div>
 
@@ -155,10 +155,10 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
               <span
                 style={{
                   fontWeight: 700,
-                  fontSize: "14px",
-                  lineHeight: "100%",
-                  textDecoration: "line-through",
-                  color: "#93A2B7",
+                  fontSize: '14px',
+                  lineHeight: '100%',
+                  textDecoration: 'line-through',
+                  color: '#93A2B7',
                 }}
               >
                 {hotel.price + 200}€
@@ -167,19 +167,19 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
                 <span
                   style={{
                     fontWeight: 400,
-                    fontSize: "12px",
-                    lineHeight: "100%",
-                    color: "#64748A",
+                    fontSize: '12px',
+                    lineHeight: '100%',
+                    color: '#64748A',
                   }}
                 >
-                  {t("HotelCard", "fromPP")}
+                  {t('HotelCard', 'fromPP')}
                 </span>
                 <span
                   style={{
                     fontWeight: 700,
-                    fontSize: "20px",
-                    lineHeight: "100%",
-                    color: "#64748A",
+                    fontSize: '20px',
+                    lineHeight: '100%',
+                    color: '#64748A',
                   }}
                 >
                   {hotel.price}€
@@ -191,19 +191,19 @@ const HotelCard = ({ hotel }: HotelCardProps): JSX.Element => {
             <Button
               onClick={handleContinue} // Butona tıklanınca yönlendirme işlemini tetikler
               style={{
-                width: "100%",
-                height: "45px",
-                borderRadius: "4px",
-                background: "#ED8936",
-                border: "none",
+                width: '100%',
+                height: '45px',
+                borderRadius: '4px',
+                background: '#ED8936',
+                border: 'none',
                 fontWeight: 700,
-                fontSize: "14px",
-                lineHeight: "100%",
-                color: "#FFFFFF",
-                textAlign: "center",
+                fontSize: '14px',
+                lineHeight: '100%',
+                color: '#FFFFFF',
+                textAlign: 'center',
               }}
             >
-              {t("HotelCard", "continue")}
+              {t('HotelCard', 'continue')}
             </Button>
           </div>
         </div>

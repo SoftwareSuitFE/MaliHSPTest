@@ -11,7 +11,7 @@ export interface SearchParams {
   date: string;
   nights: number;
   participants: Participants;
-  travelType: "package" | "hotel" | "flight";
+  travelType: 'package' | 'hotel' | 'flight';
 }
 
 export interface Filters {

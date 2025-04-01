@@ -124,18 +124,18 @@
 //   );
 // }
 
-"use client";
+'use client';
 
-import Header from "@/components/layout/header";
-import TravelTabs from "@/components/home/travelTabs";
-import SearchForm from "@/components/home/searchForm";
-import { useEffect } from "react";
+import Header from '@/components/layout/header';
+import TravelTabs from '@/components/home/travelTabs';
+import SearchForm from '@/components/home/searchForm';
+import { useEffect } from 'react';
 
 export default function Home() {
   useEffect(() => {
-    document.body.style.background = "#FFFFFF";
+    document.body.style.background = '#FFFFFF';
     return () => {
-      document.body.style.background = "";
+      document.body.style.background = '';
     };
   }, []);
 
@@ -146,18 +146,18 @@ export default function Home() {
       <div
         className="relative h-[500px] overflow-hidden bg-blue-400"
         style={{
-          width: "100%",
-          height: "500px",
+          width: '100%',
+          height: '500px',
         }}
       >
         <div
           className="absolute inset-0 w-full h-full"
           style={{
             backgroundImage: `url('https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?q=80&w=3433&auto=format&fit=crop')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center 40%",
-            transform: "scale(1.05)",
-            filter: "brightness(1.05) saturate(1.1)",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center 40%',
+            transform: 'scale(1.05)',
+            filter: 'brightness(1.05) saturate(1.1)',
           }}
         ></div>
 
@@ -165,7 +165,7 @@ export default function Home() {
           className="absolute inset-0 w-full h-full"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.15))",
+              'linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.15))',
           }}
         ></div>
 

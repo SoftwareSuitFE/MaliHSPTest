@@ -1,6 +1,6 @@
 // src/hooks/useSearch.ts
 
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   getSearchParams,
   saveSearchParams,
@@ -8,8 +8,8 @@ import {
   saveFilters,
   SEARCH_PARAMS_KEY,
   FILTERS_KEY,
-} from "@/services/searchService";
-import { SearchParams, Filters } from "@/types/search";
+} from '@/services/searchService';
+import { SearchParams, Filters } from '@/types/search';
 
 export function useSearch() {
   const queryClient = useQueryClient();

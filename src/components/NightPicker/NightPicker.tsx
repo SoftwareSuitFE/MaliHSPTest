@@ -1,11 +1,11 @@
 // src/components/NightPicker/NightPicker.tsx
 
-"use client";
+'use client';
 
-import React, { useState, useEffect, useRef } from "react";
-import { createPortal } from "react-dom";
-import { CloseOutlined, MinusOutlined, PlusOutlined } from "@ant-design/icons";
-import { useLanguage } from "@/hooks/useLanguage";
+import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
+import { CloseOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface NightPickerProps {
   nights: number;
@@ -57,9 +57,9 @@ const NightPicker: React.FC<NightPickerProps> = ({
         onClose();
       }
     }
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [onClose, triggerRef]);
 
@@ -77,7 +77,7 @@ const NightPicker: React.FC<NightPickerProps> = ({
   };
 
   // NightPicker görünmüyorsa null döndür
-  if (!visible || typeof document === "undefined") return null;
+  if (!visible || typeof document === 'undefined') return null;
 
   // NightPicker içeriği
   const pickerContent = (
@@ -93,7 +93,7 @@ const NightPicker: React.FC<NightPickerProps> = ({
       {/* Üst Bar: Başlık + Kapatma Butonu */}
       <div className="flex justify-between items-center mb-4 pb-3 border-b border-gray-200">
         <span className="font-medium text-gray-800">
-          {t("Filters", "nights")}
+          {t('Filters', 'nights')}
         </span>
         <button
           onClick={onClose}
@@ -106,7 +106,7 @@ const NightPicker: React.FC<NightPickerProps> = ({
       {/* Gece Sayısı Seçimi */}
       <div className="flex flex-col items-center">
         <div className="text-sm font-semibold text-gray-700 mb-2">
-          {t("HotelCard", "nights", { count: nightCount })}
+          {t('HotelCard', 'nights', { count: nightCount })}
         </div>
         <div className="flex items-center gap-4">
           <button

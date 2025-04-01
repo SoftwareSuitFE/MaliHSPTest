@@ -771,46 +771,44 @@
 
 // export default Filters;
 
+'use client';
 
-
-"use client";
-
-import React, { useState, useEffect, useRef } from "react";
-import dayjs from "dayjs";
-import { useSearch } from "@/hooks/useSearch";
-import { Button } from "antd";
-import Icon from "../../assets/icons/Icon";
-import { useLanguage } from "@/hooks/useLanguage";
-import DateRangePicker from "@/components/DateRangePicker/DateRangePicker";
-import PersonPicker from "@/components/PersonPicker/personpicker";
-import DestinationDropdown from "@/components/dropdown/DestinationDropdown";
-import NightPicker from "@/components/NightPicker/NightPicker";
+import React, { useState, useEffect, useRef } from 'react';
+import dayjs from 'dayjs';
+import { useSearch } from '@/hooks/useSearch';
+import { Button } from 'antd';
+import Icon from '../../assets/icons/Icon';
+import { useLanguage } from '@/hooks/useLanguage';
+import DateRangePicker from '@/components/DateRangePicker/DateRangePicker';
+import PersonPicker from '@/components/PersonPicker/personpicker';
+import DestinationDropdown from '@/components/dropdown/DestinationDropdown';
+import NightPicker from '@/components/NightPicker/NightPicker';
 
 // Hotel concept listesi
 const baseConcepts = [
-  "Beach Hotel",
-  "Adult Hotel",
-  "Boutique Hotel",
-  "Family Hotel",
-  "Pet Friendly",
-  "Spa",
-  "Golf",
-  "Mountain Resort",
+  'Beach Hotel',
+  'Adult Hotel',
+  'Boutique Hotel',
+  'Family Hotel',
+  'Pet Friendly',
+  'Spa',
+  'Golf',
+  'Mountain Resort',
 ];
 
 // Flight concept listesi
 const flightConcepts = [
   // Uçuş Sınıfları
-  "Economy Class",
-  "Business Class",
-  "First Class", 
-  "Premium Economy",
-  
+  'Economy Class',
+  'Business Class',
+  'First Class',
+  'Premium Economy',
+
   // Uçuş Türleri
-  "Direct Flight",
-  "One Stop",
-  "Multiple Stops",
-  "Domestic"
+  'Direct Flight',
+  'One Stop',
+  'Multiple Stops',
+  'Domestic',
 ];
 
 const Filters: React.FC = () => {
@@ -818,28 +816,28 @@ const Filters: React.FC = () => {
   const { t } = useLanguage();
 
   // TravelType değerini alıyoruz
-  const travelType = searchParams.travelType || "package";
+  const travelType = searchParams.travelType || 'package';
 
   // State'ler
   const [from, setFrom] = useState<string>(
-    filters.from || searchParams.from || ""
+    filters.from || searchParams.from || '',
   );
   const [destination, setDestination] = useState<string>(
-    filters.destination || searchParams.destination || ""
+    filters.destination || searchParams.destination || '',
   );
 
   // Kişi sayıları
   const [adults, setAdults] = useState<number>(
-    filters.participants?.adults || searchParams.participants?.adults || 2
+    filters.participants?.adults || searchParams.participants?.adults || 2,
   );
   const [children, setChildren] = useState<number>(
-    filters.participants?.children || searchParams.participants?.children || 0
+    filters.participants?.children || searchParams.participants?.children || 0,
   );
   const [people, setPeople] = useState<number>(adults + children);
 
   // Nights değişkeni
   const [nights, setNights] = useState<number>(
-    filters.nights || searchParams.nights || 5
+    filters.nights || searchParams.nights || 5,
   );
 
   // Date state'leri
@@ -851,17 +849,17 @@ const Filters: React.FC = () => {
 
   // endDate başlangıç + seçili gece sayısı kadar
   const [endDate, setEndDate] = useState<dayjs.Dayjs | null>(() => {
-    if (startDate) return startDate.add(nights, "day");
+    if (startDate) return startDate.add(nights, 'day');
     return null;
   });
 
   const [stars, setStars] = useState<number[]>(filters.stars || []);
   const [concepts, setConcepts] = useState<string[]>(
-    filters.hotelConcepts || []
+    filters.hotelConcepts || [],
   );
-  const [flightConceptsSelected, setFlightConceptsSelected] = useState<string[]>(
-    filters.flightConcepts || []
-  );
+  const [flightConceptsSelected, setFlightConceptsSelected] = useState<
+    string[]
+  >(filters.flightConcepts || []);
 
   // DateRangePicker için visible state ve ref
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
@@ -880,8 +878,8 @@ const Filters: React.FC = () => {
 
   // searchParams değiştiğinde state'leri güncelle
   useEffect(() => {
-    setFrom(searchParams.from || "");
-    setDestination(searchParams.destination || "");
+    setFrom(searchParams.from || '');
+    setDestination(searchParams.destination || '');
 
     // Kişi sayılarını güncelle
     const newAdults = searchParams.participants?.adults || 2;
@@ -899,28 +897,28 @@ const Filters: React.FC = () => {
     setStartDate(newStartDate);
 
     if (newStartDate) {
-      setEndDate(newStartDate.add(newNights, "day"));
+      setEndDate(newStartDate.add(newNights, 'day'));
     } else {
       setEndDate(null);
     }
 
     // filters değişiklikleri de filters state'ine yansıtılsın
     updateFilters({
-      from: searchParams.from || filters.from || "",
-      destination: searchParams.destination || filters.destination || "",
+      from: searchParams.from || filters.from || '',
+      destination: searchParams.destination || filters.destination || '',
       participants: {
         adults: newAdults,
         children: newChildren,
       },
-      date: searchParams.date || filters.date || "",
+      date: searchParams.date || filters.date || '',
       nights: newNights,
     });
   }, [searchParams, updateFilters]);
 
   // filters değiştiğinde de state'leri güncelle
   useEffect(() => {
-    setFrom(filters.from || "");
-    setDestination(filters.destination || "");
+    setFrom(filters.from || '');
+    setDestination(filters.destination || '');
 
     // Kişi sayılarını güncelle
     const newAdults = filters.participants?.adults || 2;
@@ -938,7 +936,7 @@ const Filters: React.FC = () => {
     setStartDate(newStartDate);
 
     if (newStartDate) {
-      setEndDate(newStartDate.add(newNights, "day"));
+      setEndDate(newStartDate.add(newNights, 'day'));
     } else {
       setEndDate(null);
     }
@@ -950,8 +948,8 @@ const Filters: React.FC = () => {
 
   // Filtreleri sıfırla
   const resetFilters = () => {
-    setFrom("");
-    setDestination("");
+    setFrom('');
+    setDestination('');
     setAdults(2);
     setChildren(0);
     setPeople(2);
@@ -965,10 +963,10 @@ const Filters: React.FC = () => {
     setShowMoreFlight(false);
 
     updateFilters({
-      from: "",
-      destination: "",
+      from: '',
+      destination: '',
       participants: { adults: 2, children: 0 },
-      date: "",
+      date: '',
       nights: 5,
       hotelConcepts: [],
       flightConcepts: [],
@@ -1008,12 +1006,12 @@ const Filters: React.FC = () => {
     setEndDate(end);
 
     // Gece sayısını hesapla
-    const nightCount = end.diff(start, "day");
+    const nightCount = end.diff(start, 'day');
     setNights(nightCount);
 
     // Filters'ı güncelle
     updateFilters({
-      date: start.format("YYYY-MM-DD"),
+      date: start.format('YYYY-MM-DD'),
       nights: nightCount,
     });
   };
@@ -1027,7 +1025,7 @@ const Filters: React.FC = () => {
     setNights(val);
     // endDate'i de güncelle
     if (startDate) {
-      setEndDate(startDate.add(val, "day"));
+      setEndDate(startDate.add(val, 'day'));
     }
     updateFilters({ nights: val });
   };
@@ -1074,87 +1072,89 @@ const Filters: React.FC = () => {
 
   // Gösterilecek concept listesi - 5 olarak güncellendi (görüntülerde 5 gösterildiği için)
   const visibleConcepts = showMore ? baseConcepts : baseConcepts.slice(0, 5);
-  const visibleFlightConcepts = showMoreFlight ? flightConcepts : flightConcepts.slice(0, 5);
+  const visibleFlightConcepts = showMoreFlight
+    ? flightConcepts
+    : flightConcepts.slice(0, 5);
 
   // Otel konseptini çevirme yardımcı fonksiyonu
   const translateConcept = (concept: string): string => {
     // Boşlukları kaldırıp, camelCase'e dönüştürme
     const key = concept
-      .replace(/\s+/g, "")
+      .replace(/\s+/g, '')
       .replace(/(?:^|\s)(\w)/g, (match, p1) => p1.toLowerCase());
-    return t("HotelConcepts", key);
+    return t('HotelConcepts', key);
   };
 
   // Uçuş konseptini çevirme yardımcı fonksiyonu
   const translateFlightConcept = (concept: string): string => {
     // Boşlukları kaldırıp, camelCase'e dönüştürme
     const key = concept
-      .replace(/\s+/g, "")
+      .replace(/\s+/g, '')
       .replace(/(?:^|\s)(\w)/g, (match, p1) => p1.toLowerCase());
-    return t("FlightConcepts", key);
+    return t('FlightConcepts', key);
   };
 
   // Figma stil tanımlamaları
   const headerStyle = {
-    fontFamily: "Inter",
+    fontFamily: 'Inter',
     fontWeight: 400,
-    fontSize: "12px",
-    lineHeight: "100%",
-    letterSpacing: "0%",
-    color: "#142347",
+    fontSize: '12px',
+    lineHeight: '100%',
+    letterSpacing: '0%',
+    color: '#142347',
   };
 
   const fieldTextStyle = {
-    fontFamily: "Inter",
+    fontFamily: 'Inter',
     fontWeight: 500,
-    fontSize: "14px",
-    lineHeight: "100%",
-    letterSpacing: "0%",
-    color: "#142347",
+    fontSize: '14px',
+    lineHeight: '100%',
+    letterSpacing: '0%',
+    color: '#142347',
   };
 
   // Ekran görüntülerinden alınan kesin ölçüler
   const inputFieldStyle = {
-    width: "220px",  // İç inputların genişliği
-    height: "48px",
-    borderRadius: "8px",
-    border: "1px solid #E2E8F0",
-    background: "#FFFFFF",
+    width: '220px', // İç inputların genişliği
+    height: '48px',
+    borderRadius: '8px',
+    border: '1px solid #E2E8F0',
+    background: '#FFFFFF',
   };
 
   const sectionStyle = {
-    width: "220px",
+    width: '220px',
   };
 
   return (
     <div
       className="bg-white rounded-lg sticky top-4 w-full lg:w-[268px]"
       style={{
-        fontFamily: "Inter",
-        borderRadius: "8px",
-        border: "1px solid #F0F4F8",
-        padding: "24px",
+        fontFamily: 'Inter',
+        borderRadius: '8px',
+        border: '1px solid #F0F4F8',
+        padding: '24px',
       }}
     >
       {/* 1. GRUP: Filter, From ve Destination */}
-      <div style={{ marginBottom: "32px" }}>
+      <div style={{ marginBottom: '32px' }}>
         {/* Filter Başlık */}
-        <h3 
+        <h3
           className="text-sm font-normal text-[#142347]"
-          style={{ fontSize: "14px", marginBottom: "16px" }}
+          style={{ fontSize: '14px', marginBottom: '16px' }}
         >
-          {t("Filters", "title")}
+          {t('Filters', 'title')}
         </h3>
 
         {/* From - Sadece package ve flight için göster */}
-        {(travelType === "package" || travelType === "flight") && (
-          <div style={{ marginBottom: "16px" }}>
-            <div 
+        {(travelType === 'package' || travelType === 'flight') && (
+          <div style={{ marginBottom: '16px' }}>
+            <div
               className="filter-input flex items-center rounded-md overflow-hidden w-full"
               style={{
                 ...inputFieldStyle,
-                display: "flex",
-                alignItems: "center",
+                display: 'flex',
+                alignItems: 'center',
               }}
             >
               <div className="flex items-center h-full pl-3 pr-2">
@@ -1164,7 +1164,7 @@ const Filters: React.FC = () => {
                 value={from}
                 onChange={handleFromChange}
                 onSelect={handleFromChange}
-                placeholder={t("Filters", "from")}
+                placeholder={t('Filters', 'from')}
                 mode="city"
                 className="h-full rounded-md text-[#142347] placeholder:text-[#142347] w-full border-none focus:outline-none"
                 style={fieldTextStyle}
@@ -1175,12 +1175,12 @@ const Filters: React.FC = () => {
 
         {/* Destination - Tüm tiplerde göster */}
         <div>
-          <div 
+          <div
             className="filter-input flex items-center rounded-md overflow-hidden w-full"
             style={{
               ...inputFieldStyle,
-              display: "flex",
-              alignItems: "center",
+              display: 'flex',
+              alignItems: 'center',
             }}
           >
             <div className="flex items-center h-full pl-3 pr-2">
@@ -1190,8 +1190,8 @@ const Filters: React.FC = () => {
               value={destination}
               onChange={handleDestinationChange}
               onSelect={handleDestinationChange}
-              placeholder={t("Filters", "destination")}
-              mode={travelType === "hotel" ? "hotel" : "city"}
+              placeholder={t('Filters', 'destination')}
+              mode={travelType === 'hotel' ? 'hotel' : 'city'}
               className="h-full rounded-md text-[#142347] placeholder:text-[#142347] w-full border-none focus:outline-none"
               style={fieldTextStyle}
             />
@@ -1200,21 +1200,21 @@ const Filters: React.FC = () => {
       </div>
 
       {/* 2. GRUP: Participants */}
-      <div style={{ marginBottom: "32px" }}>
-        <label 
-          className="block text-[#142347]" 
-          style={{ ...headerStyle, marginBottom: "8px", display: "block" }}
+      <div style={{ marginBottom: '32px' }}>
+        <label
+          className="block text-[#142347]"
+          style={{ ...headerStyle, marginBottom: '8px', display: 'block' }}
         >
-          {t("Filters", "participants")}
+          {t('Filters', 'participants')}
         </label>
         <div
           ref={peopleFieldRef}
           className="filter-input flex items-center cursor-pointer overflow-hidden w-full"
           style={{
             ...inputFieldStyle,
-            display: "flex",
-            alignItems: "center",
-            cursor: "pointer",
+            display: 'flex',
+            alignItems: 'center',
+            cursor: 'pointer',
           }}
           onClick={() => setShowPersonPicker(true)}
         >
@@ -1222,12 +1222,12 @@ const Filters: React.FC = () => {
             <Icon name="users" size={16} color="#142347" />
           </div>
           <div className="text-[#142347] flex-1" style={fieldTextStyle}>
-            {t("Filters", "people", { count: people })}
+            {t('Filters', 'people', { count: people })}
           </div>
         </div>
 
         {/* PersonPicker Bileşeni */}
-        {typeof window !== "undefined" && showPersonPicker && (
+        {typeof window !== 'undefined' && showPersonPicker && (
           <PersonPicker
             adults={adults}
             children={children}
@@ -1240,21 +1240,21 @@ const Filters: React.FC = () => {
       </div>
 
       {/* 3. GRUP: Date */}
-      <div style={{ marginBottom: "32px" }}>
-        <label 
-          className="block text-[#142347]" 
-          style={{ ...headerStyle, marginBottom: "8px", display: "block" }}
+      <div style={{ marginBottom: '32px' }}>
+        <label
+          className="block text-[#142347]"
+          style={{ ...headerStyle, marginBottom: '8px', display: 'block' }}
         >
-          {t("Filters", "date")}
+          {t('Filters', 'date')}
         </label>
         <div
           ref={dateFieldRef}
           className="filter-input flex items-center cursor-pointer overflow-hidden w-full"
           style={{
             ...inputFieldStyle,
-            display: "flex",
-            alignItems: "center",
-            cursor: "pointer",
+            display: 'flex',
+            alignItems: 'center',
+            cursor: 'pointer',
           }}
           onClick={() => setShowDatePicker(true)}
         >
@@ -1263,17 +1263,15 @@ const Filters: React.FC = () => {
           </div>
           <div className="text-[#142347] flex-1" style={fieldTextStyle}>
             {startDate ? (
-              <span>
-                {startDate.format("DD MMM YYYY")}
-              </span>
+              <span>{startDate.format('DD MMM YYYY')}</span>
             ) : (
-              <span className="text-gray-400">{t("Filters", "date")}</span>
+              <span className="text-gray-400">{t('Filters', 'date')}</span>
             )}
           </div>
         </div>
 
         {/* DateRangePicker Bileşeni */}
-        {typeof window !== "undefined" && showDatePicker && (
+        {typeof window !== 'undefined' && showDatePicker && (
           <DateRangePicker
             startDate={startDate || undefined}
             endDate={endDate || undefined}
@@ -1286,22 +1284,22 @@ const Filters: React.FC = () => {
       </div>
 
       {/* 4. GRUP: Nights - Sadece package ve hotel için göster */}
-      {(travelType === "package" || travelType === "hotel") && (
-        <div style={{ marginBottom: "32px" }}>
-          <label 
-            className="block text-[#142347]" 
-            style={{ ...headerStyle, marginBottom: "8px", display: "block" }}
+      {(travelType === 'package' || travelType === 'hotel') && (
+        <div style={{ marginBottom: '32px' }}>
+          <label
+            className="block text-[#142347]"
+            style={{ ...headerStyle, marginBottom: '8px', display: 'block' }}
           >
-            {t("Filters", "nights")}
+            {t('Filters', 'nights')}
           </label>
           <div
             ref={nightsFieldRef}
             className="filter-input flex items-center cursor-pointer overflow-hidden w-full"
             style={{
               ...inputFieldStyle,
-              display: "flex",
-              alignItems: "center",
-              cursor: "pointer",
+              display: 'flex',
+              alignItems: 'center',
+              cursor: 'pointer',
             }}
             onClick={() => setShowNightPicker(true)}
           >
@@ -1309,12 +1307,12 @@ const Filters: React.FC = () => {
               <Icon name="nights" size={16} color="#142347" />
             </div>
             <div className="text-[#142347] flex-1" style={fieldTextStyle}>
-              {t("HotelCard", "nights", { count: nights })}
+              {t('HotelCard', 'nights', { count: nights })}
             </div>
           </div>
 
           {/* NightPicker Bileşeni */}
-          {typeof window !== "undefined" && showNightPicker && (
+          {typeof window !== 'undefined' && showNightPicker && (
             <NightPicker
               nights={nights}
               onChange={handleNightChange}
@@ -1327,31 +1325,31 @@ const Filters: React.FC = () => {
       )}
 
       {/* 5. GRUP: Hotel Concept */}
-      {(travelType === "package" || travelType === "hotel") && (
-        <div style={{ marginBottom: "32px" }}>
-          <div className="flex justify-between items-center" style={{ marginBottom: "8px" }}>
-            <label 
-              className="text-sm"
-              style={{ ...headerStyle }}
-            >
-              {t("Filters", "hotelConcept")}
+      {(travelType === 'package' || travelType === 'hotel') && (
+        <div style={{ marginBottom: '32px' }}>
+          <div
+            className="flex justify-between items-center"
+            style={{ marginBottom: '8px' }}
+          >
+            <label className="text-sm" style={{ ...headerStyle }}>
+              {t('Filters', 'hotelConcept')}
             </label>
             <Button
               type="link"
               size="small"
               onClick={resetFilters}
               className="p-0"
-              style={{ color: "#ED8936", padding: 0 }}
+              style={{ color: '#ED8936', padding: 0 }}
             >
-              {t("Filters", "reset")}
+              {t('Filters', 'reset')}
             </Button>
           </div>
-          <div 
+          <div
             className="space-y-2"
-            style={{ 
-              ...sectionStyle, 
-              height: showMore ? "auto" : "164px", // More basıldığında otomatik yükseklik
-              transition: "height 0.3s ease"
+            style={{
+              ...sectionStyle,
+              height: showMore ? 'auto' : '164px', // More basıldığında otomatik yükseklik
+              transition: 'height 0.3s ease',
             }}
           >
             {visibleConcepts.map((concept, index) => {
@@ -1360,44 +1358,47 @@ const Filters: React.FC = () => {
                 <label
                   key={concept}
                   className="flex items-center cursor-pointer select-none"
-                  style={{ 
-                    marginBottom: index === visibleConcepts.length - 1 ? 0 : "10px",
-                    display: "flex",
-                    alignItems: "center"
+                  style={{
+                    marginBottom:
+                      index === visibleConcepts.length - 1 ? 0 : '10px',
+                    display: 'flex',
+                    alignItems: 'center',
                   }}
                 >
                   <div
                     style={{
-                      width: "220px",
-                      height: "24px", // Ekran görüntüsünden alınan değer
-                      display: "flex",
-                      alignItems: "center",
+                      width: '220px',
+                      height: '24px', // Ekran görüntüsünden alınan değer
+                      display: 'flex',
+                      alignItems: 'center',
                     }}
                   >
                     <span
                       className="relative flex items-center justify-center mr-2"
                       style={{
-                        width: "16px",
-                        height: "16px",
-                        borderRadius: "4px",
-                        background: "#FFFFFF",
-                        border: isChecked ? "1px solid #ED8936" : "1px solid #CAD4E0",
-                        position: "relative",
-                        marginRight: "8px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center"
+                        width: '16px',
+                        height: '16px',
+                        borderRadius: '4px',
+                        background: '#FFFFFF',
+                        border: isChecked
+                          ? '1px solid #ED8936'
+                          : '1px solid #CAD4E0',
+                        position: 'relative',
+                        marginRight: '8px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                       }}
                     >
                       {isChecked && (
                         <Icon
                           name="thick"
                           style={{
-                            position: "absolute",
-                            width: "8px",
-                            height: "5.573103904724121px",
-                            top: "5px",
-                            left: "4px",
+                            position: 'absolute',
+                            width: '8px',
+                            height: '5.573103904724121px',
+                            top: '5px',
+                            left: '4px',
                           }}
                         />
                       )}
@@ -1422,13 +1423,13 @@ const Filters: React.FC = () => {
               <div
                 className="flex items-center cursor-pointer"
                 style={{
-                  width: "220px",
-                  height: "16px",
-                  gap: "8px",
-                  marginTop: "12px",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center"
+                  width: '220px',
+                  height: '16px',
+                  gap: '8px',
+                  marginTop: '12px',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
                 onClick={() => setShowMore(!showMore)}
               >
@@ -1436,19 +1437,19 @@ const Filters: React.FC = () => {
                   name="arrow-down"
                   size={16}
                   color="#93A2B7"
-                  className={showMore ? "transform rotate-180" : ""}
-                  style={{ marginRight: "8px" }}
+                  className={showMore ? 'transform rotate-180' : ''}
+                  style={{ marginRight: '8px' }}
                 />
                 <span
                   style={{
-                    fontFamily: "Inter",
+                    fontFamily: 'Inter',
                     fontWeight: 500,
-                    fontSize: "12px",
-                    lineHeight: "100%",
-                    color: "#93A2B7",
+                    fontSize: '12px',
+                    lineHeight: '100%',
+                    color: '#93A2B7',
                   }}
                 >
-                  {showMore ? t("Filters", "less") : t("Filters", "more")}
+                  {showMore ? t('Filters', 'less') : t('Filters', 'more')}
                 </span>
               </div>
             )}
@@ -1457,31 +1458,31 @@ const Filters: React.FC = () => {
       )}
 
       {/* 5. GRUP: Flight Concept - Sadece flight için göster */}
-      {travelType === "flight" && (
-        <div style={{ marginBottom: "32px" }}>
-          <div className="flex justify-between items-center" style={{ marginBottom: "8px" }}>
-            <label 
-              className="text-sm"
-              style={{ ...headerStyle }}
-            >
-              {t("Filters", "flightConcept")}
+      {travelType === 'flight' && (
+        <div style={{ marginBottom: '32px' }}>
+          <div
+            className="flex justify-between items-center"
+            style={{ marginBottom: '8px' }}
+          >
+            <label className="text-sm" style={{ ...headerStyle }}>
+              {t('Filters', 'flightConcept')}
             </label>
             <Button
               type="link"
               size="small"
               onClick={resetFilters}
               className="p-0"
-              style={{ color: "#ED8936", padding: 0 }}
+              style={{ color: '#ED8936', padding: 0 }}
             >
-              {t("Filters", "reset")}
+              {t('Filters', 'reset')}
             </Button>
           </div>
-          <div 
+          <div
             className="space-y-2"
-            style={{ 
-              ...sectionStyle, 
-              height: showMoreFlight ? "auto" : "164px", // More basıldığında otomatik yükseklik
-              transition: "height 0.3s ease"
+            style={{
+              ...sectionStyle,
+              height: showMoreFlight ? 'auto' : '164px', // More basıldığında otomatik yükseklik
+              transition: 'height 0.3s ease',
             }}
           >
             {visibleFlightConcepts.map((concept, index) => {
@@ -1490,44 +1491,47 @@ const Filters: React.FC = () => {
                 <label
                   key={concept}
                   className="flex items-center cursor-pointer select-none"
-                  style={{ 
-                    marginBottom: index === visibleFlightConcepts.length - 1 ? 0 : "10px",
-                    display: "flex",
-                    alignItems: "center"
+                  style={{
+                    marginBottom:
+                      index === visibleFlightConcepts.length - 1 ? 0 : '10px',
+                    display: 'flex',
+                    alignItems: 'center',
                   }}
                 >
                   <div
                     style={{
-                      width: "220px",
-                      height: "24px", // Ekran görüntüsünden alınan değer
-                      display: "flex",
-                      alignItems: "center",
+                      width: '220px',
+                      height: '24px', // Ekran görüntüsünden alınan değer
+                      display: 'flex',
+                      alignItems: 'center',
                     }}
                   >
                     <span
                       className="relative flex items-center justify-center mr-2"
                       style={{
-                        width: "16px",
-                        height: "16px",
-                        borderRadius: "4px",
-                        background: "#FFFFFF",
-                        border: isChecked ? "1px solid #ED8936" : "1px solid #CAD4E0",
-                        position: "relative",
-                        marginRight: "8px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center"
+                        width: '16px',
+                        height: '16px',
+                        borderRadius: '4px',
+                        background: '#FFFFFF',
+                        border: isChecked
+                          ? '1px solid #ED8936'
+                          : '1px solid #CAD4E0',
+                        position: 'relative',
+                        marginRight: '8px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                       }}
                     >
                       {isChecked && (
                         <Icon
                           name="thick"
                           style={{
-                            position: "absolute",
-                            width: "8px",
-                            height: "5.573103904724121px",
-                            top: "5px",
-                            left: "4px",
+                            position: 'absolute',
+                            width: '8px',
+                            height: '5.573103904724121px',
+                            top: '5px',
+                            left: '4px',
                           }}
                         />
                       )}
@@ -1552,13 +1556,13 @@ const Filters: React.FC = () => {
               <div
                 className="flex items-center cursor-pointer"
                 style={{
-                  width: "220px",
-                  height: "16px",
-                  gap: "8px",
-                  marginTop: "12px",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center"
+                  width: '220px',
+                  height: '16px',
+                  gap: '8px',
+                  marginTop: '12px',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
                 onClick={() => setShowMoreFlight(!showMoreFlight)}
               >
@@ -1566,19 +1570,19 @@ const Filters: React.FC = () => {
                   name="arrow-down"
                   size={16}
                   color="#93A2B7"
-                  className={showMoreFlight ? "transform rotate-180" : ""}
-                  style={{ marginRight: "8px" }}
+                  className={showMoreFlight ? 'transform rotate-180' : ''}
+                  style={{ marginRight: '8px' }}
                 />
                 <span
                   style={{
-                    fontFamily: "Inter",
+                    fontFamily: 'Inter',
                     fontWeight: 500,
-                    fontSize: "12px",
-                    lineHeight: "100%",
-                    color: "#93A2B7",
+                    fontSize: '12px',
+                    lineHeight: '100%',
+                    color: '#93A2B7',
                   }}
                 >
-                  {showMoreFlight ? t("Filters", "less") : t("Filters", "more")}
+                  {showMoreFlight ? t('Filters', 'less') : t('Filters', 'more')}
                 </span>
               </div>
             )}
@@ -1588,13 +1592,16 @@ const Filters: React.FC = () => {
 
       {/* 6. GRUP: Star */}
       <div>
-        <label 
-          className="block text-[#142347]" 
-          style={{ ...headerStyle, marginBottom: "8px", display: "block" }}
+        <label
+          className="block text-[#142347]"
+          style={{ ...headerStyle, marginBottom: '8px', display: 'block' }}
         >
-          {t("Filters", "star")}
+          {t('Filters', 'star')}
         </label>
-        <div className="star-selection" style={{ ...sectionStyle, height: "140px" }}>
+        <div
+          className="star-selection"
+          style={{ ...sectionStyle, height: '140px' }}
+        >
           {[1, 2, 3, 4, 5].map((starValue, index) => {
             const isActive = stars.includes(starValue);
             return (
@@ -1602,58 +1609,58 @@ const Filters: React.FC = () => {
                 key={starValue}
                 className="flex items-center cursor-pointer select-none"
                 onClick={() => handleStarClick(starValue)}
-                style={{ 
-                  marginBottom: index === 4 ? 0 : "10px",
-                  display: "flex",
-                  alignItems: "center", 
-                  cursor: "pointer",
-                  height: "20px"
+                style={{
+                  marginBottom: index === 4 ? 0 : '10px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                  height: '20px',
                 }}
               >
                 <div
                   className="radio-button"
                   style={{
-                    width: "20px",
-                    height: "20px",
-                    borderRadius: "50%",
-                    border: `2px solid ${isActive ? "#ED8936" : "#E2E2E2"}`,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginRight: "8px"
+                    width: '20px',
+                    height: '20px',
+                    borderRadius: '50%',
+                    border: `2px solid ${isActive ? '#ED8936' : '#E2E2E2'}`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginRight: '8px',
                   }}
                 >
                   {isActive && (
-                    <div 
+                    <div
                       className="radio-inner"
                       style={{
-                        width: "8px",
-                        height: "8px",
-                        borderRadius: "50%",
-                        backgroundColor: "#ED8936",
-                        display: "block"
+                        width: '8px',
+                        height: '8px',
+                        borderRadius: '50%',
+                        backgroundColor: '#ED8936',
+                        display: 'block',
                       }}
                     />
                   )}
                 </div>
-                <div 
-                  style={{ 
-                    display: "flex", 
-                    alignItems: "center" 
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
                   }}
                 >
-                  <Icon 
-                    name="Star" 
-                    size={16} 
-                    color="#ED8936" 
-                    style={{ marginRight: "8px" }}
+                  <Icon
+                    name="Star"
+                    size={16}
+                    color="#ED8936"
+                    style={{ marginRight: '8px' }}
                   />
                   <span
                     style={{
                       ...fieldTextStyle,
-                      color: "#142347",
-                      fontSize: "14px",
-                      fontWeight: 500
+                      color: '#142347',
+                      fontSize: '14px',
+                      fontWeight: 500,
                     }}
                   >
                     {starValue}+

@@ -1,32 +1,32 @@
 // src/services/searchService.ts
 
-import { SearchParams, Filters } from "@/types/search";
+import { SearchParams, Filters } from '@/types/search';
 
 // State için key tanımları
-export const SEARCH_PARAMS_KEY = "searchParams";
-export const FILTERS_KEY = "filters";
+export const SEARCH_PARAMS_KEY = 'searchParams';
+export const FILTERS_KEY = 'filters';
 
 // Varsayılan değerler
 const DEFAULT_SEARCH_PARAMS: SearchParams = {
-  from: "",
-  destination: "",
-  date: "",
+  from: '',
+  destination: '',
+  date: '',
   nights: 5,
   participants: {
     adults: 2,
     children: 0,
   },
-  travelType: "package",
+  travelType: 'package',
 };
 
 const DEFAULT_FILTERS: Filters = {
-  from: "",
-  destination: "",
+  from: '',
+  destination: '',
   participants: {
     adults: 2,
     children: 0,
   },
-  date: "",
+  date: '',
   nights: 5,
   hotelConcepts: [],
   flightConcepts: [], // New field
@@ -35,7 +35,7 @@ const DEFAULT_FILTERS: Filters = {
 
 // localStorage'dan değerleri al (eğer varsa)
 export const getSearchParams = (): SearchParams => {
-  if (typeof window === "undefined") {
+  if (typeof window === 'undefined') {
     return DEFAULT_SEARCH_PARAMS;
   }
 
@@ -43,14 +43,14 @@ export const getSearchParams = (): SearchParams => {
     const saved = localStorage.getItem(SEARCH_PARAMS_KEY);
     return saved ? JSON.parse(saved) : DEFAULT_SEARCH_PARAMS;
   } catch (error) {
-    console.error("Error retrieving search params from localStorage:", error);
+    console.error('Error retrieving search params from localStorage:', error);
     return DEFAULT_SEARCH_PARAMS;
   }
 };
 
 // localStorage'a değerleri kaydet
 export const saveSearchParams = (searchParams: SearchParams): SearchParams => {
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     localStorage.setItem(SEARCH_PARAMS_KEY, JSON.stringify(searchParams));
   }
   return searchParams;
@@ -58,7 +58,7 @@ export const saveSearchParams = (searchParams: SearchParams): SearchParams => {
 
 // localStorage'dan filtreleri al
 export const getFilters = (): Filters => {
-  if (typeof window === "undefined") {
+  if (typeof window === 'undefined') {
     return DEFAULT_FILTERS;
   }
 
@@ -66,14 +66,14 @@ export const getFilters = (): Filters => {
     const saved = localStorage.getItem(FILTERS_KEY);
     return saved ? JSON.parse(saved) : DEFAULT_FILTERS;
   } catch (error) {
-    console.error("Error retrieving filters from localStorage:", error);
+    console.error('Error retrieving filters from localStorage:', error);
     return DEFAULT_FILTERS;
   }
 };
 
 // localStorage'a filtreleri kaydet
 export const saveFilters = (filters: Filters): Filters => {
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     localStorage.setItem(FILTERS_KEY, JSON.stringify(filters));
   }
   return filters;

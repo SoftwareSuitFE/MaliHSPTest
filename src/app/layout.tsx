@@ -44,23 +44,23 @@
 //   );
 // }
 
-"use client";
+'use client';
 
-import { Inter, Geist_Mono } from "next/font/google";
-import { ConfigProvider } from "antd";
-import { QueryProvider } from "./QueryProvider";
+import { Inter, Geist_Mono } from 'next/font/google';
+import { ConfigProvider } from 'antd';
+import { QueryProvider } from './QueryProvider';
 
-import "./globals.css";
+import './globals.css';
 
 // Font yüklemeleri
 const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+  variable: '--font-inter',
+  subsets: ['latin'],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
 });
 
 export default function RootLayout({
@@ -75,7 +75,7 @@ export default function RootLayout({
           <ConfigProvider
             theme={{
               token: {
-                colorPrimary: "#ED8936",
+                colorPrimary: '#ED8936',
               },
             }}
           >

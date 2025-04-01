@@ -335,15 +335,15 @@
 
 // export default DestinationDropdown;
 
-"use client";
+'use client';
 
-import { useState, useEffect, useRef } from "react";
-import { createPortal } from "react-dom";
+import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import {
   popularDestinations,
   destinations,
   hotels,
-} from "../../../data/mockData";
+} from '../../../data/mockData';
 
 interface DestinationDropdownProps {
   value: string;
@@ -352,31 +352,31 @@ interface DestinationDropdownProps {
   placeholder?: string;
   className?: string;
   style?: React.CSSProperties;
-  mode?: "hotel" | "city";
+  mode?: 'hotel' | 'city';
 }
 
 // Mevcut otel modu için fonksiyon
 const getUniqueLocations = () => {
   const hotelLocations = hotels.map((hotel) => {
     // Otelin konumunu, sadece şehir kısmını alalım (Belek, Turkey -> Belek)
-    const location = hotel.location.split(",")[0].trim();
+    const location = hotel.location.split(',')[0].trim();
     return {
       name: `${location} Otelleri`,
       subtext: `${location}, Türkiye`,
-      type: "hotel",
+      type: 'hotel',
     };
   });
 
   const destinationsList = [...destinations].map((dest) => ({
     name: `${dest}`,
     subtext: `${dest}, Türkiye`,
-    type: "destination",
+    type: 'destination',
   }));
 
   const allLocations = [...hotelLocations, ...destinationsList];
 
   const uniqueLocations = Array.from(
-    new Map(allLocations.map((item) => [item.name, item])).values()
+    new Map(allLocations.map((item) => [item.name, item])).values(),
   );
 
   return uniqueLocations;
@@ -387,7 +387,7 @@ const getCityOptions = () => {
   return destinations.map((city) => ({
     name: city,
     subtext: `${city}, Türkiye`,
-    type: "city",
+    type: 'city',
   }));
 };
 
@@ -395,13 +395,13 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
   value,
   onChange,
   onSelect,
-  placeholder = "Destination",
-  className = "",
+  placeholder = 'Destination',
+  className = '',
   style = {},
-  mode = "hotel",
+  mode = 'hotel',
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [filteredLocations, setFilteredLocations] = useState([]);
   const [popularLocations, setPopularLocations] = useState<any[]>([]);
   const [dropdownPosition, setDropdownPosition] = useState({
@@ -415,18 +415,18 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
 
   // Popüler lokasyonları belirleme
   useEffect(() => {
-    if (mode === "city") {
+    if (mode === 'city') {
       const popularLocs = popularDestinations.map((dest) => ({
         name: dest,
         subtext: `${dest}, Türkiye`,
-        type: "city",
+        type: 'city',
       }));
       setPopularLocations(popularLocs);
     } else {
       const popularLocs = popularDestinations.map((dest) => ({
         name: dest,
         subtext: `${dest}, Türkiye`,
-        type: "popular",
+        type: 'popular',
       }));
       setPopularLocations(popularLocs);
     }
@@ -434,26 +434,26 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
 
   // Arama terimi değiştiğinde filtreleme
   useEffect(() => {
-    if (searchTerm === "") {
+    if (searchTerm === '') {
       setFilteredLocations([]);
     } else {
-      if (mode === "city") {
+      if (mode === 'city') {
         const allCities = getCityOptions();
         const filtered = allCities.filter(
           (city) =>
             city.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            city.subtext.toLowerCase().includes(searchTerm.toLowerCase())
+            city.subtext.toLowerCase().includes(searchTerm.toLowerCase()),
         );
         setFilteredLocations(filtered);
       } else {
         const allLocations = getUniqueLocations();
-        if (searchTerm.toLowerCase().includes("antalya")) {
+        if (searchTerm.toLowerCase().includes('antalya')) {
           // İsteğe bağlı: Antalya gibi özel durumlar için özel otel tipleri eklenebilir
         }
         const filtered = allLocations.filter(
           (location) =>
             location.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            location.subtext.toLowerCase().includes(searchTerm.toLowerCase())
+            location.subtext.toLowerCase().includes(searchTerm.toLowerCase()),
         );
         setFilteredLocations(filtered);
       }
@@ -472,9 +472,9 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
         setIsOpen(false);
       }
     }
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
@@ -507,7 +507,7 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
   };
 
   let dropdownElement = null;
-  if (isOpen && typeof document !== "undefined") {
+  if (isOpen && typeof document !== 'undefined') {
     dropdownElement = createPortal(
       <div
         ref={dropdownRef}
@@ -516,18 +516,18 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
           top: `${dropdownPosition.top}px`,
           left: `${dropdownPosition.left}px`,
           // width: `${dropdownPosition.width}px`,
-          width: "250px",
-          maxHeight: "300px",
+          width: '250px',
+          maxHeight: '300px',
         }}
       >
         {/* Başlık ve Kapat Butonu */}
         <div className="flex justify-between items-center border-b border-gray-200 px-3 py-2">
           <span className="text-sm font-medium">
-            {searchTerm === ""
-              ? mode === "city"
-                ? "Popüler şehirler"
-                : "Popüler tatil noktaları"
-              : "Sonuçlar"}
+            {searchTerm === ''
+              ? mode === 'city'
+                ? 'Popüler şehirler'
+                : 'Popüler tatil noktaları'
+              : 'Sonuçlar'}
           </span>
           <button
             onClick={() => setIsOpen(false)}
@@ -552,7 +552,7 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
 
         {/* Dropdown İçeriği */}
         <div>
-          {searchTerm === "" ? (
+          {searchTerm === '' ? (
             popularLocations.slice(0, 5).map((location, index) => (
               <div
                 key={`popular-${index}`}
@@ -627,7 +627,7 @@ const DestinationDropdown: React.FC<DestinationDropdownProps> = ({
           )}
         </div>
       </div>,
-      document.body
+      document.body,
     );
   }
 

@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, useRef } from "react";
-import { createPortal } from "react-dom";
-import { Checkbox } from "antd";
-import dayjs from "dayjs";
-import { LeftOutlined, RightOutlined, CloseOutlined } from "@ant-design/icons";
-import { useLanguage } from "@/hooks/useLanguage";
+import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
+import { Checkbox } from 'antd';
+import dayjs from 'dayjs';
+import { LeftOutlined, RightOutlined, CloseOutlined } from '@ant-design/icons';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface DateRangePickerProps {
   startDate?: dayjs.Dayjs;
@@ -29,7 +29,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   // Güvenli başlangıç: startDate varsa kullan, yoksa bugünün tarihi
   const safeStart = startDate && dayjs.isDayjs(startDate) ? startDate : dayjs();
   const safeEnd =
-    endDate && dayjs.isDayjs(endDate) ? endDate : safeStart.add(1, "day");
+    endDate && dayjs.isDayjs(endDate) ? endDate : safeStart.add(1, 'day');
 
   // Ay bilgilerini orijinal tasarıma uygun şekilde başlatıyoruz
   const [currentMonths, setCurrentMonths] = useState<
@@ -37,18 +37,18 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   >(() => {
     return [
       dayjs(`${safeStart.year()}-${safeStart.month() + 1}-01`),
-      dayjs(`${safeStart.year()}-${safeStart.month() + 1}-01`).add(1, "month"),
+      dayjs(`${safeStart.year()}-${safeStart.month() + 1}-01`).add(1, 'month'),
     ];
   });
 
   // Tarih seçimleri: startDate gelmişse onu kullan, yoksa varsayılanı (bugün)
   const [firstSelection, setFirstSelection] = useState<dayjs.Dayjs | null>(
-    safeStart
+    safeStart,
   );
 
   // endDate gelmişse onu kullan, yoksa ilk tarihten 1 gün sonrası
   const [secondSelection, setSecondSelection] = useState<dayjs.Dayjs | null>(
-    safeEnd
+    safeEnd,
   );
 
   // Eğer startDate/endDate undefined ise, ilk seçim yapmamış sayalım
@@ -58,7 +58,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
       endDate &&
       dayjs.isDayjs(startDate) &&
       dayjs.isDayjs(endDate)
-    )
+    ),
   );
 
   const [isFlexible, setIsFlexible] = useState(false);
@@ -72,7 +72,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   // Seçilen tarih aralığından geceleri hesapla
   const nights =
     firstSelection && secondSelection
-      ? secondSelection.diff(firstSelection, "day")
+      ? secondSelection.diff(firstSelection, 'day')
       : 0;
 
   // Trigger elemanın konumunu hesapla
@@ -99,9 +99,9 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
         onClose();
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [onClose, triggerRef]);
 
@@ -112,8 +112,8 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
       if (
         !startDate ||
         !endDate ||
-        !startDate.isSame(firstSelection, "day") ||
-        !endDate.isSame(secondSelection, "day")
+        !startDate.isSame(firstSelection, 'day') ||
+        !endDate.isSame(secondSelection, 'day')
       ) {
         if (firstSelection.isAfter(secondSelection)) {
           onChange(secondSelection, firstSelection);
@@ -127,16 +127,16 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   // Önceki aya git
   const goToPreviousMonth = () => {
     setCurrentMonths([
-      currentMonths[0].subtract(1, "month"),
-      currentMonths[1].subtract(1, "month"),
+      currentMonths[0].subtract(1, 'month'),
+      currentMonths[1].subtract(1, 'month'),
     ]);
   };
 
   // Sonraki aya git
   const goToNextMonth = () => {
     setCurrentMonths([
-      currentMonths[0].add(1, "month"),
-      currentMonths[1].add(1, "month"),
+      currentMonths[0].add(1, 'month'),
+      currentMonths[1].add(1, 'month'),
     ]);
   };
 
@@ -163,11 +163,11 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
 
   // Yardımcı fonksiyonlar: Seçili olup olmadığını kontrol
   const isFirstSelection = (date: dayjs.Dayjs) => {
-    return firstSelection && date.isSame(firstSelection, "day");
+    return firstSelection && date.isSame(firstSelection, 'day');
   };
 
   const isSecondSelection = (date: dayjs.Dayjs) => {
-    return secondSelection && date.isSame(secondSelection, "day");
+    return secondSelection && date.isSame(secondSelection, 'day');
   };
 
   const isDateInRange = (date: dayjs.Dayjs) => {
@@ -178,17 +178,17 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
     const end = firstSelection.isBefore(secondSelection)
       ? secondSelection
       : firstSelection;
-    return date.isAfter(start, "day") && date.isBefore(end, "day");
+    return date.isAfter(start, 'day') && date.isBefore(end, 'day');
   };
 
   // Ay takvimini oluştur (orijinal grid yapısı)
   const renderMonth = (month: dayjs.Dayjs) => {
-    const monthName = month.format("MMMM YYYY");
+    const monthName = month.format('MMMM YYYY');
     const daysInMonth = month.daysInMonth();
-    const firstDayOfMonth = month.startOf("month").day(); // 0: Pazar, 1: Pazartesi, ...
+    const firstDayOfMonth = month.startOf('month').day(); // 0: Pazar, 1: Pazartesi, ...
 
     // Hafta içi başlıkları: Pazartesi başlangıçlı (düzen: MO, TU, WE, TH, FR, SA, SU)
-    const weekdays = ["MO", "TU", "WE", "TH", "FR", "SA", "SU"];
+    const weekdays = ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
 
     const days = [];
 
@@ -209,15 +209,15 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
         <div
           key={`day-${day}`}
           className={`w-8 h-8 flex items-center justify-center cursor-pointer rounded-full
-            ${isFirstDay || isLastDay ? "bg-orange-500 text-white" : ""}
-            ${inRange ? "bg-orange-200 text-orange-800" : ""}
+            ${isFirstDay || isLastDay ? 'bg-orange-500 text-white' : ''}
+            ${inRange ? 'bg-orange-200 text-orange-800' : ''}
             ${
-              !isFirstDay && !isLastDay && !inRange ? "hover:bg-gray-100" : ""
+              !isFirstDay && !isLastDay && !inRange ? 'hover:bg-gray-100' : ''
             }`}
           onClick={() => handleDateClick(dateObj)}
         >
           {day}
-        </div>
+        </div>,
       );
     }
 
@@ -236,7 +236,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
     );
   };
 
-  if (!visible || typeof document === "undefined") return null;
+  if (!visible || typeof document === 'undefined') return null;
 
   const displayStartDate = firstSelection;
   const displayEndDate = secondSelection;
@@ -249,7 +249,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
         top: `${dropdownPosition.top}px`,
         left: `${dropdownPosition.left}px`,
         width: `${dropdownPosition.width}px`,
-        maxWidth: "630px",
+        maxWidth: '630px',
       }}
     >
       <div className="p-4">
@@ -257,12 +257,12 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
         <div className="flex justify-between items-center mb-4 pb-3 border-b border-gray-200">
           <div className="flex items-center space-x-4">
             <span className="text-orange-500 font-medium">
-              {t("DateRangePicker", "nights", { count: nights })}
+              {t('DateRangePicker', 'nights', { count: nights })}
             </span>
             <span className="text-gray-600">
-              {displayStartDate ? displayStartDate.format("D MMM") : ""}
-              {displayStartDate && displayEndDate ? " - " : ""}
-              {displayEndDate ? displayEndDate.format("D MMM") : ""}
+              {displayStartDate ? displayStartDate.format('D MMM') : ''}
+              {displayStartDate && displayEndDate ? ' - ' : ''}
+              {displayEndDate ? displayEndDate.format('D MMM') : ''}
             </span>
           </div>
           <div className="flex items-center space-x-6">
@@ -273,10 +273,10 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
               >
                 <span className="ml-1">
                   <span className="font-medium">
-                    {t("DateRangePicker", "plusMinusDays")}
-                  </span>{" "}
+                    {t('DateRangePicker', 'plusMinusDays')}
+                  </span>{' '}
                   <span className="text-gray-400">
-                    {t("DateRangePicker", "flexibleDates")}
+                    {t('DateRangePicker', 'flexibleDates')}
                   </span>
                 </span>
               </Checkbox>
@@ -295,7 +295,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
           <button
             onClick={goToPreviousMonth}
             className="absolute left-0 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
-            style={{ left: "-12px" }}
+            style={{ left: '-12px' }}
           >
             <LeftOutlined />
           </button>
@@ -306,7 +306,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
           <button
             onClick={goToNextMonth}
             className="absolute right-0 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
-            style={{ right: "-12px" }}
+            style={{ right: '-12px' }}
           >
             <RightOutlined />
           </button>

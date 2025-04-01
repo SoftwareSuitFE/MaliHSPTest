@@ -173,14 +173,12 @@
 
 // export default PersonPicker;
 
+'use client';
 
-
-"use client";
-
-import React, { useState, useEffect, useRef } from "react";
-import { createPortal } from "react-dom";
-import { CloseOutlined, MinusOutlined, PlusOutlined } from "@ant-design/icons";
-import { useLanguage } from "@/hooks/useLanguage";
+import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
+import { CloseOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface PersonPickerProps {
   adults?: number;
@@ -200,10 +198,10 @@ const PersonPicker: React.FC<PersonPickerProps> = ({
   triggerRef,
 }) => {
   const { t } = useLanguage();
-  
+
   // Başlangıç değerleri güvenli şekilde ayarla
-  const safeAdults = typeof adults === "number" ? adults : 2;
-  const safeChildren = typeof children === "number" ? children : 0;
+  const safeAdults = typeof adults === 'number' ? adults : 2;
+  const safeChildren = typeof children === 'number' ? children : 0;
 
   const [adultCount, setAdultCount] = useState(safeAdults);
   const [childCount, setChildCount] = useState(safeChildren);
@@ -239,14 +237,14 @@ const PersonPicker: React.FC<PersonPickerProps> = ({
         onClose();
       }
     }
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [onClose, triggerRef]);
 
   // PersonPicker görünmüyorsa null döndür
-  if (!visible || typeof document === "undefined") return null;
+  if (!visible || typeof document === 'undefined') return null;
 
   // +/- butonlarında onChange çağırarak parent'a bildirim yap
   const handleDecreaseAdult = () => {
@@ -287,7 +285,9 @@ const PersonPicker: React.FC<PersonPickerProps> = ({
       <div className="p-4">
         {/* Üst Bar: Başlık + Kapatma Butonu */}
         <div className="flex justify-between items-center mb-4 pb-3 border-b border-gray-200">
-          <span className="font-medium text-gray-800">{t("PersonPicker", "participants")}</span>
+          <span className="font-medium text-gray-800">
+            {t('PersonPicker', 'participants')}
+          </span>
           <button
             onClick={onClose}
             className="text-gray-400 hover:text-gray-600 focus:outline-none"
@@ -301,7 +301,7 @@ const PersonPicker: React.FC<PersonPickerProps> = ({
           {/* Yetişkin */}
           <div className="flex flex-col items-center">
             <span className="text-sm font-semibold text-gray-700 mb-2">
-              {t("PersonPicker", "adults")}
+              {t('PersonPicker', 'adults')}
             </span>
             <div className="flex items-center gap-2">
               <button
@@ -323,7 +323,7 @@ const PersonPicker: React.FC<PersonPickerProps> = ({
           {/* Çocuk */}
           <div className="flex flex-col items-center">
             <span className="text-sm font-semibold text-gray-700 mb-2">
-              {t("PersonPicker", "children")}
+              {t('PersonPicker', 'children')}
             </span>
             <div className="flex items-center gap-2">
               <button
