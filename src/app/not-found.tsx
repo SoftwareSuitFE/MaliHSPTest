@@ -13,27 +13,18 @@ const NotFound = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex flex-col items-center justify-center px-4 py-12">
+    <div className="not-found-container">
       {/* 404 Container */}
-      <div className="max-w-3xl w-full flex flex-col items-center justify-center text-center">
+      <div className="not-found-inner">
         {/* Animated 404 */}
-        <div
-          className={`relative mb-6 transition-all duration-700 transform ${isLoaded ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`}
-        >
-          <div className="text-[120px] md:text-[180px] font-bold text-orange-500 opacity-10 select-none">
-            404
-          </div>
+        <div className={`not-found-text ${isLoaded ? 'loaded' : 'loading'}`}>
+          <div className="not-found-404">404</div>
 
           {/* Airplane path animation */}
-          <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-            <div className="absolute h-[50px] w-[300px] top-1/2 left-[calc(50%-150px)]">
+          <div className="not-found-airplane-path">
+            <div className="not-found-airplane-container">
               <svg
-                className="absolute h-8 w-8 text-orange-500 animate-float"
-                style={{
-                  left: '10%',
-                  animationDelay: '0.5s',
-                  animationDuration: '3s',
-                }}
+                className="not-found-airplane animate-float"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -50,10 +41,8 @@ const NotFound = () => {
           </div>
 
           {/* Compass animation */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <div
-              className={`w-24 h-24 md:w-32 md:h-32 transition-all duration-700 transform ${isLoaded ? 'rotate-0 opacity-100' : 'rotate-90 opacity-0'}`}
-            >
+          <div className="not-found-compass">
+            <div className={`not-found-compass-inner ${isLoaded ? 'loaded' : 'loading'}`}>
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -88,30 +77,25 @@ const NotFound = () => {
         </div>
 
         {/* Main Content Card */}
-        <div
-          className={`bg-white shadow-xl rounded-xl p-8 md:p-12 w-full max-w-2xl mb-8 border border-gray-100 transition-all duration-700 transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
-        >
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+        <div className={`not-found-card ${isLoaded ? 'loaded' : 'loading'}`}>
+          <h1 className="not-found-title">
             {t('NotFound', 'title')}
           </h1>
-          <h2 className="text-xl text-orange-500 font-semibold mb-4">
+          <h2 className="not-found-subtitle">
             {t('NotFound', 'message')}
           </h2>
-          <p className="text-gray-600 mb-8">{t('NotFound', 'description')}</p>
+          <p className="not-found-description">{t('NotFound', 'description')}</p>
 
           {/* Travel Theme Graphics */}
-          <div className="relative h-24 mb-10">
+          <div className="not-found-travel-graphics">
             {/* Map path dashed line */}
-            <div className="absolute left-0 right-0 top-1/2 border-t-2 border-dashed border-gray-300"></div>
+            <div className="not-found-path-line"></div>
 
             {/* Travel Icons */}
-            <div className="absolute left-0 top-0">
-              <div
-                className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center animate-float"
-                style={{ animationDelay: '0s' }}
-              >
+            <div className="not-found-travel-icon not-found-travel-icon-home">
+              <div className="not-found-icon-circle not-found-icon-circle-blue animate-float not-found-float-0">
                 <svg
-                  className="w-6 h-6 text-blue-500"
+                  className="not-found-icon-blue"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -126,13 +110,10 @@ const NotFound = () => {
               </div>
             </div>
 
-            <div className="absolute left-1/4 bottom-0">
-              <div
-                className="w-10 h-10 bg-orange-50 rounded-full flex items-center justify-center animate-float"
-                style={{ animationDelay: '0.5s' }}
-              >
+            <div className="not-found-travel-icon not-found-travel-icon-location">
+              <div className="not-found-icon-circle not-found-icon-circle-orange animate-float not-found-float-1">
                 <svg
-                  className="w-5 h-5 text-orange-500"
+                  className="not-found-icon-orange"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -155,13 +136,10 @@ const NotFound = () => {
               </div>
             </div>
 
-            <div className="absolute left-1/2 top-0 transform -translate-x-1/2">
-              <div
-                className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center animate-float"
-                style={{ animationDelay: '1s' }}
-              >
+            <div className="not-found-travel-icon not-found-travel-icon-message">
+              <div className="not-found-icon-circle not-found-icon-circle-green animate-float not-found-float-2">
                 <svg
-                  className="w-6 h-6 text-green-500"
+                  className="not-found-icon-green"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -184,13 +162,10 @@ const NotFound = () => {
               </div>
             </div>
 
-            <div className="absolute right-1/4 bottom-0">
-              <div
-                className="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center animate-float"
-                style={{ animationDelay: '1.5s' }}
-              >
+            <div className="not-found-travel-icon not-found-travel-icon-warning">
+              <div className="not-found-icon-circle not-found-icon-circle-red animate-float not-found-float-3">
                 <svg
-                  className="w-5 h-5 text-red-500"
+                  className="not-found-icon-red"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -206,13 +181,10 @@ const NotFound = () => {
               </div>
             </div>
 
-            <div className="absolute right-0 top-0">
-              <div
-                className="w-12 h-12 bg-yellow-50 rounded-full flex items-center justify-center animate-float"
-                style={{ animationDelay: '2s' }}
-              >
+            <div className="not-found-travel-icon not-found-travel-icon-sun">
+              <div className="not-found-icon-circle not-found-icon-circle-yellow animate-float not-found-float-4">
                 <svg
-                  className="w-6 h-6 text-yellow-500"
+                  className="not-found-icon-yellow"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -232,11 +204,11 @@ const NotFound = () => {
           {/* Action Button */}
           <Link
             href="/"
-            className={`inline-flex items-center justify-center space-x-2 px-6 py-3 bg-orange-500 text-white font-medium rounded-lg hover:bg-orange-600 transition-colors duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+            className={`not-found-button ${isLoaded ? 'loaded' : 'loading'}`}
           >
             <span className="flex items-center">
               <svg
-                className="w-5 h-5 mr-2"
+                className="not-found-button-icon"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
