@@ -83,7 +83,7 @@ const NightPicker: React.FC<NightPickerProps> = ({
   const pickerContent = (
     <div
       ref={dropdownRef}
-      className="fixed bg-white rounded-lg shadow-lg z-50 p-4"
+      className="nightpicker-dropdown fixed bg-white rounded-lg shadow-lg z-50 p-4"
       style={{
         top: dropdownPosition.top,
         left: dropdownPosition.left,
@@ -91,37 +91,37 @@ const NightPicker: React.FC<NightPickerProps> = ({
       }}
     >
       {/* Üst Bar: Başlık + Kapatma Butonu */}
-      <div className="flex justify-between items-center mb-4 pb-3 border-b border-gray-200">
-        <span className="font-medium text-gray-800">
+      <div className="nightpicker-header flex justify-between items-center mb-4 pb-3 border-b border-gray-200">
+        <span className="nightpicker-title font-medium text-gray-800">
           {t('Filters', 'nights')}
         </span>
         <button
           onClick={onClose}
-          className="text-gray-400 hover:text-gray-600 focus:outline-none"
+          className="nightpicker-close text-gray-400 hover:text-gray-600 focus:outline-none"
         >
           <CloseOutlined />
         </button>
       </div>
 
       {/* Gece Sayısı Seçimi */}
-      <div className="flex flex-col items-center">
-        <div className="text-sm font-semibold text-gray-700 mb-2">
+      <div className="nightpicker-body flex flex-col items-center">
+        <div className="nightpicker-night-count text-sm font-semibold text-gray-700 mb-2">
           {t('HotelCard', 'nights', { count: nightCount })}
         </div>
-        <div className="flex items-center gap-4">
+        <div className="nightpicker-controls flex items-center gap-4">
           <button
             onClick={handleDecrease}
-            className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 hover:bg-gray-100"
+            className="nightpicker-decrease w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 hover:bg-gray-100"
             disabled={nightCount <= 1}
           >
             <MinusOutlined />
           </button>
-          <span className="text-xl font-bold text-center w-8">
+          <span className="nightpicker-count text-xl font-bold text-center w-8">
             {nightCount}
           </span>
           <button
             onClick={handleIncrease}
-            className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 hover:bg-gray-100"
+            className="nightpicker-increase w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 hover:bg-gray-100"
           >
             <PlusOutlined />
           </button>
