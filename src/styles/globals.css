@@ -6,7 +6,6 @@
 @import './utils/responsive.css';
 
 /* Sayfa layout importları */
-@import './layouts/comingSoon.css';
 @import './layouts/notFound.css';
 
 /* Bileşen importları */
