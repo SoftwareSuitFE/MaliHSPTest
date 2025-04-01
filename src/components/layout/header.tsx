@@ -132,10 +132,10 @@ const Header = () => {
               locale === 'en' ? 'bg-gray-100' : ''
             } hover:bg-gray-50`}
           >
-            <div className="flex items-center justify-center mr-2">
+            <div className="flex items-center justify-center mr-2 cursor-pointer">
               <Icon name="England" />
             </div>
-            <span>English</span>
+            <span className="cursor-pointer">English</span>
           </button>
           <button
             onClick={() => changeLanguage('tr')}
@@ -143,10 +143,10 @@ const Header = () => {
               locale === 'tr' ? 'bg-gray-100' : ''
             } hover:bg-gray-50`}
           >
-            <div className="flex items-center justify-center mr-2">
+            <div className="flex items-center justify-center mr-2 cursor-pointer">
               <Icon name="Turkey" />
             </div>
-            <span>Türkçe</span>
+            <span className="cursor-pointer">Türkçe</span>
           </button>
         </div>
       )}
