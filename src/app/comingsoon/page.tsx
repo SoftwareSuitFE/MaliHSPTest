@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/hooks/useLanguage';
-import './assets/styles.css';
+
 
 const ComingSoon = () => {
   const { t } = useLanguage();

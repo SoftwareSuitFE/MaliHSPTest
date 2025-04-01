@@ -7,6 +7,7 @@
 
 /* Sayfa layout importları */
 @import './layouts/notFound.css';
+@import './layouts/comingSoon.css';
 
 /* Bileşen importları */
 @import './components/filters.css';
