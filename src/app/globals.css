@@ -228,7 +228,26 @@ body {
 
 
 /* SearchForm Responsive Styles */
+/* SearchForm Responsive Styles */
 @media (max-width: 767px) {
+  /* Hero alanını büyütelim ki tüm içerik sığsın */
+  div.relative.h-\[500px\].overflow-hidden.bg-blue-400,
+  div.relative.h-\[500px\].overflow-hidden.bg-blue-400 > div.absolute.inset-0.w-full.h-full {
+    height: auto !important;
+    min-height: 850px !important;
+  }
+  
+  /* TravelTabs ve Form alanını düzenleyelim */
+  div.relative.z-20.container.mx-auto.h-full {
+    height: auto !important;
+    padding-bottom: 32px !important;
+  }
+  
+  /* TravelTabs'ın margin-top değerini azaltalım */
+  div.mb-6.mt-48 {
+    margin-top: 24px !important;
+  }
+  
   /* Ana SearchForm container */
   div[style*="width: 930px"][style*="height: 92px"] {
     width: 100% !important;
@@ -244,8 +263,8 @@ body {
     width: 100% !important;
     height: auto !important;
     flex-direction: column !important;
-    padding: 16px !important;
-    gap: 16px !important;
+    padding: 12px !important;
+    gap: 12px !important;
     background-color: white !important;
   }
   
@@ -255,19 +274,25 @@ body {
     width: 100% !important;
     border-right: none !important;
     border-bottom: 1px solid #E1E7EF !important;
-    padding-bottom: 12px !important;
-    padding-top: 0 !important;
+    padding: 8px 4px !important;
+    min-height: 60px !important;
+    height: auto !important;
   }
   
   /* Son form elemanı için alt border kaldır */
   div[style*="width: 748px"][style*="height: 60px"] > div:last-child {
     border-bottom: none !important;
-    padding-bottom: 0 !important;
+  }
+  
+  /* İkona sahip kapsayıcılar */
+  div[style*="width: 748px"][style*="height: 60px"] div.flex.flex-col {
+    width: calc(100% - 32px) !important;
   }
   
   /* Search butonu */
   button[style*="width: 142px"][style*="height: 60px"] {
     width: 100% !important;
     margin-top: 8px !important;
+    height: 60px !important;
   }
 }
