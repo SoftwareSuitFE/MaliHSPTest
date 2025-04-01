@@ -1,0 +1,98 @@
+/* Travel tabs styling for more exact match to Figma */
+.travel-tabs-inner {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(4px);
+    overflow: hidden;
+    width: 365.41px;
+    height: 40px;
+    border-radius: 8px;
+    gap: 0;
+  }
+  
+  /* Ortak tab buton stilleri */
+  .travel-tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+    height: 40px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  
+  .travel-tab-content {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .travel-tab-icon {
+    margin-right: 0.5rem;
+  }
+  
+  /* Tab genişlikleri */
+  .travel-tab-package {
+    width: 130px;
+  }
+  
+  .travel-tab-hotel {
+    width: 107px;
+  }
+  
+  .travel-tab-flight {
+    width: 128.41px;
+  }
+  
+  /* Travel tabları arasındaki geçiş için animasyon */
+  .travel-tab {
+    transition: all 0.25s ease-in-out !important;
+  }
+  
+  /* Aktif olan tab'a tıklanınca hafif vurgu efekti */
+  .travel-tab-active {
+    animation: pulse 0.35s !important;
+  }
+  
+  /* TravelTabs Responsive Styles - 1024px için güncellendi */
+  @media (max-width: 1023px) {
+    /* TravelTabs responsive styling */
+    .flex.justify-center.mb-4 > div[style*='width: 365.41px'],
+    .travel-tabs-inner {
+      flex-direction: column !important;
+      width: 100% !important;
+      max-width: 365.41px !important;
+      height: auto !important;
+      gap: 16px !important;
+      background: transparent !important;
+      backdrop-filter: none !important;
+    }
+  
+    .flex.justify-center.mb-4 > div[style*='width: 365.41px'] > button,
+    .travel-tab {
+      width: 100% !important;
+      margin-bottom: 0 !important;
+      border-radius: 8px !important;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+      background-color: rgba(255, 255, 255, 0.3) !important;
+      backdrop-filter: blur(4px) !important;
+    }
+  
+    .flex.justify-center.mb-4 > div[style*='width: 365.41px'] > button[class*='bg-white'],
+    .travel-tab-active {
+      background-color: white !important;
+    }
+  }
+  
+  /* Mobil küçük ekranlar */
+  @media (max-width: 480px) {
+    .travel-tabs-inner {
+      max-width: 300px;
+    }
+    
+    .travel-tab-text {
+      font-size: 0.75rem;
+    }
+  }
