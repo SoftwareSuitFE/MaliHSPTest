@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/hooks/useLanguage';
+import '@/styles/layouts/comingSoon.css';
 
 const ComingSoon = () => {
   const { t } = useLanguage();
@@ -14,17 +15,13 @@ const ComingSoon = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex flex-col items-center justify-center px-4 py-12">
-      <div className="max-w-3xl w-full flex flex-col items-center justify-center text-center">
+    <div className="coming-soon-container">
+      <div className="coming-soon-content">
         {/* Animasyonlu Coming Soon ikonu */}
-        <div
-          className={`relative mb-8 transition-all duration-700 transform ${
-            isLoaded ? 'scale-100 opacity-100' : 'scale-90 opacity-0'
-          }`}
-        >
-          <div className="relative w-40 h-40">
+        <div className={`icon-container ${isLoaded ? 'loaded' : 'loading'}`}>
+          <div className="clock-container">
             {/* Dış halka - sürekli dönen animasyon */}
-            <div className="absolute inset-0 animate-spin-slow">
+            <div className="outer-ring">
               <svg
                 className="w-full h-full text-orange-500"
                 viewBox="0 0 100 100"
@@ -43,9 +40,9 @@ const ComingSoon = () => {
             </div>
 
             {/* İç kısım - saat */}
-            <div className="absolute inset-4">
+            <div className="inner-clock">
               <svg
-                className="w-full h-full text-orange-600"
+                className="clock-face"
                 viewBox="0 0 100 100"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +62,7 @@ const ComingSoon = () => {
 
                 {/* Saat akrebini temsil eden ok */}
                 <line
-                  className="origin-center animate-clock-hand-slow"
+                  className="clock-hand-hour"
                   x1="50"
                   y1="50"
                   x2="50"
@@ -77,7 +74,7 @@ const ComingSoon = () => {
 
                 {/* Dakika akrebi */}
                 <line
-                  className="origin-center animate-clock-hand-fast"
+                  className="clock-hand-minute"
                   x1="50"
                   y1="50"
                   x2="70"
@@ -104,7 +101,7 @@ const ComingSoon = () => {
             </div>
 
             {/* Üst üçgen - pulsing */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 animate-pulse">
+            <div className="triangle-top">
               <svg
                 width="24"
                 height="24"
@@ -119,18 +116,13 @@ const ComingSoon = () => {
         </div>
 
         {/* Başlık */}
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-          {t('ComingSoon', 'title')}
-        </h1>
+        <h1 className="coming-soon-title">{t('ComingSoon', 'title')}</h1>
 
         {/* Açıklama */}
-        <p className="text-gray-600 mb-8">{t('ComingSoon', 'message')}</p>
+        <p className="coming-soon-description">{t('ComingSoon', 'message')}</p>
 
         {/* Ana Sayfaya Dön Butonu */}
-        <Link
-          href="/"
-          className="inline-flex items-center justify-center px-6 py-3 bg-orange-500 text-white font-medium rounded-lg hover:bg-orange-600 transition-colors duration-300"
-        >
+        <Link href="/" className="home-button">
           {t('ComingSoon', 'button')}
         </Link>
       </div>

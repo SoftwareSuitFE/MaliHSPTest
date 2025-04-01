@@ -50,7 +50,9 @@ import { Inter, Geist_Mono } from 'next/font/google';
 import { ConfigProvider } from 'antd';
 import { QueryProvider } from './QueryProvider';
 
-import './globals.css';
+// import './globals.css';
+import "../styles/globals.css";
+
 
 // Font yüklemeleri
 const inter = Inter({
