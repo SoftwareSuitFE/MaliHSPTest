@@ -2,210 +2,300 @@
 
 /* Container for Filters component */
 .filters-container {
-    font-family: 'Inter';
-    border-radius: 8px;
-    border: 1px solid #F0F4F8;
-    padding: 24px;
+  font-family: 'Inter';
+  border-radius: 8px;
+  border: 1px solid #F0F4F8;
+  padding: 24px;
+  background-color: white;
+  position: sticky;
+  top: 4px;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .filters-container {
+    width: 268px;
   }
-  
-  /* Group container (margin-bottom: 32px) */
-  .filters-group {
-    margin-bottom: 32px;
+}
+
+/* Group container (margin-bottom: 32px) */
+.filters-group {
+  margin-bottom: 32px;
+}
+
+/* Title for Filters group */
+.filters-title {
+  font-size: 14px;
+  margin-bottom: 16px;
+  color: #142347;
+  font-weight: 400;
+  line-height: 100%;
+}
+
+/* Generic label for fields */
+.filters-label {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #142347;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Field text style */
+.filters-field-text {
+  font-family: 'Inter';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #142347;
+}
+
+/* Common input field style */
+.filters-input-field {
+  width: 220px;
+  height: 48px;
+  border-radius: 8px;
+  border: 1px solid #E2E8F0;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Wrapper for input fields (margin-bottom: 16px) */
+.filters-input-wrapper {
+  margin-bottom: 16px;
+}
+
+/* Section style for concept lists */
+.filters-section {
+  width: 220px;
+}
+.filters-section.collapsed {
+  height: 164px;
+  transition: height 0.3s ease;
+}
+.filters-section.expanded {
+  height: auto;
+  transition: height 0.3s ease;
+}
+
+/* Header for groups (e.g. concept groups) */
+.filters-group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+/* Reset button style */
+.filters-reset-button {
+  color: #ED8936 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  height: auto !important;
+  line-height: 1 !important;
+}
+
+/* Concept label for hotel and flight concepts */
+.filters-concept-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 10px;
+  user-select: none;
+}
+.filters-concept-label:last-child {
+  margin-bottom: 0;
+}
+
+/* Container for each concept item */
+.filters-concept-container {
+  width: 220px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+/* Checkbox box for concepts */
+.filters-checkbox-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background: #FFFFFF;
+  position: relative;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.filters-checkbox-box.active {
+  border: 1px solid #ED8936;
+}
+.filters-checkbox-box.inactive {
+  border: 1px solid #CAD4E0;
+}
+
+/* Checkbox check mark */
+.filters-checkbox-check {
+  position: absolute;
+  width: 8px;
+  height: 5.57px;
+  top: 5px;
+  left: 4px;
+}
+
+/* More container for expanding concept list */
+.filters-more-container {
+  width: 220px;
+  height: 16px;
+  gap: 8px;
+  margin-top: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* More icon margin */
+.filters-more-icon {
+  margin-right: 8px;
+}
+
+/* More text style */
+.filters-more-text {
+  font-family: 'Inter';
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 100%;
+  color: #93A2B7;
+}
+
+/* Star container for rating selection */
+.filters-star-container {
+  width: 220px;
+  height: 140px;
+}
+
+/* Each star row */
+.filters-star-row {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 20px;
+  margin-bottom: 10px;
+  user-select: none;
+}
+.filters-star-row:last-child {
+  margin-bottom: 0;
+}
+
+/* Radio button for star selection */
+.filters-radio-button {
+  min-width: 20px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+.filters-radio-button.active {
+  border: 2px solid #ED8936;
+}
+.filters-radio-button.inactive {
+  border: 2px solid #E2E2E2;
+}
+
+/* Inner circle for active radio button */
+.filters-radio-inner {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ED8936;
+  display: block;
+}
+
+/* Container for star text and icon */
+.filters-star-text-container {
+  display: flex;
+  align-items: center;
+  height: 20px;
+}
+
+/* Star icon margin */
+.filters-star-icon {
+  min-width: 16px;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icon container styles */
+.filters-icon-container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 8px;
+}
+
+/* Cursor styles for clickable elements */
+.filters-clickable {
+  cursor: pointer;
+}
+
+/* Flex container for filters elements */
+.filters-flex-container {
+  display: flex;
+  flex: 1;
+}
+
+/* Last group without bottom margin */
+.filters-last-group {
+  margin-bottom: 0;
+}
+
+/* Adjust label for concept headers to align with reset button */
+.filters-concept-header-label {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #142347;
+}
+
+@media (max-width: 1023px) {
+  /* Filtre konteyneri zaten width: 100% ama yine de ekleyebilirsiniz. */
+  .filters-container {
+    width: 100%; 
+    /* position: sticky kalabilir, eğer mobilde de üstte sabit durmasını istiyorsanız.
+       Mobilde yukarıda sabit durması istenmiyorsa, 
+       position: static; top: auto; şeklinde güncelleyebilirsiniz. */
   }
-  
-  /* Title for Filters group */
-  .filters-title {
-    font-size: 14px;
-    margin-bottom: 16px;
-    color: #142347;
-  }
-  
-  /* Generic label for fields */
-  .filters-label {
-    font-family: 'Inter';
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 100%;
-    letter-spacing: 0;
-    color: #142347;
-    margin-bottom: 8px;
-    display: block;
-  }
-  
-  /* Field text style */
-  .filters-field-text {
-    font-family: 'Inter';
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 100%;
-    letter-spacing: 0;
-    color: #142347;
-  }
-  
-  /* Common input field style */
-  .filters-input-field {
-    width: 220px;
-    height: 48px;
-    border-radius: 8px;
-    border: 1px solid #E2E8F0;
-    background: #FFFFFF;
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Wrapper for input fields (margin-bottom: 16px) */
-  .filters-input-wrapper {
-    margin-bottom: 16px;
-  }
-  
-  /* Section style for concept lists */
-  .filters-section {
-    width: 220px;
-  }
-  .filters-section.collapsed {
-    height: 164px;
-    transition: height 0.3s ease;
-  }
-  .filters-section.expanded {
-    height: auto;
-    transition: height 0.3s ease;
-  }
-  
-  /* Header for groups (e.g. concept groups) */
-  .filters-group-header {
-    margin-bottom: 8px;
-  }
-  
-  /* Reset button style */
-  .filters-reset-button {
-    color: #ED8936;
-    padding: 0;
-  }
-  
-  /* Concept label for hotel and flight concepts */
-  .filters-concept-label {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    margin-bottom: 10px;
-  }
-  .filters-concept-label:last-child {
-    margin-bottom: 0;
-  }
-  
-  /* Container for each concept item */
-  .filters-concept-container {
-    width: 220px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Checkbox box for concepts */
-  .filters-checkbox-box {
-    width: 16px;
-    height: 16px;
-    border-radius: 4px;
-    background: #FFFFFF;
-    position: relative;
-    margin-right: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .filters-checkbox-box.active {
-    border: 1px solid #ED8936;
-  }
-  .filters-checkbox-box.inactive {
-    border: 1px solid #CAD4E0;
-  }
-  
-  /* Checkbox check mark */
-  .filters-checkbox-check {
-    position: absolute;
-    width: 8px;
-    height: 5.57px;
-    top: 5px;
-    left: 4px;
-  }
-  
-  /* More container for expanding concept list */
+
+  /* İç elemanların sabit genişliklerini %100 yapıyoruz */
+  .filters-input-field,
+  .filters-section,
+  .filters-concept-container,
+  .filters-star-container,
   .filters-more-container {
-    width: 220px;
-    height: 16px;
-    gap: 8px;
-    margin-top: 12px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+    width: 100% !important;
   }
-  
-  /* More icon margin */
-  .filters-more-icon {
-    margin-right: 8px;
-  }
-  
-  /* More text style */
-  .filters-more-text {
-    font-family: 'Inter';
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 100%;
-    color: #93A2B7;
-  }
-  
-  /* Star container for rating selection */
-  .filters-star-container {
-    width: 220px;
-    height: 140px;
-  }
-  
-  /* Each star row */
-  .filters-star-row {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    height: 20px;
-    margin-bottom: 10px;
-  }
-  .filters-star-row:last-child {
-    margin-bottom: 0;
-  }
-  
-  /* Radio button for star selection */
-  .filters-radio-button {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 8px;
-  }
-  .filters-radio-button.active {
-    border: 2px solid #ED8936;
-  }
-  .filters-radio-button.inactive {
-    border: 2px solid #E2E2E2;
-  }
-  
-  /* Inner circle for active radio button */
-  .filters-radio-inner {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: #ED8936;
-    display: block;
-  }
-  
-  /* Container for star text and icon */
-  .filters-star-text-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Star icon margin */
-  .filters-star-icon {
-    margin-right: 8px;
-  }
-  
+
+  /* Eğer 24px gibi sabit yükseklikler mobilde sorun çıkarıyorsa,
+     height değerlerini de iptal edebilirsiniz. Örnek: */
+  /* .filters-concept-container {
+    height: auto !important;
+  } */
+}

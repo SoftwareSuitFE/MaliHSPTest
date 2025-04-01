@@ -920,7 +920,6 @@ import PersonPicker from '@/components/PersonPicker/personpicker';
 import DestinationDropdown from '@/components/dropdown/DestinationDropdown';
 import NightPicker from '@/components/NightPicker/NightPicker';
 
-
 // Hotel concept listesi
 const baseConcepts = [
   'Beach Hotel',
@@ -953,8 +952,12 @@ const Filters: React.FC = () => {
   const travelType = searchParams.travelType || 'package';
 
   // State'ler
-  const [from, setFrom] = useState<string>(filters.from || searchParams.from || '');
-  const [destination, setDestination] = useState<string>(filters.destination || searchParams.destination || '');
+  const [from, setFrom] = useState<string>(
+    filters.from || searchParams.from || '',
+  );
+  const [destination, setDestination] = useState<string>(
+    filters.destination || searchParams.destination || '',
+  );
 
   // Kişi sayıları
   const [adults, setAdults] = useState<number>(
@@ -966,7 +969,9 @@ const Filters: React.FC = () => {
   const [people, setPeople] = useState<number>(adults + children);
 
   // Nights değişkeni
-  const [nights, setNights] = useState<number>(filters.nights || searchParams.nights || 5);
+  const [nights, setNights] = useState<number>(
+    filters.nights || searchParams.nights || 5,
+  );
 
   // Date state'leri
   const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(() => {
@@ -981,10 +986,12 @@ const Filters: React.FC = () => {
   });
 
   const [stars, setStars] = useState<number[]>(filters.stars || []);
-  const [concepts, setConcepts] = useState<string[]>(filters.hotelConcepts || []);
-  const [flightConceptsSelected, setFlightConceptsSelected] = useState<string[]>(
-    filters.flightConcepts || [],
+  const [concepts, setConcepts] = useState<string[]>(
+    filters.hotelConcepts || [],
   );
+  const [flightConceptsSelected, setFlightConceptsSelected] = useState<
+    string[]
+  >(filters.flightConcepts || []);
 
   // DateRangePicker için visible state ve ref
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
@@ -1105,7 +1112,9 @@ const Filters: React.FC = () => {
     setAdults(newAdults);
     setChildren(newChildren);
     setPeople(newAdults + newChildren);
-    updateFilters({ participants: { adults: newAdults, children: newChildren } });
+    updateFilters({
+      participants: { adults: newAdults, children: newChildren },
+    });
   };
 
   const handlePersonPickerClose = () => {
@@ -1176,32 +1185,36 @@ const Filters: React.FC = () => {
 
   // Gösterilecek concept listesi
   const visibleConcepts = showMore ? baseConcepts : baseConcepts.slice(0, 5);
-  const visibleFlightConcepts = showMoreFlight ? flightConcepts : flightConcepts.slice(0, 5);
+  const visibleFlightConcepts = showMoreFlight
+    ? flightConcepts
+    : flightConcepts.slice(0, 5);
 
   // Otel konseptini çevirme yardımcı fonksiyonu
   const translateConcept = (concept: string): string => {
-    const key = concept.replace(/\s+/g, '').replace(/(?:^|\s)(\w)/g, (match, p1) => p1.toLowerCase());
+    const key = concept
+      .replace(/\s+/g, '')
+      .replace(/(?:^|\s)(\w)/g, (match, p1) => p1.toLowerCase());
     return t('HotelConcepts', key);
   };
 
   // Uçuş konseptini çevirme yardımcı fonksiyonu
   const translateFlightConcept = (concept: string): string => {
-    const key = concept.replace(/\s+/g, '').replace(/(?:^|\s)(\w)/g, (match, p1) => p1.toLowerCase());
+    const key = concept
+      .replace(/\s+/g, '')
+      .replace(/(?:^|\s)(\w)/g, (match, p1) => p1.toLowerCase());
     return t('FlightConcepts', key);
   };
 
   return (
-    <div className="filters-container bg-white rounded-lg sticky top-4 w-full lg:w-[268px]">
+    <div className="filters-container">
       {/* 1. GRUP: Filter, From ve Destination */}
       <div className="filters-group">
-        <h3 className="filters-title text-sm font-normal text-[#142347]">
-          {t('Filters', 'title')}
-        </h3>
+        <h3 className="filters-title">{t('Filters', 'title')}</h3>
 
         {(travelType === 'package' || travelType === 'flight') && (
           <div className="filters-input-wrapper">
-            <div className="filter-input filters-input-field flex items-center rounded-md overflow-hidden w-full">
-              <div className="flex items-center h-full pl-3 pr-2">
+            <div className="filters-input-field">
+              <div className="filters-icon-container">
                 <Icon name="location" size={16} color="#142347" />
               </div>
               <DestinationDropdown
@@ -1217,8 +1230,8 @@ const Filters: React.FC = () => {
         )}
 
         <div>
-          <div className="filter-input filters-input-field flex items-center rounded-md overflow-hidden w-full">
-            <div className="flex items-center h-full pl-3 pr-2">
+          <div className="filters-input-field">
+            <div className="filters-icon-container">
               <Icon name="location" size={16} color="#142347" />
             </div>
             <DestinationDropdown
@@ -1235,18 +1248,16 @@ const Filters: React.FC = () => {
 
       {/* 2. GRUP: Participants */}
       <div className="filters-group">
-        <label className="filters-label block text-[#142347]">
-          {t('Filters', 'participants')}
-        </label>
+        <label className="filters-label">{t('Filters', 'participants')}</label>
         <div
           ref={peopleFieldRef}
-          className="filter-input filters-input-field flex items-center cursor-pointer overflow-hidden w-full"
+          className="filters-input-field filters-clickable"
           onClick={() => setShowPersonPicker(true)}
         >
-          <div className="flex items-center h-full pl-3 pr-2">
+          <div className="filters-icon-container">
             <Icon name="users" size={16} color="#142347" />
           </div>
-          <div className="flex-1 filters-field-text">
+          <div className="filters-flex-container filters-field-text">
             {t('Filters', 'people', { count: people })}
           </div>
         </div>
@@ -1265,18 +1276,16 @@ const Filters: React.FC = () => {
 
       {/* 3. GRUP: Date */}
       <div className="filters-group">
-        <label className="filters-label block text-[#142347]">
-          {t('Filters', 'date')}
-        </label>
+        <label className="filters-label">{t('Filters', 'date')}</label>
         <div
           ref={dateFieldRef}
-          className="filter-input filters-input-field flex items-center cursor-pointer overflow-hidden w-full"
+          className="filters-input-field filters-clickable"
           onClick={() => setShowDatePicker(true)}
         >
-          <div className="flex items-center h-full pl-3 pr-2">
+          <div className="filters-icon-container">
             <Icon name="calendar" size={16} color="#142347" />
           </div>
-          <div className="flex-1 filters-field-text">
+          <div className="filters-flex-container filters-field-text">
             {startDate ? (
               <span>{startDate.format('DD MMM YYYY')}</span>
             ) : (
@@ -1300,18 +1309,16 @@ const Filters: React.FC = () => {
       {/* 4. GRUP: Nights - Sadece package ve hotel için göster */}
       {(travelType === 'package' || travelType === 'hotel') && (
         <div className="filters-group">
-          <label className="filters-label block text-[#142347]">
-            {t('Filters', 'nights')}
-          </label>
+          <label className="filters-label">{t('Filters', 'nights')}</label>
           <div
             ref={nightsFieldRef}
-            className="filter-input filters-input-field flex items-center cursor-pointer overflow-hidden w-full"
+            className="filters-input-field filters-clickable"
             onClick={() => setShowNightPicker(true)}
           >
-            <div className="flex items-center h-full pl-3 pr-2">
+            <div className="filters-icon-container">
               <Icon name="nights" size={16} color="#142347" />
             </div>
-            <div className="flex-1 filters-field-text">
+            <div className="filters-flex-container filters-field-text">
               {t('HotelCard', 'nights', { count: nights })}
             </div>
           </div>
@@ -1331,26 +1338,30 @@ const Filters: React.FC = () => {
       {/* 5. GRUP: Hotel Concept */}
       {(travelType === 'package' || travelType === 'hotel') && (
         <div className="filters-group">
-          <div className="filters-group-header flex justify-between items-center">
-            <label className="filters-label text-sm">
+          <div className="filters-group-header">
+            <label className="filters-concept-header-label">
               {t('Filters', 'hotelConcept')}
             </label>
             <Button
               type="link"
               size="small"
               onClick={resetFilters}
-              className="filters-reset-button p-0"
+              className="filters-reset-button"
             >
               {t('Filters', 'reset')}
             </Button>
           </div>
-          <div className={`space-y-2 filters-section ${showMore ? 'expanded' : 'collapsed'}`}>
+          <div
+            className={`filters-section ${showMore ? 'expanded' : 'collapsed'}`}
+          >
             {visibleConcepts.map((concept) => {
               const isChecked = concepts.includes(concept);
               return (
                 <label key={concept} className="filters-concept-label">
                   <div className="filters-concept-container">
-                    <span className={`filters-checkbox-box ${isChecked ? 'active' : 'inactive'}`}>
+                    <span
+                      className={`filters-checkbox-box ${isChecked ? 'active' : 'inactive'}`}
+                    >
                       {isChecked && (
                         <Icon name="thick" className="filters-checkbox-check" />
                       )}
@@ -1361,7 +1372,7 @@ const Filters: React.FC = () => {
                       onChange={() => handleConceptChange(concept)}
                       className="hidden"
                     />
-                    <span className="filters-field-text text-sm">
+                    <span className="filters-field-text">
                       {translateConcept(concept)}
                     </span>
                   </div>
@@ -1369,7 +1380,10 @@ const Filters: React.FC = () => {
               );
             })}
             {baseConcepts.length > 5 && (
-              <div className="filters-more-container" onClick={() => setShowMore(!showMore)}>
+              <div
+                className="filters-more-container"
+                onClick={() => setShowMore(!showMore)}
+              >
                 <Icon
                   name="arrow-down"
                   size={16}
@@ -1388,26 +1402,30 @@ const Filters: React.FC = () => {
       {/* 5. GRUP: Flight Concept - Sadece flight için göster */}
       {travelType === 'flight' && (
         <div className="filters-group">
-          <div className="filters-group-header flex justify-between items-center">
-            <label className="filters-label text-sm">
+          <div className="filters-group-header">
+            <label className="filters-concept-header-label">
               {t('Filters', 'flightConcept')}
             </label>
             <Button
               type="link"
               size="small"
               onClick={resetFilters}
-              className="filters-reset-button p-0"
+              className="filters-reset-button"
             >
               {t('Filters', 'reset')}
             </Button>
           </div>
-          <div className={`space-y-2 filters-section ${showMoreFlight ? 'expanded' : 'collapsed'}`}>
+          <div
+            className={`filters-section ${showMoreFlight ? 'expanded' : 'collapsed'}`}
+          >
             {visibleFlightConcepts.map((concept) => {
               const isChecked = flightConceptsSelected.includes(concept);
               return (
                 <label key={concept} className="filters-concept-label">
                   <div className="filters-concept-container">
-                    <span className={`filters-checkbox-box ${isChecked ? 'active' : 'inactive'}`}>
+                    <span
+                      className={`filters-checkbox-box ${isChecked ? 'active' : 'inactive'}`}
+                    >
                       {isChecked && (
                         <Icon name="thick" className="filters-checkbox-check" />
                       )}
@@ -1418,7 +1436,7 @@ const Filters: React.FC = () => {
                       onChange={() => handleFlightConceptChange(concept)}
                       className="hidden"
                     />
-                    <span className="filters-field-text text-sm">
+                    <span className="filters-field-text">
                       {translateFlightConcept(concept)}
                     </span>
                   </div>
@@ -1426,7 +1444,10 @@ const Filters: React.FC = () => {
               );
             })}
             {flightConcepts.length > 5 && (
-              <div className="filters-more-container" onClick={() => setShowMoreFlight(!showMoreFlight)}>
+              <div
+                className="filters-more-container"
+                onClick={() => setShowMoreFlight(!showMoreFlight)}
+              >
                 <Icon
                   name="arrow-down"
                   size={16}
@@ -1443,10 +1464,8 @@ const Filters: React.FC = () => {
       )}
 
       {/* 6. GRUP: Star */}
-      <div>
-        <label className="filters-label block text-[#142347]">
-          {t('Filters', 'star')}
-        </label>
+      <div className="filters-last-group">
+        <label className="filters-label">{t('Filters', 'star')}</label>
         <div className="filters-star-container">
           {[1, 2, 3, 4, 5].map((starValue) => {
             const isActive = stars.includes(starValue);
@@ -1456,14 +1475,16 @@ const Filters: React.FC = () => {
                 className="filters-star-row"
                 onClick={() => handleStarClick(starValue)}
               >
-                <div className={`filters-radio-button ${isActive ? 'active' : 'inactive'}`}>
+                <div
+                  className={`filters-radio-button ${isActive ? 'active' : 'inactive'}`}
+                >
                   {isActive && <div className="filters-radio-inner" />}
                 </div>
                 <div className="filters-star-text-container">
-                  <Icon name="Star" size={16} color="#ED8936" className="filters-star-icon" />
-                  <span className="filters-field-text">
-                    {starValue}+
-                  </span>
+                  <div className="filters-star-icon">
+                    <Icon name="Star" size={16} color="#ED8936" />
+                  </div>
+                  <span className="filters-field-text">{starValue}+</span>
                 </div>
               </div>
             );
