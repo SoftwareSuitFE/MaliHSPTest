@@ -6,6 +6,9 @@
   height: 40px;
   border-radius: 8px;
   gap: 0;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 /* Package button styles */
@@ -50,6 +53,10 @@
     gap: 16px !important;
     background: transparent !important;
     backdrop-filter: none !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
   }
 
   .flex.justify-center.mb-4 > div[style*='width: 365.41px'] > button,
@@ -62,5 +69,53 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
     background-color: rgba(255, 255, 255, 0.3) !important;
     backdrop-filter: blur(4px) !important;
+    border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none; /* iOS Safari’deki default stil için */
+  appearance: none;
   }
+}
+
+/* Focus/active durumunda da kaldırın */
+.package-tab-btn:focus,
+.package-tab-btn:active,
+.package-tab-btn:focus-visible,
+.hotel-tab-btn:focus,
+.hotel-tab-btn:active,
+.hotel-tab-btn:focus-visible,
+.flight-tab-btn:focus,
+.flight-tab-btn:active,
+.flight-tab-btn:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.travel-tabs-wrapper button,
+.package-tab-btn,
+.hotel-tab-btn,
+.flight-tab-btn {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+
+
+.travel-tabs-wrapper button:focus,
+.travel-tabs-wrapper button:active,
+.travel-tabs-wrapper button:focus-visible,
+.package-tab-btn:focus,
+.package-tab-btn:active,
+.package-tab-btn:focus-visible,
+.hotel-tab-btn:focus,
+.hotel-tab-btn:active,
+.hotel-tab-btn:focus-visible,
+.flight-tab-btn:focus,
+.flight-tab-btn:active,
+.flight-tab-btn:focus-visible {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
