@@ -58,16 +58,6 @@
     box-shadow: none !important;
     backdrop-filter: none !important;
   }
-  .mb-4.mt-56 {
-    margin-top: 8px !important; /* Minimum bir boşluk bırakıyoruz */
-  }
-  .relative.z-20.container.mx-auto.h-full.flex.flex-col.justify-center.items-center.px-4 {
-    padding-top: 16px !important;
-    justify-content: flex-start !important;
-  }
-  .relative.h-\[500px\].overflow-hidden.bg-blue-400 {
-    min-height: 700px !important;
-  }
 
   .flex.justify-center.mb-4 > div[style*='width: 365.41px'] > button,
   .package-tab-btn,
@@ -82,8 +72,55 @@
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
-    -webkit-appearance: none; /* iOS Safari’deki default stil için */
+    -webkit-appearance: none; /* iOS Safari'deki default stil için */
     appearance: none;
+  }
+  
+  /* TravelTabs üstündeki boşluğu kaldır */
+  .mb-4.mt-56 {
+    margin-top: 8px !important; /* Minimum bir boşluk bırakıyoruz */
+  }
+  
+  /* SearchForm yukarı kayması için ana container ayarı */
+  .relative.z-20.container.mx-auto.h-full.flex.flex-col.justify-center.items-center.px-4 {
+    padding-top: 16px !important;
+    justify-content: flex-start !important;
+  }
+  
+  /* Hero alanının yüksekliğini düşürelim */
+  .relative.h-\[500px\].overflow-hidden.bg-blue-400 {
+    min-height: 700px !important;
+  }
+  
+  /* Aktif sekme için özel stil */
+  .package-tab-btn[class*='bg-white'],
+  .hotel-tab-btn[class*='bg-white'],
+  .flight-tab-btn[class*='bg-white'] {
+    background-color: white !important;
+    color: #142347 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  }
+  
+  /* Aktif sekme ikonlarını ve metinlerini vurgula */
+  .package-tab-btn[class*='bg-white'] span,
+  .hotel-tab-btn[class*='bg-white'] span,
+  .flight-tab-btn[class*='bg-white'] span {
+    color: #142347 !important;
+    font-weight: 600 !important;
+  }
+  
+  /* Aktif olmayan sekmelerin arka plan rengini ve opaklığını ayarla */
+  .package-tab-btn:not([class*='bg-white']),
+  .hotel-tab-btn:not([class*='bg-white']),
+  .flight-tab-btn:not([class*='bg-white']) {
+    background-color: rgba(255, 255, 255, 0.5) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Daha küçük ekranlarda daha da az boşluk */
+  .mb-4.mt-56 {
+    margin-top: 4px !important;
   }
 }
 
@@ -112,6 +149,7 @@
   border-color: transparent !important;
 }
 
+
 .travel-tabs-wrapper button:focus,
 .travel-tabs-wrapper button:active,
 .travel-tabs-wrapper button:focus-visible,
@@ -127,11 +165,4 @@
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
-}
-
-@media (max-width: 767px) {
-  /* Daha küçük ekranlarda daha da az boşluk */
-  .mb-4.mt-56 {
-    margin-top: 4px !important;
-  }
 }
