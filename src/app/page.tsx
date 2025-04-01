@@ -46,7 +46,7 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-20 container mx-auto h-full flex flex-col justify-center items-center px-4">
           <div className="w-full max-w-4xl">
-            <div className="mb-6 mt-48">
+          <div className="mb-4 mt-56">
               <TravelTabs />
             </div>
 

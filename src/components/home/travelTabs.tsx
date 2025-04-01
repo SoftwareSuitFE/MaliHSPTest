@@ -128,7 +128,6 @@
 // export default TravelTabs;
 
 
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -164,19 +163,23 @@ const TravelTabs = () => {
   console.log('Translations:', { packageText, hotelText, flightText });
 
   return (
-    <div className="flex justify-center mb-4" data-travel-type={activeTab}>
-      <div className="travel-tabs-inner">
+    <div className="flex justify-center mb-4">
+      <div
+        className="flex bg-white/30 backdrop-blur-sm overflow-hidden travel-tabs-wrapper"
+      >
         <button
           onClick={() => handleTabChange('package')}
-          className={`travel-tab travel-tab-package ${
-            activeTab === 'package' ? 'travel-tab-active bg-white text-gray-800' : 'travel-tab-inactive bg-transparent text-white'
+          className={`flex items-center justify-center transition-all duration-300 ease-in-out package-tab-btn ${
+            activeTab === 'package'
+              ? 'bg-white text-gray-800'
+              : 'bg-transparent text-white'
           }`}
         >
-          <div className="travel-tab-content">
-            <div className="travel-tab-icon">
+          <div className="flex items-center cursor-pointer">
+            <div className="mr-2">
               <Icon name="package" size={16} />
             </div>
-            <span className="travel-tab-text font-semibold text-sm text-[#142347]">
+            <span className="font-semibold text-sm text-[#142347]">
               {packageText}
             </span>
           </div>
@@ -184,15 +187,17 @@ const TravelTabs = () => {
 
         <button
           onClick={() => handleTabChange('hotel')}
-          className={`travel-tab travel-tab-hotel ${
-            activeTab === 'hotel' ? 'travel-tab-active bg-white text-gray-800' : 'travel-tab-inactive bg-transparent text-white'
+          className={`flex items-center justify-center transition-all duration-400 ease-in-out hotel-tab-btn ${
+            activeTab === 'hotel'
+              ? 'bg-white text-gray-800'
+              : 'bg-transparent text-white'
           }`}
         >
-          <div className="travel-tab-content">
-            <div className="travel-tab-icon">
+          <div className="flex items-center cursor-pointer">
+            <div className="mr-2">
               <Icon name="hotel" size={16} />
             </div>
-            <span className="travel-tab-text font-semibold text-sm text-[#142347]">
+            <span className="font-semibold text-sm text-[#142347]">
               {hotelText}
             </span>
           </div>
@@ -200,15 +205,17 @@ const TravelTabs = () => {
 
         <button
           onClick={() => handleTabChange('flight')}
-          className={`travel-tab travel-tab-flight ${
-            activeTab === 'flight' ? 'travel-tab-active bg-white text-gray-800' : 'travel-tab-inactive bg-transparent text-white'
+          className={`flex items-center justify-center transition-all duration-300 ease-in-out flight-tab-btn ${
+            activeTab === 'flight'
+              ? 'bg-white text-gray-800'
+              : 'bg-transparent text-white'
           }`}
         >
-          <div className="travel-tab-content">
-            <div className="travel-tab-icon">
+          <div className="flex items-center cursor-pointer">
+            <div className="mr-2">
               <Icon name="flight" size={16} />
             </div>
-            <span className="travel-tab-text font-semibold text-sm text-[#142347]">
+            <span className="font-semibold text-sm text-[#142347]">
               {flightText}
             </span>
           </div>
