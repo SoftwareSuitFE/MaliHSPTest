@@ -195,3 +195,30 @@ body {
     background: #FFFFFF;
   }
 }
+
+/* TravelTabs Responsive Styles */
+@media (max-width: 767px) {
+  /* TravelTabs responsive styling */
+  .flex.justify-center.mb-4 > div[style*="width: 365.41px"] {
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 365.41px !important;
+    height: auto !important;
+    gap: 16px !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+  }
+  
+  .flex.justify-center.mb-4 > div[style*="width: 365.41px"] > button {
+    width: 100% !important;
+    margin-bottom: 0 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    backdrop-filter: blur(4px) !important;
+  }
+  
+  .flex.justify-center.mb-4 > div[style*="width: 365.41px"] > button[class*="bg-white"] {
+    background-color: white !important;
+  }
+}
