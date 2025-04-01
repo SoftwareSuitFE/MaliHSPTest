@@ -1,0 +1,109 @@
+/* Arka plandaki büyük container */
+.searchFormContainer {
+    width: 930px;
+    height: 92px;
+    padding: 16px;
+    gap: 8px;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0px 0px 32px 0px #00000029;
+  }
+  
+  /* İçteki beyaz kutu (form alanlarını saran container) */
+  .searchFormInnerContainer {
+    width: 748px;
+    height: 60px;
+    padding: 8px;
+    gap: 8px;
+    border-radius: 8px;
+  }
+  
+  /* Paket/Flight vs. form alanlarında tekrar eden 170px genişlikteki kutu */
+  .searchFormField170 {
+    width: 170px;
+    height: 40px;
+    gap: 8px;
+    padding: 8px;
+    border-right: 1px solid #e1e7ef;
+  }
+  
+  /* 115px genişlikli tarih alanı */
+  .searchFormField115 {
+    width: 115px;
+    height: 40px;
+    gap: 8px;
+    border-right: 1px solid #e1e7ef;
+  }
+  
+  /* 110px genişlikli nights alanı */
+  .searchFormField110 {
+    width: 110px;
+    height: 40px;
+    gap: 8px;
+    border-right: 1px solid #e1e7ef;
+  }
+  
+  /* 135px genişlikli participants alanı */
+  .searchFormField135 {
+    width: 135px;
+    height: 40px;
+    gap: 8px;
+  }
+  
+  /* Hotel formunda kullanılan 300px genişlikli alan */
+  .hotelFormField300 {
+    width: 300px;
+    height: 40px;
+    gap: 8px;
+    padding: 0 8px;
+    border-right: 1px solid #e1e7ef;
+  }
+  
+  /* Hotel formunda tarih alanı (225px) */
+  .hotelFormDateField225 {
+    width: 225px;
+    height: 40px;
+    gap: 8px;
+    border-right: 1px solid #e1e7ef;
+    padding-left: 8px;
+  }
+  
+  /* Hotel formunda participants (180px) */
+  .hotelFormParticipants180 {
+    width: 180px;
+    height: 40px;
+    gap: 8px;
+  }
+  
+  /* Flight formunda tarih alanı (230px) */
+  .flightFormDateField230 {
+    width: 230px;
+    height: 40px;
+    gap: 8px;
+    border-right: 1px solid #e1e7ef;
+    padding-left: 8px;
+  }
+  
+  /* Search butonunun genişlik, yükseklik vs. */
+  .searchButton142 {
+    width: 142px;
+    height: 60px;
+    border-radius: 8px;
+    background-color: #ed8936;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  
+  /* DestinationDropdown gibi yerlerde tekrar eden renk ve font ayarları */
+  .dropDownStyleCommon {
+    color: #142347;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  /* Hotel formunda “text-[#142347]” ile renk verilmiş yerlere boyut ve weight tanımı */
+  .fontSize14Weight500 {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  

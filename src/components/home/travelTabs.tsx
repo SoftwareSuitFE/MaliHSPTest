@@ -116,7 +116,7 @@ const TravelTabs = () => {
   const { locale, t } = useLanguage(); // Locale değerini de alıyoruz
 
   const [activeTab, setActiveTab] = useState<'package' | 'hotel' | 'flight'>(
-    searchParams.travelType || 'package',
+    (searchParams as { travelType?: 'package' | 'hotel' | 'flight' }).travelType || 'package',
   );
 
   // Dil değişimini takip etmek için useEffect ekleyelim
