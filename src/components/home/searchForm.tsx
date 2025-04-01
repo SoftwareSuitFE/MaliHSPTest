@@ -422,10 +422,9 @@
 
 // export default SearchForm;
 
-
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from 'antd';
 import dayjs from 'dayjs';
@@ -472,6 +471,16 @@ const SearchForm = () => {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showPersonPicker, setShowPersonPicker] = useState(false);
   const [showNightPicker, setShowNightPicker] = useState(false); // Yeni state
+
+  useEffect(() => {
+    updateSearchParams({
+      from: '',
+      destination: '',
+      date: dayjs('2023-04-15').format('YYYY-MM-DD'),
+      nights: 5,
+      participants: { adults: 1, children: 0 },
+    });
+  }, []);
 
   // SEARCH butonuna tıklanınca
   const handleSearch = (e: React.MouseEvent) => {
@@ -623,9 +632,7 @@ const SearchForm = () => {
           <Icon name="nights" size={24} />
         </div>
         <div className="flex flex-col w-full pl-2">
-          <div className="field-label">
-            {t('SearchForm', 'nights')}
-          </div>
+          <div className="field-label">{t('SearchForm', 'nights')}</div>
           <div className="field-value">
             {t('SearchForm', 'nightsCount', { count: nights })}
           </div>
@@ -643,9 +650,7 @@ const SearchForm = () => {
           <Icon name="users" size={24} />
         </div>
         <div className="flex flex-col w-full pl-2">
-          <div className="field-label">
-            {t('SearchForm', 'participants')}
-          </div>
+          <div className="field-label">{t('SearchForm', 'participants')}</div>
           <div className="field-value">
             {t('SearchForm', 'people', { count: people })}
           </div>
@@ -683,7 +688,7 @@ const SearchForm = () => {
         <div className="flex flex-col w-full pl-2 cursor-pointer">
           <div className="field-label">{t('SearchForm', 'date')}</div>
           <div className="field-value">
-            {date.format('D MMM')} - {' '}
+            {date.format('D MMM')} -{' '}
             {t('SearchForm', 'nightsCount', { count: nights })}
           </div>
         </div>
@@ -698,9 +703,7 @@ const SearchForm = () => {
           <Icon name="users" size={24} />
         </div>
         <div className="flex flex-col w-full pl-2">
-          <div className="field-label">
-            {t('SearchForm', 'participants')}
-          </div>
+          <div className="field-label">{t('SearchForm', 'participants')}</div>
           <div className="field-value">
             {t('SearchForm', 'people', { count: people })}
           </div>
@@ -773,9 +776,7 @@ const SearchForm = () => {
           <Icon name="users" size={24} />
         </div>
         <div className="flex flex-col w-full pl-2 cursor-pointer">
-          <div className="field-label">
-            {t('SearchForm', 'participants')}
-          </div>
+          <div className="field-label">{t('SearchForm', 'participants')}</div>
           <div className="field-value">
             {t('SearchForm', 'people', { count: people })}
           </div>
