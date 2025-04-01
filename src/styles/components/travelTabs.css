@@ -58,6 +58,16 @@
     box-shadow: none !important;
     backdrop-filter: none !important;
   }
+  .mb-4.mt-56 {
+    margin-top: 8px !important; /* Minimum bir boşluk bırakıyoruz */
+  }
+  .relative.z-20.container.mx-auto.h-full.flex.flex-col.justify-center.items-center.px-4 {
+    padding-top: 16px !important;
+    justify-content: flex-start !important;
+  }
+  .relative.h-\[500px\].overflow-hidden.bg-blue-400 {
+    min-height: 700px !important;
+  }
 
   .flex.justify-center.mb-4 > div[style*='width: 365.41px'] > button,
   .package-tab-btn,
@@ -70,10 +80,10 @@
     background-color: rgba(255, 255, 255, 0.3) !important;
     backdrop-filter: blur(4px) !important;
     border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-  -webkit-appearance: none; /* iOS Safari’deki default stil için */
-  appearance: none;
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-appearance: none; /* iOS Safari’deki default stil için */
+    appearance: none;
   }
 }
 
@@ -102,7 +112,6 @@
   border-color: transparent !important;
 }
 
-
 .travel-tabs-wrapper button:focus,
 .travel-tabs-wrapper button:active,
 .travel-tabs-wrapper button:focus-visible,
@@ -118,4 +127,11 @@
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
+}
+
+@media (max-width: 767px) {
+  /* Daha küçük ekranlarda daha da az boşluk */
+  .mb-4.mt-56 {
+    margin-top: 4px !important;
+  }
 }
