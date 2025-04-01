@@ -1,6 +1,6 @@
 'use client';
 
-import { Inter, Geist_Mono } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import { ConfigProvider } from 'antd';
 import { QueryProvider } from './QueryProvider';
 

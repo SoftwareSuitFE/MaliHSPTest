@@ -46,9 +46,7 @@
   --font-sans: var(--font-inter);
 }
 
-html, body {
-  font-family: var(--font-inter);
-}
+
 
 /* === Typography.css === */
 :root {
@@ -92,6 +90,10 @@ html, body {
   --tracking-wide: 0.025em;
   --tracking-wider: 0.05em;
   --tracking-widest: 0.1em;
+}
+
+html, body {
+  font-family: var(--font-sans);
 }
 
 /* Başlık stilleri */
