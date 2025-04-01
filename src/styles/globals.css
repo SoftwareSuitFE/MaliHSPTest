@@ -19,6 +19,7 @@
 @import './components/destinationDropdown.css';
 @import './layouts/search.css';
 
+
 /* === Colors.css === */
 :root {
   /* Ana Renkler */
@@ -42,16 +43,17 @@
   /* Root için temel değişkenler */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+}
+
+html, body {
+  font-family: var(--font-inter);
 }
 
 /* === Typography.css === */
 :root {
   /* Font aileleri */
-  --font-sans:
-    'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Arial, sans-serif;
+  --font-sans: 'Inter';
 
   /* Font boyutları */
   --text-xs: 0.75rem; /* 12px */

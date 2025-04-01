@@ -4,11 +4,9 @@ import React, { JSX } from 'react';
 import Header from '@/components/layout/header';
 import Filters from '@/components/search/filters';
 import HotelList from '@/components/search/hotelList';
-// import { useLanguage } from '@/hooks/useLanguage';
 import '@/styles/layouts/search.css';
 
 export default function SearchPage(): JSX.Element {
-  // const { t } = useLanguage();
 
   return (
     <main className="min-h-screen bg-white">

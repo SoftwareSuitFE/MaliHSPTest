@@ -13,11 +13,6 @@ const inter = Inter({
   subsets: ['latin'],
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
-
 export default function RootLayout({
   children,
 }: {
@@ -25,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body className={`${inter.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${inter.variable} antialiased`}>
         <QueryProvider>
           <ConfigProvider
             theme={{
