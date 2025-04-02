@@ -18,16 +18,16 @@ export function useSearch() {
   const { data: searchParams = getSearchParams() } = useQuery({
     queryKey: [SEARCH_PARAMS_KEY],
     queryFn: getSearchParams,
-    staleTime: Infinity, // Güncellenene kadar stale olmasın
-    cacheTime: Infinity, // Cache'te sonsuza kadar tutulsun
+    staleTime: 1000 * 60 * 5, // 5 dakika sonra stale olsun
+    refetchOnWindowFocus: false,
   });
 
   // Filtreleri React Query ile getir
   const { data: filters = getFilters() } = useQuery({
     queryKey: [FILTERS_KEY],
     queryFn: getFilters,
-    staleTime: Infinity,
-    cacheTime: Infinity,
+    staleTime: 1000 * 60 * 5, // 5 dakika sonra stale olsun
+    refetchOnWindowFocus: false,
   });
 
   // Arama parametrelerini güncelleme mutation'ı
@@ -39,6 +39,21 @@ export function useSearch() {
     onSuccess: (updatedSearchParams) => {
       // Cache'i güncelle
       queryClient.setQueryData([SEARCH_PARAMS_KEY], updatedSearchParams);
+      
+      // Filtreleri de güncelle (senkronize et)
+      const currentFilters = queryClient.getQueryData<Filters>([FILTERS_KEY]) || getFilters();
+      const updatedFilters = { 
+        ...currentFilters,
+        from: updatedSearchParams.from || currentFilters.from,
+        destination: updatedSearchParams.destination || currentFilters.destination,
+        date: updatedSearchParams.date || currentFilters.date,
+        nights: updatedSearchParams.nights || currentFilters.nights,
+        participants: updatedSearchParams.participants || currentFilters.participants,
+      };
+      
+      // Filtreleri kaydet ve önbelleği güncelle
+      saveFilters(updatedFilters);
+      queryClient.setQueryData([FILTERS_KEY], updatedFilters);
     },
   });
 
@@ -53,11 +68,18 @@ export function useSearch() {
       queryClient.setQueryData([FILTERS_KEY], updatedFilters);
     },
   });
+  
+  // Cache'i tamamen yenileme fonksiyonu
+  const refreshSearchData = () => {
+    queryClient.invalidateQueries({ queryKey: [SEARCH_PARAMS_KEY] });
+    queryClient.invalidateQueries({ queryKey: [FILTERS_KEY] });
+  };
 
   return {
     searchParams,
     updateSearchParams,
     filters,
     updateFilters,
+    refreshSearchData,
   };
 }

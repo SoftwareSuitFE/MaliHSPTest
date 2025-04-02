@@ -547,6 +547,8 @@ const SearchForm = () => {
   // SEARCH butonuna tıklanınca
   const handleSearch = (e: React.MouseEvent) => {
     e.preventDefault();
+    
+    // Önce tüm parametreleri güncelle
     updateSearchParams({
       from: fromLocation,
       destination,
@@ -557,7 +559,11 @@ const SearchForm = () => {
         children,
       },
     });
-    router.push('/search');
+    
+    // Yönlendirmeden önce kısa bir gecikme ekleyelim, böylece güncelleme tamamlanır
+    setTimeout(() => {
+      router.push('/search');
+    }, 150);
   };
 
   // Tarih alanına tıklayınca takvimi aç/kapa

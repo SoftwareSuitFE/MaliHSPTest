@@ -1,12 +1,20 @@
 'use client';
 
-import React, { JSX } from 'react';
+import React, { JSX, useEffect } from 'react';
 import Header from '@/components/layout/header';
 import Filters from '@/components/search/filters';
 import HotelList from '@/components/search/hotelList';
+import { useSearch } from '@/hooks/useSearch';
 import '@/styles/layouts/search.css';
 
 export default function SearchPage(): JSX.Element {
+  const { refreshSearchData } = useSearch();
+
+  // SearchPage ilk yüklendiğinde, önbelleği yenile
+  useEffect(() => {
+    // Bu sayfa yüklendiğinde, query cache'i yenile
+    refreshSearchData();
+  }, [refreshSearchData]);
 
   return (
     <main className="min-h-screen bg-white">
