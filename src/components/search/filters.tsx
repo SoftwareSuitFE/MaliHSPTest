@@ -99,64 +99,53 @@
 //   const [showMore, setShowMore] = useState<boolean>(false);
 //   const [showMoreFlight, setShowMoreFlight] = useState<boolean>(false);
 
-//   // searchParams değiştiğinde state'leri güncelle
+//   // 1. Sadece ilk kullanımda searchParams'dan filter'a aktarım yap
 //   useEffect(() => {
-//     setFrom(searchParams.from || '');
-//     setDestination(searchParams.destination || '');
+//     // Component mount olduktan sonra bir kez çalışsın
+//     const syncWithSearchParams = async () => {
+//       // localStorage'dan son durumu al - serverside'da yapma
+//       if (typeof window !== 'undefined') {
+//         updateFilters({
+//           from: searchParams.from || '',
+//           destination: searchParams.destination || '',
+//           date: searchParams.date || '',
+//           nights: searchParams.nights || 5,
+//           participants: searchParams.participants || { adults: 2, children: 0 },
+//         });
+//       }
+//     };
 
-//     const newAdults = searchParams.participants?.adults || 2;
-//     const newChildren = searchParams.participants?.children || 0;
-//     setAdults(newAdults);
-//     setChildren(newChildren);
-//     setPeople(newAdults + newChildren);
+//     syncWithSearchParams();
+//   }, []); // Boş dependency array - sadece bir kez çalışsın
 
-//     const newNights = searchParams.nights || 5;
-//     setNights(newNights);
-
-//     const newStartDate = searchParams.date ? dayjs(searchParams.date) : null;
-//     setStartDate(newStartDate);
-
-//     if (newStartDate) {
-//       setEndDate(newStartDate.add(newNights, 'day'));
-//     } else {
-//       setEndDate(null);
-//     }
-
-//     updateFilters({
-//       from: searchParams.from || filters.from || '',
-//       destination: searchParams.destination || filters.destination || '',
-//       participants: { adults: newAdults, children: newChildren },
-//       date: searchParams.date || filters.date || '',
-//       nights: newNights,
-//     });
-//   }, [searchParams, updateFilters]);
-
-//   // filters değiştiğinde de state'leri güncelle
+//   // 2. filters değiştiğinde state'leri güncelle
 //   useEffect(() => {
-//     setFrom(filters.from || '');
-//     setDestination(filters.destination || '');
+//     if (filters) {
+//       setFrom(filters.from || '');
+//       setDestination(filters.destination || '');
 
-//     const newAdults = filters.participants?.adults || 2;
-//     const newChildren = filters.participants?.children || 0;
-//     setAdults(newAdults);
-//     setChildren(newChildren);
-//     setPeople(newAdults + newChildren);
+//       const newAdults = filters.participants?.adults || 2;
+//       const newChildren = filters.participants?.children || 0;
+//       setAdults(newAdults);
+//       setChildren(newChildren);
+//       setPeople(newAdults + newChildren);
 
-//     const newNights = filters.nights || 5;
-//     setNights(newNights);
+//       const newNights = filters.nights || 5;
+//       setNights(newNights);
 
-//     const newStartDate = filters.date ? dayjs(filters.date) : null;
-//     setStartDate(newStartDate);
+//       const newStartDate = filters.date ? dayjs(filters.date) : null;
+//       setStartDate(newStartDate);
 
-//     if (newStartDate) {
-//       setEndDate(newStartDate.add(newNights, 'day'));
-//     } else {
-//       setEndDate(null);
+//       if (newStartDate) {
+//         setEndDate(newStartDate.add(newNights, 'day'));
+//       } else {
+//         setEndDate(null);
+//       }
+
+//       setStars(filters.stars || []);
+//       setConcepts(filters.hotelConcepts || []);
+//       setFlightConceptsSelected(filters.flightConcepts || []);
 //     }
-
-//     setStars(filters.stars || []);
-//     setConcepts(filters.hotelConcepts || []);
-//     setFlightConceptsSelected(filters.flightConcepts || []);
 //   }, [filters]);
 
 //   // Filtreleri sıfırla
@@ -678,15 +667,15 @@ const Filters: React.FC = () => {
 
   // DateRangePicker için visible state ve ref
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
-  const dateFieldRef = useRef<HTMLDivElement>(null);
+  const dateFieldRef = useRef<HTMLDivElement>(null) as React.RefObject<HTMLDivElement>;
 
   // PersonPicker için visible state ve ref
   const [showPersonPicker, setShowPersonPicker] = useState<boolean>(false);
-  const peopleFieldRef = useRef<HTMLDivElement>(null);
+  const peopleFieldRef = useRef<HTMLDivElement>(null) as React.RefObject<HTMLDivElement>;
 
   // NightPicker için visible state ve ref
   const [showNightPicker, setShowNightPicker] = useState<boolean>(false);
-  const nightsFieldRef = useRef<HTMLDivElement>(null);
+  const nightsFieldRef = useRef<HTMLDivElement>(null) as React.RefObject<HTMLDivElement>;
 
   const [showMore, setShowMore] = useState<boolean>(false);
   const [showMoreFlight, setShowMoreFlight] = useState<boolean>(false);
@@ -706,7 +695,7 @@ const Filters: React.FC = () => {
         });
       }
     };
-    
+
     syncWithSearchParams();
   }, []); // Boş dependency array - sadece bir kez çalışsın
 
@@ -715,25 +704,25 @@ const Filters: React.FC = () => {
     if (filters) {
       setFrom(filters.from || '');
       setDestination(filters.destination || '');
-      
+
       const newAdults = filters.participants?.adults || 2;
       const newChildren = filters.participants?.children || 0;
       setAdults(newAdults);
       setChildren(newChildren);
       setPeople(newAdults + newChildren);
-      
+
       const newNights = filters.nights || 5;
       setNights(newNights);
-      
+
       const newStartDate = filters.date ? dayjs(filters.date) : null;
       setStartDate(newStartDate);
-      
+
       if (newStartDate) {
         setEndDate(newStartDate.add(newNights, 'day'));
       } else {
         setEndDate(null);
       }
-      
+
       setStars(filters.stars || []);
       setConcepts(filters.hotelConcepts || []);
       setFlightConceptsSelected(filters.flightConcepts || []);
@@ -1032,7 +1021,9 @@ const Filters: React.FC = () => {
                 <label key={concept} className="filters-concept-label">
                   <div className="filters-concept-container">
                     <span
-                      className={`filters-checkbox-box ${isChecked ? 'active' : 'inactive'}`}
+                      className={`filters-checkbox-box ${
+                        isChecked ? 'active' : 'inactive'
+                      }`}
                     >
                       {isChecked && (
                         <Icon name="thick" className="filters-checkbox-check" />
@@ -1060,7 +1051,9 @@ const Filters: React.FC = () => {
                   name="arrow-down"
                   size={16}
                   color="#93A2B7"
-                  className={`filters-more-icon ${showMore ? 'transform rotate-180' : ''}`}
+                  className={`filters-more-icon ${
+                    showMore ? 'transform rotate-180' : ''
+                  }`}
                 />
                 <span className="filters-more-text">
                   {showMore ? t('Filters', 'less') : t('Filters', 'more')}
@@ -1088,7 +1081,9 @@ const Filters: React.FC = () => {
             </Button>
           </div>
           <div
-            className={`filters-section ${showMoreFlight ? 'expanded' : 'collapsed'}`}
+            className={`filters-section ${
+              showMoreFlight ? 'expanded' : 'collapsed'
+            }`}
           >
             {visibleFlightConcepts.map((concept) => {
               const isChecked = flightConceptsSelected.includes(concept);
@@ -1096,10 +1091,15 @@ const Filters: React.FC = () => {
                 <label key={concept} className="filters-concept-label">
                   <div className="filters-concept-container">
                     <span
-                      className={`filters-checkbox-box ${isChecked ? 'active' : 'inactive'}`}
+                      className={`filters-checkbox-box ${
+                        isChecked ? 'active' : 'inactive'
+                      }`}
                     >
                       {isChecked && (
-                        <Icon name="thick" className="filters-checkbox-check" />
+                        <Icon
+                          name="thick"
+                          className="filters-checkbox-check"
+                        />
                       )}
                     </span>
                     <input
@@ -1124,7 +1124,9 @@ const Filters: React.FC = () => {
                   name="arrow-down"
                   size={16}
                   color="#93A2B7"
-                  className={`filters-more-icon ${showMoreFlight ? 'transform rotate-180' : ''}`}
+                  className={`filters-more-icon ${
+                    showMoreFlight ? 'transform rotate-180' : ''
+                  }`}
                 />
                 <span className="filters-more-text">
                   {showMoreFlight ? t('Filters', 'less') : t('Filters', 'more')}
@@ -1148,7 +1150,9 @@ const Filters: React.FC = () => {
                 onClick={() => handleStarClick(starValue)}
               >
                 <div
-                  className={`filters-radio-button ${isActive ? 'active' : 'inactive'}`}
+                  className={`filters-radio-button ${
+                    isActive ? 'active' : 'inactive'
+                  }`}
                 >
                   {isActive && <div className="filters-radio-inner" />}
                 </div>
