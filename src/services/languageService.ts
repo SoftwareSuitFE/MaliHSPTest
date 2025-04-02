@@ -232,7 +232,7 @@ export const translations = {
 // Get current language from localStorage or use default
 export const getCurrentLanguage = (): string => {
   if (typeof window === 'undefined') {
-    return 'en'; // Default for server-side rendering
+    return 'en';
   }
 
   const savedLocale = localStorage.getItem('language');

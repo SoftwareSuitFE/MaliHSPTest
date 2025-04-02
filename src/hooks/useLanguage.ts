@@ -6,6 +6,12 @@ import {
   translate,
 } from '@/services/languageService';
 
+interface UseLanguageReturn {
+  locale: string;
+  setLocale: (locale: string) => void;
+  t: (namespace: string, key: string, params?: Record<string, any>) => string;
+}
+
 // Query key for language
 export const LANGUAGE_QUERY_KEY = 'language';
 
@@ -14,10 +20,10 @@ export function useLanguage() {
   const queryClient = useQueryClient();
 
   // Get current language with React Query
-  const { data: locale = 'en' } = useQuery({
+  const { data: locale = 'en' } = useQuery<string>({
     queryKey: [LANGUAGE_QUERY_KEY],
     queryFn: getCurrentLanguage,
-    staleTime: Infinity, // Language won't change unless we explicitly mutate it
+    staleTime: Infinity,
     cacheTime: Infinity,
   });
 
