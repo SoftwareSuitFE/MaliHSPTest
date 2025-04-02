@@ -193,6 +193,7 @@ interface PersonPickerProps {
   onChange: (adults: number, children: number) => void;
   onClose: () => void;
   visible: boolean;
+  align?: 'left' | 'right' | 'center'; // Burayı değiştirdik: 'align' prop'u eklendi
   // Burayı değiştirdik: 'HTMLElement' yerine 'HTMLDivElement' olarak düzenlendi
   triggerRef: React.RefObject<HTMLDivElement>;
 }
