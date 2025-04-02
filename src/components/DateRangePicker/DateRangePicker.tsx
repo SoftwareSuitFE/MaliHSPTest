@@ -6,7 +6,6 @@ import { Checkbox } from 'antd';
 import dayjs from 'dayjs';
 import { LeftOutlined, RightOutlined, CloseOutlined } from '@ant-design/icons';
 import { useLanguage } from '@/hooks/useLanguage';
-import './assets/styles.css';
 
 interface DateRangePickerProps {
   startDate?: dayjs.Dayjs;
