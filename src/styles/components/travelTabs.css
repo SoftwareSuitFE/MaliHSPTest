@@ -115,6 +115,44 @@
   .flight-tab-btn:not([class*='bg-white']) {
     background-color: rgba(255, 255, 255, 0.5) !important;
   }
+  
+  /* İkon Hizalama Düzeltmeleri - İçerik ortalı, ikonlar hizalı */
+  .package-tab-btn .flex.items-center,
+  .hotel-tab-btn .flex.items-center,
+  .flight-tab-btn .flex.items-center {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+  }
+  
+  /* İkon konteynerini mutlak konumlandırarak sabit mesafede tut */
+  .package-tab-btn .flex.items-center > div:first-child,
+  .hotel-tab-btn .flex.items-center > div:first-child,
+  .flight-tab-btn .flex.items-center > div:first-child {
+    position: absolute;
+    left: 50%;
+    margin-left: -40px !important; /* İkonları sola kaydırma miktarı */
+    display: flex;
+    justify-content: center;
+    width: 24px;
+  }
+  
+  /* İkonları sabit boyutta tut */
+  .package-tab-btn svg,
+  .hotel-tab-btn svg,
+  .flight-tab-btn svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  
+  /* Metin hizalamasını sağa doğru ittir */
+  .package-tab-btn span,
+  .hotel-tab-btn span,
+  .flight-tab-btn span {
+    display: inline-block;
+    margin-left: 10px; /* Metni ikondan uzaklaştır */
+  }
 }
 
 @media (max-width: 767px) {
