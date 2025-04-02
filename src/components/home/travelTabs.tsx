@@ -7,41 +7,63 @@ import { useLanguage } from '@/hooks/useLanguage';
 
 const TravelTabs = () => {
   const { searchParams, updateSearchParams } = useSearch();
-  const { locale, t } = useLanguage(); // Locale değerini de alıyoruz
+  const { locale, t } = useLanguage();
 
-  const [activeTab, setActiveTab] = useState<'package' | 'hotel' | 'flight'>(
-    (searchParams as { travelType?: 'package' | 'hotel' | 'flight' })
-      .travelType || 'package',
-  );
+  // isClient kontrolü ekleyin
+  const [isClient, setIsClient] = useState(false);
+
+  // Komponentin yüklendiğini işaretleyin
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Varsayılan tip belirleyin
+  const defaultTravelType = 'package';
+
+  // State'in başlangıç değerini güvenli bir şekilde ayarlayın
+  const [activeTab, setActiveTab] = useState<'package' | 'hotel' | 'flight'>(defaultTravelType);
+
+  // isClient true olduğunda, searchParams'tan activeTab'i güncelleyin
+  useEffect(() => {
+    if (isClient) {
+      const type = (searchParams as { travelType?: 'package' | 'hotel' | 'flight' }).travelType || defaultTravelType;
+      setActiveTab(type);
+    }
+  }, [isClient, searchParams]);
 
   // Dil değişimini takip etmek için useEffect ekleyelim
   useEffect(() => {
-    // Bu etki, locale değiştiğinde yeniden render tetikler
-    console.log(`Language changed to: ${locale}`);
-  }, [locale]);
+    if (isClient) {
+      // Bu etki, locale değiştiğinde yeniden render tetikler
+      console.log(`Language changed to: ${locale}`);
+    }
+  }, [locale, isClient]);
 
   const handleTabChange = (tab: 'package' | 'hotel' | 'flight') => {
     setActiveTab(tab);
     updateSearchParams({ travelType: tab });
   };
 
-  // Çeviri değerlerini önceden hesaplayalım (debugging için)
-  const packageText = t('TravelTabs', 'package');
-  const hotelText = t('TravelTabs', 'hotel');
-  const flightText = t('TravelTabs', 'flight');
+  // Çeviri değerlerini istemci tarafında hesaplayalım
+  const packageText = isClient ? t('TravelTabs', 'package') : 'Package';
+  const hotelText = isClient ? t('TravelTabs', 'hotel') : 'Hotel';
+  const flightText = isClient ? t('TravelTabs', 'flight') : 'Flight';
 
-  console.log('Translations:', { packageText, hotelText, flightText });
+  // Tab sınıfları için merkezi bir fonksiyon oluşturun
+  const getTabClass = (tab: 'package' | 'hotel' | 'flight') => {
+    const baseClass = "flex items-center justify-center transition-all duration-300 ease-in-out";
+    const tabSpecificClass = `${tab}-tab-btn`;
+    const activeClass = activeTab === tab ? 'bg-white text-gray-800' : 'bg-transparent text-white';
+    
+    return `${baseClass} ${tabSpecificClass} ${activeClass}`;
+  };
 
   return (
     <div className="flex justify-center mb-4">
       <div className="flex bg-white/30 backdrop-blur-sm overflow-hidden travel-tabs-wrapper">
         <button
           onClick={() => handleTabChange('package')}
-          className={`flex items-center justify-center transition-all duration-300 ease-in-out package-tab-btn ${
-            activeTab === 'package'
-              ? 'bg-white text-gray-800'
-              : 'bg-transparent text-white'
-          }`}
+          className={getTabClass('package')}
         >
           <div className="flex items-center cursor-pointer">
             <div className="mr-2">
@@ -55,11 +77,7 @@ const TravelTabs = () => {
 
         <button
           onClick={() => handleTabChange('hotel')}
-          className={`flex items-center justify-center transition-all duration-400 ease-in-out hotel-tab-btn ${
-            activeTab === 'hotel'
-              ? 'bg-white text-gray-800'
-              : 'bg-transparent text-white'
-          }`}
+          className={getTabClass('hotel')}
         >
           <div className="flex items-center cursor-pointer">
             <div className="mr-2">
@@ -73,11 +91,7 @@ const TravelTabs = () => {
 
         <button
           onClick={() => handleTabChange('flight')}
-          className={`flex items-center justify-center transition-all duration-300 ease-in-out flight-tab-btn ${
-            activeTab === 'flight'
-              ? 'bg-white text-gray-800'
-              : 'bg-transparent text-white'
-          }`}
+          className={getTabClass('flight')}
         >
           <div className="flex items-center cursor-pointer">
             <div className="mr-2">
