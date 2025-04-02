@@ -33,7 +33,6 @@ export function useLanguage() {
       return newLocale;
     },
     onSuccess: (newLocale) => {
-      // Update the cached value
       queryClient.setQueryData([LANGUAGE_QUERY_KEY], newLocale);
     },
   });

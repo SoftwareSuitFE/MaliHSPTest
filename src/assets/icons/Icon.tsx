@@ -3,7 +3,6 @@
 import React from 'react';
 import Image from 'next/image';
 
-// İkon tipleri - projenizde kullanılan tüm ikonları burada tanımlayın
 export type IconName =
   | 'location'
   | 'search'
@@ -46,7 +45,6 @@ export const Icon: React.FC<IconProps> = ({
   className = '',
   onClick,
 }) => {
-  // SVG ikonları direkt olarak kullanma - stroke rengi değiştirilebilir olanlar için
   const renderSvgIcon = () => {
     switch (name) {
       case 'location':
@@ -165,7 +163,6 @@ export const Icon: React.FC<IconProps> = ({
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            {/* Saat çerçevesi */}
             <circle
               cx="50"
               cy="50"
@@ -175,10 +172,8 @@ export const Icon: React.FC<IconProps> = ({
               fill="#FFF1E5"
             />
 
-            {/* Saat merkezindeki nokta */}
             <circle cx="50" cy="50" r="3" fill="currentColor" />
 
-            {/* Saat akrebini temsil eden ok */}
             <line
               className="clock-hand-hour"
               x1="50"
@@ -190,7 +185,6 @@ export const Icon: React.FC<IconProps> = ({
               strokeLinecap="round"
             />
 
-            {/* Dakika akrebi */}
             <line
               className="clock-hand-minute"
               x1="50"
@@ -202,7 +196,6 @@ export const Icon: React.FC<IconProps> = ({
               strokeLinecap="round"
             />
 
-            {/* Saat işaretleri */}
             {[...Array(12)].map((_, i) => (
               <line
                 key={i}
@@ -580,23 +573,9 @@ export const Icon: React.FC<IconProps> = ({
     }
   };
 
-  // Eğer SVG resim olarak kullanılacaksa (örneğin karmaşık renkli ikonlar için)
   const iconSrc = `/icons/${name}.svg`;
 
-  // Büyük çoğunluk için inline SVG kullanıyoruz - daha esnek
   return renderSvgIcon();
-
-  // Alternatif olarak SVG'leri dosyadan yüklemek için:
-  // return (
-  //   <Image
-  //     src={iconSrc}
-  //     width={size}
-  //     height={size}
-  //     alt={`${name} icon`}
-  //     className={className}
-  //     onClick={onClick}
-  //   />
-  // );
 };
 
 export default Icon;

@@ -240,7 +240,6 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
       className="fixed bg-white rounded-lg shadow-lg z-50 dateRangePickerContainer"
     >
       <div className="p-4">
-        {/* Üst kısım: Gece sayısı, tarih aralığı, esnek tarih seçimi ve kapatma */}
         <div className="flex justify-between items-center mb-4 pb-3 border-b border-gray-200">
           <div className="flex items-center space-x-4">
             <span className="text-orange-500 font-medium">
@@ -276,8 +275,6 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
             </button>
           </div>
         </div>
-
-        {/* Takvim kısmı */}
         <div className="relative flex justify-between px-4">
           <button
             onClick={goToPreviousMonth}
@@ -285,10 +282,8 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
           >
             <LeftOutlined />
           </button>
-
           {renderMonth(currentMonths[0])}
           {renderMonth(currentMonths[1])}
-
           <button
             onClick={goToNextMonth}
             className="absolute right-0 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none nextMonthButton"

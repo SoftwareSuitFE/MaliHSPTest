@@ -1,5 +1,3 @@
-// src/data/mockData.ts
-
 export interface Hotel {
   id: number;
   name: string;
@@ -16,26 +14,23 @@ export interface Hotel {
   categories: string[];
 }
 
-// Yeni Flight arayüzü - HotelCard ile uyumlu olacak şekilde
 export interface Flight {
   id: number;
-  name: string; // uçuş firmasının ismi
-  location: string; // uçuş yapılacak şehir,ülke
-  stars: number; // yıldız sayısı (havayolu firmasının)
-  rating: number; // puanlama
-  adults: number; // kişi sayısı (yetişkin)
-  children: number; // kişi sayısı (çocuk)
-  date: string; // uçuş tarih bilgisi
-  nights: number; // uçuş süresi (saat) - HotelCard ile uyumlu olması için nights alanını kullanıyoruz
-  concept: string; // uçuş türü - HotelCard ile uyumlu olması için concept alanını kullanıyoruz
-  price: number; // fiyat bilgisi
-  image: string; // resim (uçak resmi)
-  categories: string[]; // kategoriler
+  name: string;
+  location: string;
+  stars: number;
+  rating: number;
+  adults: number;
+  children: number;
+  date: string;
+  nights: number;
+  concept: string;
+  price: number;
+  image: string;
+  categories: string[];
 }
 
-// Tek kategorili hotel verileri
 export const hotels: Hotel[] = [
-  // BEACH HOTEL (4 adet)
   {
     id: 1,
     name: 'Pine Beach Belek Side Royal Palace Hotel & Spa',
@@ -101,7 +96,6 @@ export const hotels: Hotel[] = [
     categories: ['Beach Hotel'],
   },
 
-  // ADULT HOTEL (3 adet)
   {
     id: 7,
     name: 'Golden Bay Resort & Spa',
@@ -151,7 +145,6 @@ export const hotels: Hotel[] = [
     categories: ['Adult Hotel'],
   },
 
-  // BOUTIQUE HOTEL (3 adet)
   {
     id: 4,
     name: 'Sunshine Paradise Hotel',
@@ -201,7 +194,6 @@ export const hotels: Hotel[] = [
     categories: ['Boutique Hotel'],
   },
 
-  // FAMILY HOTEL (3 adet)
   {
     id: 3,
     name: 'Blue Lagoon Luxury Resort',
@@ -251,7 +243,6 @@ export const hotels: Hotel[] = [
     categories: ['Family Hotel'],
   },
 
-  // PET FRIENDLY (3 adet)
   {
     id: 17,
     name: 'Pawsome Paradise Resort',
@@ -301,7 +292,6 @@ export const hotels: Hotel[] = [
     categories: ['Pet Friendly'],
   },
 
-  // SPA (3 adet)
   {
     id: 20,
     name: 'Wellness Oasis Spa Resort',
@@ -351,7 +341,6 @@ export const hotels: Hotel[] = [
     categories: ['Spa'],
   },
 
-  // GOLF (3 adet)
   {
     id: 10,
     name: 'Emerald Coast Hotel',
@@ -401,7 +390,6 @@ export const hotels: Hotel[] = [
     categories: ['Golf'],
   },
 
-  // MOUNTAIN RESORT (3 adet)
   {
     id: 12,
     name: 'Mountain View Retreat',
@@ -451,12 +439,8 @@ export const hotels: Hotel[] = [
     categories: ['Mountain Resort'],
   },
 ];
-// Yeni Uçuş Verileri
-// mockData.ts dosyasındaki flights verisini güncelle
-// Genişletilmiş flights verisi - Tüm konseptlerden en az 3'er tane içerir
-// Tek kategorili uçuş verileri
+
 export const flights: Flight[] = [
-  // ECONOMY CLASS (5 adet)
   {
     id: 1,
     name: 'Turkish Airlines',
@@ -538,7 +522,6 @@ export const flights: Flight[] = [
     categories: ['Economy Class'],
   },
 
-  // BUSINESS CLASS (5 adet)
   {
     id: 2,
     name: 'Lufthansa',
@@ -620,7 +603,6 @@ export const flights: Flight[] = [
     categories: ['Business Class'],
   },
 
-  // FIRST CLASS (5 adet)
   {
     id: 3,
     name: 'Emirates',
@@ -701,8 +683,6 @@ export const flights: Flight[] = [
       'https://images.unsplash.com/photo-1557177324-56c542165309?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
     categories: ['First Class'],
   },
-
-  // PREMIUM ECONOMY (5 adet)
   {
     id: 6,
     name: 'British Airways',
@@ -783,8 +763,6 @@ export const flights: Flight[] = [
       'https://images.unsplash.com/photo-1542296332-2e4473faf563?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
     categories: ['Premium Economy'],
   },
-
-  // DIRECT FLIGHT (3 adet)
   {
     id: 29,
     name: 'AnadoluJet',
@@ -833,8 +811,6 @@ export const flights: Flight[] = [
       'https://images.unsplash.com/photo-1564356042750-56a4144051b7?q=80&w=2748&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     categories: ['Direct Flight'],
   },
-
-  // ONE STOP (2 adet)
   {
     id: 20,
     name: 'Ryanair',
@@ -867,8 +843,6 @@ export const flights: Flight[] = [
       'https://plus.unsplash.com/premium_photo-1679758630055-99ebb2df7d77?q=80&w=2664&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     categories: ['One Stop'],
   },
-
-  // MULTIPLE STOPS (3 adet)
   {
     id: 23,
     name: 'Korean Air',
@@ -917,8 +891,6 @@ export const flights: Flight[] = [
       'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
     categories: ['Multiple Stops'],
   },
-
-  // DOMESTIC (2 adet)
   {
     id: 31,
     name: 'Turkish Airlines Domestic',
