@@ -1,6 +1,3 @@
-/* Filters Component Genel Stil Dosyası */
-
-/* Container for Filters component */
 .filters-container {
   font-family: 'Inter';
   border-radius: 8px;
@@ -10,8 +7,8 @@
   position: sticky;
   top: 4px;
   width: 100%;
-  overflow-y: auto; /* Her zaman dikey kaydırmayı etkinleştir */
-  scrollbar-width: thin; /* Firefox için ince kaydırma çubuğu */
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 
 @media (min-width: 1024px) {
@@ -20,12 +17,10 @@
   }
 }
 
-/* Group container (margin-bottom: 32px) */
 .filters-group {
   margin-bottom: 32px;
 }
 
-/* Title for Filters group */
 .filters-title {
   font-size: 14px;
   margin-bottom: 16px;
@@ -34,7 +29,6 @@
   line-height: 100%;
 }
 
-/* Generic label for fields */
 .filters-label {
   font-family: 'Inter';
   font-weight: 400;
@@ -46,7 +40,6 @@
   display: block;
 }
 
-/* Field text style */
 .filters-field-text {
   font-family: 'Inter';
   font-weight: 500;
@@ -56,7 +49,6 @@
   color: #142347;
 }
 
-/* Common input field style */
 .filters-input-field {
   width: 220px;
   height: 40px;
@@ -68,12 +60,10 @@
   overflow: hidden;
 }
 
-/* Wrapper for input fields (margin-bottom: 16px) */
 .filters-input-wrapper {
   margin-bottom: 16px;
 }
 
-/* Section style for concept lists */
 .filters-section {
   width: 220px;
 }
@@ -86,7 +76,6 @@
   transition: height 0.3s ease;
 }
 
-/* Header for groups (e.g. concept groups) */
 .filters-group-header {
   display: flex;
   justify-content: space-between;
@@ -94,7 +83,6 @@
   margin-bottom: 8px;
 }
 
-/* Reset button style */
 .filters-reset-button {
   color: #ed8936 !important;
   padding: 0 !important;
@@ -103,7 +91,6 @@
   line-height: 1 !important;
 }
 
-/* Concept label for hotel and flight concepts */
 .filters-concept-label {
   display: flex;
   align-items: center;
@@ -115,7 +102,6 @@
   margin-bottom: 0;
 }
 
-/* Container for each concept item */
 .filters-concept-container {
   width: 220px;
   height: 24px;
@@ -123,7 +109,6 @@
   align-items: center;
 }
 
-/* Checkbox box for concepts */
 .filters-checkbox-box {
   width: 16px;
   height: 16px;
@@ -142,7 +127,6 @@
   border: 1px solid #cad4e0;
 }
 
-/* Checkbox check mark */
 .filters-checkbox-check {
   position: absolute;
   width: 8px;
@@ -151,7 +135,6 @@
   left: 4px;
 }
 
-/* More container for expanding concept list */
 .filters-more-container {
   width: 220px;
   height: 16px;
@@ -160,15 +143,12 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-
 }
 
-/* More icon margin */
 .filters-more-icon {
   margin-right: 8px;
 }
 
-/* More text style */
 .filters-more-text {
   font-family: 'Inter';
   font-weight: 500;
@@ -177,13 +157,11 @@
   color: #93a2b7;
 }
 
-/* Star container for rating selection */
 .filters-star-container {
   width: 220px;
   height: 140px;
 }
 
-/* Each star row */
 .filters-star-row {
   display: flex;
   align-items: center;
@@ -196,7 +174,6 @@
   margin-bottom: 0;
 }
 
-/* Radio button for star selection */
 .filters-radio-button {
   min-width: 20px;
   width: 20px;
@@ -215,7 +192,6 @@
   border: 2px solid #e2e2e2;
 }
 
-/* Inner circle for active radio button */
 .filters-radio-inner {
   width: 8px;
   height: 8px;
@@ -224,14 +200,12 @@
   display: block;
 }
 
-/* Container for star text and icon */
 .filters-star-text-container {
   display: flex;
   align-items: center;
   height: 20px;
 }
 
-/* Star icon margin */
 .filters-star-icon {
   min-width: 16px;
   width: 16px;
@@ -243,7 +217,6 @@
   justify-content: center;
 }
 
-/* Icon container styles */
 .filters-icon-container {
   display: flex;
   align-items: center;
@@ -252,23 +225,19 @@
   padding-right: 8px;
 }
 
-/* Cursor styles for clickable elements */
 .filters-clickable {
   cursor: pointer;
 }
 
-/* Flex container for filters elements */
 .filters-flex-container {
   display: flex;
   flex: 1;
 }
 
-/* Last group without bottom margin */
 .filters-last-group {
   margin-bottom: 0;
 }
 
-/* Adjust label for concept headers to align with reset button */
 .filters-concept-header-label {
   font-family: 'Inter';
   font-weight: 400;
@@ -279,15 +248,10 @@
 }
 
 @media (max-width: 1023px) {
-  /* Filtre konteyneri zaten width: 100% ama yine de ekleyebilirsiniz. */
   .filters-container {
     width: 100%;
-    /* position: sticky kalabilir, eğer mobilde de üstte sabit durmasını istiyorsanız.
-       Mobilde yukarıda sabit durması istenmiyorsa, 
-       position: static; top: auto; şeklinde güncelleyebilirsiniz. */
   }
 
-  /* İç elemanların sabit genişliklerini %100 yapıyoruz */
   .filters-input-field,
   .filters-section,
   .filters-concept-container,
@@ -295,183 +259,149 @@
   .filters-more-container {
     width: 100% !important;
   }
-
-  /* Eğer 24px gibi sabit yükseklikler mobilde sorun çıkarıyorsa,
-     height değerlerini de iptal edebilirsiniz. Örnek: */
-  /* .filters-concept-container {
-    height: auto !important;
-  } */
 }
 
-/* Ekran yüksekliği için responsive çözüm - filters.css dosyasının sonuna ekleyin */
-
-/* Ekran yüksekliği için media sorguları */
 @media (max-height: 800px) {
   .filters-container {
-    max-height: 80vh; /* Ekran yüksekliğinin %80'i */
-    overflow-y: auto; /* Dikey taşmada kaydırma çubuğu göster */
-    padding-right: 20px; /* Kaydırma çubuğu için biraz daha alan */
+    max-height: 80vh;
+    overflow-y: auto;
+    padding-right: 20px;
   }
 
-  /* Kaydırma çubuğunu özelleştirme */
   .filters-container::-webkit-scrollbar {
     width: 4px;
   }
 
   .filters-container::-webkit-scrollbar-track {
     background: #f1f1f1;
-  border-radius: 10px;
+    border-radius: 10px;
   }
 
   .filters-container::-webkit-scrollbar-thumb {
-    background: #CAD4E0;
+    background: #cad4e0;
     border-radius: 10px;
   }
 
   .filters-container::-webkit-scrollbar-thumb:hover {
-    background: #93A2B7;
+    background: #93a2b7;
   }
 }
 
-/* Daha küçük ekranlar için daha fazla alan */
 @media (max-height: 600px) {
   .filters-container {
     max-height: 85vh;
   }
 }
 
-/* Çok küçük ekranlar için daha da fazla alan */
 @media (max-height: 500px) {
   .filters-container {
     max-height: 90vh;
   }
 }
 
-/* Kaydırma çubuğu görünümünü iyileştirmek için sticky pozisyonunu koruyun */
 @media (max-height: 800px) {
-  /* Sticky davranışını korumak için */
   .filters-container {
     position: sticky;
     top: 4px;
-    z-index: 10; /* Diğer içeriklerin üzerinde kalmasını sağlar */
+    z-index: 10;
   }
 }
 
-
-
-
-/* Orta büyüklükteki ekranlar için ayarlar */
 @media (max-height: 900px) {
   .filters-container {
     max-height: 85vh;
-    padding: 16px; /* Padding'i azalt */
+    padding: 16px;
   }
-  
-  /* Grupların alt boşluğunu azalt */
+
   .filters-group {
     margin-bottom: 20px;
   }
-  
-  /* Başlık alt boşluğunu azalt */
+
   .filters-title {
     margin-bottom: 12px;
   }
 }
 
-/* Küçük ekranlar için ayarlar */
 @media (max-height: 768px) {
   .filters-container {
     max-height: 92vh;
     padding: 12px;
   }
-  
+
   .filters-group {
     margin-bottom: 16px;
   }
-  
+
   .filters-title {
     margin-bottom: 8px;
   }
-  
-  /* Input alanları arasındaki boşluğu azalt */
+
   .filters-input-wrapper {
     margin-bottom: 12px;
   }
-  
-  /* Concept label'ları arasındaki boşluğu azalt */
+
   .filters-concept-label {
     margin-bottom: 6px;
   }
 }
 
-/* Çok küçük ekranlar için ayarlar */
 @media (max-height: 600px) {
   .filters-container {
     max-height: 96vh;
     padding: 8px;
   }
-  
+
   .filters-group {
     margin-bottom: 12px;
   }
-  
-  /* Label margin'lerini azalt */
+
   .filters-label {
     margin-bottom: 4px;
   }
-  
-  /* Star container yüksekliğini azalt */
+
   .filters-star-container {
     height: auto;
     max-height: 120px;
   }
-  
-  /* Star satırları arasındaki boşluğu azalt */
+
   .filters-star-row {
     margin-bottom: 6px;
   }
-  
-  /* Concept bölümlerinin yüksekliklerini azalt */
+
   .filters-section.collapsed {
     height: 140px;
   }
-  
-  /* More container margin'ini azalt */
+
   .filters-more-container {
     margin-top: 8px;
   }
 }
 
-/* Çok çok küçük ekranlar için ayarlar */
 @media (max-height: 500px) {
   .filters-container {
     max-height: 98vh;
     padding: 6px;
   }
-  
+
   .filters-group {
     margin-bottom: 8px;
   }
-  
-  /* Input field yüksekliğini azalt */
+
   .filters-input-field {
     height: 34px;
   }
-  
-  /* Collapsed section yüksekliğini azalt */
+
   .filters-section.collapsed {
     height: 120px;
   }
 }
 
-/* Safari ve iOS için özel fix */
 @supports (-webkit-overflow-scrolling: touch) {
   .filters-container {
     -webkit-overflow-scrolling: touch;
   }
 }
 
-/* Sticky pozisyonunu koruyalım ama scrollbarın düzgün çalışmasını sağlayalım */
 .filters-container {
   position: sticky;
   top: 4px;

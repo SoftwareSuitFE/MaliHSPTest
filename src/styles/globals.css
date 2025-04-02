@@ -1,15 +1,11 @@
-/* Temel importlar */
 @import 'tailwindcss';
 @import './themes/colors.css';
 @import './themes/typography.css';
 @import './utils/animations.css';
 @import './utils/responsive.css';
-
-/* Sayfa layout importları */
+@import './layouts/search.css';
 @import './layouts/notFound.css';
 @import './layouts/comingSoon.css';
-
-/* Bileşen importları */
 @import './components/filters.css';
 @import './components/header.css';
 @import './components/hotelCard.css';
@@ -18,54 +14,41 @@
 @import './components/flightCard.css';
 @import './components/destinationDropdown.css';
 @import './components/dateRangePicker.css';
-@import './layouts/search.css';
 
-
-/* === Colors.css === */
 :root {
-  /* Ana Renkler */
   --background: #f5f5f5;
   --foreground: #171717;
   --primary-text: #142347;
   --primary-accent: #ed8936;
   --border-color: #cad4e0;
 
-  /* Durum Renkleri */
   --success: #4caf50;
   --warning: #ffc107;
   --error: #f44336;
   --info: #2196f3;
 
-  /* Gölgeler */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
 
-  /* Root için temel değişkenler */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
 }
 
-
-
-/* === Typography.css === */
 :root {
-  /* Font aileleri */
   --font-sans: 'Inter';
 
-  /* Font boyutları */
-  --text-xs: 0.75rem; /* 12px */
-  --text-sm: 0.875rem; /* 14px */
-  --text-base: 1rem; /* 16px */
-  --text-lg: 1.125rem; /* 18px */
-  --text-xl: 1.25rem; /* 20px */
-  --text-2xl: 1.5rem; /* 24px */
-  --text-3xl: 1.875rem; /* 30px */
-  --text-4xl: 2.25rem; /* 36px */
-  --text-5xl: 3rem; /* 48px */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
 
-  /* Font ağırlıkları */
   --font-thin: 100;
   --font-extralight: 200;
   --font-light: 300;
@@ -76,7 +59,6 @@
   --font-extrabold: 800;
   --font-black: 900;
 
-  /* Satır yükseklikleri */
   --leading-none: 1;
   --leading-tight: 1.25;
   --leading-snug: 1.375;
@@ -84,7 +66,6 @@
   --leading-relaxed: 1.625;
   --leading-loose: 2;
 
-  /* Harf aralıkları */
   --tracking-tighter: -0.05em;
   --tracking-tight: -0.025em;
   --tracking-normal: 0;
@@ -93,11 +74,11 @@
   --tracking-widest: 0.1em;
 }
 
-html, body {
+html,
+body {
   font-family: var(--font-sans);
 }
 
-/* Başlık stilleri */
 .h1 {
   font-size: var(--text-4xl);
   font-weight: var(--font-bold);
@@ -128,7 +109,6 @@ html, body {
   line-height: var(--leading-normal);
 }
 
-/* Metin stilleri */
 .text-sm {
   font-size: var(--text-sm);
 }
@@ -145,7 +125,6 @@ html, body {
   font-size: var(--text-xl);
 }
 
-/* Font ağırlık sınıfları */
 .font-normal {
   font-weight: var(--font-normal);
 }
@@ -162,7 +141,6 @@ html, body {
   font-weight: var(--font-bold);
 }
 
-/* Responsive medya sorguları için başlık stilleri */
 @media (max-width: 768px) {
   .h1 {
     font-size: var(--text-3xl);
@@ -177,8 +155,6 @@ html, body {
   }
 }
 
-/* === Animations.css === */
-/* 404 Sayfası Animasyonları */
 @keyframes float {
   0% {
     transform: translateY(0px);
@@ -211,7 +187,6 @@ html, body {
   }
 }
 
-/* Yeni eklenen form elemanları için soldan sağa geçiş animasyonu */
 @keyframes slideInFromLeft {
   from {
     opacity: 0;
@@ -223,7 +198,6 @@ html, body {
   }
 }
 
-/* Sağdan sola geçiş animasyonu */
 @keyframes slideInFromRight {
   from {
     opacity: 0;
@@ -235,7 +209,6 @@ html, body {
   }
 }
 
-/* Ortadan yayılma animasyonu */
 @keyframes slideInFromCenter {
   from {
     opacity: 0;
@@ -247,7 +220,6 @@ html, body {
   }
 }
 
-/* Pulse animasyonu - aktif tab için hafif vurgu */
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -260,29 +232,21 @@ html, body {
   }
 }
 
-/* === Responsive.css === */
-/* Header Responsive Styles - 1024px için güncellendi */
 @media (min-width: 768px) and (max-width: 1023px) {
-  /* Header'da md: prefix kullanan elemanları 1024px breakpoint için düzenle */
-
-  /* Üst mavi bar 768-1024px arasında da gizli kalsın */
   header div.hidden.md\:block {
     display: none !important;
   }
 
-  /* Hamburger menü butonu 768-1024px arasında da görünür olsun */
   header .md\:hidden {
     display: flex !important;
   }
 
-  /* Masaüstü navigasyon menüsü 768-1024px arasında da gizli kalsın */
   header nav.hidden.md\:flex {
     display: none !important;
   }
 }
 
 @media (min-width: 1024px) {
-  /* Normal durumda alt alta görünüm */
   .hotel-concept-star-container {
     display: flex;
     flex-direction: column;
@@ -293,7 +257,6 @@ html, body {
     width: 100%;
   }
 
-  /* Filter input'ların sabit genişliği */
   .filter-input {
     width: 220px;
     height: 36px;
@@ -309,7 +272,6 @@ body {
   font-family: var(--font-sans), 'Inter', Arial, Helvetica, sans-serif;
 }
 
-/* Ant Design Override */
 .ant-btn-primary {
   background-color: var(--primary-accent) !important;
   border-color: var(--primary-accent) !important;
@@ -330,7 +292,6 @@ body {
   box-shadow: 0 0 0 2px rgba(237, 137, 54, 0.2) !important;
 }
 
-/* Custom styles */
 .destination-card {
   transition: transform 0.3s ease;
 }
@@ -339,7 +300,6 @@ body {
   transform: scale(1.03);
 }
 
-/* Search form input field styling - only right borders */
 .search-field {
   border-right: 1px solid #e1e7ef !important;
   border-top: none !important;
@@ -352,7 +312,6 @@ body {
   border: none !important;
 }
 
-/* Travel tabs styling for more exact match to Figma */
 .travel-tabs-container {
   background-color: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(4px);
@@ -365,13 +324,11 @@ body {
   transition: all 0.2s ease;
 }
 
-/* Fix for search button */
 .search-button {
   border-radius: 0 8px 8px 0 !important;
   background-color: var(--primary-accent) !important;
 }
 
-/* Filter input styles */
 .filter-input {
   width: 220px;
   height: 36px;
@@ -380,22 +337,18 @@ body {
   background: #ffffff;
 }
 
-/* Responsive Filter Styles */
 @media (max-width: 1023px) {
-  /* Ana container'ın genişliği */
   .bg-white.rounded-lg.sticky {
     width: 100% !important;
     box-sizing: border-box;
   }
 
-  /* Tüm form alanları tam genişlikte */
   .filter-input,
   .form-field {
     width: 100% !important;
     box-sizing: border-box;
   }
 
-  /* Hotel Concept ve Star container'ının yan yana düzenlemesi */
   .hotel-concept-star-container {
     display: flex;
     flex-direction: row !important;
@@ -404,19 +357,16 @@ body {
     gap: 16px;
   }
 
-  /* Hotel Concept container'ı %50 genişlik */
   .hotel-concept-container {
     width: 48% !important;
     max-width: none !important;
   }
 
-  /* Star container'ı %50 genişlik */
   .star-container {
     width: 48% !important;
     max-width: none !important;
   }
 
-  /* Form öğelerinin içindeki maksimum genişlikleri kaldır */
   .hotel-concept-container div,
   .star-container div,
   .hotel-concept-container label,
@@ -425,7 +375,6 @@ body {
     width: 100% !important;
   }
 
-  /* Checkbox gruplarının ve item'ların genişliklerini düzenle */
   .hotel-concept-container [style*='width'],
   .star-container [style*='width'] {
     width: 100% !important;
@@ -433,9 +382,7 @@ body {
   }
 }
 
-/* TravelTabs Responsive Styles - 1024px için güncellendi */
 @media (max-width: 1023px) {
-  /* TravelTabs responsive styling */
   .flex.justify-center.mb-4 > div[style*='width: 365.41px'] {
     flex-direction: column !important;
     width: 100% !important;
@@ -462,9 +409,7 @@ body {
   }
 }
 
-/* SearchForm Responsive Styles - 1024px için güncellendi */
 @media (max-width: 1023px) {
-  /* Hero alanını büyütelim ki tüm içerik sığsın */
   div.relative.h-\[500px\].overflow-hidden.bg-blue-400,
   div.relative.h-\[500px\].overflow-hidden.bg-blue-400
     > div.absolute.inset-0.w-full.h-full {
@@ -472,18 +417,15 @@ body {
     min-height: 850px !important;
   }
 
-  /* TravelTabs ve Form alanını düzenleyelim */
   div.relative.z-20.container.mx-auto.h-full {
     height: auto !important;
     padding-bottom: 32px !important;
   }
 
-  /* TravelTabs'ın margin-top değerini azaltalım */
   div.mb-6.mt-48 {
     margin-top: 24px !important;
   }
 
-  /* Ana SearchForm container */
   div[style*='width: 930px'][style*='height: 92px'] {
     width: 100% !important;
     max-width: 930px !important;
@@ -493,7 +435,6 @@ body {
     gap: 16px !important;
   }
 
-  /* İç form container */
   div[style*='width: 748px'][style*='height: 60px'] {
     width: 100% !important;
     height: auto !important;
@@ -503,7 +444,6 @@ body {
     background-color: white !important;
   }
 
-  /* Form elemanları */
   div[style*='width: 748px'][style*='height: 60px'] > div[style*='width'],
   div[style*='width: 748px'][style*='height: 60px']
     > div[class*='flex items-center'] {
@@ -515,17 +455,14 @@ body {
     height: auto !important;
   }
 
-  /* Son form elemanı için alt border kaldır */
   div[style*='width: 748px'][style*='height: 60px'] > div:last-child {
     border-bottom: none !important;
   }
 
-  /* İkona sahip kapsayıcılar */
   div[style*='width: 748px'][style*='height: 60px'] div.flex.flex-col {
     width: calc(100% - 32px) !important;
   }
 
-  /* Search butonu */
   button[style*='width: 142px'][style*='height: 60px'] {
     width: 100% !important;
     margin-top: 8px !important;
@@ -533,9 +470,7 @@ body {
   }
 }
 
-/* DateRangePicker Responsive Styles */
 @media (max-width: 700px) {
-  /* DateRangePicker container */
   .fixed.bg-white.rounded-lg.shadow-lg.z-50[style*='width'] {
     width: 95% !important;
     max-width: 95% !important;
@@ -546,25 +481,21 @@ body {
     top: 10vh !important;
   }
 
-  /* İki ay görünümünü alt alta getir */
   .relative.flex.justify-between.px-4 {
     flex-direction: column !important;
     gap: 10px !important;
     padding: 0 !important;
   }
 
-  /* Padding ve margin ayarlamaları */
   .fixed.bg-white.rounded-lg.shadow-lg.z-50[style*='width'] .p-4 {
     padding: 10px !important;
   }
 
-  /* Aylar arasındaki sınırı belirginleştir */
   .relative.flex.justify-between.px-4 > div.flex-1:first-child {
     border-bottom: 1px solid #e1e7ef !important;
     padding-bottom: 10px !important;
   }
 
-  /* Önceki ay ve sonraki ay butonlarının konumunu ayarla */
   .relative.flex.justify-between.px-4 button[style*='left: -12px'] {
     left: 0 !important;
     top: 30% !important;
@@ -576,7 +507,6 @@ body {
     top: auto !important;
   }
 
-  /* Ay ve gün boyutlarını küçült */
   .fixed.bg-white.rounded-lg.shadow-lg.z-50[style*='width']
     .text-center.mb-4.font-medium {
     font-size: 14px !important;
@@ -599,7 +529,6 @@ body {
     justify-content: center !important;
   }
 
-  /* Tarih gösterimi ve kontroller için alan */
   .flex.justify-between.items-center.mb-4.pb-3.border-b.border-gray-200 {
     flex-direction: column !important;
     align-items: flex-start !important;
@@ -608,14 +537,12 @@ body {
     padding-bottom: 10px !important;
   }
 
-  /* Esnek tarih seçimi ve kapatma butonunu düzenle */
   .flex.items-center.space-x-6 {
     width: 100% !important;
     justify-content: space-between !important;
     margin-top: 8px !important;
   }
 
-  /* Gün hücrelerini küçült */
   .w-8.h-8.flex.items-center.justify-center.cursor-pointer.rounded-full,
   .w-8.h-8 {
     width: 28px !important;
@@ -624,7 +551,6 @@ body {
   }
 }
 
-/* Gün hücrelerini küçült */
 .w-8.h-8.flex.items-center.justify-center.cursor-pointer.rounded-full,
 .w-8.h-8 {
   width: 28px !important;
@@ -632,50 +558,41 @@ body {
   font-size: 12px !important;
 }
 
-/* SearchForm Animation Styles */
-/* Form container için geçiş efekti */
 div[style*='width: 748px'][style*='height: 60px'] {
   transition: all 0.3s ease-in-out !important;
 }
 
-/* Form içindeki elemanlar için geçişleri yumuşatma */
 div[style*='width: 748px'][style*='height: 60px'] > div {
   transition: all 0.3s ease-in-out !important;
   animation: slideInFromLeft 0.35s ease-in-out !important;
 }
 
-/* Package tab'ına tıklandığında soldan gelen animasyon */
 [data-travel-type='package']
   div[style*='width: 748px'][style*='height: 60px']
   > div {
   animation: slideInFromLeft 0.35s ease-in-out !important;
 }
 
-/* Hotel tab'ına tıklandığında ortadan yayılan animasyon */
 [data-travel-type='hotel']
   div[style*='width: 748px'][style*='height: 60px']
   > div {
   animation: slideInFromCenter 0.35s ease-in-out !important;
 }
 
-/* Flight tab'ına tıklandığında sağdan gelen animasyon */
 [data-travel-type='flight']
   div[style*='width: 748px'][style*='height: 60px']
   > div {
   animation: slideInFromRight 0.35s ease-in-out !important;
 }
 
-/* Tablar arası geçişte form içeriğinin geçişi için */
 .transform.transition-transform.duration-300 {
   transition: all 0.35s ease-in-out !important;
 }
 
-/* Travel tabları arasındaki geçiş için animasyon */
 .flex.justify-center.mb-4 > div button {
   transition: all 0.25s ease-in-out !important;
 }
 
-/* Aktif olan tab'a tıklanınca hafif vurgu efekti */
 .flex.justify-center.mb-4 > div button[class*='bg-white'] {
   animation: pulse 0.35s !important;
 }

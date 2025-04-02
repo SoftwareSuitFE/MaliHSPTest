@@ -8,33 +8,28 @@ import { useLanguage } from '@/hooks/useLanguage';
 const TravelTabs = () => {
   const { searchParams, updateSearchParams } = useSearch();
   const { locale, t } = useLanguage();
-
-  // isClient kontrolü ekleyin
   const [isClient, setIsClient] = useState(false);
 
-  // Komponentin yüklendiğini işaretleyin
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  // Varsayılan tip belirleyin
   const defaultTravelType = 'package';
+  const [activeTab, setActiveTab] = useState<'package' | 'hotel' | 'flight'>(
+    defaultTravelType,
+  );
 
-  // State'in başlangıç değerini güvenli bir şekilde ayarlayın
-  const [activeTab, setActiveTab] = useState<'package' | 'hotel' | 'flight'>(defaultTravelType);
-
-  // isClient true olduğunda, searchParams'tan activeTab'i güncelleyin
   useEffect(() => {
     if (isClient) {
-      const type = (searchParams as { travelType?: 'package' | 'hotel' | 'flight' }).travelType || defaultTravelType;
+      const type =
+        (searchParams as { travelType?: 'package' | 'hotel' | 'flight' })
+          .travelType || defaultTravelType;
       setActiveTab(type);
     }
   }, [isClient, searchParams]);
 
-  // Dil değişimini takip etmek için useEffect ekleyelim
   useEffect(() => {
     if (isClient) {
-      // Bu etki, locale değiştiğinde yeniden render tetikler
       console.log(`Language changed to: ${locale}`);
     }
   }, [locale, isClient]);
@@ -44,17 +39,18 @@ const TravelTabs = () => {
     updateSearchParams({ travelType: tab });
   };
 
-  // Çeviri değerlerini istemci tarafında hesaplayalım
   const packageText = isClient ? t('TravelTabs', 'package') : 'Package';
   const hotelText = isClient ? t('TravelTabs', 'hotel') : 'Hotel';
   const flightText = isClient ? t('TravelTabs', 'flight') : 'Flight';
-
-  // Tab sınıfları için merkezi bir fonksiyon oluşturun
   const getTabClass = (tab: 'package' | 'hotel' | 'flight') => {
-    const baseClass = "flex items-center justify-center transition-all duration-300 ease-in-out";
+    const baseClass =
+      'flex items-center justify-center transition-all duration-300 ease-in-out';
     const tabSpecificClass = `${tab}-tab-btn`;
-    const activeClass = activeTab === tab ? 'bg-white text-gray-800' : 'bg-transparent text-white';
-    
+    const activeClass =
+      activeTab === tab
+        ? 'bg-white text-gray-800'
+        : 'bg-transparent text-white';
+
     return `${baseClass} ${tabSpecificClass} ${activeClass}`;
   };
 
@@ -74,7 +70,6 @@ const TravelTabs = () => {
             </span>
           </div>
         </button>
-
         <button
           onClick={() => handleTabChange('hotel')}
           className={getTabClass('hotel')}
@@ -88,7 +83,6 @@ const TravelTabs = () => {
             </span>
           </div>
         </button>
-
         <button
           onClick={() => handleTabChange('flight')}
           className={getTabClass('flight')}

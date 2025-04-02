@@ -1,5 +1,3 @@
-// src/components/search/hotelList.tsx
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -7,28 +5,22 @@ import { Empty, Spin } from 'antd';
 import { useSearch } from '@/hooks/useSearch';
 import { hotels, flights } from '../../../data/mockData';
 import HotelCard from './hotelCard';
-import FlightCard from './FlightCard'; // Yeni FlightCard bileşenini import et
+import FlightCard from './FlightCard';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const HotelList = () => {
   const { filters, searchParams } = useSearch();
   const { t } = useLanguage();
-
-  // travelType'ı searchParams'dan al
   const travelType = searchParams.travelType || 'package';
-
   const [filteredHotels, setFilteredHotels] = useState(hotels);
   const [filteredFlights, setFilteredFlights] = useState(flights);
   const [loading, setLoading] = useState(true);
 
-  // Hotel filtreleme
   useEffect(() => {
     if (travelType !== 'flight') {
       setLoading(true);
       const timer = setTimeout(() => {
         let filtered = [...hotels];
-
-        // Destination filtrelemesi
         if (filters.destination) {
           filtered = filtered.filter((hotel) =>
             hotel.location
@@ -36,8 +28,6 @@ const HotelList = () => {
               .includes(filters.destination.toLowerCase()),
           );
         }
-
-        // Hotel Concept filtrelemesi - her otel için tek kategori
         if (filters.hotelConcepts && filters.hotelConcepts.length > 0) {
           filtered = filtered.filter((hotel) =>
             hotel.categories.some((category) =>
@@ -45,30 +35,23 @@ const HotelList = () => {
             ),
           );
         }
-
-        // Yıldız filtrelemesi
         if (filters.stars && filters.stars.length > 0) {
           filtered = filtered.filter((hotel) =>
             filters.stars.some((star) => hotel.stars >= star),
           );
         }
-
         setFilteredHotels(filtered);
         setLoading(false);
       }, 500);
-
       return () => clearTimeout(timer);
     }
   }, [filters, travelType]);
 
-  // Flight filtreleme
   useEffect(() => {
     if (travelType === 'flight') {
       setLoading(true);
       const timer = setTimeout(() => {
         let filtered = [...flights];
-
-        // Destination filtrelemesi
         if (filters.destination) {
           filtered = filtered.filter((flight) =>
             flight.location
@@ -77,21 +60,18 @@ const HotelList = () => {
           );
         }
 
-        // From (Nereden) filtrelemesi
         if (filters.from) {
           filtered = filtered.filter((flight) =>
             flight.name.toLowerCase().includes(filters.from.toLowerCase()),
           );
         }
 
-        // Yıldız filtrelemesi
         if (filters.stars && filters.stars.length > 0) {
           filtered = filtered.filter((flight) =>
             filters.stars.some((star) => flight.stars >= star),
           );
         }
 
-        // Flight Concept filtrelemesi - sadece categories dizisindeki tek değere bakıyoruz
         if (filters.flightConcepts && filters.flightConcepts.length > 0) {
           filtered = filtered.filter((flight) =>
             filters.flightConcepts.includes(flight.categories[0]),
@@ -115,7 +95,6 @@ const HotelList = () => {
     );
   }
 
-  // Uçuş veya otel sonuçlarını göster
   const showFlights = travelType === 'flight';
   const items = showFlights ? filteredFlights : filteredHotels;
 
@@ -128,7 +107,6 @@ const HotelList = () => {
   }
 
   return (
-    // <section className="container mx-auto mt-8 px-4"></section>
     <div className="flex flex-col space-y-8">
       {showFlights
         ? filteredFlights.map((flight) => (

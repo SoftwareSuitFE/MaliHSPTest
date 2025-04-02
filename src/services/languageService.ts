@@ -1,11 +1,7 @@
-// services/languageService.ts
-
 import ComingSoon from '@/app/comingsoon/page';
 
-// Supported languages
 export const LANGUAGES = ['en', 'tr'];
 
-// Translations
 export const translations = {
   en: {
     Header: {
@@ -229,7 +225,6 @@ export const translations = {
   },
 };
 
-// Get current language from localStorage or use default
 export const getCurrentLanguage = (): string => {
   if (typeof window === 'undefined') {
     return 'en';
@@ -239,14 +234,12 @@ export const getCurrentLanguage = (): string => {
   return savedLocale && LANGUAGES.includes(savedLocale) ? savedLocale : 'en';
 };
 
-// Save language to localStorage
 export const saveLanguage = (locale: string): void => {
   if (LANGUAGES.includes(locale)) {
     localStorage.setItem('language', locale);
   }
 };
 
-// Translation function with support for dynamic values
 export const translate = (
   locale: string,
   namespace: string,
@@ -256,8 +249,6 @@ export const translate = (
   try {
     // @ts-ignore
     let text = translations[locale][namespace][key] || key;
-
-    // Replace dynamic parameters if provided (e.g., {count})
     if (params) {
       Object.keys(params).forEach((paramKey) => {
         text = text.replace(new RegExp(`{${paramKey}}`, 'g'), params[paramKey]);

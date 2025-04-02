@@ -1,6 +1,3 @@
-/* Minimal CSS changes - just moving inline styles to CSS classes */
-
-/* Container styles */
 .travel-tabs-wrapper {
   width: 365.41px;
   height: 40px;
@@ -11,7 +8,6 @@
   box-shadow: none !important;
 }
 
-/* Package button styles */
 .package-tab-btn {
   width: 130px;
   height: 40px;
@@ -21,7 +17,6 @@
   border-bottom-right-radius: 8px;
 }
 
-/* Hotel button styles */
 .hotel-tab-btn {
   width: 107px;
   height: 40px;
@@ -31,7 +26,6 @@
   border-bottom-right-radius: 8px;
 }
 
-/* Flight button styles */
 .flight-tab-btn {
   width: 128.41px;
   height: 40px;
@@ -41,9 +35,7 @@
   border-bottom-right-radius: 8px;
 }
 
-/* Keep the existing responsive styles from globals.css */
 @media (max-width: 1023px) {
-  /* TravelTabs responsive styling */
   .flex.justify-center.mb-4 > div[style*='width: 365.41px'],
   .travel-tabs-wrapper {
     flex-direction: column !important;
@@ -72,27 +64,23 @@
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
-    -webkit-appearance: none; /* iOS Safari'deki default stil için */
+    -webkit-appearance: none;
     appearance: none;
   }
-  
-  /* TravelTabs üstündeki boşluğu kaldır */
+
   .mb-4.mt-56 {
-    margin-top: 8px !important; /* Minimum bir boşluk bırakıyoruz */
+    margin-top: 8px !important;
   }
-  
-  /* SearchForm yukarı kayması için ana container ayarı */
+
   .relative.z-20.container.mx-auto.h-full.flex.flex-col.justify-center.items-center.px-4 {
     padding-top: 16px !important;
     justify-content: flex-start !important;
   }
-  
-  /* Hero alanının yüksekliğini düşürelim */
+
   .relative.h-\[500px\].overflow-hidden.bg-blue-400 {
     min-height: 700px !important;
   }
-  
-  /* Aktif sekme için özel stil */
+
   .package-tab-btn[class*='bg-white'],
   .hotel-tab-btn[class*='bg-white'],
   .flight-tab-btn[class*='bg-white'] {
@@ -100,23 +88,20 @@
     color: #142347 !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
   }
-  
-  /* Aktif sekme ikonlarını ve metinlerini vurgula */
+
   .package-tab-btn[class*='bg-white'] span,
   .hotel-tab-btn[class*='bg-white'] span,
   .flight-tab-btn[class*='bg-white'] span {
     color: #142347 !important;
     font-weight: 600 !important;
   }
-  
-  /* Aktif olmayan sekmelerin arka plan rengini ve opaklığını ayarla */
+
   .package-tab-btn:not([class*='bg-white']),
   .hotel-tab-btn:not([class*='bg-white']),
   .flight-tab-btn:not([class*='bg-white']) {
     background-color: rgba(255, 255, 255, 0.5) !important;
   }
-  
-  /* İkon Hizalama Düzeltmeleri - İçerik ortalı, ikonlar hizalı */
+
   .package-tab-btn .flex.items-center,
   .hotel-tab-btn .flex.items-center,
   .flight-tab-btn .flex.items-center {
@@ -125,44 +110,39 @@
     width: 100%;
     position: relative;
   }
-  
-  /* İkon konteynerini mutlak konumlandırarak sabit mesafede tut */
+
   .package-tab-btn .flex.items-center > div:first-child,
   .hotel-tab-btn .flex.items-center > div:first-child,
   .flight-tab-btn .flex.items-center > div:first-child {
     position: absolute;
     left: 50%;
-    margin-left: -40px !important; /* İkonları sola kaydırma miktarı */
+    margin-left: -40px !important;
     display: flex;
     justify-content: center;
     width: 24px;
   }
-  
-  /* İkonları sabit boyutta tut */
+
   .package-tab-btn svg,
   .hotel-tab-btn svg,
   .flight-tab-btn svg {
     width: 16px !important;
     height: 16px !important;
   }
-  
-  /* Metin hizalamasını sağa doğru ittir */
+
   .package-tab-btn span,
   .hotel-tab-btn span,
   .flight-tab-btn span {
     display: inline-block;
-    margin-left: 10px; /* Metni ikondan uzaklaştır */
+    margin-left: 10px;
   }
 }
 
 @media (max-width: 767px) {
-  /* Daha küçük ekranlarda daha da az boşluk */
   .mb-4.mt-56 {
     margin-top: 4px !important;
   }
 }
 
-/* Focus/active durumunda da kaldırın */
 .package-tab-btn:focus,
 .package-tab-btn:active,
 .package-tab-btn:focus-visible,
@@ -186,7 +166,6 @@
   box-shadow: none !important;
   border-color: transparent !important;
 }
-
 
 .travel-tabs-wrapper button:focus,
 .travel-tabs-wrapper button:active,

@@ -1,41 +1,33 @@
-/* Header Responsive Styles - 1024px için güncellendi */
 @media (min-width: 768px) and (max-width: 1023px) {
-    /* Header'da md: prefix kullanan elemanları 1024px breakpoint için düzenle */
-  
-    /* Üst mavi bar 768-1024px arasında da gizli kalsın */
-    header div.hidden.md\:block {
-      display: none !important;
-    }
-  
-    /* Hamburger menü butonu 768-1024px arasında da görünür olsun */
-    header .md\:hidden {
-      display: flex !important;
-    }
-  
-    /* Masaüstü navigasyon menüsü 768-1024px arasında da gizli kalsın */
-    header nav.hidden.md\:flex {
-      display: none !important;
-    }
+  header div.hidden.md\:block {
+    display: none !important;
   }
 
-  @media (min-width: 1024px) {
-    /* Normal durumda alt alta görünüm */
-    .hotel-concept-star-container {
-      display: flex;
-      flex-direction: column;
-    }
-  
-    .hotel-concept-container,
-    .star-container {
-      width: 100%;
-    }
-  
-    /* Filter input'ların sabit genişliği */
-    .filter-input {
-      width: 220px;
-      height: 36px;
-      border-radius: 8px;
-      border: 1px solid var(--border-color);
-      background: #ffffff;
-    }
+  header .md\:hidden {
+    display: flex !important;
   }
+
+  header nav.hidden.md\:flex {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hotel-concept-star-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hotel-concept-container,
+  .star-container {
+    width: 100%;
+  }
+
+  .filter-input {
+    width: 220px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: #ffffff;
+  }
+}

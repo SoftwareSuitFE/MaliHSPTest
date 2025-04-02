@@ -1,22 +1,16 @@
-/* flightCard.css */
-
-/* Genel container ayarları */
 .flight-card-container {
   font-family: 'Inter';
 }
 
-/* İçerik alanı minimum yükseklik */
 .flight-card-content {
   min-height: 271px;
 }
 
-/* Yıldızların bulunduğu alan */
 .flight-card-stars {
   display: flex;
   gap: 4px;
 }
 
-/* Lokasyon metni */
 .flight-card-location {
   font-weight: 500;
   font-size: 14px;
@@ -25,7 +19,6 @@
   white-space: nowrap;
 }
 
-/* Eski fiyat stili (çizgili) */
 .flight-card-old-price {
   font-weight: 700;
   font-size: 14px;
@@ -34,7 +27,6 @@
   color: #93a2b7;
 }
 
-/* Fiyat bilgisindeki "from" metni */
 .flight-card-from-price {
   font-weight: 400;
   font-size: 12px;
@@ -42,7 +34,6 @@
   color: #64748a;
 }
 
-/* Fiyat değeri */
 .flight-card-price-value {
   font-weight: 700;
   font-size: 20px;
@@ -50,7 +41,6 @@
   color: #64748a;
 }
 
-/* Kitaplama butonu stili */
 .flight-card-book-btn {
   width: 100%;
   height: 45px;

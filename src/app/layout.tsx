@@ -4,10 +4,8 @@ import { Inter } from 'next/font/google';
 import { ConfigProvider } from 'antd';
 import { QueryProvider } from './QueryProvider';
 
-// import './globals.css';
 import '../styles/globals.css';
 
-// Font yüklemeleri
 const inter = Inter({
   variable: '--font-inter',
   subsets: ['latin'],

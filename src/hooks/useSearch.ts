@@ -1,5 +1,3 @@
-// src/hooks/useSearch.ts
-
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   getSearchParams,
@@ -13,24 +11,19 @@ import { SearchParams, Filters } from '@/types/search';
 
 export function useSearch() {
   const queryClient = useQueryClient();
-
-  // Arama parametrelerini React Query ile getir
   const { data: searchParams = getSearchParams() } = useQuery({
     queryKey: [SEARCH_PARAMS_KEY],
     queryFn: getSearchParams,
-    staleTime: 1000 * 60 * 5, // 5 dakika sonra stale olsun
+    staleTime: 1000 * 60 * 5,
     refetchOnWindowFocus: false,
   });
 
-  // Filtreleri React Query ile getir
   const { data: filters = getFilters() } = useQuery({
     queryKey: [FILTERS_KEY],
     queryFn: getFilters,
-    staleTime: 1000 * 60 * 5, // 5 dakika sonra stale olsun
+    staleTime: 1000 * 60 * 5,
     refetchOnWindowFocus: false,
   });
-
-  // Arama parametrelerini güncelleme mutation'ı
 
   const { mutate: updateSearchParams } = useMutation({
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -40,10 +33,7 @@ export function useSearch() {
       return saveSearchParams(updatedParams);
     },
     onSuccess: (updatedSearchParams) => {
-      // Cache'i güncelle
       queryClient.setQueryData([SEARCH_PARAMS_KEY], updatedSearchParams);
-
-      // Filtreleri de güncelle (senkronize et)
       const currentFilters =
         queryClient.getQueryData<Filters>([FILTERS_KEY]) || getFilters();
       const updatedFilters = {
@@ -70,14 +60,11 @@ export function useSearch() {
           // @ts-ignore
           updatedSearchParams.participants || currentFilters.participants,
       };
-
-      // Filtreleri kaydet ve önbelleği güncelle
       saveFilters(updatedFilters);
       queryClient.setQueryData([FILTERS_KEY], updatedFilters);
     },
   });
 
-  // Filtreleri güncelleme mutation'ı
   const { mutate: updateFilters } = useMutation({
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -86,12 +73,9 @@ export function useSearch() {
       return saveFilters(updatedFilters);
     },
     onSuccess: (updatedFilters) => {
-      // Cache'i güncelle
       queryClient.setQueryData([FILTERS_KEY], updatedFilters);
     },
   });
-
-  // Cache'i tamamen yenileme fonksiyonu
   const refreshSearchData = () => {
     queryClient.invalidateQueries({ queryKey: [SEARCH_PARAMS_KEY] });
     queryClient.invalidateQueries({ queryKey: [FILTERS_KEY] });

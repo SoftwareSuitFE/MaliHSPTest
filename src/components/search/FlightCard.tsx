@@ -7,7 +7,6 @@ import Icon from '../../assets/icons/Icon';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useRouter } from 'next/navigation';
 
-
 interface FlightCardProps {
   flight: Flight;
 }
@@ -16,19 +15,15 @@ const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
   const { t } = useLanguage();
   const router = useRouter();
 
-  // Uçuş sınıfı adını tercüme eden yardımcı fonksiyon
   const translateFlightConcept = (concept: string): string => {
     return concept;
   };
 
-  // Yönlendirme işlemi için event handler
   const handleBookNow = () => {
     router.push('/comingsoon');
   };
-
   return (
     <div className="flight-card-container flex flex-col lg:flex-row items-start gap-2 w-full">
-      {/* Sol: Görsel */}
       <div className="flight-card-image-container w-full h-[268px] rounded-[8px] overflow-hidden lg:w-[363px] xl:flex-1">
         <img
           src={flight.image}
@@ -36,10 +31,7 @@ const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
           className="flight-card-image w-full h-full object-cover"
         />
       </div>
-
-      {/* Sağ: Content */}
       <div className="flight-card-content w-full border border-[#F0F4F8] rounded-[8px] bg-white p-6 flex flex-col gap-4 lg:w-[457px] xl:flex-1">
-        {/* Üst Row: Havayolu adı, yıldızlar, lokasyon */}
         <div className="flight-card-header flex flex-col gap-2">
           <h3 className="flight-card-title text-xl font-bold text-[#142347] m-0">
             {flight.name}
@@ -53,10 +45,7 @@ const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
             <span className="flight-card-location">{flight.location}</span>
           </div>
         </div>
-
-        {/* Alt Row: Özellikler (sol) + Fiyat/Buton (sağ) */}
         <div className="flight-card-details flex flex-col md:flex-row gap-6 flex-1">
-          {/* Sol: Özellikler */}
           <div className="flight-card-details-left flex flex-col border-r border-[#F0F4F8] pr-0 md:pr-6 w-full md:w-1/2 justify-between">
             <div className="flight-card-detail-row flex items-center gap-2 text-sm text-[#142347]">
               <Icon name="users" />
@@ -82,10 +71,7 @@ const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
               <span>{translateFlightConcept(flight.concept)}</span>
             </div>
           </div>
-
-          {/* Sağ: Fiyat + Buton */}
           <div className="flight-card-details-right flex flex-col w-full md:w-1/2 md:pl-6 gap-2 items-stretch md:items-end">
-            {/* Fiyat Bilgisi */}
             <div className="flight-card-price mt-auto lg:mt-auto flex flex-col items-end w-full">
               <span className="flight-card-old-price">
                 {flight.price + 200}€
@@ -97,8 +83,6 @@ const FlightCard = ({ flight }: FlightCardProps): JSX.Element => {
                 <span className="flight-card-price-value">{flight.price}€</span>
               </div>
             </div>
-
-            {/* Buton */}
             <Button onClick={handleBookNow} className="flight-card-book-btn">
               {t('FlightCard', 'bookNow')}
             </Button>

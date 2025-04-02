@@ -1,5 +1,3 @@
-// src/types/search.ts
-
 export interface Participants {
   adults: number;
   children: number;

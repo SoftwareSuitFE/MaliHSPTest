@@ -25,13 +25,10 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   triggerRef,
 }) => {
   const { t } = useLanguage();
-
-  // Güvenli başlangıç: startDate varsa kullan, yoksa bugünün tarihi
   const safeStart = startDate && dayjs.isDayjs(startDate) ? startDate : dayjs();
   const safeEnd =
     endDate && dayjs.isDayjs(endDate) ? endDate : safeStart.add(1, 'day');
 
-  // Ay bilgilerini orijinal tasarıma uygun şekilde başlatıyoruz
   const [currentMonths, setCurrentMonths] = useState<
     [dayjs.Dayjs, dayjs.Dayjs]
   >(() => {
@@ -41,17 +38,14 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
     ];
   });
 
-  // Tarih seçimleri: startDate gelmişse onu kullan, yoksa varsayılanı (bugün)
   const [firstSelection, setFirstSelection] = useState<dayjs.Dayjs | null>(
     safeStart,
   );
 
-  // endDate gelmişse onu kullan, yoksa ilk tarihten 1 gün sonrası
   const [secondSelection, setSecondSelection] = useState<dayjs.Dayjs | null>(
     safeEnd,
   );
 
-  // Eğer startDate/endDate undefined ise, ilk seçim yapmamış sayalım
   const [isSelectingSecondDate, setIsSelectingSecondDate] = useState(
     !(
       startDate &&
@@ -69,7 +63,6 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   });
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Dinamik stiller için: CSS custom property'leri güncelle
   useEffect(() => {
     if (dropdownRef.current) {
       dropdownRef.current.style.setProperty(
@@ -87,13 +80,11 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
     }
   }, [dropdownPosition]);
 
-  // Seçilen tarih aralığından geceleri hesapla
   const nights =
     firstSelection && secondSelection
       ? secondSelection.diff(firstSelection, 'day')
       : 0;
 
-  // Trigger elemanın konumunu hesapla
   useEffect(() => {
     if (visible && triggerRef.current) {
       const rect = triggerRef.current.getBoundingClientRect();
@@ -105,7 +96,6 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
     }
   }, [visible, triggerRef]);
 
-  // Dışarı tıklanırsa kapanma
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -123,10 +113,8 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
     };
   }, [onClose, triggerRef]);
 
-  // Tarih aralığını güncelle ve parent'a bildir
   useEffect(() => {
     if (firstSelection && secondSelection) {
-      // Eğer startDate veya endDate undefined ise veya seçilen tarihler farklıysa bildir
       if (
         !startDate ||
         !endDate ||
@@ -142,7 +130,6 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
     }
   }, [firstSelection, secondSelection, startDate, endDate, onChange]);
 
-  // Önceki aya git
   const goToPreviousMonth = () => {
     setCurrentMonths([
       currentMonths[0].subtract(1, 'month'),
@@ -150,7 +137,6 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
     ]);
   };
 
-  // Sonraki aya git
   const goToNextMonth = () => {
     setCurrentMonths([
       currentMonths[0].add(1, 'month'),
@@ -158,7 +144,6 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
     ]);
   };
 
-  // Tarih seçimi
   const handleDateClick = (date: dayjs.Dayjs) => {
     if (!isSelectingSecondDate) {
       setFirstSelection(date);
@@ -179,7 +164,6 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
     }
   };
 
-  // Yardımcı fonksiyonlar: Seçili olup olmadığını kontrol
   const isFirstSelection = (date: dayjs.Dayjs) => {
     return firstSelection && date.isSame(firstSelection, 'day');
   };
@@ -199,30 +183,21 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
     return date.isAfter(start, 'day') && date.isBefore(end, 'day');
   };
 
-  // Ay takvimini oluştur (orijinal grid yapısı)
   const renderMonth = (month: dayjs.Dayjs) => {
     const monthName = month.format('MMMM YYYY');
     const daysInMonth = month.daysInMonth();
-    const firstDayOfMonth = month.startOf('month').day(); // 0: Pazar, 1: Pazartesi, ...
-
-    // Hafta içi başlıkları: Pazartesi başlangıçlı (düzen: MO, TU, WE, TH, FR, SA, SU)
+    const firstDayOfMonth = month.startOf('month').day();
     const weekdays = ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
-
     const days = [];
-
-    // Ayın ilk gününe kadar boşluk ekle (Pazartesi başlangıçlı)
     const firstDayAdjusted = firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1;
     for (let i = 0; i < firstDayAdjusted; i++) {
       days.push(<div key={`empty-${i}`} className="w-8 h-8"></div>);
     }
-
-    // Ayın günlerini ekle
     for (let day = 1; day <= daysInMonth; day++) {
       const dateObj = month.date(day);
       const isFirstDay = isFirstSelection(dateObj);
       const isLastDay = isSecondSelection(dateObj);
       const inRange = isDateInRange(dateObj);
-
       days.push(
         <div
           key={`day-${day}`}

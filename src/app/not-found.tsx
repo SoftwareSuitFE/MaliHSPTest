@@ -14,13 +14,9 @@ const NotFound = () => {
 
   return (
     <div className="not-found-container">
-      {/* 404 Container */}
       <div className="not-found-inner">
-        {/* Animated 404 */}
         <div className={`not-found-text ${isLoaded ? 'loaded' : 'loading'}`}>
           <div className="not-found-404">404</div>
-
-          {/* Airplane path animation */}
           <div className="not-found-airplane-path">
             <div className="not-found-airplane-container">
               <svg
@@ -39,10 +35,10 @@ const NotFound = () => {
               </svg>
             </div>
           </div>
-
-          {/* Compass animation */}
           <div className="not-found-compass">
-            <div className={`not-found-compass-inner ${isLoaded ? 'loaded' : 'loading'}`}>
+            <div
+              className={`not-found-compass-inner ${isLoaded ? 'loaded' : 'loading'}`}
+            >
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -75,23 +71,14 @@ const NotFound = () => {
             </div>
           </div>
         </div>
-
-        {/* Main Content Card */}
         <div className={`not-found-card ${isLoaded ? 'loaded' : 'loading'}`}>
-          <h1 className="not-found-title">
-            {t('NotFound', 'title')}
-          </h1>
-          <h2 className="not-found-subtitle">
-            {t('NotFound', 'message')}
-          </h2>
-          <p className="not-found-description">{t('NotFound', 'description')}</p>
-
-          {/* Travel Theme Graphics */}
+          <h1 className="not-found-title">{t('NotFound', 'title')}</h1>
+          <h2 className="not-found-subtitle">{t('NotFound', 'message')}</h2>
+          <p className="not-found-description">
+            {t('NotFound', 'description')}
+          </p>
           <div className="not-found-travel-graphics">
-            {/* Map path dashed line */}
             <div className="not-found-path-line"></div>
-
-            {/* Travel Icons */}
             <div className="not-found-travel-icon not-found-travel-icon-home">
               <div className="not-found-icon-circle not-found-icon-circle-blue animate-float not-found-float-0">
                 <svg
@@ -109,7 +96,6 @@ const NotFound = () => {
                 </svg>
               </div>
             </div>
-
             <div className="not-found-travel-icon not-found-travel-icon-location">
               <div className="not-found-icon-circle not-found-icon-circle-orange animate-float not-found-float-1">
                 <svg
@@ -135,7 +121,6 @@ const NotFound = () => {
                 </svg>
               </div>
             </div>
-
             <div className="not-found-travel-icon not-found-travel-icon-message">
               <div className="not-found-icon-circle not-found-icon-circle-green animate-float not-found-float-2">
                 <svg
@@ -161,7 +146,6 @@ const NotFound = () => {
                 </svg>
               </div>
             </div>
-
             <div className="not-found-travel-icon not-found-travel-icon-warning">
               <div className="not-found-icon-circle not-found-icon-circle-red animate-float not-found-float-3">
                 <svg
@@ -180,7 +164,6 @@ const NotFound = () => {
                 </svg>
               </div>
             </div>
-
             <div className="not-found-travel-icon not-found-travel-icon-sun">
               <div className="not-found-icon-circle not-found-icon-circle-yellow animate-float not-found-float-4">
                 <svg
@@ -200,8 +183,6 @@ const NotFound = () => {
               </div>
             </div>
           </div>
-
-          {/* Action Button */}
           <Link
             href="/"
             className={`not-found-button ${isLoaded ? 'loaded' : 'loading'}`}

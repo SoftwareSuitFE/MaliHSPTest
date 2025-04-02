@@ -1,5 +1,3 @@
-// src/components/NightPicker/NightPicker.tsx
-
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -24,7 +22,6 @@ const NightPicker: React.FC<NightPickerProps> = ({
 }) => {
   const { t } = useLanguage();
 
-  // State ve ref
   const [nightCount, setNightCount] = useState(nights);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [dropdownPosition, setDropdownPosition] = useState({
@@ -33,19 +30,17 @@ const NightPicker: React.FC<NightPickerProps> = ({
     width: 0,
   });
 
-  // NightPicker görünürken, tetikleyici alanın konumunu hesapla
   useEffect(() => {
     if (visible && triggerRef.current) {
       const rect = triggerRef.current.getBoundingClientRect();
       setDropdownPosition({
         top: rect.bottom + window.scrollY,
         left: rect.left + window.scrollX,
-        width: Math.max(rect.width, 200), // min 200px genişlik
+        width: Math.max(rect.width, 200),
       });
     }
   }, [visible, triggerRef]);
 
-  // Dışarı tıklayınca kapanma
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -63,7 +58,6 @@ const NightPicker: React.FC<NightPickerProps> = ({
     };
   }, [onClose, triggerRef]);
 
-  // Gece sayısını artır/azalt
   const handleDecrease = () => {
     const newNights = Math.max(1, nightCount - 1);
     setNightCount(newNights);
@@ -76,10 +70,8 @@ const NightPicker: React.FC<NightPickerProps> = ({
     onChange(newNights);
   };
 
-  // NightPicker görünmüyorsa null döndür
   if (!visible || typeof document === 'undefined') return null;
 
-  // NightPicker içeriği
   const pickerContent = (
     <div
       ref={dropdownRef}
@@ -90,7 +82,6 @@ const NightPicker: React.FC<NightPickerProps> = ({
         width: dropdownPosition.width,
       }}
     >
-      {/* Üst Bar: Başlık + Kapatma Butonu */}
       <div className="nightpicker-header flex justify-between items-center mb-4 pb-3 border-b border-gray-200">
         <span className="nightpicker-title font-medium text-gray-800">
           {t('Filters', 'nights')}
@@ -102,8 +93,6 @@ const NightPicker: React.FC<NightPickerProps> = ({
           <CloseOutlined />
         </button>
       </div>
-
-      {/* Gece Sayısı Seçimi */}
       <div className="nightpicker-body flex flex-col items-center">
         <div className="nightpicker-night-count text-sm font-semibold text-gray-700 mb-2">
           {t('HotelCard', 'nights', { count: nightCount })}

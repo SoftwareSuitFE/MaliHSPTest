@@ -1,4 +1,3 @@
-/* 404 Sayfası Animasyonları */
 @keyframes float {
   0% {
     transform: translateY(0px);
@@ -31,7 +30,6 @@
   }
 }
 
-/* Yeni eklenen form elemanları için soldan sağa geçiş animasyonu */
 @keyframes slideInFromLeft {
   from {
     opacity: 0;
@@ -43,7 +41,6 @@
   }
 }
 
-/* Sağdan sola geçiş animasyonu */
 @keyframes slideInFromRight {
   from {
     opacity: 0;
@@ -55,27 +52,25 @@
   }
 }
 
-/* Ortadan yayılma animasyonu */
 @keyframes slideInFromCenter {
-    from {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
+  from {
+    opacity: 0;
+    transform: scale(0.9);
   }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 
-  /* Pulse animasyonu - aktif tab için hafif vurgu */
 @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.05);
-    }
-    100% {
-      transform: scale(1);
-    }
+  0% {
+    transform: scale(1);
   }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

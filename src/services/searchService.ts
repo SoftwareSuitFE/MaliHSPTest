@@ -1,12 +1,8 @@
-// src/services/searchService.ts
-
 import { SearchParams, Filters } from '@/types/search';
 
-// State için key tanımları
 export const SEARCH_PARAMS_KEY = 'searchParams';
 export const FILTERS_KEY = 'filters';
 
-// Varsayılan değerler
 const DEFAULT_SEARCH_PARAMS: SearchParams = {
   from: '',
   destination: '',
@@ -29,11 +25,10 @@ const DEFAULT_FILTERS: Filters = {
   date: '',
   nights: 5,
   hotelConcepts: [],
-  flightConcepts: [], // New field
+  flightConcepts: [],
   stars: [],
 };
 
-// localStorage'dan değerleri al (eğer varsa)
 export const getSearchParams = (): SearchParams => {
   if (typeof window === 'undefined') {
     return DEFAULT_SEARCH_PARAMS;
@@ -48,7 +43,6 @@ export const getSearchParams = (): SearchParams => {
   }
 };
 
-// localStorage'a değerleri kaydet
 export const saveSearchParams = (searchParams: SearchParams): SearchParams => {
   if (typeof window !== 'undefined') {
     localStorage.setItem(SEARCH_PARAMS_KEY, JSON.stringify(searchParams));
@@ -56,7 +50,6 @@ export const saveSearchParams = (searchParams: SearchParams): SearchParams => {
   return searchParams;
 };
 
-// localStorage'dan filtreleri al
 export const getFilters = (): Filters => {
   if (typeof window === 'undefined') {
     return DEFAULT_FILTERS;
@@ -71,7 +64,6 @@ export const getFilters = (): Filters => {
   }
 };
 
-// localStorage'a filtreleri kaydet
 export const saveFilters = (filters: Filters): Filters => {
   if (typeof window !== 'undefined') {
     localStorage.setItem(FILTERS_KEY, JSON.stringify(filters));

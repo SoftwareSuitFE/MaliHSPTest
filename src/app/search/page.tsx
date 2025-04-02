@@ -9,18 +9,12 @@ import '@/styles/layouts/search.css';
 
 export default function SearchPage(): JSX.Element {
   const { refreshSearchData } = useSearch();
-
-  // SearchPage ilk yüklendiğinde, önbelleği yenile
   useEffect(() => {
-    // Bu sayfa yüklendiğinde, query cache'i yenile
     refreshSearchData();
   }, [refreshSearchData]);
-
   return (
     <main className="min-h-screen bg-white">
       <Header />
-
-      {/* Header ile tam olarak aynı genişlik (1120px) */}
       <section className="search-container">
         <div className="search-content">
           <div className="search-grid">

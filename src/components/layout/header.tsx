@@ -11,13 +11,10 @@ const Header = () => {
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { locale, setLocale, t } = useLanguage();
-
-  // Ekran boyutu kontrolü (768 px altı mobil)
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 768);
-
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
       if (window.innerWidth >= 768) {
@@ -46,11 +43,9 @@ const Header = () => {
     const url = window.location.href;
     const title = document.title;
     try {
-      // Define type for IE's external object
       interface IEExternal {
         AddFavorite?: (url: string, title: string) => void;
       }
-
       const external = window.external as IEExternal;
       if (external && typeof external.AddFavorite === 'function') {
         external.AddFavorite(url, title);
@@ -66,7 +61,6 @@ const Header = () => {
     }
   };
 
-  // Mobil menü açıkken body scroll'u kapatalım
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -78,7 +72,6 @@ const Header = () => {
     };
   }, [isMobileMenuOpen]);
 
-  // Geri tuşuna vs. basılınca mobil menü kapansın
   useEffect(() => {
     const handleRouteChange = () => {
       if (isMobileMenuOpen) {
@@ -92,7 +85,6 @@ const Header = () => {
     };
   }, [isMobileMenuOpen]);
 
-  // Dil seçici (Hem desktop hem mobilde kullanılacak)
   const LanguageSelector = ({
     className = '',
     isMobileView = false,
@@ -105,12 +97,9 @@ const Header = () => {
         onClick={toggleLanguageMenu}
         className="flex items-center cursor-pointer language-selector-btn"
       >
-        {/* Bayrak ikonu */}
         <div className="flag-icon">
           {locale === 'tr' ? <Icon name="Turkey" /> : <Icon name="England" />}
         </div>
-
-        {/* Masaüstünde dil kodu ve ok ikonu; mobilde gizli */}
         <div className="hidden md:flex items-center justify-center language-code-container">
           <span className="language-code-text">
             {typeof locale === 'string'
@@ -122,8 +111,6 @@ const Header = () => {
           <Icon name="arrow-downSmall" />
         </div>
       </button>
-
-      {/* Dil menüsü */}
       {showLanguageMenu && (
         <div
           className={`absolute bg-white rounded-md shadow-lg z-50 ${
@@ -159,35 +146,27 @@ const Header = () => {
 
   return (
     <header className="w-full">
-      {/* Üst Bar (Masaüstü) */}
       <div className="hidden md:block header-top-bar">
         <div className="header-top-inner flex justify-end items-center">
           <div className="flex items-center">
-            {/* B2B platform */}
             <Link
               href="/comingsoon"
               className="header-top-link text-[#142347] hover:text-[#0057b8]"
             >
               {t('Header', 'b2bPlatform')}
             </Link>
-
-            {/* Client Care */}
             <Link
               href="/comingsoon"
               className="header-top-link text-[#142347] hover:text-[#0057b8]"
             >
               {t('Header', 'clientCare')}
             </Link>
-
-            {/* Contact */}
             <Link
               href="/comingsoon"
               className="header-top-link text-[#142347] hover:text-[#0057b8]"
             >
               {t('Header', 'contact')}
             </Link>
-
-            {/* Phone */}
             <div className="flex items-center header-phone">
               <span className="flex items-center mr-1">
                 <Icon name="phone" />
@@ -199,8 +178,6 @@ const Header = () => {
                 <span className="text-xs">+4021 210 17 17</span>
               </a>
             </div>
-
-            {/* Favorite */}
             <div
               onClick={handleAddFavorite}
               className="flex items-center header-favorite cursor-pointer"
@@ -210,8 +187,6 @@ const Header = () => {
               </span>
               <span className="text-xs">{t('Header', 'favorite')}</span>
             </div>
-
-            {/* Arama */}
             <div className="relative header-search-container">
               <div className="header-search-icon">
                 <Icon name="searchSm" />
@@ -224,17 +199,12 @@ const Header = () => {
                 className="header-search-input text-xs"
               />
             </div>
-
-            {/* Dil seçici - Masaüstü */}
             <LanguageSelector />
           </div>
         </div>
       </div>
-
-      {/* Ana Navigation */}
       <div className="header-nav-container">
         <div className="header-nav-inner flex justify-between items-center relative">
-          {/* Logo */}
           <div className="flex items-center header-logo-container">
             <Link href="/" className="flex items-center">
               <div className="relative w-[156.17px] h-[39.91px]">
@@ -247,8 +217,6 @@ const Header = () => {
               </div>
             </Link>
           </div>
-
-          {/* Masaüstü menü */}
           <nav className="hidden md:flex space-x-4 header-nav">
             <Link
               href="/comingsoon"
@@ -287,8 +255,6 @@ const Header = () => {
               {t('Header', 'cityBreakIstanbul')}
             </Link>
           </nav>
-
-          {/* Mobil menü butonu (hamburger) */}
           <div className="md:hidden">
             <button
               className="text-gray-800 flex items-center justify-center mobile-menu-btn"
@@ -300,11 +266,8 @@ const Header = () => {
           </div>
         </div>
       </div>
-
-      {/* Mobil menü overlay */}
       {isMobileMenuOpen && (
         <div className="md:hidden fixed inset-0 bg-white z-50 overflow-y-auto">
-          {/* Sağ üstte close butonu */}
           <button
             className="absolute top-4 right-4 text-gray-800 flex items-center justify-center mobile-menu-close-btn"
             aria-label="Close mobile menu"
@@ -312,11 +275,8 @@ const Header = () => {
           >
             <Icon name="close" size={16} />
           </button>
-
           <div className="pt-24 px-4 space-y-6 pb-16">
-            {/* Üst menü öğeleri */}
             <div className="border-b border-gray-200 pb-4 space-y-4">
-              {/* Hamburger menü içindeki dil seçici */}
               <div className="py-2 flex items-center">
                 <span className="mr-2 text-base text-[#142347]">
                   {t('Header', 'language')}
@@ -371,8 +331,6 @@ const Header = () => {
                 </span>
                 <span>{t('Header', 'favorite')}</span>
               </button>
-
-              {/* Arama */}
               <div className="py-2">
                 <div className="relative">
                   <div className="absolute left-2 top-1/2 transform -translate-y-1/2">
@@ -388,8 +346,6 @@ const Header = () => {
                 </div>
               </div>
             </div>
-
-            {/* Ana navigasyon öğeleri */}
             <div className="space-y-4">
               <Link
                 href="/comingsoon"
@@ -406,7 +362,6 @@ const Header = () => {
               >
                 {t('Header', 'topHotels')}
               </Link>
-
               <Link
                 href="/comingsoon"
                 className="text-[#142347] py-2 flex items-center text-base"
@@ -414,7 +369,6 @@ const Header = () => {
               >
                 {t('Header', 'lastMinute')}
               </Link>
-
               <Link
                 href="/comingsoon"
                 className="text-[#142347] py-2 flex items-center text-base"
@@ -422,7 +376,6 @@ const Header = () => {
               >
                 {t('Header', 'recommended')}
               </Link>
-
               <Link
                 href="/comingsoon"
                 className="text-[#142347] py-2 flex items-center text-base"
@@ -430,7 +383,6 @@ const Header = () => {
               >
                 {t('Header', 'charterAntalya')}
               </Link>
-
               <Link
                 href="/comingsoon"
                 className="text-[#142347] py-2 flex items-center text-base"
