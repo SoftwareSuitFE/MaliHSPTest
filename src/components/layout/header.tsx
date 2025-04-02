@@ -50,7 +50,7 @@ const Header = () => {
       interface IEExternal {
         AddFavorite?: (url: string, title: string) => void;
       }
-      
+
       const external = window.external as IEExternal;
       if (external && typeof external.AddFavorite === 'function') {
         external.AddFavorite(url, title);
@@ -112,7 +112,11 @@ const Header = () => {
 
         {/* Masaüstünde dil kodu ve ok ikonu; mobilde gizli */}
         <div className="hidden md:flex items-center justify-center language-code-container">
-          <span className="language-code-text">{locale.toUpperCase()}</span>
+          <span className="language-code-text">
+            {typeof locale === 'string'
+              ? locale.toUpperCase()
+              : String(locale).toUpperCase()}
+          </span>
         </div>
         <div className="hidden md:flex items-center justify-center arrow-icon-container">
           <Icon name="arrow-downSmall" />
