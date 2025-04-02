@@ -215,3 +215,121 @@
   .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto button:not(.mobile-menu-close-btn):hover {
     color: #ED8936 !important;
   }
+  
+  /* ===============================
+       Mobil Menü Optimize Edilmiş Stiller
+       =============================== */
+  @media (max-width: 767px) {
+    /* Mobil menü genel container */
+    .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Mobil menünün iç container'ı */
+    .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto > div.pt-24.px-4.space-y-6.pb-16 {
+      padding-top: 16px !important; /* pt-24 -> pt-16 */
+      padding-bottom: 8px !important; /* pb-16 -> pb-8 */
+      padding-left: 12px !important; /* px-4 -> px-3 */
+      padding-right: 12px !important;
+      margin-top: 40px !important; /* Kapatma butonunun altında başlaması için */
+    }
+    
+    /* Mobil menü aralıkları */
+    .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto > div.pt-24.px-4.space-y-6.pb-16 {
+      gap: 2px !important;
+    }
+    
+    /* Mobil menü elemanları arasındaki boşlukları azalt */
+    .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto .space-y-6 {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
+    
+    .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto .space-y-6 > div,
+    .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto .space-y-4 > * {
+      margin-top: 0 !important;
+      margin-bottom: 6px !important;
+    }
+    
+    /* Border alanları */
+    .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto .border-b.border-gray-200 {
+      padding-bottom: 6px !important;
+      margin-bottom: 6px !important;
+    }
+    
+    /* Mobil menü linkleri */
+    .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto a,
+    .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto button:not(.mobile-menu-close-btn) {
+      padding-top: 6px !important;
+      padding-bottom: 6px !important;
+      font-size: 14px !important; /* Küçültülmüş font */
+    }
+    
+    /* Arama alanı */
+    .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto .py-2 {
+      padding-top: 6px !important;
+      padding-bottom: 6px !important;
+    }
+    
+    /* Dropdown menüler */
+    .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto .pb-4.space-y-4 {
+      padding-bottom: 8px !important;
+    }
+    
+    /* Ana menü öğeleri */
+    .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto .space-y-4 {
+      margin-top: 6px !important;
+    }
+    
+    /* Kapatma butonu pozisyonu */
+    .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto .mobile-menu-close-btn {
+      top: 8px !important;
+      right: 8px !important;
+    }
+    
+    /* Dil seçici */
+    .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto .py-2.flex.items-center {
+      padding-top: 4px !important;
+      padding-bottom: 4px !important;
+    }
+    
+    /* Mobil menü içindeki dil seçici text */
+    .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto .mr-2.text-base.text-\[\#142347\] {
+      font-size: 14px !important;
+    }
+    
+    /* Üst menü öğeleri arasındaki boşluk */
+    .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto .border-b.border-gray-200.pb-4.space-y-4 > * {
+      margin-top: 0 !important;
+      margin-bottom: 4px !important;
+    }
+    
+    /* Ana navigasyon öğeleri arasındaki boşluk */
+    .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto .space-y-4 > * {
+      margin-top: 0 !important;
+      margin-bottom: 4px !important;
+    }
+  }
+  
+  /* Çok küçük ekranlar için daha agresif düzenlemeler */
+  @media (max-width: 360px) {
+    /* Mobil menü daha da kompakt */
+    .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto > div.pt-24.px-4.space-y-6.pb-16 {
+      padding-left: 8px !important;
+      padding-right: 8px !important;
+    }
+    
+    /* Mobil menü linkleri daha küçük font */
+    .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto a,
+    .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto button:not(.mobile-menu-close-btn) {
+      font-size: 13px !important;
+      padding-top: 4px !important;
+      padding-bottom: 4px !important;
+    }
+    
+    /* Dil seçici daha da kompakt */
+    .md\:hidden.fixed.inset-0.bg-white.z-50.overflow-y-auto .mr-2.text-base.text-\[\#142347\] {
+      font-size: 13px !important;
+    }
+  }
